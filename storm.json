@@ -1,0 +1,50 @@
+{
+  "$schema": "https://cdn.jsdelivr.net/npm/@storm-software/config/schemas/storm.schema.json",
+  "extends": "./node_modules/@storm-software/config/presets/base.json",
+  "name": "storm-trading",
+  "namespace": "storm-trading",
+  "repository": "https://github.com/storm-software/storm-trading",
+  "organization": "storm-software",
+  "owner": "@storm-software/architecture",
+  "timezone": "America/New_York",
+  "locale": "en-US",
+  "logLevel": "all",
+  "packageManager": "pnpm",
+  "externalPackagePatterns": [
+    "@acidic/",
+    "@storm-software/",
+    "@storm-stack/",
+    "@cyclone-ui/",
+    "@storm-trading/"
+  ],
+  "colors": {
+    "light": {
+      "background": "#f4f4f5",
+      "foreground": "#1d232a",
+      "brand": "#1fb2a6",
+      "help": "#8250df",
+      "success": "#087f5b",
+      "info": "#0550ae",
+      "warning": "#e3b341",
+      "error": "#a40e26"
+    },
+    "dark": {
+      "background": "#0D1017",
+      "foreground": "#fcfcf5",
+      "brand": "#1fb2a6",
+      "help": "#8256D0",
+      "success": "#087f5b",
+      "info": "#316DCA",
+      "warning": "#F3D371",
+      "error": "#d1242f"
+    }
+  },
+  "extensions": {
+    "telemetry": {
+      "fileName": "storm",
+      "fileExtension": "log",
+      "path": "tmp/storm/logs",
+      "stacktrace": true
+    }
+  }
+}

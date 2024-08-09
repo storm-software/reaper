@@ -1,0 +1,50 @@
+
+[workspace]
+resolver = '2'
+members = ['crates/core', 'apps/transaction-request-telegram-bot']
+
+[workspace.package]
+version = '0.0.1'
+description = '💵 A monorepo containing various utilities, libraries, and applications used by Storm Software in trading processes'
+repository = 'https://github.com/storm-software/storm-trading'
+edition = '2021'
+authors = ['storm-software', 'pat-sullivan']
+license = 'Apache-2.0'
+documentation = 'https://stormsoftware.com/projects/storm-trading/docs'
+homepage = 'https://stormsoftware.com'
+categories = ['config', 'development-tools']
+keywords = [
+    'storm',
+    'storm-trading',
+    'storm-software',
+    'build-tools',
+    'monorepo',
+]
+
+[workspace.metadata.release]
+pre-release-commit-message = 'Release Storm Trading crates v{{version}}'
+shared-version = true
+tag-prefix = ''
+publish = false
+
+[profile.release]
+opt-level = 3
+lto = 'fat'
+codegen-units = 1
+strip = 'symbols'
+debug = false
+panic = 'abort'   # Let it crash and force ourselves to write safe Rust.
+
+[profile.dev.build-override]
+strip = 'debuginfo'
+incremental = false
+
+[profile.dev.package.insta]
+opt-level = 3
+
+[profile.dev.package.similar]
+opt-level = 3
+
+[profile.release-dhat]
+inherits = 'release'
+debug = 1

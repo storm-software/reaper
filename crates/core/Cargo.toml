@@ -1,0 +1,17 @@
+[package]
+name = "storm-trading-core"
+description = "A core crate containing the Acidic schema definitions and validation logic."
+version = "0.1.0"
+edition = { workspace = true }
+repository = { workspace = true }
+authors = { workspace = true }
+license = { workspace = true }
+categories = { workspace = true }
+keywords = { workspace = true }
+homepage = { workspace = true }
+documentation = "https://docs.rs/storm-trading-core"
+readme = "./README.md"
+
+[dependencies]
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
