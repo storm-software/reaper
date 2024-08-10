@@ -21,7 +21,7 @@
   // ],
   "rust-analyzer.linkedProjects": [
     ".\\crates\\core\\Cargo.toml",
-    ".\\apps\\transaction-request-telegram-bot\\Cargo.toml"
+    ".\\apps\\eth-execution-telegram-bot\\Cargo.toml"
   ],
   /******************************
    * JSON Schemas

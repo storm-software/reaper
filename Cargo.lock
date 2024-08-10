@@ -689,6 +689,26 @@ dependencies = [
 ]
 
 [[package]]
+name = "eth-execution-telegram-bot"
+version = "0.1.0"
+dependencies = [
+ "aws-config",
+ "aws-sdk-dynamodb",
+ "chrono",
+ "lambda_http",
+ "lambda_runtime",
+ "mime",
+ "regex",
+ "reqwest 0.12.5",
+ "serde",
+ "serde_json",
+ "teloxide",
+ "tokio",
+ "tracing",
+ "tracing-subscriber",
+]
+
+[[package]]
 name = "fastrand"
 version = "2.1.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -2406,26 +2426,6 @@ dependencies = [
  "tracing",
  "tracing-core",
  "tracing-serde",
-]
-
-[[package]]
-name = "transaction-request-telegram-bot"
-version = "0.1.0"
-dependencies = [
- "aws-config",
- "aws-sdk-dynamodb",
- "chrono",
- "lambda_http",
- "lambda_runtime",
- "mime",
- "regex",
- "reqwest 0.12.5",
- "serde",
- "serde_json",
- "teloxide",
- "tokio",
- "tracing",
- "tracing-subscriber",
 ]
 
 [[package]]

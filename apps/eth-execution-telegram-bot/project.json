@@ -1,0 +1,66 @@
+{
+  "name": "eth-execution-telegram-bot",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "sourceRoot": "apps/eth-execution-telegram-bot/src",
+  "targets": {
+    // "build": {
+    //   "executor": "@monodon/rust:build",
+    //   "outputs": ["{options.target-dir}"],
+    //   "options": {
+    //     "target-dir": "dist/target/eth-execution-telegram-bot"
+    //   },
+    //   "configurations": {
+    //     "production": {
+    //       "release": true
+    //     }
+    //   }
+    // },
+    "build": {
+      "cache": true,
+      "executor": "nx:run-commands",
+      "inputs": ["rust", "^production"],
+      "outputs": ["{workspaceRoot}/dist/target/eth-execution-telegram-bot"],
+      "dependsOn": ["clean", "^build"],
+      "options": {
+        "commands": [
+          "cargo lambda build --release --arm64 --output-format zip"
+        ],
+        "cwd": "apps/eth-execution-telegram-bot",
+        "color": true
+      }
+    },
+    "test": {
+      "executor": "@monodon/rust:test",
+      "outputs": ["{options.target-dir}"],
+      "options": {
+        "target-dir": "dist/target/eth-execution-telegram-bot"
+      },
+      "configurations": {
+        "production": {
+          "release": true
+        }
+      }
+    },
+    "lint": {
+      "executor": "@monodon/rust:lint",
+      "outputs": ["{options.target-dir}"],
+      "options": {
+        "target-dir": "dist/target/eth-execution-telegram-bot"
+      }
+    },
+    "run": {
+      "executor": "@monodon/rust:run",
+      "outputs": ["{options.target-dir}"],
+      "options": {
+        "target-dir": "dist/target/eth-execution-telegram-bot"
+      },
+      "configurations": {
+        "production": {
+          "release": true
+        }
+      }
+    }
+  },
+  "tags": []
+}

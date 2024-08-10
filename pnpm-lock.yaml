@@ -144,6 +144,9 @@ importers:
       '@dotenvx/dotenvx':
         specifier: ^1.6.4
         version: 1.6.4
+      '@nx/node':
+        specifier: 19.5.6
+        version: 19.5.6(@babel/traverse@7.25.3)(@types/node@20.14.14)(@zkochan/js-yaml@0.0.7)(eslint@9.5.0)(nx@19.5.6)(ts-node@10.9.2(@types/node@20.14.14)(typescript@5.5.3))(typescript@5.5.3)(verdaccio@5.31.1(typanion@3.14.0))
 
 packages:
 
@@ -1603,7 +1606,6 @@ packages:
 
   '@ls-lint/ls-lint@2.2.3':
     resolution: {integrity: sha512-ekM12jNm/7O2I/hsRv9HvYkRdfrHpiV1epVuI2NP+eTIcEgdIdKkKCs9KgQydu/8R5YXTov9aHdOgplmCHLupw==}
-    cpu: [x64, arm64, s390x]
     os: [darwin, linux, win32]
     hasBin: true
 
@@ -1717,6 +1719,9 @@ packages:
   '@nrwl/js@19.5.6':
     resolution: {integrity: sha512-mfTBvon1v/Ts1Crvv25raXGxpQe3cgPTNCP+D5SG6Vpe/vbLOYiBi90UhHIKXKZOQ73RRx+Wojgn+Zv5pDo13A==}
 
+  '@nrwl/node@19.5.6':
+    resolution: {integrity: sha512-eiQqeHNtR40cdD0WX33ZUwom3Malt7C7zq+iU5DTLlbeC6ciZGz9pYkeNZ6JJZOEPEUGM5O+7gtWUb+Ig7ZyMQ==}
+
   '@nrwl/nx-cloud@19.0.0':
     resolution: {integrity: sha512-3WuXq3KKXwKnbjOkYK0OXosjD02LIjC3kEkyMIbaE36O9dMp3k/sa4ZtDVC3tAoIrj17VLVmjKfoDYbED1rapw==}
 
@@ -1783,6 +1788,9 @@ packages:
 
   '@nx/linter@19.5.6':
     resolution: {integrity: sha512-OS0DZ1TDTvWaZe7ijLT6jkQZCCBg4OseFmP2Y6bqE/oRdyoRv95gCT2MGmyJQXkLoX5j9DMfc4nYXS0VHFYqdg==}
+
+  '@nx/node@19.5.6':
+    resolution: {integrity: sha512-nWWoZCdomYOo0JmJMiP1UWlAnCdrvqLxXgWS6MNbQTT0rhJSn6em5S9N4TuHA7+aCDInvzNEL8YcVTm1xCbtug==}
 
   '@nx/nx-darwin-arm64@18.1.0-beta.2':
     resolution: {integrity: sha512-wdQYPZQIA2uaJqsiDYFQ2lQTT9cvIy9ZP+lYBDDL314p/F1eQAe6vhZtZ3IpTYYj1YdTl6IiiFkB+/e4l+plGw==}
@@ -10947,6 +10955,21 @@ snapshots:
       - typescript
       - verdaccio
 
+  '@nrwl/js@19.5.6(@babel/traverse@7.25.3)(@types/node@20.14.14)(nx@19.5.6)(typescript@5.4.2)(verdaccio@5.31.1(typanion@3.14.0))':
+    dependencies:
+      '@nx/js': 19.5.6(@babel/traverse@7.25.3)(@types/node@20.14.14)(nx@19.5.6)(typescript@5.4.2)(verdaccio@5.31.1(typanion@3.14.0))
+    transitivePeerDependencies:
+      - '@babel/traverse'
+      - '@swc-node/register'
+      - '@swc/core'
+      - '@swc/wasm'
+      - '@types/node'
+      - debug
+      - nx
+      - supports-color
+      - typescript
+      - verdaccio
+
   '@nrwl/js@19.5.6(@babel/traverse@7.25.3)(@types/node@20.14.14)(nx@19.5.6)(typescript@5.5.3)(verdaccio@5.31.1(typanion@3.14.0))':
     dependencies:
       '@nx/js': 19.5.6(@babel/traverse@7.25.3)(@types/node@20.14.14)(nx@19.5.6)(typescript@5.5.3)(verdaccio@5.31.1(typanion@3.14.0))
@@ -10959,6 +10982,26 @@ snapshots:
       - debug
       - nx
       - supports-color
+      - typescript
+      - verdaccio
+
+  '@nrwl/node@19.5.6(@babel/traverse@7.25.3)(@types/node@20.14.14)(@zkochan/js-yaml@0.0.7)(eslint@9.5.0)(nx@19.5.6)(ts-node@10.9.2(@types/node@20.14.14)(typescript@5.5.3))(typescript@5.5.3)(verdaccio@5.31.1(typanion@3.14.0))':
+    dependencies:
+      '@nx/node': 19.5.6(@babel/traverse@7.25.3)(@types/node@20.14.14)(@zkochan/js-yaml@0.0.7)(eslint@9.5.0)(nx@19.5.6)(ts-node@10.9.2(@types/node@20.14.14)(typescript@5.5.3))(typescript@5.5.3)(verdaccio@5.31.1(typanion@3.14.0))
+    transitivePeerDependencies:
+      - '@babel/traverse'
+      - '@swc-node/register'
+      - '@swc/core'
+      - '@swc/wasm'
+      - '@types/node'
+      - '@zkochan/js-yaml'
+      - babel-plugin-macros
+      - debug
+      - eslint
+      - node-notifier
+      - nx
+      - supports-color
+      - ts-node
       - typescript
       - verdaccio
 
@@ -11154,7 +11197,7 @@ snapshots:
       '@babel/preset-env': 7.25.3(@babel/core@7.25.2)
       '@babel/preset-typescript': 7.24.7(@babel/core@7.25.2)
       '@babel/runtime': 7.25.0
-      '@nrwl/js': 19.5.6(@babel/traverse@7.25.3)(@types/node@20.14.14)(nx@19.5.6)(typescript@5.5.3)(verdaccio@5.31.1(typanion@3.14.0))
+      '@nrwl/js': 19.5.6(@babel/traverse@7.25.3)(@types/node@20.14.14)(nx@19.5.6)(typescript@5.4.2)(verdaccio@5.31.1(typanion@3.14.0))
       '@nx/devkit': 19.5.6(nx@19.5.6)
       '@nx/workspace': 19.5.6
       babel-plugin-const-enum: 1.2.0(@babel/core@7.25.2)
@@ -11247,6 +11290,31 @@ snapshots:
       - eslint
       - nx
       - supports-color
+      - verdaccio
+
+  '@nx/node@19.5.6(@babel/traverse@7.25.3)(@types/node@20.14.14)(@zkochan/js-yaml@0.0.7)(eslint@9.5.0)(nx@19.5.6)(ts-node@10.9.2(@types/node@20.14.14)(typescript@5.5.3))(typescript@5.5.3)(verdaccio@5.31.1(typanion@3.14.0))':
+    dependencies:
+      '@nrwl/node': 19.5.6(@babel/traverse@7.25.3)(@types/node@20.14.14)(@zkochan/js-yaml@0.0.7)(eslint@9.5.0)(nx@19.5.6)(ts-node@10.9.2(@types/node@20.14.14)(typescript@5.5.3))(typescript@5.5.3)(verdaccio@5.31.1(typanion@3.14.0))
+      '@nx/devkit': 19.5.6(nx@19.5.6)
+      '@nx/eslint': 19.5.6(@babel/traverse@7.25.3)(@types/node@20.14.14)(@zkochan/js-yaml@0.0.7)(eslint@9.5.0)(nx@19.5.6)(verdaccio@5.31.1(typanion@3.14.0))
+      '@nx/jest': 19.5.6(@babel/traverse@7.25.3)(@types/node@20.14.14)(nx@19.5.6)(ts-node@10.9.2(@types/node@20.14.14)(typescript@5.5.3))(typescript@5.5.3)(verdaccio@5.31.1(typanion@3.14.0))
+      '@nx/js': 19.5.6(@babel/traverse@7.25.3)(@types/node@20.14.14)(nx@19.5.6)(typescript@5.5.3)(verdaccio@5.31.1(typanion@3.14.0))
+      tslib: 2.6.3
+    transitivePeerDependencies:
+      - '@babel/traverse'
+      - '@swc-node/register'
+      - '@swc/core'
+      - '@swc/wasm'
+      - '@types/node'
+      - '@zkochan/js-yaml'
+      - babel-plugin-macros
+      - debug
+      - eslint
+      - node-notifier
+      - nx
+      - supports-color
+      - ts-node
+      - typescript
       - verdaccio
 
   '@nx/nx-darwin-arm64@18.1.0-beta.2':

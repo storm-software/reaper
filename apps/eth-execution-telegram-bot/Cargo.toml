@@ -1,5 +1,5 @@
 [package]
-name = "transaction-request-telegram-bot"
+name = "eth-execution-telegram-bot"
 version = "0.1.0"
 edition = "2021"
 
