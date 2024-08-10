@@ -92,10 +92,27 @@ jobs:
       #     stormBot: ${{ env.STORM_BOT }}
       #     stormBotGitHubToken: ${{ secrets.STORM_BOT_GITHUB_TOKEN }}
 
+      - uses: actions/checkout@v4
+        name: Checkout [Pull Request]
+        if: ${{ github.event_name == 'pull_request' }}
+        with:
+          # By default, PRs will be checked-out based on the Merge Commit, but we want the actual branch HEAD.
+          ref: ${{ github.event.pull_request.head.sha }}
+          # We need to fetch all branches and commits so that Nx affected has a base to compare against.
+          fetch-depth: 0
+          token: ${{ secrets.STORM_BOT_GITHUB_TOKEN }}
+
+      - uses: actions/checkout@v4
+        name: Checkout [Default Branch]
+        if: ${{ github.event_name != 'pull_request' }}
+        with:
+          # We need to fetch all branches and commits so that Nx affected has a base to compare against.
+          fetch-depth: 0
+          token: ${{ secrets.STORM_BOT_GITHUB_TOKEN }}
+
       - name: Setup workspace
         uses: ./.github/actions/setup
         with:
-          storm_bot_github_token: ${{ secrets.STORM_BOT_GITHUB_TOKEN }}
           storm_bot_private_key: ${{ secrets.STORM_BOT_PRIVATE_KEY }}
           storm_bot_passphrase: ${{ secrets.STORM_BOT_PASSPHRASE }}
 

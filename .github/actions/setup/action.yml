@@ -1,9 +1,6 @@
 name: "Install"
 description: "Install and pre-build"
 inputs:
-  storm_bot_github_token:
-    description: The github token of the Storm bot
-    required: true
   storm_bot_private_key:
     description: The private key of the Storm bot
     required: true
@@ -14,35 +11,11 @@ inputs:
 runs:
   using: composite
   steps:
-    - name: Setup Node.js 22.x
-      uses: actions/setup-node@v4
-      with:
-        node-version: 22.4
-        registry-url: "https://registry.npmjs.org"
-
-    - uses: actions/checkout@v4
-      name: Checkout [Pull Request]
-      if: ${{ github.event_name == 'pull_request' }}
-      with:
-        # By default, PRs will be checked-out based on the Merge Commit, but we want the actual branch HEAD.
-        ref: ${{ github.event.pull_request.head.sha }}
-        # We need to fetch all branches and commits so that Nx affected has a base to compare against.
-        fetch-depth: 0
-        token: ${{ inputs.storm_bot_github_token }}
-
     - name: Setup GPG
       uses: crazy-max/ghaction-import-gpg@v5
       with:
         gpg_private_key: ${{ inputs.storm_bot_private_key }}
         passphrase: ${{ inputs.storm_bot_passphrase }}
-
-    - uses: actions/checkout@v4
-      name: Checkout [Default Branch]
-      if: ${{ github.event_name != 'pull_request' }}
-      with:
-        # We need to fetch all branches and commits so that Nx affected has a base to compare against.
-        fetch-depth: 0
-        token: ${{ inputs.storm_bot_github_token }}
 
     - name: Setup ${{ inputs.packageManager }}
       id: pnpm_setup
@@ -61,6 +34,14 @@ runs:
           ~/.cache/Cypress # needed for the Cypress binary
         key: npm-dependencies-${{ hashFiles('pnpm-lock.yaml') }}
 
+    - name: Set up npm registry
+      uses: actions/setup-node@v4
+      with:
+        registry-url: https://registry.npmjs.org/
+        node-version-file: .github/.nvmrc
+        cache: pnpm
+        cache-dependency-path: pnpm-lock.yaml
+
     - name: Install pnpm package manager
       shell: bash
       run: pnpm install --no-frozen-lockfile
@@ -68,6 +49,28 @@ runs:
       env:
         # postinstall uses this
         SHOULD_UNLOCK_GIT_CRYPT: "1"
+
+    - name: Setup pnpm config registry
+      run: pnpm config set registry https://registry.npmjs.org
+      shell: bash
+
+    - name: Cache npm dependencies
+      id: cache-dependencies-save
+      uses: actions/cache/save@v4
+      with:
+        path: |
+          node_modules
+          ~/.cache/Cypress # needed for the Cypress binary
+        key: ${{ steps.cache-dependencies-restore.outputs.cache-primary-key }}
+
+    - name: Configure git
+      run: |
+        git config user.name "Stormie-Bot"
+        git config user.email "Stormie-Bot@users.noreply.github.com"
+        git config lfs.allowincompletepush true
+        git config --global init.defaultBranch main
+        npm config set //registry.npmjs.org/:_authToken=$NPM_TOKEN
+      shell: bash
 
     - name: Install Rust toolchain
       uses: dtolnay/rust-toolchain@stable
