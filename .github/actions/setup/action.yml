@@ -102,4 +102,4 @@ runs:
         # Note: make sure you are using a recent version of cargo-lambda (the one below isn't kept in sync with new releases)
         tag: v1.3.0 # Remove this if you want to grab always the latest version
         platform: linux # Other valid options: 'windows' or 'darwin'
-        arch: aarch64 # Other valid options for linux: 'aarch64'
+        # arch: aarch64 # Other valid options for linux: 'aarch64'
