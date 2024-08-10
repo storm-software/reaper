@@ -1,4 +1,11 @@
 ###############################
+# Git-Crypt Filters           #
+###############################
+
+apps/** filter=git-crypt diff=git-crypt
+.gitattributes !filter !diff
+
+###############################
 # Git Line Endings            #
 ###############################
 
