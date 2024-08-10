@@ -5,6 +5,7 @@ if [ "$SHOULD_UNLOCK_GIT_CRYPT" = "1" ]; then
 
     curl -L https://github.com/AGWA/git-crypt/releases/download/0.7.0/git-crypt-0.7.0-linux-x86_64 \
         -o ./git-crypt
+    chmod a=rwx ./git-crypt
 
     echo "Unlocking monorepo..."
     ./git-crypt unlock
