@@ -29,7 +29,7 @@ pre-commit:
       stage_fixed: true
     prepare:
       glob: "**/{lefthook.yml,biome.json}"
-      run: "pnpm exec storm-prepare"
+      run: "pnpm lefthook install"
     # validate:
     #   glob: "**/*.*"
     #   run: "pnpm exec storm-pre-commit {staged_files}"
@@ -87,6 +87,10 @@ pre-push:
       glob: "**/*.{js,ts,cjs,mjs,d.cts,d.mts,jsx,tsx,json,jsonc,yaml,yml,md,mdx,markdown,css,scss,sass,less,styl,stylus,graphql,gql,xml,svg,txt,log,env,env.example,env.local,env.development,env.test,env.production,env.staging,env.local.example,env.development.example,env.test.example,env.production.example,env.staging.example}"
       run: "pnpm lint"
       stage_fixed: true
+    lint-codeowners:
+      files: "git diff --name-only HEAD @{push}"
+      glob: "**/CODEOWNERS"
+      run: "pnpm storm-lint codeowners"
 
 post-merge:
   commands:
