@@ -72,6 +72,7 @@
     "local-registry": "nx local-registry @storm-trading/monorepo",
     "nuke": "nx clear-cache && rimraf tmp && rimraf node_modules/.cache/nx && rimraf **/node_modules && pnpm clear",
     "nx": "nx",
+    "postinstall": "./tools/scripts/unlock-monorepo.sh",
     "prebuild": "echo Skipping prebuild...",
     "prebuild-all": "echo Skipping prebuild-all...",
     "rebuild": "pnpm clean && pnpm build",

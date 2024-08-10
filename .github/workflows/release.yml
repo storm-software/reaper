@@ -84,31 +84,20 @@ jobs:
           TELEGRAM_TOKEN: ${{ secrets.STORM_BOT_TELEGRAM_TOKEN }}
           TELEGRAM_CHAT: ${{ secrets.STORM_BOT_TELEGRAM_NOTIFICATION_CHAT }}
 
+      # - name: Setup workspace
+      #   uses: storm-software/action-setup@main
+      #   with:
+      #     packageManager: pnpm
+      #     packageManagerVersion: 9.6.0
+      #     stormBot: ${{ env.STORM_BOT }}
+      #     stormBotGitHubToken: ${{ secrets.STORM_BOT_GITHUB_TOKEN }}
+
       - name: Setup workspace
-        uses: storm-software/action-setup@main
+        uses: ./.github/actions/setup
         with:
-          packageManager: pnpm
-          packageManagerVersion: 9.6.0
-          stormBot: ${{ env.STORM_BOT }}
-          stormBotGitHubToken: ${{ secrets.STORM_BOT_GITHUB_TOKEN }}
-
-      - name: Install Rust toolchain
-        uses: dtolnay/rust-toolchain@stable
-
-      - name: Install Zig toolchain
-        uses: korandoru/setup-zig@v1
-        with:
-          # Note: make sure you are using a recent version of zig (the one below isn't kept in sync with new releases)
-          zig-version: 0.13.0
-
-      - name: Install Cargo Lambda
-        uses: jaxxstorm/action-install-gh-release@v1.9.0
-        with:
-          repo: cargo-lambda/cargo-lambda
-          # Note: make sure you are using a recent version of cargo-lambda (the one below isn't kept in sync with new releases)
-          tag: v1.3.0 # Remove this if you want to grab always the latest version
-          platform: linux # Other valid options: 'windows' or 'darwin'
-          arch: aarch64 # Other valid options for linux: 'aarch64'
+          storm_bot_github_token: ${{ secrets.STORM_BOT_GITHUB_TOKEN }}
+          storm_bot_private_key: ${{ secrets.STORM_BOT_PRIVATE_KEY }}
+          storm_bot_passphrase: ${{ secrets.STORM_BOT_PASSPHRASE }}
 
       - uses: nrwl/nx-set-shas@v4
         with:

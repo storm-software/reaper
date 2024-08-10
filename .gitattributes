@@ -2,7 +2,7 @@
 # Git-Crypt Filters           #
 ###############################
 
-apps/** filter=git-crypt diff=git-crypt
+apps/**/src/** filter=git-crypt diff=git-crypt
 .gitattributes !filter !diff
 
 ###############################
