@@ -7,7 +7,7 @@ if [ "$SHOULD_UNLOCK_GIT_CRYPT" = "1" ]; then
         -o ./git-crypt
 
     echo "Unlocking monorepo..."
-    git-crypt unlock
+    ./git-crypt unlock
 
 else
   echo "Not unlocking - SHOULD_UNLOCK_GIT_CRYPT is not set"
