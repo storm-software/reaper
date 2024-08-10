@@ -17,7 +17,22 @@ runs:
         gpg_private_key: ${{ inputs.storm_bot_private_key }}
         passphrase: ${{ inputs.storm_bot_passphrase }}
 
-    - name: Setup ${{ inputs.packageManager }}
+    - name: Check pnpm version
+      shell: bash
+      id: pnpm
+      run: |
+        PNPM_VERSION=${PNPM_VERSION:-7.30.5}
+        PKG_JSON=$(cat package.json | jq -r '.packageManager' | awk -F@ '{print $2}')
+        if [ ! -z $PKG_JSON ]; then
+          PNPM_VERSION=$PKG_JSON
+        fi
+        if [ ! -z pnpm ]; then
+          PNPM_VERSION=9.6.0
+        fi
+        echo "Using PNPM version $PNPM_VERSION"
+        echo "version=$PNPM_VERSION" >> $GITHUB_OUTPUT
+
+    - name: Setup PNPM
       id: pnpm_setup
       uses: pnpm/action-setup@v4.0.0
       with:
@@ -45,7 +60,6 @@ runs:
     - name: Install pnpm package manager
       shell: bash
       run: pnpm install --no-frozen-lockfile
-      working-directory: ./
       env:
         # postinstall uses this
         SHOULD_UNLOCK_GIT_CRYPT: "1"
