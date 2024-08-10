@@ -33,8 +33,22 @@ async fn main() -> Result<(), Error> {
   // Initialize tracing for logging
   fmt().with_max_level(tracing::Level::INFO).with_target(false).without_time().init();
 
+  let region_provider = RegionProviderChain::default_provider().or_else("us-east-1");
+  let config =
+    aws_config::defaults(BehaviorVersion::v2023_11_09()).region(region_provider).load().await;
+
+  let secrets = aws_sdk_secretsmanager::Client::new(&config);
+  let telegram_bot_token = secrets
+    .get_secret_value()
+    .secret_id("storm-trading/eth-execution-telegram-bot-token")
+    .send()
+    .await?;
+  // For a list of exceptions thrown, see
+  // https://docs.aws.amazon.com/secretsmanager/latest/apireference/API_GetSecretValue.html
+
   // Setup telegram bot (we do it here because this place is a cold start)
-  let bot = Bot::new(env::var("TELEGRAM_BOT_TOKEN").expect("TELEGRAM_BOT_TOKEN not set!"));
+  // let bot = Bot::new(env::var("TELEGRAM_BOT_TOKEN").expect("TELEGRAM_BOT_TOKEN not set!"))
+  let bot = Bot::new(telegram_bot_token.secret_string());
 
   // Setup AWS DynamoDB conn
   //   let region_provider = RegionProviderChain::default_provider().or_else("eu-central-1");
