@@ -1,4 +1,4 @@
 [toolchain]
 # renovate-automation: rustc version
-channel = "stable"
-components = ["rustfmt", "clippy", "lambda"]
+channel = "nightly"
+components = ["rustfmt", "clippy"]

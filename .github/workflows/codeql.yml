@@ -16,9 +16,6 @@ on:
   pull_request:
     branches:
       - main
-      - next
-      - beta
-      - experimental
   schedule:
     - cron: "37 16 * * 6"
 
@@ -47,19 +44,33 @@ jobs:
         # Learn more about CodeQL language support at https://aka.ms/codeql-docs/language-support
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+        name: Checkout [Pull Request]
+        if: ${{ github.event_name == 'pull_request' }}
         with:
+          # By default, PRs will be checked-out based on the Merge Commit, but we want the actual branch HEAD.
+          ref: ${{ github.event.pull_request.head.sha }}
+          # We need to fetch all branches and commits so that Nx affected has a base to compare against.
+          fetch-depth: 0
+          token: ${{ secrets.STORM_BOT_GITHUB_TOKEN }}
+
+      - uses: actions/checkout@v4
+        name: Checkout [Default Branch]
+        if: ${{ github.event_name != 'pull_request' }}
+        with:
+          # We need to fetch all branches and commits so that Nx affected has a base to compare against.
           fetch-depth: 0
           token: ${{ secrets.STORM_BOT_GITHUB_TOKEN }}
 
       - name: Setup workspace
-        uses: storm-software/action-setup@main
+        uses: ./.github/actions/setup
         with:
-          packageManager: pnpm
-          packageManagerVersion: 9.6.0
-          stormBot: Stormie-Bot
-          stormBotGitHubToken: ${{ secrets.STORM_BOT_GITHUB_TOKEN }}
+          storm_bot_private_key: ${{ secrets.STORM_BOT_PRIVATE_KEY }}
+          storm_bot_passphrase: ${{ secrets.STORM_BOT_PASSPHRASE }}
+
+      - uses: nrwl/nx-set-shas@v4
+        with:
+          main-branch-name: main
 
       # Initializes the CodeQL tools for scanning.
       - name: Initialize CodeQL
