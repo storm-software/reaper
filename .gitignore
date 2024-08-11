@@ -10,6 +10,7 @@ tmp
 out
 .nx/cache
 .nx/workspace-data
+.terragrunt-cache
 
 # dependencies
 node_modules

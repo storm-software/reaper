@@ -124,6 +124,24 @@ jobs:
         run: pnpm build-all
         shell: bash
 
+      - name: Check terragrunt HCL
+        uses: gruntwork-io/terragrunt-action@v2
+        with:
+          tg_dir: deployment/prod/eth-execution-lambda
+          tg_command: "hclfmt --terragrunt-check --terragrunt-diff"
+
+      - name: Terragrunt Plan
+        uses: gruntwork-io/terragrunt-action@v2
+        with:
+          tg_dir: deployment/prod/eth-execution-lambda
+          tg_command: "plan"
+
+      - name: Terragrunt Apply
+        uses: gruntwork-io/terragrunt-action@v2
+        with:
+          tg_dir: deployment/prod/eth-execution-lambda
+          tg_command: "apply"
+
       # - name: Release Library Version Updates
       #   run: pnpm release --base=${{ env.NX_BASE }} --head=${{ env.NX_HEAD }}
       #   env:
