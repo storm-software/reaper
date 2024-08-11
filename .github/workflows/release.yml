@@ -127,18 +127,21 @@ jobs:
       - name: Check terragrunt HCL
         uses: gruntwork-io/terragrunt-action@v2
         with:
+          tofu_version: 1.8
           tg_dir: deployment/prod/eth-execution-lambda
           tg_command: "hclfmt --terragrunt-check --terragrunt-diff"
 
       - name: Terragrunt Plan
         uses: gruntwork-io/terragrunt-action@v2
         with:
+          tofu_version: 1.8
           tg_dir: deployment/prod/eth-execution-lambda
           tg_command: "plan"
 
       - name: Terragrunt Apply
         uses: gruntwork-io/terragrunt-action@v2
         with:
+          tofu_version: 1.8
           tg_dir: deployment/prod/eth-execution-lambda
           tg_command: "apply"
 
