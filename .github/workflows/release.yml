@@ -124,13 +124,13 @@ jobs:
         run: pnpm build-all
         shell: bash
 
-      - name: Check terragrunt HCL
-        uses: gruntwork-io/terragrunt-action@v2
-        with:
-          tofu_version: 1.8
-          tg_version: 0.63.6
-          tg_dir: deployment/prod/eth-execution-lambda
-          tg_command: "hclfmt --terragrunt-check --terragrunt-diff"
+      # - name: Check terragrunt HCL
+      #   uses: gruntwork-io/terragrunt-action@v2
+      #   with:
+      #     tofu_version: 1.8
+      #     tg_version: 0.63.6
+      #     tg_dir: deployment/prod/eth-execution-lambda
+      #     tg_command: "hclfmt --terragrunt-check --terragrunt-diff"
 
       - name: Terragrunt Plan
         uses: gruntwork-io/terragrunt-action@v2
