@@ -136,17 +136,17 @@ jobs:
       #     tg_dir: deployment/prod/eth-execution-lambda
       #     tg_command: "hclfmt --terragrunt-check --terragrunt-diff"
 
-      - name: Terragrunt Plan
-        uses: gruntwork-io/terragrunt-action@v2
-        with:
-          tofu_version: 1.7.0
-          tg_version: 0.63.6
-          tg_dir: deployment/prod/eth-execution-engine
-          tg_command: "plan"
-          tg_add_approve: 1
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.STORM_BOT_AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.STORM_BOT_AWS_SECRET_ACCESS_KEY }}
+      # - name: Terragrunt Plan
+      #   uses: gruntwork-io/terragrunt-action@v2
+      #   with:
+      #     tofu_version: 1.7.0
+      #     tg_version: 0.63.6
+      #     tg_dir: deployment/prod/eth-execution-engine
+      #     tg_command: "plan"
+      #     tg_add_approve: 1
+      #   env:
+      #     AWS_ACCESS_KEY_ID: ${{ secrets.STORM_BOT_AWS_ACCESS_KEY_ID }}
+      #     AWS_SECRET_ACCESS_KEY: ${{ secrets.STORM_BOT_AWS_SECRET_ACCESS_KEY }}
 
       - name: Terragrunt Apply
         uses: gruntwork-io/terragrunt-action@v2
