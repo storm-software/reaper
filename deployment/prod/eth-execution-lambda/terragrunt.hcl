@@ -28,7 +28,7 @@ inputs = {
 
   aws_region = "us-east-1"
   log_level = "debug"
-  dist_path = "dist/target/eth-execution-telegram-bot"
+  dist_path = "/github/workspace/dist/target/eth-execution-telegram-bot"
 
   tags = {
     IAC = "true"
