@@ -28,7 +28,7 @@ inputs = {
 
   aws_region = "us-east-1"
   log_level = "debug"
-  dist_path = "../../../../../../../../dist/target/lambda/eth-execution-telegram-bot/bootstrap.zip"
+  dist_path = "/home/runner/work/storm-trading/storm-trading/dist/target/lambda/eth-execution-telegram-bot/bootstrap.zip"
 
   tags = {
     IAC = "true"
