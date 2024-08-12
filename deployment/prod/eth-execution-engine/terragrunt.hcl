@@ -24,7 +24,7 @@ terraform {
 
 # Indicate the input values to use for the variables of the module.
 inputs = {
-  name = "eth-execution-telegram-bot"
+  name = "eth-execution-engine"
 
   aws_region = "us-east-1"
   log_level = "info"
@@ -32,7 +32,7 @@ inputs = {
 
   tags = {
     IAC = "true"
-    Environment = "dev"
+    Environment = "prod"
     Team = "trading"
   }
 }
