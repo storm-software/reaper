@@ -125,7 +125,7 @@ jobs:
         shell: bash
 
       - name: Print output path
-        run: dir /home/runner/work/storm-trading/storm-trading/apps/eth-execution-telegram-bot
+        run: dir /home/runner/work/storm-trading/storm-trading/dist/target/lambda/eth-execution-telegram-bot
         shell: bash
 
       # - name: Check terragrunt HCL
@@ -146,6 +146,14 @@ jobs:
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.STORM_BOT_AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.STORM_BOT_AWS_SECRET_ACCESS_KEY }}
+
+      - name: Run build script
+        run: pnpm build-all
+        shell: bash
+
+      - name: Print output path
+        run: dir /home/runner/work/storm-trading/storm-trading/dist/target/lambda/eth-execution-telegram-bot
+        shell: bash
 
       - name: Terragrunt Apply
         uses: gruntwork-io/terragrunt-action@v2
