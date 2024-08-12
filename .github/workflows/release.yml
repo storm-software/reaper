@@ -139,6 +139,9 @@ jobs:
           tg_version: 0.63.6
           tg_dir: deployment/prod/eth-execution-lambda
           tg_command: "plan"
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.STORM_BOT_AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.STORM_BOT_AWS_SECRET_ACCESS_KEY }}
 
       - name: Terragrunt Apply
         uses: gruntwork-io/terragrunt-action@v2
@@ -147,6 +150,9 @@ jobs:
           tg_version: 0.63.6
           tg_dir: deployment/prod/eth-execution-lambda
           tg_command: "apply"
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.STORM_BOT_AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.STORM_BOT_AWS_SECRET_ACCESS_KEY }}
 
       # - name: Release Library Version Updates
       #   run: pnpm release --base=${{ env.NX_BASE }} --head=${{ env.NX_HEAD }}
