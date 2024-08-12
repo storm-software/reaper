@@ -33,6 +33,7 @@ inputs = {
   tags = {
     IAC = "true"
     Environment = "dev"
+    Team = "trading"
   }
 }
 
