@@ -141,7 +141,7 @@ jobs:
         with:
           tofu_version: 1.8
           tg_version: 0.63.6
-          tg_dir: deployment/prod/eth-execution-lambda
+          tg_dir: deployment/prod/eth-execution-engine
           tg_command: "plan"
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.STORM_BOT_AWS_ACCESS_KEY_ID }}
@@ -152,7 +152,7 @@ jobs:
         with:
           tofu_version: 1.8
           tg_version: 0.63.6
-          tg_dir: deployment/prod/eth-execution-lambda
+          tg_dir: deployment/prod/eth-execution-engine
           tg_command: "apply"
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.STORM_BOT_AWS_ACCESS_KEY_ID }}
