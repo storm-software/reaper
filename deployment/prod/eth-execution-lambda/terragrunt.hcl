@@ -11,16 +11,16 @@ terraform {
   source = "git::https://github.com/storm-software/storm-ops.git//modules/aws/lambda-rs?ref=main"
 }
 
-# Indicate what region to deploy the resources into
-generate "provider" {
-  path = "provider.tf"
-  if_exists = "overwrite_terragrunt"
-  contents = <<EOF
-provider "aws" {
-  region = "us-east-1"
-}
-EOF
-}
+# # Indicate what region to deploy the resources into
+# generate "provider" {
+#   path = "provider.tf"
+#   if_exists = "overwrite_terragrunt"
+#   contents = <<EOF
+# provider "aws" {
+#   region = "us-east-1"
+# }
+# EOF
+# }
 
 # Indicate the input values to use for the variables of the module.
 inputs = {
