@@ -24,11 +24,11 @@ terraform {
 
 # Indicate the input values to use for the variables of the module.
 inputs = {
-  name = "eth-execution-lambda"
+  name = "eth-execution-telegram-bot"
 
   aws_region = "us-east-1"
   log_level = "debug"
-  dist_path = "/github/workspace/dist/target/eth-execution-telegram-bot"
+  dist_path = "/home/runner/work/storm-trading/storm-trading/dist/target/lambda/eth-execution-telegram-bot/bootstrap.zip"
 
   tags = {
     IAC = "true"
