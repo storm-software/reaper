@@ -139,8 +139,8 @@ jobs:
       - name: Terragrunt Plan
         uses: gruntwork-io/terragrunt-action@v2
         with:
-          tofu_version: 1.6.0
-          tg_version: 0.50.8
+          tofu_version: 1.7.0
+          tg_version: 0.63.6
           tg_dir: deployment/prod/eth-execution-engine
           tg_command: "plan"
           tg_add_approve: 1
@@ -151,8 +151,8 @@ jobs:
       - name: Terragrunt Apply
         uses: gruntwork-io/terragrunt-action@v2
         with:
-          tofu_version: 1.6.0
-          tg_version: 0.50.8
+          tofu_version: 1.7.0
+          tg_version: 0.63.6
           tg_dir: deployment/prod/eth-execution-engine
           tg_command: "apply"
           tg_add_approve: 1
