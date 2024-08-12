@@ -124,9 +124,9 @@ jobs:
         run: pnpm build-all
         shell: bash
 
-      - name: Print output path
-        run: dir /github/workspace/dist/target/eth-execution-telegram-bot
-        shell: bash
+      # - name: Print output path
+      #   run: dir /github/workspace/dist/target/eth-execution-telegram-bot
+      #   shell: bash
 
       # - name: Check terragrunt HCL
       #   uses: gruntwork-io/terragrunt-action@v2
