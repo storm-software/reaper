@@ -139,29 +139,23 @@ jobs:
       - name: Terragrunt Plan
         uses: gruntwork-io/terragrunt-action@v2
         with:
-          tofu_version: 1.8
-          tg_version: 0.63.6
+          tofu_version: 1.6.0
+          tg_version: 0.50.8
           tg_dir: deployment/prod/eth-execution-engine
           tg_command: "plan"
+          tg_add_approve: 1
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.STORM_BOT_AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.STORM_BOT_AWS_SECRET_ACCESS_KEY }}
 
-      - name: Run build script
-        run: pnpm build-all
-        shell: bash
-
-      - name: Print output path
-        run: dir /home/runner/work/storm-trading/storm-trading/dist/target/lambda/eth-execution-telegram-bot
-        shell: bash
-
       - name: Terragrunt Apply
         uses: gruntwork-io/terragrunt-action@v2
         with:
-          tofu_version: 1.8
-          tg_version: 0.63.6
+          tofu_version: 1.6.0
+          tg_version: 0.50.8
           tg_dir: deployment/prod/eth-execution-engine
           tg_command: "apply"
+          tg_add_approve: 1
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.STORM_BOT_AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.STORM_BOT_AWS_SECRET_ACCESS_KEY }}
