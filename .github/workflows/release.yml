@@ -148,7 +148,6 @@ jobs:
           AWS_ACCESS_KEY_ID: ${{ secrets.STORM_BOT_AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.STORM_BOT_AWS_SECRET_ACCESS_KEY }}
           GITHUB_TOKEN: ${{ secrets.STORM_BOT_GITHUB_TOKEN }}
-          # TF_PLUGIN_CACHE_DIR: /github/workspace/.terraform.d/plugin-cache
           TF_LOG: debug
 
       - name: Terragrunt Apply
@@ -163,7 +162,6 @@ jobs:
           AWS_ACCESS_KEY_ID: ${{ secrets.STORM_BOT_AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.STORM_BOT_AWS_SECRET_ACCESS_KEY }}
           GITHUB_TOKEN: ${{ secrets.STORM_BOT_GITHUB_TOKEN }}
-          # TF_PLUGIN_CACHE_DIR: /github/workspace/.terraform.d/plugin-cache
           TF_LOG: debug
 
       # - name: Release Library Version Updates
