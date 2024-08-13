@@ -8,7 +8,7 @@ include "root" {
 # Note the extra `/` after the protocol is required for the shorthand
 # notation.
 terraform {
-  source = "git::https://github.com/storm-software/storm-ops.git//modules/aws/lambda-rs?ref=main"
+  source = "git::https://github.com/storm-software/storm-ops.git//terraform-modules/aws/lambda-rs?ref=main"
 }
 
 # # Indicate what region to deploy the resources into
