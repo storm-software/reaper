@@ -136,28 +136,74 @@ jobs:
       #     tg_dir: deployment/prod/eth-execution-lambda
       #     tg_command: "hclfmt --terragrunt-check --terragrunt-diff"
 
-      - name: Terragrunt Plan
-        uses: gruntwork-io/terragrunt-action@v2
+      # - name: Terragrunt Plan
+      #   uses: gruntwork-io/terragrunt-action@v2
+      #   with:
+      #     tofu_version: 1.8.0
+      #     tg_version: 0.63.6
+      #     tg_dir: deployment/prod/eth-execution-engine
+      #     tg_command: plan
+      #     tg_add_approve: 1
+      #   env:
+      #     AWS_ACCESS_KEY_ID: ${{ secrets.STORM_BOT_AWS_ACCESS_KEY_ID }}
+      #     AWS_SECRET_ACCESS_KEY: ${{ secrets.STORM_BOT_AWS_SECRET_ACCESS_KEY }}
+      #     GITHUB_TOKEN: ${{ secrets.STORM_BOT_GITHUB_TOKEN }}
+      #     TF_LOG: debug
+
+      # - name: Terragrunt Apply
+      #   uses: gruntwork-io/terragrunt-action@v2
+      #   with:
+      #     tofu_version: 1.8.0
+      #     tg_version: 0.63.6
+      #     tg_dir: deployment/prod/eth-execution-engine
+      #     tg_command: run-all apply
+      #     tg_add_approve: 1
+      #   env:
+      #     AWS_ACCESS_KEY_ID: ${{ secrets.STORM_BOT_AWS_ACCESS_KEY_ID }}
+      #     AWS_SECRET_ACCESS_KEY: ${{ secrets.STORM_BOT_AWS_SECRET_ACCESS_KEY }}
+      #     GITHUB_TOKEN: ${{ secrets.STORM_BOT_GITHUB_TOKEN }}
+      #     TF_LOG: debug
+
+      # Install the latest version of Terragrunt CLI and configure the Terragrunt CLI configuration file with a Terragrunt Cloud user API token
+      - name: Setup Terraform v1.2.6
+        uses: hashicorp/setup-Terraform@v1
         with:
-          tofu_version: 1.8.0
-          tg_version: 0.63.6
-          tg_dir: deployment/prod/eth-execution-engine
-          tg_command: plan
-          tg_add_approve: 1
+          terraform_version: 1.2.6
+          terraform_wrapper: true
+      - name: Setup Terraform version
+        run: terraform --version
+      - name: Setup Terraform wrapper path
+        run: which terraform
+
+      - name: Setup Terragrunt v0.38.4
+        run: |
+          sudo wget -q -O /bin/terragrunt "https://github.com/gruntwork-io/terragrunt/releases/download/v0.38.4/terragrunt_linux_amd64"
+          sudo chmod +x /bin/terragrunt
+          terragrunt -v
+
+      # Initialize a new or existing Terragrunt working directory by creating initial files, loading any remote state, downloading modules, etc.
+      - name: Terragrunt Init
+        run: terragrunt init --terragrunt-non-interactive
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.STORM_BOT_AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.STORM_BOT_AWS_SECRET_ACCESS_KEY }}
           GITHUB_TOKEN: ${{ secrets.STORM_BOT_GITHUB_TOKEN }}
           TF_LOG: debug
 
+      # Generates an execution plan for Terragrunt
+      - name: Terragrunt Plan
+        run: terragrunt run-all plan --terragrunt-non-interactive
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.STORM_BOT_AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.STORM_BOT_AWS_SECRET_ACCESS_KEY }}
+          GITHUB_TOKEN: ${{ secrets.STORM_BOT_GITHUB_TOKEN }}
+          TF_LOG: debug
+
+        # On push to main, build or change infrastructure according to Terragrunt configuration files
+        # Note: It is recommended to set up a required "strict" status check in your repository for "Terragrunt Cloud". See the documentation on "strict" required status checks for more information: https://help.github.com/en/github/administering-a-repository/types-of-required-status-checks
       - name: Terragrunt Apply
-        uses: gruntwork-io/terragrunt-action@v2
-        with:
-          tofu_version: 1.8.0
-          tg_version: 0.63.6
-          tg_dir: deployment/prod/eth-execution-engine
-          tg_command: run-all apply
-          tg_add_approve: 1
+        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+        run: terragrunt run-all apply --terragrunt-non-interactive
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.STORM_BOT_AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.STORM_BOT_AWS_SECRET_ACCESS_KEY }}
