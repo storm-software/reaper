@@ -29,6 +29,7 @@ inputs = {
   aws_region = "us-east-1"
   log_level = "debug"
   dist_path = "/home/runner/work/storm-trading/storm-trading/dist/target/lambda/eth-execution-telegram-bot/bootstrap.zip"
+  project_path = "/home/runner/work/storm-trading/storm-trading/apps/eth-execution-telegram-bot"
 
   tags = {
     IAC = "true"
