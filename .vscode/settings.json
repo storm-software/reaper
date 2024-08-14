@@ -23,6 +23,8 @@
     ".\\crates\\core\\Cargo.toml",
     ".\\apps\\eth-execution-telegram-bot\\Cargo.toml"
   ],
+  "rust-analyzer.checkOnSave": true,
+  "rust-analyzer.diagnostics.enable": true,
   /******************************
    * JSON Schemas
    ******************************/

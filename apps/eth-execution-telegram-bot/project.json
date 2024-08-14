@@ -4,18 +4,18 @@
   "projectType": "application",
   "sourceRoot": "apps/eth-execution-telegram-bot/src",
   "targets": {
-    // "build": {
-    //   "executor": "@monodon/rust:build",
-    //   "outputs": ["{options.target-dir}"],
-    //   "options": {
-    //     "target-dir": "dist/target/eth-execution-telegram-bot"
-    //   },
-    //   "configurations": {
-    //     "production": {
-    //       "release": true
-    //     }
-    //   }
-    // },
+    "build-local": {
+      "executor": "@monodon/rust:build",
+      "outputs": ["{options.target-dir}"],
+      "options": {
+        "target-dir": "dist/target/eth-execution-telegram-bot"
+      },
+      "configurations": {
+        "production": {
+          "release": true
+        }
+      }
+    },
     "build": {
       "cache": true,
       "executor": "nx:run-commands",
