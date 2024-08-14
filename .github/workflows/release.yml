@@ -188,7 +188,7 @@ jobs:
           AWS_ACCESS_KEY_ID: ${{ secrets.STORM_BOT_AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.STORM_BOT_AWS_SECRET_ACCESS_KEY }}
           GITHUB_TOKEN: ${{ secrets.STORM_BOT_GITHUB_TOKEN }}
-          TF_LOG: debug
+          TF_LOG: info
 
       # Generates an execution plan for Terragrunt
       - name: Terragrunt Plan
@@ -197,7 +197,7 @@ jobs:
           AWS_ACCESS_KEY_ID: ${{ secrets.STORM_BOT_AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.STORM_BOT_AWS_SECRET_ACCESS_KEY }}
           GITHUB_TOKEN: ${{ secrets.STORM_BOT_GITHUB_TOKEN }}
-          TF_LOG: debug
+          TF_LOG: info
 
         # On push to main, build or change infrastructure according to Terragrunt configuration files
         # Note: It is recommended to set up a required "strict" status check in your repository for "Terragrunt Cloud". See the documentation on "strict" required status checks for more information: https://help.github.com/en/github/administering-a-repository/types-of-required-status-checks
@@ -208,7 +208,7 @@ jobs:
           AWS_ACCESS_KEY_ID: ${{ secrets.STORM_BOT_AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.STORM_BOT_AWS_SECRET_ACCESS_KEY }}
           GITHUB_TOKEN: ${{ secrets.STORM_BOT_GITHUB_TOKEN }}
-          TF_LOG: debug
+          TF_LOG: info
 
       # - name: Release Library Version Updates
       #   run: pnpm release --base=${{ env.NX_BASE }} --head=${{ env.NX_HEAD }}
