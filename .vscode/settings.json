@@ -8,9 +8,9 @@
   /******************************
    * Rust Analyzer
    ******************************/
-  "rust-analyzer.procMacro.ignored": {
-    "napi-derive": ["napi"]
-  },
+  // "rust-analyzer.procMacro.ignored": {
+  //   "napi-derive": ["napi"]
+  // },
   // "rust-analyzer.linkedProjects": [
   //   "crates/**/Cargo.toml",
   //   "crates/**/src/**/*.rs",
@@ -21,10 +21,12 @@
   // ],
   "rust-analyzer.linkedProjects": [
     ".\\crates\\core\\Cargo.toml",
-    ".\\apps\\eth-execution-telegram-bot\\Cargo.toml"
+    ".\\apps\\eth-execution-telegram-bot\\Cargo.toml",
+    ".\\apps\\eth-execution-telegram-bot\\**\\*.rs"
   ],
   "rust-analyzer.checkOnSave": true,
   "rust-analyzer.diagnostics.enable": true,
+  "rust-analyzer.diagnostics.experimental.enable": true,
   /******************************
    * JSON Schemas
    ******************************/
