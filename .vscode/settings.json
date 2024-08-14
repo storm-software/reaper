@@ -21,8 +21,7 @@
   // ],
   "rust-analyzer.linkedProjects": [
     ".\\crates\\core\\Cargo.toml",
-    ".\\apps\\eth-execution-telegram-bot\\Cargo.toml",
-    ".\\apps\\eth-execution-telegram-bot\\**\\*.rs"
+    ".\\apps\\eth-execution-telegram-bot\\Cargo.toml"
   ],
   "rust-analyzer.checkOnSave": true,
   "rust-analyzer.diagnostics.enable": true,
