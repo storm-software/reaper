@@ -17,7 +17,7 @@
       }
     },
     "build": {
-      "cache": true,
+      "cache": false,
       "executor": "nx:run-commands",
       "inputs": ["rust", "^production"],
       "outputs": ["{workspaceRoot}/dist/target/eth-execution-telegram-bot"],
