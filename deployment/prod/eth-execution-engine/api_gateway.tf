@@ -23,7 +23,7 @@ resource "aws_api_gateway_integration" "lambda" {
 
   integration_http_method = "POST"
   type                    = "AWS_PROXY"
-  uri                     = "${aws_lambda_function.eth_execution_engine_api.invoke_arn}"
+  uri                     = "${aws_lambda_function.lambda_dist.invoke_arn}"
 }
 
 resource "aws_api_gateway_method" "proxy_root" {
@@ -40,7 +40,7 @@ resource "aws_api_gateway_integration" "lambda_root" {
 
   integration_http_method = "POST"
   type                    = "AWS_PROXY"
-  uri                     = "${aws_lambda_function.eth_execution_engine_api.invoke_arn}"
+  uri                     = "${aws_lambda_function.lambda_dist.invoke_arn}"
 }
 
 resource "aws_api_gateway_deployment" "eth_execution_engine_api" {
