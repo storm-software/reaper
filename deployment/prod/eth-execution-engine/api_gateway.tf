@@ -33,6 +33,8 @@ resource "aws_api_gateway_method" "proxy_root" {
   authorization = "NONE"
 }
 
+
+
 resource "aws_api_gateway_integration" "lambda_root" {
   rest_api_id = "${aws_api_gateway_rest_api.eth_execution_engine_api.id}"
   resource_id = "${aws_api_gateway_method.proxy_root.resource_id}"
@@ -54,7 +56,7 @@ resource "aws_api_gateway_deployment" "eth_execution_engine_api" {
 }
 
 resource "aws_lambda_permission" "apigw" {
-  statement_id  = "AllowAPIGatewayInvoke"
+  statement_id  = "AllowExecutionFromAPIGateway"
   action        = "lambda:InvokeFunction"
   function_name = "${aws_lambda_function.lambda_dist.function_name}"
   principal     = "apigateway.amazonaws.com"
