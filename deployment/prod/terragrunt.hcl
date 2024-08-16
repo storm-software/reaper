@@ -8,7 +8,7 @@ remote_state {
   }
 
   config = {
-    bucket = "storm-trading-services-tfstate"
+    bucket = "storm-trading-tfstate"
 
     key = "${path_relative_to_include()}/terraform.tfstate"
     region         = "us-east-1"
