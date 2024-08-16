@@ -16,37 +16,37 @@ resource "aws_api_gateway_method" "proxy" {
   authorization = "NONE"
 }
 
-resource "aws_api_gateway_integration" "lambda" {
+resource "aws_api_gateway_integration" "eth_execution_telegram_bot_lambda" {
   rest_api_id = "${aws_api_gateway_rest_api.eth_execution_engine_api.id}"
   resource_id = "${aws_api_gateway_method.proxy.resource_id}"
   http_method = "${aws_api_gateway_method.proxy.http_method}"
 
   integration_http_method = "POST"
   type                    = "AWS_PROXY"
-  uri                     = "${aws_lambda_function.lambda_dist.invoke_arn}"
+  uri                     = "${aws_lambda_function.eth_execution_telegram_bot_dist.invoke_arn}"
 }
 
-resource "aws_api_gateway_method" "proxy_root" {
+resource "aws_api_gateway_method" "eth_execution_telegram_bot_proxy_root" {
   rest_api_id   = "${aws_api_gateway_rest_api.eth_execution_engine_api.id}"
   resource_id   = "${aws_api_gateway_rest_api.eth_execution_engine_api.root_resource_id}"
   http_method   = "ANY"
   authorization = "NONE"
 }
 
-resource "aws_api_gateway_integration" "lambda_root" {
+resource "aws_api_gateway_integration" "eth_execution_telegram_bot_lambda_root" {
   rest_api_id = "${aws_api_gateway_rest_api.eth_execution_engine_api.id}"
-  resource_id = "${aws_api_gateway_method.proxy_root.resource_id}"
-  http_method = "${aws_api_gateway_method.proxy_root.http_method}"
+  resource_id = "${aws_api_gateway_method.eth_execution_telegram_bot_proxy_root.resource_id}"
+  http_method = "${aws_api_gateway_method.eth_execution_telegram_bot_proxy_root.http_method}"
 
   integration_http_method = "POST"
   type                    = "AWS_PROXY"
-  uri                     = "${aws_lambda_function.lambda_dist.invoke_arn}"
+  uri                     = "${aws_lambda_function.eth_execution_telegram_bot_dist.invoke_arn}"
 }
 
 resource "aws_api_gateway_deployment" "eth_execution_engine_api" {
   depends_on = [
-    "aws_api_gateway_integration.lambda",
-    "aws_api_gateway_integration.lambda_root",
+    "aws_api_gateway_integration.eth_execution_telegram_bot_lambda",
+    "aws_api_gateway_integration.eth_execution_telegram_bot_lambda_root",
   ]
 
   rest_api_id = "${aws_api_gateway_rest_api.eth_execution_engine_api.id}"
@@ -56,7 +56,7 @@ resource "aws_api_gateway_deployment" "eth_execution_engine_api" {
 resource "aws_lambda_permission" "apigw" {
   statement_id  = "AllowExecutionFromAPIGateway"
   action        = "lambda:InvokeFunction"
-  function_name = "${aws_lambda_function.lambda_dist.function_name}"
+  function_name = "${aws_lambda_function.eth_execution_telegram_bot_dist.function_name}"
   principal     = "apigateway.amazonaws.com"
 
   # The /*/* portion grants access from any method on any resource
