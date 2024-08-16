@@ -24,7 +24,7 @@
       "dependsOn": ["clean", "^build"],
       "options": {
         "commands": [
-          "cargo lambda build --release --output-format zip --verbose --target-dir ../../dist/target/eth-execution-telegram-bot"
+          "cargo lambda build --release --output-format zip --verbose"
         ],
         "cwd": "apps/eth-execution-telegram-bot",
         "color": true

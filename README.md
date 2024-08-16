@@ -46,30 +46,29 @@ keeping the codebase maintainable.
 
 <!-- START doctoc -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-
 ## Table of Contents
 
--   [Quick Features](#quick-features)
-    -   [Tech Stack](#tech-stack)
--   [Getting Started](#getting-started)
-    -   [Build](#build)
-    -   [Development Server](#development-server)
--   [Environment Configuration Help](#environment-configuration-help)
-    -   [Plug-Ins](#plug-ins)
-    -   [Generate an Application](#generate-an-application)
-    -   [Generate a Library](#generate-a-library)
-    -   [Code Scaffolding](#code-scaffolding)
--   [Testing](#testing)
-    -   [Running Unit Tests](#running-unit-tests)
-    -   [Running End-to-End Tests](#running-end-to-end-tests)
-    -   [Understand your workspace](#understand-your-workspace)
--   [☁ Nx Cloud](#-nx-cloud)
-    -   [Distributed Computation Caching \& Distributed Task Execution](#distributed-computation-caching--distributed-task-execution)
--   [Roadmap](#roadmap)
--   [Contributing](#contributing)
--   [Support](#support)
--   [License](#license)
--   [Contributors ✨](#contributors-)
+- [Quick Features](#quick-features)
+  - [Tech Stack](#tech-stack)
+- [Getting Started](#getting-started)
+  - [Build](#build)
+  - [Development Server](#development-server)
+- [Environment Configuration Help](#environment-configuration-help)
+  - [Plug-Ins](#plug-ins)
+  - [Generate an Application](#generate-an-application)
+  - [Generate a Library](#generate-a-library)
+  - [Code Scaffolding](#code-scaffolding)
+- [Testing](#testing)
+  - [Running Unit Tests](#running-unit-tests)
+  - [Running End-to-End Tests](#running-end-to-end-tests)
+  - [Understand your workspace](#understand-your-workspace)
+- [☁ Nx Cloud](#-nx-cloud)
+  - [Distributed Computation Caching & Distributed Task Execution](#distributed-computation-caching--distributed-task-execution)
+- [Roadmap](#roadmap)
+- [Contributing](#contributing)
+- [Support](#support)
+- [License](#license)
+- [Contributors ✨](#contributors-)
 
 <!-- END doctoc -->
 
@@ -80,18 +79,18 @@ keeping the codebase maintainable.
 The following are some of the features/publishable code that are included in
 this repository:
 
--   Transport/protocol/backend agnostic data fetching (REST, GraphQL, promises,
-    whatever!)
--   Auto Caching + Refetching (stale-while-revalidate, Window Refocus,
-    Polling/Realtime)
--   Parallel + Dependent Queries
--   Mutations + Reactive Query Refetching
--   Multi-layer Cache + Automatic Garbage Collection
--   Paginated + Cursor-based Queries
--   Load-More + Infinite Scroll Queries w/ Scroll Recovery
--   Request Cancellation
--   React Suspense + Fetch-As-You-Render Query Prefetching
--   Dedicated Devtools
+- Transport/protocol/backend agnostic data fetching (REST, GraphQL, promises,
+  whatever!)
+- Auto Caching + Refetching (stale-while-revalidate, Window Refocus,
+  Polling/Realtime)
+- Parallel + Dependent Queries
+- Mutations + Reactive Query Refetching
+- Multi-layer Cache + Automatic Garbage Collection
+- Paginated + Cursor-based Queries
+- Load-More + Infinite Scroll Queries w/ Scroll Recovery
+- Request Cancellation
+- React Suspense + Fetch-As-You-Render Query Prefetching
+- Dedicated Devtools
 
 <div align="center">
 <b>Be sure to ⭐ this repository on GitHub so you can keep up to date on any daily progress!</b>
@@ -153,16 +152,16 @@ information.
 
 Some of the plug-ins used by this repository are:
 
--   [@nx/next](https://nx.dev/packages/next)
--   [@nx/react](https://nx.dev/packages/react)
--   [@nx/lint](https://nx.dev/linter/overview)
--   [@nx/js](https://nx.dev/js/overview)
--   [@nx/node](https://nodejs.org)
--   [@nx/web](https://nx.dev/web/overview)
--   [@nx/storybook](https://nx.dev/storybook/overview-react)
--   [@nx/cypress](https://nx.dev/packages/cypress)
--   [@nx/jest](https://nx.dev/packages/jest)
--   And more...
+- [@nx/next](https://nx.dev/packages/next)
+- [@nx/react](https://nx.dev/packages/react)
+- [@nx/lint](https://nx.dev/linter/overview)
+- [@nx/js](https://nx.dev/js/overview)
+- [@nx/node](https://nodejs.org)
+- [@nx/web](https://nx.dev/web/overview)
+- [@nx/storybook](https://nx.dev/storybook/overview-react)
+- [@nx/cypress](https://nx.dev/packages/cypress)
+- [@nx/jest](https://nx.dev/packages/jest)
+- And more...
 
 <div align="right">[ <a href="#table-of-contents">Back to top ▲</a> ]</div>
 <br />
@@ -268,11 +267,11 @@ Visit [Nx Cloud](https://nx.app/) to learn more.
 See the [open issues](https://github.com/storm-software/storm-trading/issues) for a
 list of proposed features (and known issues).
 
--   [Top Feature Requests](https://github.com/storm-software/storm-trading/issues?q=label%3Aenhancement+is%3Aopen+sort%3Areactions-%2B1-desc)
-    (Add your votes using the 👍 reaction)
--   [Top Bugs](https://github.com/storm-software/storm-trading/issues?q=is%3Aissue+is%3Aopen+label%3Abug+sort%3Areactions-%2B1-desc)
-    (Add your votes using the 👍 reaction)
--   [Newest Bugs](https://github.com/storm-software/storm-trading/issues?q=is%3Aopen+is%3Aissue+label%3Abug)
+- [Top Feature Requests](https://github.com/storm-software/storm-trading/issues?q=label%3Aenhancement+is%3Aopen+sort%3Areactions-%2B1-desc)
+  (Add your votes using the 👍 reaction)
+- [Top Bugs](https://github.com/storm-software/storm-trading/issues?q=is%3Aissue+is%3Aopen+label%3Abug+sort%3Areactions-%2B1-desc)
+  (Add your votes using the 👍 reaction)
+- [Newest Bugs](https://github.com/storm-software/storm-trading/issues?q=is%3Aopen+is%3Aissue+label%3Abug)
 
 <div align="right">[ <a href="#table-of-contents">Back to top ▲</a> ]</div>
 <br />
@@ -286,11 +285,11 @@ appreciated**.
 
 Please try to create bug reports that are:
 
--   _Reproducible._ Include steps to reproduce the problem.
--   _Specific._ Include as much detail as possible: which version, what
-    environment, etc.
--   _Unique._ Do not duplicate existing opened issues.
--   _Scoped to a Single Bug._ One bug per report.
+- _Reproducible._ Include steps to reproduce the problem.
+- _Specific._ Include as much detail as possible: which version, what
+  environment, etc.
+- _Unique._ Do not duplicate existing opened issues.
+- _Scoped to a Single Bug._ One bug per report.
 
 Please adhere to this project's [code of conduct](.github/CODE_OF_CONDUCT.md).
 
@@ -305,9 +304,9 @@ to check for common markdown style inconsistency.
 
 Reach out to the maintainer at one of the following places:
 
--   [Contact](https://stormsoftware.com/contact)
--   [GitHub discussions](https://github.com/storm-software/storm-trading/discussions)
--   <contact@stormsoftware.com>
+- [Contact](https://stormsoftware.com/contact)
+- [GitHub discussions](https://github.com/storm-software/storm-trading/discussions)
+- <contact@stormsoftware.com>
 
 <div align="right">[ <a href="#table-of-contents">Back to top ▲</a> ]</div>
 <br />
