@@ -1,6 +1,5 @@
 resource "aws_sns_topic" "eth_execution_engine_requests_topic" {
   name = "eth-execution-engine-requests-topic"
-  content_based_deduplication = true
 }
 
 resource "aws_sqs_queue" "eth_execution_engine_requests_queue" {
