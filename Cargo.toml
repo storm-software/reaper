@@ -1,7 +1,7 @@
 
 [workspace]
 resolver = '2'
-members = ['crates/core', 'apps/eth-execution-telegram-bot']
+members = ['crates/core', 'crates/eth-core', 'apps/eth-execution-telegram-bot']
 
 [workspace.package]
 version = '0.0.1'

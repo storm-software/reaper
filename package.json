@@ -94,6 +94,7 @@
     "@nx/js": "19.5.6",
     "@nx/plugin": "19.5.6",
     "@nx/workspace": "19.5.6",
+    "@storm-software/config": "latest",
     "@storm-software/config-tools": "latest",
     "@storm-software/eslint": "latest",
     "@storm-software/git-tools": "latest",

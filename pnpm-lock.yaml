@@ -41,6 +41,9 @@ importers:
       '@nx/workspace':
         specifier: 19.5.6
         version: 19.5.6
+      '@storm-software/config':
+        specifier: latest
+        version: 1.39.0
       '@storm-software/config-tools':
         specifier: latest
         version: 1.76.0(typescript@5.5.3)
@@ -1606,6 +1609,7 @@ packages:
 
   '@ls-lint/ls-lint@2.2.3':
     resolution: {integrity: sha512-ekM12jNm/7O2I/hsRv9HvYkRdfrHpiV1epVuI2NP+eTIcEgdIdKkKCs9KgQydu/8R5YXTov9aHdOgplmCHLupw==}
+    cpu: [x64, arm64, s390x]
     os: [darwin, linux, win32]
     hasBin: true
 
@@ -2238,6 +2242,9 @@ packages:
 
   '@storm-software/config-tools@1.76.0':
     resolution: {integrity: sha512-iQIAmEJT3rVgzhRNiCj1gphoXjkEJKTPcN2rztQL1Dz+49c2ZbHCOmVDjMcSFMnFpirAmRHYgP+Ytc+GMWY5cw==}
+
+  '@storm-software/config@1.39.0':
+    resolution: {integrity: sha512-VV2XL0LzxwUO9xaClvPh4EbwnnMUfL/wLjeTGiHbFtk5K1mAcKsCVV+h0kHj4u7T97vZe86Ae7CNbUV8cVbSIw==}
 
   '@storm-software/eslint@0.59.0':
     resolution: {integrity: sha512-de8CjPBPoc64hpuSh54AtDNz0XGYHbM2Kx5XFVV0rwwKv5+Xdt0gK3xJslxpxP1kCtUckPYfXCb/b/1L8Bp28A==}
@@ -11755,6 +11762,10 @@ snapshots:
     transitivePeerDependencies:
       - typescript
 
+  '@storm-software/config@1.39.0':
+    dependencies:
+      zod: 3.23.8
+
   '@storm-software/eslint@0.59.0(@babel/core@7.25.2)(@nx/eslint-plugin@19.5.6(@babel/traverse@7.25.3)(@types/node@20.14.14)(@typescript-eslint/parser@7.16.0(eslint@9.5.0)(typescript@5.5.3))(eslint-config-prettier@9.1.0(eslint@9.5.0))(eslint@9.5.0)(nx@19.5.6)(typescript@5.5.3)(verdaccio@5.31.1(typanion@3.14.0)))(@nx/eslint@19.5.6(@babel/traverse@7.25.3)(@types/node@20.14.14)(@zkochan/js-yaml@0.0.7)(eslint@9.5.0)(nx@19.5.6)(verdaccio@5.31.1(typanion@3.14.0)))(@types/eslint@9.6.0)(@types/node@20.14.14)(@typescript-eslint/parser@7.16.0(eslint@9.5.0)(typescript@5.5.3))(eslint-config-prettier@9.1.0(eslint@9.5.0))(eslint@9.5.0)(graphql@15.9.0)(prettier@3.3.2)(typescript@5.5.3)':
     dependencies:
       '@cspell/eslint-plugin': 8.13.1(eslint@9.5.0)
@@ -17845,7 +17856,7 @@ snapshots:
       '@yarnpkg/lockfile': 1.1.0
       '@yarnpkg/parsers': 3.0.0-rc.46
       '@zkochan/js-yaml': 0.0.7
-      axios: 1.7.2
+      axios: 1.7.3
       chalk: 4.1.2
       cli-cursor: 3.1.0
       cli-spinners: 2.6.1

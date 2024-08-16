@@ -2,7 +2,7 @@ locals {
   name = "eth-execution-telegram-bot"
   aws_region = "us-east-1"
   log_level = "debug"
-  dist_path = "/home/runner/work/storm-trading/storm-trading/dist/target/lambda/eth-execution-telegram-bot/bootstrap.zip"
+  dist_path = "/home/runner/work/storm-trading/storm-trading/dist/target/eth-execution-telegram-bot/bootstrap.zip"
   project_path = "/home/runner/work/storm-trading/storm-trading/apps/eth-execution-telegram-bot"
 }
 
@@ -99,26 +99,6 @@ resource "aws_lambda_function" "lambda_dist" {
  depends_on  = [aws_iam_role_policy_attachment.attach_iam_policy_to_iam_role]
 }
 
-// Add lambda -> DynamoDB policies to the lambda execution role
-# resource "aws_iam_role_policy" "write_db_policy" {
-#   name = "lambda_write_db_policy"
-#   role = aws_iam_role.lambda_execution_role.name
-#   policy = <<EOF
-# {
-#   "Version": "2012–10–17",
-#   "Statement": [
-#    {
-#      "Sid": "",
-#      "Action": [
-#        "dynamodb:PutItem"
-#      ],
-#      "Effect": "Allow",
-#      "Resource": "arn:aws:dynamodb: :${var.aws_region}::${data.aws_caller_identity.current.account_id}:table/Shop_Thermostat"
-#    }
-#  ]
-# }
-# EOF
-# }
 
 // The Lambda Function URL that allows direct access to our function
 resource "aws_lambda_function_url" "lambda_dist_function" {
