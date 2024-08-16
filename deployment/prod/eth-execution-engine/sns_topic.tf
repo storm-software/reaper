@@ -18,7 +18,7 @@ resource "aws_sqs_queue" "eth_execution_engine_requests_dl_queue" {
 }
 
 resource "aws_sns_topic_subscription" "eth_execution_engine_requests_sqs_target" {
-    topic_arn = "${aws_sns_topic.eth_execution_engine_requests.arn}"
+    topic_arn = "${aws_sns_topic.eth_execution_engine_requests_topic.arn}"
     protocol  = "sqs"
     endpoint  = "${aws_sqs_queue.eth_execution_engine_requests_queue.arn}"
 }
@@ -39,7 +39,7 @@ resource "aws_sqs_queue_policy" "eth_execution_engine_requests_queue_policy" {
       "Resource": "${aws_sqs_queue.eth_execution_engine_requests_queue.arn}",
       "Condition": {
         "ArnEquals": {
-          "aws:SourceArn": "${aws_sns_topic.eth_execution_engine_requests.arn}"
+          "aws:SourceArn": "${aws_sns_topic.eth_execution_engine_requests_topic.arn}"
         }
       }
     }
