@@ -25,6 +25,7 @@ aws-config = { version = "1.5", features = ["behavior-version-latest"] }
 aws-sdk-dynamodb = "1.39"
 chrono = "0.4"
 aws-sdk-secretsmanager = "1.41.0"
+aws-sdk-sns = "1.39.0"
 
 
 [[bin]]
