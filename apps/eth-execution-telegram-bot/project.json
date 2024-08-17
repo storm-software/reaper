@@ -26,7 +26,6 @@
         "commands": [
           "cargo lambda build --release --output-format zip --package eth-execution-telegram-bot --color always --verbose"
         ],
-        // "cwd": "apps/eth-execution-telegram-bot",
         "color": true
       }
     },
