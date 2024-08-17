@@ -4,6 +4,7 @@
 #![allow(clippy::derive_partial_eq_without_eq)]
 
 pub mod types;
+pub mod utils;
 
 #[cfg(test)]
 mod tests {
