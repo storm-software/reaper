@@ -735,6 +735,10 @@ dependencies = [
 ]
 
 [[package]]
+name = "eth-execution-engine"
+version = "0.1.0"
+
+[[package]]
 name = "eth-execution-telegram-bot"
 version = "0.1.0"
 dependencies = [
