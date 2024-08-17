@@ -30,41 +30,41 @@ assume_role_policy = <<EOF
 EOF
 }
 
-# resource "aws_iam_policy" "eth_execution_telegram_bot_policy" {
-#  name         = "${local.name}-aws-iam-policy"
-#  path         = "/"
-#  description  = "AWS IAM Policy for managing aws lambda role"
-#  policy = <<EOF
-# {
-#  "Version": "2012-10-17",
-#  "Statement": [
-#    {
-#      "Action": [
-#        "logs:CreateLogGroup",
-#        "logs:CreateLogStream",
-#        "logs:PutLogEvents"
-#      ],
-#      "Resource": "arn:aws:logs:*:*:*",
-#      "Effect": "Allow"
-#    },
-#    {
-#      "Action": [
-#        "secretsmanager:GetSecretValue"
-#      ],
-#      "Resource": "arn:aws:secretsmanager:*:*:*",
-#      "Effect": "Allow"
-#    },
-#    {
-#      "Action": [
-#        "sns:Publish"
-#      ],
-#      "Resource": "arn:aws:sns:*:*:*",
-#      "Effect": "Allow"
-#    }
-#  ]
-# }
-# EOF
-# }
+resource "aws_iam_policy" "eth_execution_telegram_bot_policy" {
+ name         = "${local.name}-aws-iam-policy"
+ path         = "/"
+ description  = "AWS IAM Policy for managing aws lambda role"
+ policy = <<EOF
+{
+ "Version": "2012-10-17",
+ "Statement": [
+   {
+     "Action": [
+       "logs:CreateLogGroup",
+       "logs:CreateLogStream",
+       "logs:PutLogEvents"
+     ],
+     "Resource": "arn:aws:logs:*:*:*",
+     "Effect": "Allow"
+   },
+   {
+     "Action": [
+       "secretsmanager:GetSecretValue"
+     ],
+     "Resource": "arn:aws:secretsmanager:*:*:*",
+     "Effect": "Allow"
+   },
+   {
+     "Action": [
+       "sns:Publish"
+     ],
+     "Resource": "arn:aws:sns:*:*:*",
+     "Effect": "Allow"
+   }
+ ]
+}
+EOF
+}
 
 resource "aws_iam_role_policy_attachment" "eth_execution_telegram_bot_attach_policy_to_role" {
  role        = aws_iam_role.eth_execution_telegram_bot_role.name
