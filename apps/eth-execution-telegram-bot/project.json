@@ -24,8 +24,9 @@
       "dependsOn": ["clean", "^build"],
       "options": {
         "commands": [
-          "cargo lambda build --release --output-format zip --verbose --target-dir dist/target/eth-execution-telegram-bot -p eth-execution-telegram-bot --color always"
+          "cargo lambda build --release --output-format zip --package eth-execution-telegram-bot --color always --verbose"
         ],
+        // "cwd": "apps/eth-execution-telegram-bot",
         "color": true
       }
     },
