@@ -49,7 +49,7 @@ importers:
         version: 1.76.0(typescript@5.5.3)
       '@storm-software/eslint':
         specifier: latest
-        version: 0.59.0(@babel/core@7.25.2)(@nx/eslint-plugin@19.5.6(@babel/traverse@7.25.3)(@types/node@20.14.14)(@typescript-eslint/parser@7.16.0(eslint@9.5.0)(typescript@5.5.3))(eslint-config-prettier@9.1.0(eslint@9.5.0))(eslint@9.5.0)(nx@19.5.6)(typescript@5.5.3)(verdaccio@5.31.1(typanion@3.14.0)))(@nx/eslint@19.5.6(@babel/traverse@7.25.3)(@types/node@20.14.14)(@zkochan/js-yaml@0.0.7)(eslint@9.5.0)(nx@19.5.6)(verdaccio@5.31.1(typanion@3.14.0)))(@types/eslint@9.6.0)(@types/node@20.14.14)(@typescript-eslint/parser@7.16.0(eslint@9.5.0)(typescript@5.5.3))(eslint-config-prettier@9.1.0(eslint@9.5.0))(eslint@9.5.0)(graphql@15.9.0)(prettier@3.3.2)(typescript@5.5.3)
+        version: 0.59.1(@babel/core@7.25.2)(@nx/eslint-plugin@19.5.6(@babel/traverse@7.25.3)(@types/node@20.14.14)(@typescript-eslint/parser@7.16.0(eslint@9.5.0)(typescript@5.5.3))(eslint-config-prettier@9.1.0(eslint@9.5.0))(eslint@9.5.0)(nx@19.5.6)(typescript@5.5.3)(verdaccio@5.31.1(typanion@3.14.0)))(@nx/eslint@19.5.6(@babel/traverse@7.25.3)(@types/node@20.14.14)(@zkochan/js-yaml@0.0.7)(eslint@9.5.0)(nx@19.5.6)(verdaccio@5.31.1(typanion@3.14.0)))(@types/eslint@9.6.0)(@types/node@20.14.14)(@typescript-eslint/parser@7.16.0(eslint@9.5.0)(typescript@5.5.3))(eslint-config-prettier@9.1.0(eslint@9.5.0))(eslint@9.5.0)(graphql@15.9.0)(prettier@3.3.2)(typescript@5.5.3)
       '@storm-software/git-tools':
         specifier: latest
         version: 2.53.0
@@ -67,7 +67,7 @@ importers:
         version: 1.53.0(@nx/jest@19.5.6(@babel/traverse@7.25.3)(@types/node@20.14.14)(nx@19.5.6)(ts-node@10.9.2(@types/node@20.14.14)(typescript@5.5.3))(typescript@5.5.3)(verdaccio@5.31.1(typanion@3.14.0)))(jest@29.7.0(@types/node@20.14.14)(ts-node@10.9.2(@types/node@20.14.14)(typescript@5.5.3)))
       '@storm-software/workspace-tools':
         specifier: latest
-        version: 1.152.0(@nx/devkit@19.5.6(nx@19.5.6))(@nx/esbuild@19.5.6(@babel/traverse@7.25.3)(@types/node@20.14.14)(esbuild@0.21.5)(nx@19.5.6)(typescript@5.5.3)(verdaccio@5.31.1(typanion@3.14.0)))(@types/node@20.14.14)(esbuild@0.21.5)(nx@19.5.6)(ts-node@10.9.2(@types/node@20.14.14)(typescript@5.5.3))(typescript@5.5.3)
+        version: 1.153.0(@microsoft/api-extractor@7.46.2(@types/node@20.14.14))(@nx/devkit@19.5.6(nx@19.5.6))(@nx/esbuild@19.5.6(@babel/traverse@7.25.3)(@types/node@20.14.14)(esbuild@0.21.5)(nx@19.5.6)(typescript@5.5.3)(verdaccio@5.31.1(typanion@3.14.0)))(esbuild@0.21.5)(nx@19.5.6)(ts-node@10.9.2(@types/node@20.14.14)(typescript@5.5.3))(typescript@5.5.3)
       '@taplo/cli':
         specifier: 0.7.0
         version: 0.7.0
@@ -2246,8 +2246,8 @@ packages:
   '@storm-software/config@1.39.0':
     resolution: {integrity: sha512-VV2XL0LzxwUO9xaClvPh4EbwnnMUfL/wLjeTGiHbFtk5K1mAcKsCVV+h0kHj4u7T97vZe86Ae7CNbUV8cVbSIw==}
 
-  '@storm-software/eslint@0.59.0':
-    resolution: {integrity: sha512-de8CjPBPoc64hpuSh54AtDNz0XGYHbM2Kx5XFVV0rwwKv5+Xdt0gK3xJslxpxP1kCtUckPYfXCb/b/1L8Bp28A==}
+  '@storm-software/eslint@0.59.1':
+    resolution: {integrity: sha512-QCxY5teR0nNWBzAb6PW0t4tkBSAfLd9BcrCpVMgxcXw8VYnsZY8nD6BWXKo1TzgUr7dT/+YtNDj2y+AA9dbeFA==}
     peerDependencies:
       '@nx/eslint': '>=19.5.6'
       '@nx/eslint-plugin': '>=19.5.6'
@@ -2290,12 +2290,16 @@ packages:
       '@nx/jest': ^19.5.6
       jest: 29.7.0
 
-  '@storm-software/workspace-tools@1.152.0':
-    resolution: {integrity: sha512-ebzYPdOkDR3Ekm+ofa92SXICEingGq2K1KkKTeNEhKnV4D4++7IPN/Cf18VV8C6U9ia1IjAznv0jVWRG5vrNNA==}
+  '@storm-software/workspace-tools@1.153.0':
+    resolution: {integrity: sha512-VlA/8L3/7ls0/A7R6vcryqOq/ydcvGRE+rxe3FlhHaytlf2kFMcF4/n5zdsDItpQmBW+9vIrARCh2umQ47P8Fg==}
     peerDependencies:
+      '@microsoft/api-extractor': 7.46.2
       '@nx/devkit': ^19.5.6
       '@nx/esbuild': 19.5.6
       nx: ^19.5.6
+    peerDependenciesMeta:
+      '@microsoft/api-extractor':
+        optional: true
 
   '@szmarczak/http-timer@5.0.1':
     resolution: {integrity: sha512-+PmQX0PiAYPMeVYe237LJAYvOMYW1j2rH5YROyS3b4CTVJum34HfRvKvAzozHAQG0TnHNdUfY9nCeUyRAs//cw==}
@@ -10763,6 +10767,7 @@ snapshots:
       '@rushstack/node-core-library': 5.4.1(@types/node@20.14.14)
     transitivePeerDependencies:
       - '@types/node'
+    optional: true
 
   '@microsoft/api-extractor@7.46.2(@types/node@20.14.14)':
     dependencies:
@@ -10781,6 +10786,7 @@ snapshots:
       typescript: 5.4.2
     transitivePeerDependencies:
       - '@types/node'
+    optional: true
 
   '@microsoft/tsdoc-config@0.17.0':
     dependencies:
@@ -11690,11 +11696,13 @@ snapshots:
       semver: 7.5.4
     optionalDependencies:
       '@types/node': 20.14.14
+    optional: true
 
   '@rushstack/rig-package@0.5.2':
     dependencies:
       resolve: 1.22.8
       strip-json-comments: 3.1.1
+    optional: true
 
   '@rushstack/terminal@0.13.0(@types/node@20.14.14)':
     dependencies:
@@ -11702,6 +11710,7 @@ snapshots:
       supports-color: 8.1.1
     optionalDependencies:
       '@types/node': 20.14.14
+    optional: true
 
   '@rushstack/ts-command-line@4.22.0(@types/node@20.14.14)':
     dependencies:
@@ -11711,6 +11720,7 @@ snapshots:
       string-argv: 0.3.2
     transitivePeerDependencies:
       - '@types/node'
+    optional: true
 
   '@samchon/openapi@0.1.22': {}
 
@@ -11766,7 +11776,7 @@ snapshots:
     dependencies:
       zod: 3.23.8
 
-  '@storm-software/eslint@0.59.0(@babel/core@7.25.2)(@nx/eslint-plugin@19.5.6(@babel/traverse@7.25.3)(@types/node@20.14.14)(@typescript-eslint/parser@7.16.0(eslint@9.5.0)(typescript@5.5.3))(eslint-config-prettier@9.1.0(eslint@9.5.0))(eslint@9.5.0)(nx@19.5.6)(typescript@5.5.3)(verdaccio@5.31.1(typanion@3.14.0)))(@nx/eslint@19.5.6(@babel/traverse@7.25.3)(@types/node@20.14.14)(@zkochan/js-yaml@0.0.7)(eslint@9.5.0)(nx@19.5.6)(verdaccio@5.31.1(typanion@3.14.0)))(@types/eslint@9.6.0)(@types/node@20.14.14)(@typescript-eslint/parser@7.16.0(eslint@9.5.0)(typescript@5.5.3))(eslint-config-prettier@9.1.0(eslint@9.5.0))(eslint@9.5.0)(graphql@15.9.0)(prettier@3.3.2)(typescript@5.5.3)':
+  '@storm-software/eslint@0.59.1(@babel/core@7.25.2)(@nx/eslint-plugin@19.5.6(@babel/traverse@7.25.3)(@types/node@20.14.14)(@typescript-eslint/parser@7.16.0(eslint@9.5.0)(typescript@5.5.3))(eslint-config-prettier@9.1.0(eslint@9.5.0))(eslint@9.5.0)(nx@19.5.6)(typescript@5.5.3)(verdaccio@5.31.1(typanion@3.14.0)))(@nx/eslint@19.5.6(@babel/traverse@7.25.3)(@types/node@20.14.14)(@zkochan/js-yaml@0.0.7)(eslint@9.5.0)(nx@19.5.6)(verdaccio@5.31.1(typanion@3.14.0)))(@types/eslint@9.6.0)(@types/node@20.14.14)(@typescript-eslint/parser@7.16.0(eslint@9.5.0)(typescript@5.5.3))(eslint-config-prettier@9.1.0(eslint@9.5.0))(eslint@9.5.0)(graphql@15.9.0)(prettier@3.3.2)(typescript@5.5.3)':
     dependencies:
       '@cspell/eslint-plugin': 8.13.1(eslint@9.5.0)
       '@graphql-eslint/eslint-plugin': 3.20.1(@babel/core@7.25.2)(@types/node@20.14.14)(graphql@15.9.0)
@@ -11953,11 +11963,10 @@ snapshots:
       '@nx/jest': 19.5.6(@babel/traverse@7.25.3)(@types/node@20.14.14)(nx@19.5.6)(ts-node@10.9.2(@types/node@20.14.14)(typescript@5.5.3))(typescript@5.5.3)(verdaccio@5.31.1(typanion@3.14.0))
       jest: 29.7.0(@types/node@20.14.14)(ts-node@10.9.2(@types/node@20.14.14)(typescript@5.5.3))
 
-  '@storm-software/workspace-tools@1.152.0(@nx/devkit@19.5.6(nx@19.5.6))(@nx/esbuild@19.5.6(@babel/traverse@7.25.3)(@types/node@20.14.14)(esbuild@0.21.5)(nx@19.5.6)(typescript@5.5.3)(verdaccio@5.31.1(typanion@3.14.0)))(@types/node@20.14.14)(esbuild@0.21.5)(nx@19.5.6)(ts-node@10.9.2(@types/node@20.14.14)(typescript@5.5.3))(typescript@5.5.3)':
+  '@storm-software/workspace-tools@1.153.0(@microsoft/api-extractor@7.46.2(@types/node@20.14.14))(@nx/devkit@19.5.6(nx@19.5.6))(@nx/esbuild@19.5.6(@babel/traverse@7.25.3)(@types/node@20.14.14)(esbuild@0.21.5)(nx@19.5.6)(typescript@5.5.3)(verdaccio@5.31.1(typanion@3.14.0)))(esbuild@0.21.5)(nx@19.5.6)(ts-node@10.9.2(@types/node@20.14.14)(typescript@5.5.3))(typescript@5.5.3)':
     dependencies:
       '@anatine/esbuild-decorators': 0.2.19(esbuild@0.21.5)
       '@ltd/j-toml': 1.38.0
-      '@microsoft/api-extractor': 7.46.2(@types/node@20.14.14)
       '@nx/devkit': 19.5.6(nx@19.5.6)
       '@nx/esbuild': 19.5.6(@babel/traverse@7.25.3)(@types/node@20.14.14)(esbuild@0.21.5)(nx@19.5.6)(typescript@5.5.3)(verdaccio@5.31.1(typanion@3.14.0))
       '@rollup/plugin-json': 6.1.0(rollup@4.18.0)
@@ -11987,9 +11996,10 @@ snapshots:
       typia: 6.0.6(typescript@5.5.3)
       zod: 3.23.8
       zod-to-json-schema: 3.23.1(zod@3.23.8)
+    optionalDependencies:
+      '@microsoft/api-extractor': 7.46.2(@types/node@20.14.14)
     transitivePeerDependencies:
       - '@swc/core'
-      - '@types/node'
       - esbuild
       - postcss
       - supports-color
@@ -12036,7 +12046,8 @@ snapshots:
     dependencies:
       '@types/estree': 1.0.5
 
-  '@types/argparse@1.0.38': {}
+  '@types/argparse@1.0.38':
+    optional: true
 
   '@types/aws-lambda@8.10.142': {}
 
@@ -12643,6 +12654,7 @@ snapshots:
   ajv-draft-04@1.0.0(ajv@8.13.0):
     optionalDependencies:
       ajv: 8.13.0
+    optional: true
 
   ajv-formats@2.1.1(ajv@8.13.0):
     optionalDependencies:
@@ -12651,6 +12663,7 @@ snapshots:
   ajv-formats@3.0.1(ajv@8.13.0):
     optionalDependencies:
       ajv: 8.13.0
+    optional: true
 
   ajv-keywords@3.5.2(ajv@6.12.6):
     dependencies:
@@ -14857,6 +14870,7 @@ snapshots:
       graceful-fs: 4.2.11
       jsonfile: 4.0.0
       universalify: 0.1.2
+    optional: true
 
   fs-extra@8.1.0:
     dependencies:
@@ -17546,6 +17560,7 @@ snapshots:
   minimatch@3.0.8:
     dependencies:
       brace-expansion: 1.1.11
+    optional: true
 
   minimatch@3.1.2:
     dependencies:
@@ -19322,7 +19337,8 @@ snapshots:
     optionalDependencies:
       bare-events: 2.4.2
 
-  string-argv@0.3.2: {}
+  string-argv@0.3.2:
+    optional: true
 
   string-env-interpolation@1.0.1: {}
 
