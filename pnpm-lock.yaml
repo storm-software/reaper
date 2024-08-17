@@ -55,7 +55,7 @@ importers:
         version: 2.53.0
       '@storm-software/linting-tools':
         specifier: latest
-        version: 1.72.0
+        version: 1.73.0
       '@storm-software/prettier':
         specifier: latest
         version: 0.26.0(prettier@3.3.2)(typescript@5.5.3)
@@ -2265,8 +2265,8 @@ packages:
     resolution: {integrity: sha512-BZy6eEPkNFoRUOw1mLWQRCMnyFlod0GHKwjNghGRacC0bSySEnVOx7f1/eavuN1DXJV6DkOXWSw7g1PVkiR/hw==}
     hasBin: true
 
-  '@storm-software/linting-tools@1.72.0':
-    resolution: {integrity: sha512-u8aIwNzt5HXpKmP1wdM4tuppcQV+Y7brP500XMqW7/oqoMwYo//a05SyrEhKr0ba1cAEvJM1x65J1PzbvgHmSg==}
+  '@storm-software/linting-tools@1.73.0':
+    resolution: {integrity: sha512-oyPwEGMy2Il8eW6S8hGATN5UbGdtOKXhYa5V++8swA67VFTy3aEO/OJpDvu86sqP07Nqce52edhyc3rQrCNywQ==}
     hasBin: true
 
   '@storm-software/prettier@0.26.0':
@@ -11853,7 +11853,7 @@ snapshots:
       - debug
       - supports-color
 
-  '@storm-software/linting-tools@1.72.0':
+  '@storm-software/linting-tools@1.73.0':
     dependencies:
       '@cspell/dict-ada': 4.0.2
       '@cspell/dict-aws': 4.0.2
