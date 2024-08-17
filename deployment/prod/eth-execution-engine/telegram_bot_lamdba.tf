@@ -66,12 +66,12 @@ resource "aws_iam_policy" "eth_execution_telegram_bot_policy" {
 EOF
 }
 
-resource "aws_iam_role_policy_attachment" "attach_eth_execution_telegram_bot_policy_to_eth_execution_telegram_bot_role" {
+resource "aws_iam_role_policy_attachment" "eth_execution_telegram_bot_attach_policy_to_role" {
  role        = aws_iam_role.eth_execution_telegram_bot_role.name
  policy_arn  = aws_iam_policy.eth_execution_telegram_bot_policy.arn
 }
 
-resource "random_uuid" "eth_execution_telegram_bot_src_hash" {
+resource "random_uuid" "eth_execution_telegram_bot_source_hash" {
   keepers = {
     for filename in setunion(
       fileset(local.project_path, "**/*.rs"),
@@ -85,7 +85,7 @@ resource "random_uuid" "eth_execution_telegram_bot_src_hash" {
 resource "aws_lambda_function" "eth_execution_telegram_bot_dist" {
   function_name = local.name
 #   source_code_hash = data.archive_file.eth_execution_telegram_bot_dist_archive.output_base64sha256
-  source_code_hash = "${random_uuid.eth_execution_telegram_bot_src_hash.result}"
+  source_code_hash = "${random_uuid.eth_execution_telegram_bot_source_hash.result}"
   filename = local.dist_path
   handler = "bootstrap"
   package_type = "Zip"
@@ -101,7 +101,7 @@ resource "aws_lambda_function" "eth_execution_telegram_bot_dist" {
 
  #This attaches the role defined above to this lambda function
  role = aws_iam_role.eth_execution_telegram_bot_role.arn
- depends_on  = [aws_iam_role_policy_attachment.attach_eth_execution_telegram_bot_policy_to_eth_execution_telegram_bot_role]
+ depends_on  = [aws_iam_role_policy_attachment.eth_execution_telegram_bot_attach_policy_to_role]
 }
 
 
