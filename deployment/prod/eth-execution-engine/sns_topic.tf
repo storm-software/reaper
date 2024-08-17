@@ -2,6 +2,10 @@ resource "aws_sns_topic" "eth_execution_engine_requests_topic" {
   name = "eth-execution-engine-requests-topic"
 }
 
+resource "aws_sqs_queue" "eth_execution_engine_requests_dl_queue" {
+    name = "eth-execution-engine-requests-dl-queue"
+}
+
 resource "aws_sqs_queue" "eth_execution_engine_requests_queue" {
     name = "eth-execution-engine-requests-queue"
     redrive_policy  = "{\"deadLetterTargetArn\":\"${aws_sqs_queue.eth_execution_engine_requests_dl_queue.arn}\",\"maxReceiveCount\":5}"
@@ -10,10 +14,6 @@ resource "aws_sqs_queue" "eth_execution_engine_requests_queue" {
     tags = {
         Environment = "prod"
     }
-}
-
-resource "aws_sqs_queue" "eth_execution_engine_requests_dl_queue" {
-    name = "eth-execution-engine-requests-dl-queue"
 }
 
 resource "aws_sns_topic_subscription" "eth_execution_engine_requests_sqs_target" {
