@@ -7,34 +7,23 @@ include "root" {
 # "tfr://registry.terraform.io/terraform-aws-modules/vpc/aws?version=5.8.1".
 # Note the extra `/` after the protocol is required for the shorthand
 # notation.
-# terraform {
-#   source = "git::https://github.com/storm-software/storm-ops.git//terraform-modules/aws/lambda-rs?ref=main"
-# }
+terraform {
+  source = "git::https://github.com/storm-software/storm-ops.git//terraform-modules/aws/lambda-rs?ref=main"
+}
 
-# # Indicate what region to deploy the resources into
-# generate "provider" {
-#   path = "provider.tf"
-#   if_exists = "overwrite_terragrunt"
-#   contents = <<EOF
-# provider "aws" {
-#   region = "us-east-1"
-# }
-# EOF
-# }
+Indicate the input values to use for the variables of the module.
+inputs = {
+  name = "eth-execution-telegram-bot"
 
-# Indicate the input values to use for the variables of the module.
-# inputs = {
-#   name = "eth-execution-telegram-bot"
+  aws_region = "us-east-1"
+  log_level = "debug"
+  dist_path = "/home/runner/work/storm-trading/storm-trading/dist/target/lambda/eth-execution-telegram-bot/bootstrap.zip"
+  project_path = "/home/runner/work/storm-trading/storm-trading/apps/eth-execution-telegram-bot"
 
-#   aws_region = "us-east-1"
-#   log_level = "debug"
-#   dist_path = "/home/runner/work/storm-trading/storm-trading/dist/target/lambda/eth-execution-telegram-bot/bootstrap.zip"
-#   project_path = "/home/runner/work/storm-trading/storm-trading/apps/eth-execution-telegram-bot"
-
-#   tags = {
-#     IAC = "true"
-#     Environment = "prod"
-#     Team = "trading"
-#   }
-# }
+  tags = {
+    IAC = "true"
+    Environment = "prod"
+    Team = "trading"
+  }
+}
 
