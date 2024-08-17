@@ -11,7 +11,6 @@ terraform {
   source = "git::https://github.com/storm-software/storm-ops.git//terraform-modules/aws/lambda-rs?ref=main"
 }
 
-Indicate the input values to use for the variables of the module.
 inputs = {
   name = "eth-execution-telegram-bot"
 
