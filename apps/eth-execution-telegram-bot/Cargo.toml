@@ -32,7 +32,7 @@ aws-sdk-dynamodb = "1.39"
 chrono = "0.4"
 aws-sdk-secretsmanager = "1.41.0"
 aws-sdk-sns = "1.39.0"
-storm-trading-core = { path = "../../crates/core" }
+storm-trading-aws = { path = "../../crates/aws" }
 storm-trading-eth-core = { path = "../../crates/eth-core" }
 anyhow = "1.0.86"
 thiserror = "1.0.63"

@@ -1,6 +1,6 @@
 [package]
-name = "storm-trading-core"
-description = "A core crate containing the Acidic schema definitions and validation logic."
+name = "storm-trading-aws"
+description = "A core Etherium trading crate containing schema definitions and validation logic."
 version = "0.1.0"
 edition = { workspace = true }
 repository = { workspace = true }
@@ -9,10 +9,10 @@ license = { workspace = true }
 categories = { workspace = true }
 keywords = { workspace = true }
 homepage = { workspace = true }
-documentation = "https://docs.rs/storm-trading-core"
+documentation = "https://docs.rs/storm-trading-aws"
 readme = "./README.md"
 
 [dependencies]
-
+aws-config = "1.5.5"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html

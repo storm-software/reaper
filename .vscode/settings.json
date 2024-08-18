@@ -22,6 +22,7 @@
   "rust-analyzer.linkedProjects": [
     ".\\crates\\core\\Cargo.toml",
     ".\\crates\\eth-core\\Cargo.toml",
+    ".\\crates\\aws\\Cargo.toml",
     ".\\apps\\eth-execution-telegram-bot\\Cargo.toml",
     ".\\apps\\eth-execution-engine\\Cargo.toml"
   ],

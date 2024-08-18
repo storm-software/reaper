@@ -1289,7 +1289,7 @@ dependencies = [
  "reqwest 0.12.5",
  "serde",
  "serde_json",
- "storm-trading-core",
+ "storm-trading-aws",
  "storm-trading-eth-core",
  "teloxide",
  "thiserror",
@@ -3908,11 +3908,15 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "a2eb9349b6444b326872e140eb1cf5e7c522154d69e7a0ffb0fb81c06b37543f"
 
 [[package]]
-name = "storm-trading-core"
+name = "storm-trading-aws"
 version = "0.1.0"
 dependencies = [
  "aws-config",
 ]
+
+[[package]]
+name = "storm-trading-core"
+version = "0.1.0"
 
 [[package]]
 name = "storm-trading-eth-core"
