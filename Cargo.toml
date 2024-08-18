@@ -3,7 +3,7 @@
 resolver = '2'
 members = [
     'crates/core',
-    'crates/eth-core',
+    'crates/crypto-core',
     'crates/aws',
     'apps/eth-execution-telegram-bot',
     'apps/eth-execution-engine',

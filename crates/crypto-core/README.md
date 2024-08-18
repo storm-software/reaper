@@ -40,9 +40,10 @@ This package is part of the ⚡<b>Storm Trading</b> monorepo. Storm Trading pack
 
 <!-- START doctoc -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+
 ## Table of Contents
 
-- [Storm Software - Ethereum Trading Core Crate](#storm-software---ethereum-trading-core-crate)
+- [Storm Software - Cryptocurrency Trading Core Crate](#storm-software---cryptocurrency-trading-core-crate)
   - [Installing](#installing)
   - [Development](#development)
     - [Building](#building)
@@ -65,7 +66,7 @@ This package is part of the ⚡<b>Storm Trading</b> monorepo. Storm Trading pack
 
 <!-- END header -->
 
-# Storm Software - Ethereum Trading Core Crate
+# Storm Software - Cryptocurrency Trading Core Crate
 
 This crate is a core library for interacting with the Ethereum blockchain for
 trading purposes. It is part of the Storm Software suite of tools and libraries.
@@ -78,13 +79,13 @@ This crate can be installed using
 
 ```toml
 [dependencies]
-storm-trading-eth-core = "0.0.1"
+storm-trading-crypto-core = "0.0.1"
 ```
 
 Or, via the command line:
 
 ```bash
-cargo add storm-trading-eth-core
+cargo add storm-trading-crypto-core
 ```
 
 <!-- START doctoc -->
@@ -97,17 +98,17 @@ commands are available to assist in development.
 
 ### Building
 
-Run `nx build storm-trading-eth-core` to build the library.
+Run `nx build storm-trading-crypto-core` to build the library.
 
 ### Running unit tests
 
-Run `nx test storm-trading-eth-core` to execute the unit tests via
+Run `nx test storm-trading-crypto-core` to execute the unit tests via
 [Jest](https://jestjs.io).
 
 ### Linting
 
-Run `nx lint storm-trading-eth-core` to run [ESLint](https://eslint.org/) on the
-package.
+Run `nx lint storm-trading-crypto-core` to run [ESLint](https://eslint.org/) on
+the package.
 
 <!-- START footer -->
 <!-- prettier-ignore-start -->

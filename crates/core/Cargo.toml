@@ -1,6 +1,6 @@
 [package]
 name = "storm-trading-core"
-description = "A core crate containing the Acidic schema definitions and validation logic."
+description = "A core library crate that provides various utilities and functions to facilitate trading."
 version = "0.1.0"
 edition = { workspace = true }
 repository = { workspace = true }
@@ -13,6 +13,7 @@ documentation = "https://docs.rs/storm-trading-core"
 readme = "./README.md"
 
 [dependencies]
-
+serde = { version = "1.0.208", features = ["derive"] }
+serde_json = "1.0.125"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html

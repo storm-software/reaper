@@ -1290,7 +1290,7 @@ dependencies = [
  "serde",
  "serde_json",
  "storm-trading-aws",
- "storm-trading-eth-core",
+ "storm-trading-crypto-core",
  "teloxide",
  "thiserror",
  "tokio",
@@ -3917,9 +3917,13 @@ dependencies = [
 [[package]]
 name = "storm-trading-core"
 version = "0.1.0"
+dependencies = [
+ "serde",
+ "serde_json",
+]
 
 [[package]]
-name = "storm-trading-eth-core"
+name = "storm-trading-crypto-core"
 version = "0.1.0"
 dependencies = [
  "ethers",
