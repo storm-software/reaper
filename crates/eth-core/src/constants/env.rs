@@ -1,0 +1,1 @@
+pub static WALLET_PRIVATE_KEY: &str = "WALLET_PRIVATE_KEY";
