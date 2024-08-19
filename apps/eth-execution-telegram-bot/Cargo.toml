@@ -28,7 +28,6 @@ teloxide = { version = "0.13", features = [
 mime = "0.3.17"
 regex = "1.10"
 aws-config = { version = "1.5", features = ["behavior-version-latest"] }
-aws-sdk-dynamodb = "1.39"
 chrono = "0.4"
 aws-sdk-secretsmanager = "1.41.0"
 aws-sdk-sns = "1.39.0"
@@ -36,8 +35,7 @@ storm-trading-aws = { path = "../../crates/aws" }
 storm-trading-crypto-core = { path = "../../crates/crypto-core" }
 anyhow = "1.0.86"
 thiserror = "1.0.63"
-envy = "0.4"
-dotenv = "0.15.0"
+dotenvy = "0.15.7"
 
 [[bin]]
 name = "eth-execution-telegram-bot"
