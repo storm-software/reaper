@@ -75,7 +75,7 @@ pre-push:
       stage_fixed: true
     build:
       glob: "**/*.*"
-      run: "pnpm build"
+      run: "pnpm build-local"
       stage_fixed: true
     validate:
       glob: "**/*.*"
