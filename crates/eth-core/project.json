@@ -1,21 +1,21 @@
 {
-  "name": "storm-trading-crypto-core",
+  "name": "storm-trading-eth-core",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "projectType": "library",
-  "sourceRoot": "crates/crypto-core/src",
+  "sourceRoot": "crates/eth-core/src",
   "targets": {
     "build": {
       "executor": "@monodon/rust:check",
       "outputs": ["{options.target-dir}"],
       "options": {
-        "target-dir": "dist/target/crypto-core"
+        "target-dir": "dist/target/eth-core"
       }
     },
     "test": {
       "executor": "@monodon/rust:test",
       "outputs": ["{options.target-dir}"],
       "options": {
-        "target-dir": "dist/target/crypto-core"
+        "target-dir": "dist/target/eth-core"
       },
       "configurations": {
         "production": {
@@ -27,7 +27,7 @@
       "executor": "@monodon/rust:lint",
       "outputs": ["{options.target-dir}"],
       "options": {
-        "target-dir": "dist/target/crypto-core"
+        "target-dir": "dist/target/eth-core"
       }
     }
   },

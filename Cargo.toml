@@ -3,10 +3,10 @@
 resolver = '2'
 members = [
     'crates/core',
-    'crates/crypto-core',
+    'crates/eth-core',
     'crates/aws',
-    'apps/eth-execution-telegram-bot',
-    'apps/eth-execution-engine',
+    'apps/eth-order-telegram-bot',
+    'apps/eth-order-engine',
 ]
 
 [workspace.package]

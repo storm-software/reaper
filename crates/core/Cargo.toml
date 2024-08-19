@@ -15,5 +15,20 @@ readme = "./README.md"
 [dependencies]
 serde = { version = "1.0.208", features = ["derive"] }
 serde_json = "1.0.125"
+yansi = "1.0.1"
+ansi_term = "0.12.1"
+tracing = "0.1.36"
+tracing-bunyan-formatter = "0.3.4"
+tracing-log = "0.2.0"
+tracing-subscriber = { version = "0.3.16", features = [
+    "fmt",
+    "env-filter",
+    "ansi",
+] }
+chrono = "0.4.22"
+
+[lib]
+name = "storm_trading_core"
+path = "src/lib.rs"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html

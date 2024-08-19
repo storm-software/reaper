@@ -15,4 +15,8 @@ readme = "./README.md"
 [dependencies]
 aws-config = "1.5.5"
 
+[lib]
+name = "storm_trading_aws"
+path = "src/lib.rs"
+
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html

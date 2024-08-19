@@ -1,5 +1,5 @@
 [package]
-name = "eth-execution-telegram-bot"
+name = "eth-order-telegram-bot"
 version = "0.1.0"
 edition = "2021"
 
@@ -32,13 +32,13 @@ chrono = "0.4"
 aws-sdk-secretsmanager = "1.41.0"
 aws-sdk-sns = "1.39.0"
 storm-trading-aws = { path = "../../crates/aws" }
-storm-trading-crypto-core = { path = "../../crates/crypto-core" }
+storm-trading-eth-core = { path = "../../crates/eth-core" }
 anyhow = "1.0.86"
 thiserror = "1.0.63"
 dotenvy = "0.15.7"
 
 [[bin]]
-name = "eth-execution-telegram-bot"
+name = "eth-order-telegram-bot"
 path = "src/main.rs"
 # test = false
 
