@@ -59,3 +59,5 @@ apps/**/.next/** -text linguist-vendored
 
 # Make dist folder indexable for github search
 dist/** linguist-generated=false
+
+*.tm linguist-language=HCL
