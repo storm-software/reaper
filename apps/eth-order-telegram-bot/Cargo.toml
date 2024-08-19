@@ -37,6 +37,10 @@ anyhow = "1.0.86"
 thiserror = "1.0.63"
 dotenvy = "0.15.7"
 
+[lib]
+name = "eth_order_telegram_bot"
+path = "src/lib.rs"
+
 [[bin]]
 name = "eth-order-telegram-bot"
 path = "src/main.rs"
