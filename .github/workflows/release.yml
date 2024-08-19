@@ -124,9 +124,9 @@ jobs:
         run: pnpm build-all
         shell: bash
 
-      - name: Print output path
-        run: dir /home/runner/work/storm-trading/storm-trading/dist/target/lambda/eth-execution-telegram-bot
-        shell: bash
+      # - name: Print output path
+      #   run: dir /home/runner/work/storm-trading/storm-trading/dist/target/lambda/eth-execution-telegram-bot
+      #   shell: bash
 
       # - name: Check terragrunt HCL
       #   uses: gruntwork-io/terragrunt-action@v2
