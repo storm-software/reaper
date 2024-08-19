@@ -184,8 +184,8 @@ jobs:
           terragrunt -v
 
       # Initialize a new or existing Terragrunt working directory by creating initial files, loading any remote state, downloading modules, etc.
-      - name: Terragrunt Init
-        run: terragrunt init --terragrunt-non-interactive --terragrunt-working-dir deployment/prod
+      - name: Terragrunt Init - eth-order-requests-topic
+        run: terragrunt init --terragrunt-non-interactive --terragrunt-working-dir deployment/prod/eth-order-requests-topic
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.STORM_BOT_AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.STORM_BOT_AWS_SECRET_ACCESS_KEY }}
@@ -193,8 +193,8 @@ jobs:
           TF_LOG: debug
 
       # Generates an execution plan for Terragrunt
-      - name: Terragrunt Plan
-        run: terragrunt run-all plan --terragrunt-non-interactive --terragrunt-working-dir deployment/prod
+      - name: Terragrunt Plan - eth-order-requests-topic
+        run: terragrunt run-all plan --terragrunt-non-interactive --terragrunt-working-dir deployment/prod/eth-order-requests-topic
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.STORM_BOT_AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.STORM_BOT_AWS_SECRET_ACCESS_KEY }}
@@ -203,9 +203,38 @@ jobs:
 
         # On push to main, build or change infrastructure according to Terragrunt configuration files
         # Note: It is recommended to set up a required "strict" status check in your repository for "Terragrunt Cloud". See the documentation on "strict" required status checks for more information: https://help.github.com/en/github/administering-a-repository/types-of-required-status-checks
-      - name: Terragrunt Apply
+      - name: Terragrunt Apply - eth-order-requests-topic
         if: github.ref == 'refs/heads/main' && github.event_name == 'push'
-        run: terragrunt run-all apply --terragrunt-non-interactive --terragrunt-working-dir deployment/prod
+        run: terragrunt run-all apply --terragrunt-non-interactive --terragrunt-working-dir deployment/prod/eth-order-requests-topic
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.STORM_BOT_AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.STORM_BOT_AWS_SECRET_ACCESS_KEY }}
+          GITHUB_TOKEN: ${{ secrets.STORM_BOT_GITHUB_TOKEN }}
+          TF_LOG: debug
+
+      # Initialize a new or existing Terragrunt working directory by creating initial files, loading any remote state, downloading modules, etc.
+      - name: Terragrunt Init - eth-order-telegram-bot
+        run: terragrunt init --terragrunt-non-interactive --terragrunt-working-dir deployment/prod/eth-order-telegram-bot
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.STORM_BOT_AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.STORM_BOT_AWS_SECRET_ACCESS_KEY }}
+          GITHUB_TOKEN: ${{ secrets.STORM_BOT_GITHUB_TOKEN }}
+          TF_LOG: debug
+
+      # Generates an execution plan for Terragrunt
+      - name: Terragrunt Plan - eth-order-telegram-bot
+        run: terragrunt run-all plan --terragrunt-non-interactive --terragrunt-working-dir deployment/prod/eth-order-telegram-bot
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.STORM_BOT_AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.STORM_BOT_AWS_SECRET_ACCESS_KEY }}
+          GITHUB_TOKEN: ${{ secrets.STORM_BOT_GITHUB_TOKEN }}
+          TF_LOG: debug
+
+        # On push to main, build or change infrastructure according to Terragrunt configuration files
+        # Note: It is recommended to set up a required "strict" status check in your repository for "Terragrunt Cloud". See the documentation on "strict" required status checks for more information: https://help.github.com/en/github/administering-a-repository/types-of-required-status-checks
+      - name: Terragrunt Apply - eth-order-telegram-bot
+        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+        run: terragrunt run-all apply --terragrunt-non-interactive --terragrunt-working-dir deployment/prod/eth-order-telegram-bot
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.STORM_BOT_AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.STORM_BOT_AWS_SECRET_ACCESS_KEY }}
