@@ -71,10 +71,11 @@ This crate is a core library for Storm Software trading applications. It
 provides various utilities and functions to facilitate trading.
 
 > [!IMPORTANT] We owe a major debt of gratitude to the
-> [RustQuant](https://github.com/avhz/RustQuant) crate. This crate is heavily
-> inspired by the RustQuant crate, and we have used it as a base to build upon.
-> We have made significant changes to the crate, and have added many new
-> features, but the core of the crate is based on the RustQuant crate.
+> [storm_trading_core](https://github.com/avhz/storm_trading_core) crate. This
+> crate is heavily inspired by the storm_trading_core crate, and we have used it
+> as a base to build upon. We have made significant changes to the crate, and
+> have added many new features, but the core of the crate is based on the
+> storm_trading_core crate.
 
 ## Installing
 

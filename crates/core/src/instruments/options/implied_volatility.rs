@@ -1,5 +1,5 @@
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-// RustQuant: A Rust library for quantitative finance tools.
+// storm_trading_core: A Rust library for quantitative finance tools.
 // Copyright (C) 2023 https://github.com/avhz
 // Dual licensed under Apache 2.0 and MIT.
 // See:
@@ -72,9 +72,9 @@ pub(crate) const MAXIMUM_RATIONAL_CUBIC_CONTROL_PARAMETER_VALUE: f64 =
 /// If price is below intrinsic value, it returns -INF,
 /// if price is above intrinsic value, it returns INF.
 /// ```
-/// use RustQuant::instruments::options::implied_volatility::*;
-/// use RustQuant::instruments::options::TypeFlag;
-/// use RustQuant::assert_approx_equal;
+/// use storm_trading_core::instruments::options::implied_volatility::*;
+/// use storm_trading_core::instruments::options::TypeFlag;
+/// use storm_trading_core::assert_approx_equal;
 ///
 /// let price = 12.3;
 /// let S = 100.0;
@@ -148,8 +148,8 @@ pub(crate) fn householder_factor(newton: f64, halley: f64, hh3: f64) -> f64 {
 #[inline]
 #[rustfmt::skip]
 fn small_t_expansion_sum(t: f64, a: f64, w: f64, h2: f64) -> f64 {
-    2.0 * t * 
-        (a + 
+    2.0 * t *
+        (a +
             w * ((-1.0+3.0*a+a*h2)/6.0+
             w * ((-7.0+15.0*a+h2*(-1.0+10.0*a+a*h2))/120.0+
             w * ((-57.0+105.0*a+h2*(-18.0+105.0*a+h2*(-1.0+21.0*a+a*h2)))/5040.0+
@@ -165,7 +165,7 @@ fn small_t_expansion_sum(t: f64, a: f64, w: f64, h2: f64) -> f64 {
                                             h2*(-1926.0+25740.0*a+
                                                 h2*(-75.0+2145.0*a+
                                                     h2*(-1.0+78.0*a+a*
-                                                        h2)))))) 
+                                                        h2))))))
             * w) / 6_227_020_800.0 ))))))
 }
 
@@ -174,9 +174,9 @@ fn small_t_expansion_sum(t: f64, a: f64, w: f64, h2: f64) -> f64 {
 fn asymptotic_expansion_sum(e: f64, q: f64) -> f64 {
     2.0 +
         q * (-6.0e0-2.0 * e + 3.0 *
-        q * (1.0e1+e*(2.0e1+2.0*e) + 5.0 * 
-        q * (-1.4e1+ e * (-7.0e1+ e * (-4.2e1-2.0 * e))+ 7.0 * 
-        q * (1.8e1+e*(1.68e2+e*(2.52e2+e*(7.2e1+2.0*e)))+9.0 * 
+        q * (1.0e1+e*(2.0e1+2.0*e) + 5.0 *
+        q * (-1.4e1+ e * (-7.0e1+ e * (-4.2e1-2.0 * e))+ 7.0 *
+        q * (1.8e1+e*(1.68e2+e*(2.52e2+e*(7.2e1+2.0*e)))+9.0 *
         q * (-2.2e1+e*(-3.3e2+e*(-9.24e2+e*(-6.6e2+e*(-1.1e2-2.0*e))))+1.1e1*
         q * (2.6e1+e*(5.72e2+e*(2.574e3+e*(3.432e3+e*(1.43e3+e*(1.56e2+2.0*e)))))+1.3e1*
         q * (-3.0e1+e*(-9.1e2+e*(-6.006e3+e*(-1.287e4+e*(-1.001e4+e*(-2.73e3+e*(-2.1e2-2.0*e))))))+1.5e1*

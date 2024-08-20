@@ -41,7 +41,7 @@
 //!   - [ ] Barrier
 //!
 //! ```ignore
-//! use RustQuant::instruments::*;
+//! use storm_trading_core::instruments::*;
 //! use time::{Duration, OffsetDateTime};
 //!
 //! let VanillaOption = EuropeanOption {

@@ -1,5 +1,5 @@
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-// RustQuant: A Rust library for quantitative finance tools.
+// storm_trading_core: A Rust library for quantitative finance tools.
 // Copyright (C) 2022-2024 https://github.com/avhz
 // Dual licensed under Apache 2.0 and MIT.
 // See:
@@ -170,8 +170,8 @@ where
     ///
     /// ```
     /// use time::macros::date;
-    /// use RustQuant::time::day_counting::DayCounter;
-    /// use RustQuant::time::countries::oceania::australia::AustraliaCalendar;
+    /// use storm_trading_core::time::day_counting::DayCounter;
+    /// use storm_trading_core::time::countries::oceania::australia::AustraliaCalendar;
     ///
     /// let date1 = date!(2023-01-01);
     /// let date2 = date!(2025-01-01);
@@ -195,8 +195,8 @@ where
     ///
     /// ```
     /// use time::macros::date;
-    /// use RustQuant::time::day_counting::DayCounter;
-    /// use RustQuant::time::countries::oceania::australia::AustraliaCalendar;
+    /// use storm_trading_core::time::day_counting::DayCounter;
+    /// use storm_trading_core::time::countries::oceania::australia::AustraliaCalendar;
     ///
     /// let date1 = date!(2023-01-01);
     /// let date2 = date!(2023-02-01);
@@ -231,9 +231,9 @@ where
     ///
     /// ```
     /// use time::macros::date;
-    /// use RustQuant::time::day_counting::DayCounter;
-    /// use RustQuant::time::countries::oceania::australia::AustraliaCalendar;
-    /// use RustQuant::time::day_counting::DayCountConvention;
+    /// use storm_trading_core::time::day_counting::DayCounter;
+    /// use storm_trading_core::time::countries::oceania::australia::AustraliaCalendar;
+    /// use storm_trading_core::time::day_counting::DayCountConvention;
     ///
     /// let date1 = date!(2023-01-01);
     /// let date2 = date!(2024-01-01);
@@ -257,8 +257,8 @@ where
     ///
     /// ```
     /// use time::macros::date;
-    /// use RustQuant::time::day_counting::DayCounter;
-    /// use RustQuant::time::countries::oceania::australia::AustraliaCalendar;
+    /// use storm_trading_core::time::day_counting::DayCounter;
+    /// use storm_trading_core::time::countries::oceania::australia::AustraliaCalendar;
     ///
     /// let date1 = date!(2023-01-01);
     /// let date2 = date!(2024-01-01);
@@ -288,8 +288,8 @@ where
     ///
     /// ```
     /// use time::macros::date;
-    /// use RustQuant::time::day_counting::DayCounter;
-    /// use RustQuant::time::countries::oceania::australia::AustraliaCalendar;
+    /// use storm_trading_core::time::day_counting::DayCounter;
+    /// use storm_trading_core::time::countries::oceania::australia::AustraliaCalendar;
     ///
     /// let date1 = date!(2023-01-01);
     /// let date2 = date!(2023-02-01);
@@ -319,9 +319,9 @@ where
     ///
     /// ```
     /// use time::macros::date;
-    /// use RustQuant::time::day_counting::DayCounter;
-    /// use RustQuant::time::countries::oceania::australia::AustraliaCalendar;
-    /// use RustQuant::time::day_counting::DayCountConvention;
+    /// use storm_trading_core::time::day_counting::DayCounter;
+    /// use storm_trading_core::time::countries::oceania::australia::AustraliaCalendar;
+    /// use storm_trading_core::time::day_counting::DayCountConvention;
     ///
     /// let date1 = date!(2023-01-01);
     /// let date2 = date!(2024-01-01);
@@ -619,7 +619,7 @@ impl DayCountConvention {
 mod TESTS_thirty_360 {
     use crate::assert_approx_equal;
     use crate::time::DayCountConvention;
-    use crate::RUSTQUANT_EPSILON;
+    use crate::storm_trading_core_EPSILON;
     use time::macros::date;
 
     #[test]
@@ -629,7 +629,7 @@ mod TESTS_thirty_360 {
 
         let dcf = DayCountConvention::day_count_factor_thirty_e_365(start_date, end_date);
 
-        assert_approx_equal!(dcf, 1.515_068_493, RUSTQUANT_EPSILON);
+        assert_approx_equal!(dcf, 1.515_068_493, storm_trading_core_EPSILON);
     }
 }
 
@@ -637,7 +637,7 @@ mod TESTS_thirty_360 {
 mod TESTS_actual_constant {
     use crate::assert_approx_equal;
     use crate::time::DayCountConvention;
-    use crate::RUSTQUANT_EPSILON;
+    use crate::storm_trading_core_EPSILON;
     use time::macros::date;
 
     #[test]
@@ -684,7 +684,7 @@ mod TESTS_actual_constant {
                 test_dates[i],
             );
 
-            assert_approx_equal!(dcf, expected[i - 1], RUSTQUANT_EPSILON);
+            assert_approx_equal!(dcf, expected[i - 1], storm_trading_core_EPSILON);
         }
     }
 
@@ -730,7 +730,7 @@ mod TESTS_actual_constant {
             let dcf =
                 DayCountConvention::day_count_factor_actual_366(test_dates[i - 1], test_dates[i]);
 
-            assert_approx_equal!(dcf, expected[i - 1], RUSTQUANT_EPSILON);
+            assert_approx_equal!(dcf, expected[i - 1], storm_trading_core_EPSILON);
         }
     }
 }
@@ -739,7 +739,7 @@ mod TESTS_actual_constant {
 mod TESTS_actual_actual {
     use crate::assert_approx_equal;
     use crate::time::DayCountConvention;
-    use crate::RUSTQUANT_EPSILON;
+    use crate::storm_trading_core_EPSILON;
     use time::macros::date;
 
     const DATE_1: time::Date = date!(2003 - 11 - 1);
@@ -751,7 +751,7 @@ mod TESTS_actual_actual {
         assert_approx_equal!(
             DayCountConvention::day_count_factor_actual_actual_isda(DATE_1, DATE_2),
             0.497724380567,
-            RUSTQUANT_EPSILON
+            storm_trading_core_EPSILON
         );
     }
 
@@ -761,7 +761,7 @@ mod TESTS_actual_actual {
         assert_approx_equal!(
             DayCountConvention::day_count_factor_actual_actual_isda(DATE_1, DATE_2),
             0.497724380567,
-            RUSTQUANT_EPSILON
+            storm_trading_core_EPSILON
         );
     }
 
@@ -771,7 +771,7 @@ mod TESTS_actual_actual {
         assert_approx_equal!(
             DayCountConvention::day_count_factor_actual_actual_afb(DATE_1, DATE_2),
             0.497267759563,
-            RUSTQUANT_EPSILON
+            storm_trading_core_EPSILON
         );
     }
 }

@@ -1,5 +1,5 @@
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-// RustQuant: A Rust library for quantitative finance tools.
+// storm_trading_core: A Rust library for quantitative finance tools.
 // Copyright (C) 2022-2024 https://github.com/avhz
 // Dual licensed under Apache 2.0 and MIT.
 // See:
@@ -46,7 +46,7 @@ impl Calendar for NewZealandCalendar {
             || (yd == em - 3)
             // Easter Monday
             || (yd == em)
-            // ANZAC Day. April 25th ("Mondayised" since 2013) 
+            // ANZAC Day. April 25th ("Mondayised" since 2013)
             || (d == 25 && m == Month::April)
             || ((d == 26 || d == 27) && wd == Weekday::Monday && m == Month::April && y > 2013)
             // Queen's Birthday, first Monday in June

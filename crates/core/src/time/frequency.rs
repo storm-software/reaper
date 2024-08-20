@@ -1,5 +1,5 @@
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-// RustQuant: A Rust library for quantitative finance tools.
+// storm_trading_core: A Rust library for quantitative finance tools.
 // Copyright (C) 2022-2024 https://github.com/avhz
 // Dual licensed under Apache 2.0 and MIT.
 // See:
@@ -10,8 +10,8 @@
 use time::{Date, Duration};
 
 use crate::time::constants::{
-    ANNUALLY, BI_WEEKLY, DAILY, MONTHLY, QUARTERLY, SEMI_ANNUALLY, SEMI_MONTHLY, SEMI_QUARTERLY,
-    TRI_ANNUALLY, WEEKLY,
+  ANNUALLY, BI_WEEKLY, DAILY, MONTHLY, QUARTERLY, SEMI_ANNUALLY, SEMI_MONTHLY, SEMI_QUARTERLY,
+  TRI_ANNUALLY, WEEKLY,
 };
 
 /// Interest/coupon frequency per year.
@@ -20,90 +20,90 @@ use crate::time::constants::{
 /// of the cash flows.
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub enum Frequency {
-    /// Daily (252 per year).
-    Daily = DAILY,
+  /// Daily (252 per year).
+  Daily = DAILY,
 
-    /// Weekly (52 per year).
-    Weekly = WEEKLY,
+  /// Weekly (52 per year).
+  Weekly = WEEKLY,
 
-    /// Bi-weekly (26 per year).
-    BiWeekly = BI_WEEKLY,
+  /// Bi-weekly (26 per year).
+  BiWeekly = BI_WEEKLY,
 
-    /// Semi-monthly (24 per year).
-    SemiMonthly = SEMI_MONTHLY,
+  /// Semi-monthly (24 per year).
+  SemiMonthly = SEMI_MONTHLY,
 
-    /// Monthly (12 per year).
-    Monthly = MONTHLY,
+  /// Monthly (12 per year).
+  Monthly = MONTHLY,
 
-    /// Semi-quarterly (8 per year).
-    SemiQuarterly = SEMI_QUARTERLY,
+  /// Semi-quarterly (8 per year).
+  SemiQuarterly = SEMI_QUARTERLY,
 
-    /// Quarterly.
-    Quarterly = QUARTERLY,
+  /// Quarterly.
+  Quarterly = QUARTERLY,
 
-    /// Tri-annually.
-    TriAnnually = TRI_ANNUALLY,
+  /// Tri-annually.
+  TriAnnually = TRI_ANNUALLY,
 
-    /// Semi-annually.
-    SemiAnnually = SEMI_ANNUALLY,
+  /// Semi-annually.
+  SemiAnnually = SEMI_ANNUALLY,
 
-    /// Annually.
-    Annually = ANNUALLY,
+  /// Annually.
+  Annually = ANNUALLY,
 
-    /// Zero frequency.
-    Zero = 0,
+  /// Zero frequency.
+  Zero = 0,
 }
 
 impl Frequency {
-    /// Function to infer the frequency between two `Date`s.
-    ///
-    /// This is a very simple (fallible) way to infer the frequency between two dates.
-    ///
-    /// # Panics
-    ///
-    /// Panics if the difference between the two dates is not a recognized frequency.
-    pub fn infer_frequency(start: Date, end: Date) -> Frequency {
-        let diff = end - start;
+  /// Function to infer the frequency between two `Date`s.
+  ///
+  /// This is a very simple (fallible) way to infer the frequency between two dates.
+  ///
+  /// # Panics
+  ///
+  /// Panics if the difference between the two dates is not a recognized frequency.
+  pub fn infer_frequency(start: Date, end: Date) -> Frequency {
+    let diff = end - start;
 
-        if diff == Duration::days(1) {
-            Frequency::Daily
-        } else if diff == Duration::weeks(1) {
-            Frequency::Weekly
-        } else if diff == Duration::weeks(2) {
-            Frequency::BiWeekly
-        } else if diff > Duration::days(14) && diff < Duration::days(16) {
-            Frequency::SemiMonthly
-        } else if diff >= Duration::days(28) && diff <= Duration::days(31) {
-            Frequency::Monthly
-        } else if diff >= Duration::days(45) && diff <= Duration::days(46) {
-            Frequency::SemiQuarterly
-        } else if diff >= Duration::days(91) && diff <= Duration::days(92) {
-            Frequency::Quarterly
-        } else if diff >= Duration::days(121) && diff <= Duration::days(122) {
-            Frequency::TriAnnually
-        } else if diff >= Duration::days(182) && diff <= Duration::days(183) {
-            Frequency::SemiAnnually
-        } else if diff >= Duration::days(365) && diff <= Duration::days(366) {
-            Frequency::Annually
-        } else {
-            panic!("Unable to infer frequency between the two dates.")
-        }
+    if diff == Duration::days(1) {
+      Frequency::Daily
+    } else if diff == Duration::weeks(1) {
+      Frequency::Weekly
+    } else if diff == Duration::weeks(2) {
+      Frequency::BiWeekly
+    } else if diff > Duration::days(14) && diff < Duration::days(16) {
+      Frequency::SemiMonthly
+    } else if diff >= Duration::days(28) && diff <= Duration::days(31) {
+      Frequency::Monthly
+    } else if diff >= Duration::days(45) && diff <= Duration::days(46) {
+      Frequency::SemiQuarterly
+    } else if diff >= Duration::days(91) && diff <= Duration::days(92) {
+      Frequency::Quarterly
+    } else if diff >= Duration::days(121) && diff <= Duration::days(122) {
+      Frequency::TriAnnually
+    } else if diff >= Duration::days(182) && diff <= Duration::days(183) {
+      Frequency::SemiAnnually
+    } else if diff >= Duration::days(365) && diff <= Duration::days(366) {
+      Frequency::Annually
+    } else {
+      panic!("Unable to infer frequency between the two dates.")
     }
+  }
 
-    /// Get the number of times the frequency occurs in a year.
-    pub fn times_in_year(&self) -> isize {
-        match self {
-            Frequency::Daily => DAILY,
-            Frequency::Weekly => WEEKLY,
-            Frequency::BiWeekly => BI_WEEKLY,
-            Frequency::SemiMonthly => SEMI_MONTHLY,
-            Frequency::Monthly => MONTHLY,
-            Frequency::SemiQuarterly => SEMI_QUARTERLY,
-            Frequency::Quarterly => QUARTERLY,
-            Frequency::TriAnnually => TRI_ANNUALLY,
-            Frequency::SemiAnnually => SEMI_ANNUALLY,
-            Frequency::Annually => ANNUALLY,
-            Frequency::Zero => 0,
-        }
+  /// Get the number of times the frequency occurs in a year.
+  pub fn times_in_year(&self) -> isize {
+    match self {
+      Frequency::Daily => DAILY,
+      Frequency::Weekly => WEEKLY,
+      Frequency::BiWeekly => BI_WEEKLY,
+      Frequency::SemiMonthly => SEMI_MONTHLY,
+      Frequency::Monthly => MONTHLY,
+      Frequency::SemiQuarterly => SEMI_QUARTERLY,
+      Frequency::Quarterly => QUARTERLY,
+      Frequency::TriAnnually => TRI_ANNUALLY,
+      Frequency::SemiAnnually => SEMI_ANNUALLY,
+      Frequency::Annually => ANNUALLY,
+      Frequency::Zero => 0,
     }
+  }
 }

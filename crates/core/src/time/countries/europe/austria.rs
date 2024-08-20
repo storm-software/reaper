@@ -1,5 +1,5 @@
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-// RustQuant: A Rust library for quantitative finance tools.
+// storm_trading_core: A Rust library for quantitative finance tools.
 // Copyright (C) 2022-2024 https://github.com/avhz
 // Dual licensed under Apache 2.0 and MIT.
 // See:
@@ -52,7 +52,7 @@ impl Calendar for AustriaCalendar {
             // Easter Monday
             (yd == em) ||
 
-            // Ascension Thurday 
+            // Ascension Thurday
             (yd == em+38) ||
 
             // Whit Monday
