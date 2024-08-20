@@ -63,23 +63,14 @@
 /// Base trait for all instruments.
 pub mod instrument;
 pub use instrument::*;
-
-/// Bond pricing models.
-pub mod bonds;
-pub use bonds::*;
-
-/// Option pricers and sensitivity functions.
-pub mod options;
-pub use options::*;
-
 /// FX instruments.
 pub mod fx;
 pub use fx::*;
 
-/// Equity instruments.
-pub mod equities;
-pub use equities::*;
-
 /// Ticker symbol.
 pub mod ticker;
 pub use ticker::*;
+
+/// Payoff
+pub mod payoff;
+pub use payoff::*;

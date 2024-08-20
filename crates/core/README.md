@@ -70,6 +70,12 @@ This package is part of the ⚡<b>Storm Trading</b> monorepo. Storm Trading pack
 This crate is a core library for Storm Software trading applications. It
 provides various utilities and functions to facilitate trading.
 
+> [!IMPORTANT] We owe a major debt of gratitude to the
+> [RustQuant](https://github.com/avhz/RustQuant) crate. This crate is heavily
+> inspired by the RustQuant crate, and we have used it as a base to build upon.
+> We have made significant changes to the crate, and have added many new
+> features, but the core of the crate is based on the RustQuant crate.
+
 ## Installing
 
 This crate can be installed using

@@ -1,42 +1,65 @@
 
 [workspace]
-resolver = '2'
+resolver = "2"
 members = [
-    'crates/core',
-    'crates/eth-core',
-    'crates/aws',
-    'apps/eth-order-telegram-bot',
-    'apps/eth-order-engine',
+    "crates/core",
+    "crates/eth-core",
+    "crates/aws",
+    "apps/eth-order-telegram-bot",
+    "apps/eth-order-engine",
 ]
 
 [workspace.package]
-version = '0.0.1'
-description = '💵 A monorepo containing various utilities, libraries, and applications used by Storm Software in trading processes'
-repository = 'https://github.com/storm-software/storm-trading'
-edition = '2021'
-authors = ['storm-software', 'pat-sullivan']
-license = 'Apache-2.0'
-documentation = 'https://stormsoftware.com/projects/storm-trading/docs'
-homepage = 'https://stormsoftware.com'
-categories = ['config', 'development-tools']
-keywords = [
-    'storm',
-    'storm-trading',
-    'storm-software',
-    'trading',
-    'cryptocurrency',
-    'crypto',
-    'ethereum',
-    'quantitative-finance',
-    'quantitative-trading',
-    'quantitative-analysis',
-    'quantitative-research',
-    'algorithmic-trading',
-    'monorepo',
+version = "0.0.1"
+description = "💵 A monorepo containing various utilities, libraries, and applications used by Storm Software in trading processes"
+repository = "https://github.com/storm-software/storm-trading"
+edition = "2021"
+authors = ["storm-software", "pat-sullivan"]
+license = "Apache-2.0"
+documentation = "https://stormsoftware.com/projects/storm-trading/docs"
+homepage = "https://stormsoftware.com"
+categories = [
+    "config",
+    "development-tools",
+    "finance",
+    "mathematics",
+    "science",
+    "algorithms",
+    "simulation",
 ]
+keywords = [
+    "storm",
+    "storm-trading",
+    "storm-software",
+    "trading",
+    "cryptocurrency",
+    "crypto",
+    "ethereum",
+    "quantitative-finance",
+    "quantitative-trading",
+    "quantitative-analysis",
+    "quantitative-research",
+    "algorithmic-trading",
+    "monorepo",
+]
+
+## ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+## COMPILATION PROFILES
+## ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+## To compile a release build with debug symbols, use:
+## `cargo build --profile=release-with-debug`
+[profile.release-with-debug]
+inherits = "release"
+debug = true
+
+[profile.dev]
+debug = 0
 
 [profile.release]
 strip = false
-lto = 'fat'
+lto = "fat"
 codegen-units = 16
-panic = 'unwind'
+panic = "unwind"
+
+
