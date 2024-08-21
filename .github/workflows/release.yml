@@ -164,23 +164,6 @@ jobs:
       #     GITHUB_TOKEN: ${{ secrets.STORM_BOT_GITHUB_TOKEN }}
       #     TF_LOG: debug
 
-      - name: Install Terramate
-        uses: terramate-io/terramate-action@v2
-
-      - name: Install asdf
-        uses: asdf-vm/actions/setup@v3
-
-      - name: Install Terraform and Terragrunt with asdf
-        run: |
-          asdf plugin add opentofu
-          asdf plugin add terragrunt
-          asdf install opentofu
-          asdf install terragrunt
-
-      - name: List changed stacks
-        id: list
-        run: terramate list --changed
-
       # - name: Configure AWS credentials
       #   if: steps.list.outputs.stdout
       #   uses: aws-actions/configure-aws-credentials@v2
@@ -197,131 +180,53 @@ jobs:
 
       ### Run the Terragrunt deployment via Terramate in each changed stack
 
-      - name: Run Terragrunt init on changed stacks
-        if: steps.list.outputs.stdout
-        id: init
-        run: |
-          terramate run --changed -- terragrunt init
-
-      - name: Create Terragrunt plan on changed stacks
-        if: steps.list.outputs.stdout
-        id: plan
-        run: terramate run --changed -- terragrunt plan -lock-timeout=5m -out out.tfplan
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.STORM_BOT_AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.STORM_BOT_AWS_SECRET_ACCESS_KEY }}
-          GITHUB_TOKEN: ${{ secrets.STORM_BOT_GITHUB_TOKEN }}
-          TF_LOG: debug
-
-      - name: Apply planned changes on changed stacks
-        id: apply
-        if: steps.list.outputs.stdout
-        run: |
-          terramate run \
-            --changed \
-            --cloud-sync-deployment \
-            --terraform-plan-file=out.tfplan \
-            --terragrunt \
-            -- \
-            terragrunt apply -input=false -auto-approve -lock-timeout=5m out.tfplan
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.STORM_BOT_AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.STORM_BOT_AWS_SECRET_ACCESS_KEY }}
-          GITHUB_TOKEN: ${{ secrets.STORM_BOT_GITHUB_TOKEN }}
-          TF_LOG: debug
-
-      - name: Run drift detection
-        if: steps.list.outputs.stdout && ! cancelled() && steps.apply.outcome != 'skipped'
-        run: |
-          terramate run \
-            --changed \
-            --cloud-sync-drift-status \
-            --terraform-plan-file=drift.tfplan \
-            --terragrunt \
-            -- \
-            terragrunt plan -out drift.tfplan -detailed-exitcode
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.STORM_BOT_AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.STORM_BOT_AWS_SECRET_ACCESS_KEY }}
-          GITHUB_TOKEN: ${{ secrets.STORM_BOT_GITHUB_TOKEN }}
-          TF_LOG: debug
-
       # Install the latest version of Terragrunt CLI and configure the Terragrunt CLI configuration file with a Terragrunt Cloud user API token
-      # - name: Setup Terraform v1.2.6
-      #   uses: hashicorp/setup-Terraform@v1
-      #   with:
-      #     terraform_version: 1.2.6
-      #     terraform_wrapper: true
+      - name: Setup Terraform v1.2.6
+        uses: hashicorp/setup-Terraform@v1
+        with:
+          terraform_version: 1.2.6
+          terraform_wrapper: true
 
-      # - name: Setup Terraform version
-      #   run: terraform --version
+      - name: Setup Terraform version
+        run: terraform --version
 
-      # - name: Setup Terraform wrapper path
-      #   run: which terraform
+      - name: Setup Terraform wrapper path
+        run: which terraform
 
-      # - name: Setup Terragrunt v0.38.4
-      #   run: |
-      #     sudo wget -q -O /bin/terragrunt "https://github.com/gruntwork-io/terragrunt/releases/download/v0.38.4/terragrunt_linux_amd64"
-      #     sudo chmod +x /bin/terragrunt
-      #     terragrunt -v
+      - name: Setup Terragrunt v0.63.6
+        run: |
+          sudo wget -q -O /bin/terragrunt "https://github.com/gruntwork-io/terragrunt/releases/download/v0.63.6/terragrunt_linux_amd64"
+          sudo chmod +x /bin/terragrunt
+          terragrunt -v
 
-      # # Initialize a new or existing Terragrunt working directory by creating initial files, loading any remote state, downloading modules, etc.
-      # - name: Terragrunt Init - eth-order-requests-topic
-      #   run: terragrunt init --terragrunt-non-interactive --terragrunt-working-dir deployment/prod/eth-order-requests-topic
-      #   env:
-      #     AWS_ACCESS_KEY_ID: ${{ secrets.STORM_BOT_AWS_ACCESS_KEY_ID }}
-      #     AWS_SECRET_ACCESS_KEY: ${{ secrets.STORM_BOT_AWS_SECRET_ACCESS_KEY }}
-      #     GITHUB_TOKEN: ${{ secrets.STORM_BOT_GITHUB_TOKEN }}
-      #     TF_LOG: debug
+      # Initialize a new or existing Terragrunt working directory by creating initial files, loading any remote state, downloading modules, etc.
+      - name: Terragrunt Init
+        run: terragrunt init --terragrunt-non-interactive --terragrunt-working-dir deployment
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.STORM_BOT_AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.STORM_BOT_AWS_SECRET_ACCESS_KEY }}
+          GITHUB_TOKEN: ${{ secrets.STORM_BOT_GITHUB_TOKEN }}
+          TF_LOG: debug
 
-      # # Generates an execution plan for Terragrunt
-      # - name: Terragrunt Plan - eth-order-requests-topic
-      #   run: terragrunt run-all plan --terragrunt-non-interactive --terragrunt-working-dir deployment/prod/eth-order-requests-topic
-      #   env:
-      #     AWS_ACCESS_KEY_ID: ${{ secrets.STORM_BOT_AWS_ACCESS_KEY_ID }}
-      #     AWS_SECRET_ACCESS_KEY: ${{ secrets.STORM_BOT_AWS_SECRET_ACCESS_KEY }}
-      #     GITHUB_TOKEN: ${{ secrets.STORM_BOT_GITHUB_TOKEN }}
-      #     TF_LOG: debug
+      # Generates an execution plan for Terragrunt
+      - name: Terragrunt Plan
+        run: terragrunt run-all plan --terragrunt-non-interactive --terragrunt-working-dir deployment
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.STORM_BOT_AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.STORM_BOT_AWS_SECRET_ACCESS_KEY }}
+          GITHUB_TOKEN: ${{ secrets.STORM_BOT_GITHUB_TOKEN }}
+          TF_LOG: debug
 
-      #   # On push to main, build or change infrastructure according to Terragrunt configuration files
-      #   # Note: It is recommended to set up a required "strict" status check in your repository for "Terragrunt Cloud". See the documentation on "strict" required status checks for more information: https://help.github.com/en/github/administering-a-repository/types-of-required-status-checks
-      # - name: Terragrunt Apply - eth-order-requests-topic
-      #   if: github.ref == 'refs/heads/main' && github.event_name == 'push'
-      #   run: terragrunt run-all apply --terragrunt-non-interactive --terragrunt-working-dir deployment/prod/eth-order-requests-topic
-      #   env:
-      #     AWS_ACCESS_KEY_ID: ${{ secrets.STORM_BOT_AWS_ACCESS_KEY_ID }}
-      #     AWS_SECRET_ACCESS_KEY: ${{ secrets.STORM_BOT_AWS_SECRET_ACCESS_KEY }}
-      #     GITHUB_TOKEN: ${{ secrets.STORM_BOT_GITHUB_TOKEN }}
-      #     TF_LOG: debug
-
-      # # Initialize a new or existing Terragrunt working directory by creating initial files, loading any remote state, downloading modules, etc.
-      # - name: Terragrunt Init - eth-order-telegram-bot
-      #   run: terragrunt init --terragrunt-non-interactive --terragrunt-working-dir deployment/prod/eth-order-telegram-bot
-      #   env:
-      #     AWS_ACCESS_KEY_ID: ${{ secrets.STORM_BOT_AWS_ACCESS_KEY_ID }}
-      #     AWS_SECRET_ACCESS_KEY: ${{ secrets.STORM_BOT_AWS_SECRET_ACCESS_KEY }}
-      #     GITHUB_TOKEN: ${{ secrets.STORM_BOT_GITHUB_TOKEN }}
-      #     TF_LOG: debug
-
-      # # Generates an execution plan for Terragrunt
-      # - name: Terragrunt Plan - eth-order-telegram-bot
-      #   run: terragrunt run-all plan --terragrunt-non-interactive --terragrunt-working-dir deployment/prod/eth-order-telegram-bot
-      #   env:
-      #     AWS_ACCESS_KEY_ID: ${{ secrets.STORM_BOT_AWS_ACCESS_KEY_ID }}
-      #     AWS_SECRET_ACCESS_KEY: ${{ secrets.STORM_BOT_AWS_SECRET_ACCESS_KEY }}
-      #     GITHUB_TOKEN: ${{ secrets.STORM_BOT_GITHUB_TOKEN }}
-      #     TF_LOG: debug
-
-      #   # On push to main, build or change infrastructure according to Terragrunt configuration files
-      #   # Note: It is recommended to set up a required "strict" status check in your repository for "Terragrunt Cloud". See the documentation on "strict" required status checks for more information: https://help.github.com/en/github/administering-a-repository/types-of-required-status-checks
-      # - name: Terragrunt Apply - eth-order-telegram-bot
-      #   if: github.ref == 'refs/heads/main' && github.event_name == 'push'
-      #   run: terragrunt run-all apply --terragrunt-non-interactive --terragrunt-working-dir deployment/prod/eth-order-telegram-bot
-      #   env:
-      #     AWS_ACCESS_KEY_ID: ${{ secrets.STORM_BOT_AWS_ACCESS_KEY_ID }}
-      #     AWS_SECRET_ACCESS_KEY: ${{ secrets.STORM_BOT_AWS_SECRET_ACCESS_KEY }}
-      #     GITHUB_TOKEN: ${{ secrets.STORM_BOT_GITHUB_TOKEN }}
-      #     TF_LOG: debug
+        # On push to main, build or change infrastructure according to Terragrunt configuration files
+        # Note: It is recommended to set up a required "strict" status check in your repository for "Terragrunt Cloud". See the documentation on "strict" required status checks for more information: https://help.github.com/en/github/administering-a-repository/types-of-required-status-checks
+      - name: Terragrunt Apply
+        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+        run: terragrunt run-all apply --terragrunt-non-interactive --terragrunt-working-dir deployment
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.STORM_BOT_AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.STORM_BOT_AWS_SECRET_ACCESS_KEY }}
+          GITHUB_TOKEN: ${{ secrets.STORM_BOT_GITHUB_TOKEN }}
+          TF_LOG: debug
 
       # - name: Release Library Version Updates
       #   run: pnpm release --base=${{ env.NX_BASE }} --head=${{ env.NX_HEAD }}
