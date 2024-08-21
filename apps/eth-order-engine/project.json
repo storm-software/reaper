@@ -4,6 +4,19 @@
   "projectType": "application",
   "sourceRoot": "apps/eth-order-engine/src",
   "targets": {
+    "build-base": {
+      "cache": false,
+      "executor": "nx:run-commands",
+      "inputs": ["{workspaceRoot}/contracts/EthOrderExecutor.huff"],
+      "outputs": ["{workspaceRoot}/dist/bytecode/EthOrderExecutor.hex"],
+      "dependsOn": ["clean", "^build"],
+      "options": {
+        "commands": [
+          "huffc contracts/EthOrderExecutor.huff -b -e paris > dist/bytecode/EthOrderExecutor.hex"
+        ],
+        "color": true
+      }
+    },
     "build": {
       "executor": "@monodon/rust:build",
       "outputs": ["{options.target-dir}"],
@@ -47,6 +60,5 @@
         }
       }
     }
-  },
-  "tags": []
+  }
 }

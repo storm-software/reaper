@@ -1,0 +1,28 @@
+[package]
+name = "storm-trading-eth-engine-core"
+description = "A core Etherium trading crate containing schema definitions and validation logic."
+version = "0.1.0"
+edition = { workspace = true }
+repository = { workspace = true }
+authors = { workspace = true }
+license = { workspace = true }
+categories = { workspace = true }
+keywords = { workspace = true }
+homepage = { workspace = true }
+documentation = "https://docs.rs/storm-trading-eth-engine-core"
+readme = "./README.md"
+
+[dependencies]
+ethers = { version = "2.0.14", features = ["abigen", "ws", "rustls"] }
+serde = { workspace = true, features = ["derive"] }
+serde_json.workspace = true
+rand = "0.8.5"
+eyre = { version = "0.6" }
+thiserror.workspace = true
+hex = "0.4.3"
+
+[lib]
+name = "storm_trading_eth_engine_core"
+path = "src/lib.rs"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html

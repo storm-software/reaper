@@ -6453,6 +6453,19 @@ dependencies = [
 ]
 
 [[package]]
+name = "storm-trading-eth-engine-core"
+version = "0.1.0"
+dependencies = [
+ "ethers",
+ "eyre",
+ "hex",
+ "rand",
+ "serde",
+ "serde_json",
+ "thiserror",
+]
+
+[[package]]
 name = "storm-trading-eth-flashbots"
 version = "0.1.0"
 dependencies = [

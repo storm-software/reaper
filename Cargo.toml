@@ -8,6 +8,7 @@ members = [
     "crates/core",
     "crates/eth",
     "crates/eth-flashbots",
+    "crates/eth-engine-core",
     "crates/aws",
     "apps/eth-order-telegram-bot",
     "apps/eth-order-engine",
@@ -53,6 +54,7 @@ keywords = [
 storm-trading-core = { path = "./crates/core" }
 storm-trading-eth = { path = "./crates/eth" }
 storm-trading-eth-flashbots = { path = "./crates/eth-flashbots" }
+storm-trading-eth-engine-core = { path = "./crates/eth-engine-core" }
 storm-trading-aws = { path = "./crates/aws" }
 
 # External dependencies
@@ -77,6 +79,10 @@ tokio = "1.39.3"
 
 # AWS
 aws-config = "1.5.5"
+
+# Ethers
+ethers = { version = "2.0.14", features = ["abigen", "ws", "rustls"] }
+
 
 ## ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ## COMPILATION PROFILES
