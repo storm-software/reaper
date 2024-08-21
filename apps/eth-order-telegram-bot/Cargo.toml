@@ -2,7 +2,7 @@
 name = "eth-order-telegram-bot"
 version = "0.1.0"
 edition = "2021"
-description = "A Telegram bot used by Storm Software to handle Ethereum notifications"
+description = "A Telegram bot used by Storm Software to handle Ethereum notifications."
 
 [dependencies]
 lambda_http = "0.13"
