@@ -2068,6 +2068,7 @@ dependencies = [
  "serde",
  "serde_json",
  "storm-trading-aws",
+ "storm-trading-core",
  "storm-trading-eth",
  "teloxide",
  "thiserror",

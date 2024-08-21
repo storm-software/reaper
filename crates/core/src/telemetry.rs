@@ -2,7 +2,7 @@ use tracing::subscriber::set_global_default;
 use tracing::{Level, Subscriber};
 use tracing_log::LogTracer;
 use tracing_subscriber::Layer;
-use tracing_subscriber::{layer::SubscriberExt, EnvFilter, Registry};
+use tracing_subscriber::{fmt, layer::SubscriberExt, EnvFilter, Registry};
 
 use ansi_term::Colour::{Blue, Cyan, Purple, Red, Yellow};
 
@@ -76,12 +76,29 @@ where
   }
 }
 
-/// Subscriber Composer
+/// ASNI (Console) Subscriber Composer
 ///
 /// Builds a subscriber with multiple layers into a [tracing](https://crates.io/crates/tracing) subscriber.
-pub fn get_subscriber(env_filter: String) -> impl Subscriber + Sync + Send {
+pub fn get_asni_subscriber(env_filter: String) -> impl Subscriber + Sync + Send {
   let env_filter = EnvFilter::try_from_default_env().unwrap_or_else(|_| EnvFilter::new(env_filter));
   let formatting_layer = AsniTermLayer;
+
+  Registry::default().with(env_filter).with(formatting_layer)
+}
+
+/// JSON Subscriber Composer
+///
+/// Builds a subscriber with multiple layers into a [tracing](https://crates.io/crates/tracing) subscriber.
+pub fn get_json_subscriber(env_filter: String) -> impl Subscriber + Sync + Send {
+  let env_filter = EnvFilter::try_from_default_env().unwrap_or_else(|_| EnvFilter::new(env_filter));
+  let formatting_layer = fmt()
+    .json()
+    .with_max_level(tracing::Level::TRACE)
+    .with_current_span(false)
+    .without_time()
+    .with_target(false)
+    .finish();
+
   Registry::default().with(env_filter).with(formatting_layer)
 }
 

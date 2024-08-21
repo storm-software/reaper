@@ -32,7 +32,7 @@ aws-config = { version = "1.5", features = ["behavior-version-latest"] }
 chrono = "0.4"
 aws-sdk-secretsmanager = "1.41.0"
 aws-sdk-sns = "1.39.0"
-# storm-trading-core = { path = "../../crates/core" }
+storm-trading-core = { path = "../../crates/core" }
 storm-trading-aws = { path = "../../crates/aws" }
 storm-trading-eth = { path = "../../crates/eth" }
 anyhow = "1.0.86"
