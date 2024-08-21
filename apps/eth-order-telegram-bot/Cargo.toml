@@ -5,17 +5,19 @@ edition = "2021"
 description = "A Telegram bot used by Storm Software to handle Ethereum notifications."
 
 [dependencies]
+aws-config = { workspace = true, features = ["behavior-version-latest"] }
+chrono.workspace = true
 lambda_http = "0.13"
 lambda_runtime = "0.13"
-reqwest = { version = "0.12", features = [
+reqwest = { workspace = true, features = [
     "multipart",
     "json",
     "native-tls-vendored",
 ], default-features = false }
-serde = "1.0"
-serde_json = "1.0"
-tokio = { version = "1", features = ["full"] }
-tracing = { version = "0.1", features = ["log"] }
+serde.workspace = true
+serde_json.workspace = true
+tokio = { workspace = true, features = ["full"] }
+tracing = { workspace = true, features = ["log"] }
 teloxide = { version = "0.13", features = [
     "macros",
     "webhooks",
@@ -25,15 +27,12 @@ teloxide = { version = "0.13", features = [
 ] }
 mime = "0.3.17"
 regex = "1.10"
-aws-config = { version = "1.5", features = ["behavior-version-latest"] }
-chrono = "0.4"
-aws-sdk-secretsmanager = "1.41.0"
 aws-sdk-sns = "1.39.0"
-storm-trading-aws = { path = "../../crates/aws" }
-storm-trading-eth = { path = "../../crates/eth" }
-anyhow = "1.0.86"
-thiserror = "1.0.63"
-dotenvy = "0.15.7"
+storm-trading-aws.workspace = true
+storm-trading-eth.workspace = true
+anyhow.workspace = true
+thiserror.workspace = true
+dotenvy.workspace = true
 
 [lib]
 name = "eth_order_telegram_bot"

@@ -13,14 +13,14 @@ documentation = "https://docs.rs/storm-trading-aws"
 readme = "./README.md"
 
 [dependencies]
-tracing = { version = "0.1", features = ["log"] }
-tracing-subscriber = { version = "0.3", default-features = false, features = [
+tracing = { workspace = true, features = ["log"] }
+tracing-subscriber = { workspace = true, default-features = false, features = [
     "fmt",
     "json",
     "env-filter",
     "std",
 ] }
-aws-config = { version = "1.5.5", features = ["behavior-version-latest"] }
+aws-config = { workspace = true, features = ["behavior-version-latest"] }
 
 [lib]
 name = "storm_trading_aws"

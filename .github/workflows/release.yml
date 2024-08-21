@@ -180,24 +180,15 @@ jobs:
 
       ### Run the Terragrunt deployment via Terramate in each changed stack
 
-      # Install the latest version of Terragrunt CLI and configure the Terragrunt CLI configuration file with a Terragrunt Cloud user API token
-      - name: Setup Terraform v1.2.6
-        uses: hashicorp/setup-Terraform@v1
-        with:
-          terraform_version: 1.2.6
-          terraform_wrapper: true
+      - name: Install asdf
+        uses: asdf-vm/actions/setup@v3
 
-      - name: Setup Terraform version
-        run: terraform --version
-
-      - name: Setup Terraform wrapper path
-        run: which terraform
-
-      - name: Setup Terragrunt v0.38.4
+      - name: Install Terraform and Terragrunt with asdf
         run: |
-          sudo wget -q -O /bin/terragrunt "https://github.com/gruntwork-io/terragrunt/releases/download/v0.38.4/terragrunt_linux_amd64"
-          sudo chmod +x /bin/terragrunt
-          terragrunt -v
+          asdf plugin add opentofu
+          asdf plugin add terragrunt
+          asdf install opentofu
+          asdf install terragrunt
 
       # Initialize a new or existing Terragrunt working directory by creating initial files, loading any remote state, downloading modules, etc.
       - name: Terragrunt Init

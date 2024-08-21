@@ -14,13 +14,11 @@ readme = "./README.md"
 
 [dependencies]
 ethers = { version = "2.0.14", features = ["abigen", "ws", "rustls"] }
-serde = { version = "1.0.208", features = ["derive"] }
-serde_json = "1.0.125"
+serde = { workspace = true, features = ["derive"] }
+serde_json.workspace = true
 rand = "0.8.5"
-
-# Errros
 eyre = { version = "0.6" }
-thiserror = "1.0.31"
+thiserror.workspace = true
 hex = "0.4.3"
 
 [lib]

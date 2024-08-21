@@ -1,3 +1,6 @@
+## ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+## Workspace
+## ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 [workspace]
 resolver = "2"
@@ -44,21 +47,65 @@ keywords = [
     "monorepo",
 ]
 
+[workspace.dependencies]
+
+# Internal dependencies
+storm-trading-core = { path = "./crates/core" }
+storm-trading-eth = { path = "./crates/eth" }
+storm-trading-eth-flashbots = { path = "./crates/eth-flashbots" }
+storm-trading-aws = { path = "./crates/aws" }
+
+# External dependencies
+chrono = "0.4.22"
+dotenvy = "0.15.7"
+
+# Serde
+serde = "1.0.205"
+serde_json = "1.0.1"
+
+# Error handling / Logging
+thiserror = "1.0.44"
+eyre = "0.6.8"
+tracing = "0.1.37"
+tracing-subscriber = "0.3"
+colored = "2.0"
+anyhow = "1.0.86"
+
+# HTTP
+reqwest = "0.12"
+tokio = "1.39.3"
+
+# AWS
+aws-config = "1.5.5"
+
 ## ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ## COMPILATION PROFILES
 ## ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-## To compile a release build with debug symbols, use:
-## `cargo build --profile=release-with-debug`
-[profile.release-with-debug]
-inherits = "release"
-debug = true
 
 [profile.dev]
 debug = 0
 
 [profile.release]
-strip = false
-lto = "fat"
+lto = "thin"
+strip = "debuginfo"
 codegen-units = 16
 panic = "unwind"
+
+## To compile a release build with debug symbols, use:
+## `cargo build --profile=release-with-debug`
+[profile.release-with-debug]
+inherits = "release"
+strip = false
+lto = "fat"
+debug = true
+
+[profile.debug-fast]
+inherits = "release"
+strip = "none"
+debug = true
+
+[profile.maxperf]
+inherits = "release"
+lto = "fat"
+codegen-units = 1
+incremental = false

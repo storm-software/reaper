@@ -22,26 +22,26 @@ all-features = true
 rustdoc-args = ["--html-in-header", "katex_header.html", "--cfg", "docsrs"]
 
 [dependencies]
-serde = { version = "1.0.208", features = ["derive"] }
-serde_json = "1.0.125"
+serde = { workspace = true, features = ["derive"] }
+serde_json.workspace = true
 yansi = "1.0.1"
 ansi_term = "0.12.1"
-tracing = "0.1.36"
+tracing.workspace = true
 tracing-bunyan-formatter = "0.3.4"
 tracing-log = "0.2.0"
-tracing-subscriber = { version = "0.3.16", features = [
+tracing-subscriber = { workspace = true, features = [
     "fmt",
     "env-filter",
     "ansi",
 ] }
-chrono = "0.4.22"
+chrono.workspace = true
 num = { version = "0.4.1", features = ["rand"] }
 time = { version = "0.3.36", features = ["macros"] }
 polars = { version = "0.42.0", features = ["docs-selection"] }
 uuid = { version = "1.10.0", features = ["v4", "fast-rng"] }
 rust_decimal = "1.34.3"
 statrs = "0.17.1"
-thiserror = "1.0.57"
+thiserror.workspace = true
 plotters = "0.3.5"
 plotly = "0.9.0"
 derive_builder = "0.20.0"
