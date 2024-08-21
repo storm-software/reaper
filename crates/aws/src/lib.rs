@@ -4,6 +4,7 @@
 #![allow(clippy::derive_partial_eq_without_eq)]
 
 pub mod constants;
+pub mod telemetry;
 pub mod utils;
 
 #[cfg(test)]
