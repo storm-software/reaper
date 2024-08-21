@@ -4,6 +4,7 @@ resolver = "2"
 members = [
     "crates/core",
     "crates/eth",
+    "crates/eth-flashbots",
     "crates/aws",
     "apps/eth-order-telegram-bot",
     "apps/eth-order-engine",

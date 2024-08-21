@@ -2258,6 +2258,26 @@ dependencies = [
 ]
 
 [[package]]
+name = "ethers-flashbots"
+version = "0.15.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "d18fef87b4918a3bec3d7bc08daf0b0b6851b0392eb2329d414269e7cba8adf4"
+dependencies = [
+ "async-trait",
+ "chrono",
+ "ethers",
+ "futures-core",
+ "futures-util",
+ "pin-project",
+ "reqwest 0.11.27",
+ "serde",
+ "serde_json",
+ "thiserror",
+ "url",
+ "uuid 1.10.0",
+]
+
+[[package]]
 name = "ethers-middleware"
 version = "2.0.14"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -6456,6 +6476,15 @@ dependencies = [
 ]
 
 [[package]]
+name = "storm-trading-eth-flashbots"
+version = "0.1.0"
+dependencies = [
+ "ethers",
+ "ethers-flashbots",
+ "eyre",
+]
+
+[[package]]
 name = "streaming-decompression"
 version = "0.1.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -6973,8 +7002,10 @@ checksum = "212d5dcb2a1ce06d81107c3d0ffa3121fe974b73f068c8282cb1c32328113b6c"
 dependencies = [
  "futures-util",
  "log",
+ "native-tls",
  "rustls 0.21.12",
  "tokio",
+ "tokio-native-tls",
  "tokio-rustls 0.24.1",
  "tungstenite",
  "webpki-roots 0.25.4",
@@ -7221,6 +7252,7 @@ dependencies = [
  "http 0.2.12",
  "httparse",
  "log",
+ "native-tls",
  "rand",
  "rustls 0.21.12",
  "sha1",
