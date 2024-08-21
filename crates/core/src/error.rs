@@ -1,10 +1,10 @@
-//! `storm_trading_core` error handling module.
+//! `reaper_core` error handling module.
 //! A custom error type `StormTradingError` is defined, along with a macro to create an error,
 //! that propagates a `StormTradingError` with the text to include in the output.
 
 use thiserror::Error;
 
-/// Error type for `storm_trading_core`.
+/// Error type for `reaper_core`.
 #[derive(Debug, Error)]
 pub enum StormTradingError {
   /// This error indicates that an problem occurred in the computation.
@@ -128,6 +128,6 @@ pub enum CurveError {
 #[macro_export]
 macro_rules! error {
   ($error_type:ident, $msg:expr) => {
-    $crate::storm_trading_core::$error_type { text: $msg.to_string() }.into()
+    $crate::reaper_core::$error_type { text: $msg.to_string() }.into()
   };
 }

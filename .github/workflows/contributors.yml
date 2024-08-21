@@ -31,13 +31,12 @@ jobs:
           GH_TOKEN: ${{ secrets.STORM_BOT_GITHUB_TOKEN }}
           START_DATE: ${{ env.START_DATE }}
           END_DATE: ${{ env.END_DATE }}
-          REPOSITORY: storm-software/storm-trading
+          REPOSITORY: storm-software/reaper
 
       - name: Create issue
         uses: peter-evans/create-issue-from-file@v5
         with:
-          title:
-            Thank you storm-trading contributors (${{ env.START_DATE }}..${{
+          title: Thank you reaper contributors (${{ env.START_DATE }}..${{
             env.END_DATE }})
           token: ${{ secrets.STORM_BOT_GITHUB_TOKEN }}
           content-filepath: ./contributors.md

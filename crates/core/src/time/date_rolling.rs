@@ -1,5 +1,5 @@
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-// storm_trading_core: A Rust library for quantitative finance tools.
+// reaper_core: A Rust library for quantitative finance tools.
 // Copyright (C) 2022-2024 https://github.com/avhz
 // Dual licensed under Apache 2.0 and MIT.
 // See:

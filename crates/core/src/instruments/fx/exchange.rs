@@ -41,7 +41,7 @@ impl Exchange {
   ///
   /// # Example
   /// ```
-  /// use storm_trading_core::instruments::fx::exchange::Exchange;
+  /// use reaper_core::instruments::fx::exchange::Exchange;
   ///
   /// let exchange = Exchange::new();
   /// ```
@@ -55,8 +55,8 @@ impl Exchange {
   ///
   /// # Example
   /// ```
-  /// use storm_trading_core::instruments::fx::exchange::{Exchange, ExchangeRate};
-  /// use storm_trading_core::iso::*;
+  /// use reaper_core::instruments::fx::exchange::{Exchange, ExchangeRate};
+  /// use reaper_core::iso::*;
   ///
   /// let mut exchange = Exchange::new();
   ///
@@ -77,9 +77,9 @@ impl Exchange {
   ///
   /// # Example
   /// ```
-  /// use storm_trading_core::instruments::fx::exchange::{Exchange, ExchangeRate};
-  /// use storm_trading_core::instruments::fx::money::Money;
-  /// use storm_trading_core::iso::{EUR, USD};
+  /// use reaper_core::instruments::fx::exchange::{Exchange, ExchangeRate};
+  /// use reaper_core::instruments::fx::money::Money;
+  /// use reaper_core::iso::{EUR, USD};
   ///
   /// let mut exchange = Exchange::new();
   ///
@@ -111,9 +111,9 @@ impl Exchange {
   ///
   /// # Example
   /// ```
-  /// use storm_trading_core::instruments::fx::exchange::{Exchange, ExchangeRate};
-  /// use storm_trading_core::instruments::fx::money::Money;
-  /// use storm_trading_core::iso::{EUR, USD};
+  /// use reaper_core::instruments::fx::exchange::{Exchange, ExchangeRate};
+  /// use reaper_core::instruments::fx::money::Money;
+  /// use reaper_core::iso::{EUR, USD};
   ///
   /// let mut exchange = Exchange::new();
   ///
@@ -153,10 +153,10 @@ impl ExchangeRate {
   ///
   /// # Example
   /// ```
-  /// use storm_trading_core::instruments::fx::exchange::ExchangeRate;
-  /// use storm_trading_core::instruments::fx::money::Money;
-  /// use storm_trading_core::iso::{EUR, USD};
-  /// use storm_trading_core::assert_approx_equal;
+  /// use reaper_core::instruments::fx::exchange::ExchangeRate;
+  /// use reaper_core::instruments::fx::money::Money;
+  /// use reaper_core::iso::{EUR, USD};
+  /// use reaper_core::assert_approx_equal;
   ///
   /// // Use USD and EUR currency constants from the money module.
   /// let usd = Money::new(USD, 100.0);
@@ -170,9 +170,9 @@ impl ExchangeRate {
   /// It panics if the money's currency doesn't match with `from_currency`.
   ///
   /// ```should_panic
-  /// use storm_trading_core::iso::{EUR, USD};
-  /// use storm_trading_core::instruments::fx::money::Money;
-  /// use storm_trading_core::instruments::exchange::ExchangeRate;
+  /// use reaper_core::iso::{EUR, USD};
+  /// use reaper_core::instruments::fx::money::Money;
+  /// use reaper_core::instruments::exchange::ExchangeRate;
   ///
   /// let usd = Money::new(EUR, 100.0);                       // Notice the wrong currency
   /// let eur_usd = ExchangeRate::new(USD, EUR, 0.9186955);   // 1 USD = 0.9186955 EUR

@@ -1,5 +1,5 @@
 {
-  "name": "@storm-trading/monorepo",
+  "name": "@reaper/monorepo",
   "$schema": "node_modules/nx/schemas/project-schema.json",
   "targets": {
     "local-registry": {

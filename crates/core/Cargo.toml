@@ -1,5 +1,5 @@
 [package]
-name = "storm-trading-core"
+name = "reaper-core"
 description = "A core library crate that provides various utilities and functions to facilitate trading."
 version = "0.1.0"
 edition = { workspace = true }
@@ -9,7 +9,7 @@ license = { workspace = true }
 categories = { workspace = true }
 keywords = { workspace = true }
 homepage = { workspace = true }
-documentation = "https://docs.rs/storm-trading-core"
+documentation = "https://docs.rs/reaper-core"
 readme = "./README.md"
 
 ## ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -50,5 +50,5 @@ rand_distr = "0.4.3"
 yahoo_finance_api = "2.1.0"
 
 [lib]
-name = "storm_trading_core"
+name = "reaper_core"
 path = "src/lib.rs"

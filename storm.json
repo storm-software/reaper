@@ -1,9 +1,9 @@
 {
   "$schema": "https://cdn.jsdelivr.net/npm/@storm-software/config/schemas/storm.schema.json",
   "extends": "./node_modules/@storm-software/config/presets/base.json",
-  "name": "storm-trading",
-  "namespace": "storm-trading",
-  "repository": "https://github.com/storm-software/storm-trading",
+  "name": "reaper",
+  "namespace": "reaper",
+  "repository": "https://github.com/storm-software/reaper",
   "organization": "storm-software",
   "owner": "@storm-software/architecture",
   "timezone": "America/New_York",
@@ -15,7 +15,7 @@
     "@storm-software/",
     "@storm-stack/",
     "@cyclone-ui/",
-    "@storm-trading/"
+    "@reaper/"
   ],
   "colors": {
     "light": {

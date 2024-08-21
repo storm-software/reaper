@@ -2021,9 +2021,9 @@ dependencies = [
  "bigdecimal",
  "ethers",
  "eyre",
+ "reaper-eth",
  "reqwest 0.12.7",
  "serde_json",
- "storm-trading-eth",
  "url",
 ]
 
@@ -2039,12 +2039,12 @@ dependencies = [
  "lambda_http",
  "lambda_runtime",
  "mime",
+ "reaper-aws",
+ "reaper-eth",
  "regex",
  "reqwest 0.12.7",
  "serde",
  "serde_json",
- "storm-trading-aws",
- "storm-trading-eth",
  "teloxide",
  "thiserror",
  "tokio",
@@ -5328,6 +5328,78 @@ dependencies = [
 ]
 
 [[package]]
+name = "reaper-aws"
+version = "0.1.0"
+dependencies = [
+ "aws-config",
+ "tracing",
+ "tracing-subscriber",
+]
+
+[[package]]
+name = "reaper-core"
+version = "0.1.0"
+dependencies = [
+ "ansi_term",
+ "chrono",
+ "derive_builder",
+ "num",
+ "plotly",
+ "plotters",
+ "polars",
+ "rand",
+ "rand_distr",
+ "rust_decimal",
+ "serde",
+ "serde_json",
+ "statrs",
+ "thiserror",
+ "time",
+ "tracing",
+ "tracing-bunyan-formatter",
+ "tracing-log 0.2.0",
+ "tracing-subscriber",
+ "uuid 1.10.0",
+ "yahoo_finance_api",
+ "yansi 1.0.1",
+]
+
+[[package]]
+name = "reaper-eth"
+version = "0.1.0"
+dependencies = [
+ "ethers",
+ "eyre",
+ "hex",
+ "rand",
+ "serde",
+ "serde_json",
+ "thiserror",
+]
+
+[[package]]
+name = "reaper-eth-engine-core"
+version = "0.1.0"
+dependencies = [
+ "ethers",
+ "eyre",
+ "hex",
+ "rand",
+ "serde",
+ "serde_json",
+ "thiserror",
+]
+
+[[package]]
+name = "reaper-eth-flashbots"
+version = "0.1.0"
+dependencies = [
+ "ethers",
+ "ethers-flashbots",
+ "eyre",
+]
+
+[[package]]
 name = "recursive"
 version = "0.1.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -6400,78 +6472,6 @@ dependencies = [
  "nalgebra",
  "num-traits",
  "rand",
-]
-
-[[package]]
-name = "storm-trading-aws"
-version = "0.1.0"
-dependencies = [
- "aws-config",
- "tracing",
- "tracing-subscriber",
-]
-
-[[package]]
-name = "storm-trading-core"
-version = "0.1.0"
-dependencies = [
- "ansi_term",
- "chrono",
- "derive_builder",
- "num",
- "plotly",
- "plotters",
- "polars",
- "rand",
- "rand_distr",
- "rust_decimal",
- "serde",
- "serde_json",
- "statrs",
- "thiserror",
- "time",
- "tracing",
- "tracing-bunyan-formatter",
- "tracing-log 0.2.0",
- "tracing-subscriber",
- "uuid 1.10.0",
- "yahoo_finance_api",
- "yansi 1.0.1",
-]
-
-[[package]]
-name = "storm-trading-eth"
-version = "0.1.0"
-dependencies = [
- "ethers",
- "eyre",
- "hex",
- "rand",
- "serde",
- "serde_json",
- "thiserror",
-]
-
-[[package]]
-name = "storm-trading-eth-engine-core"
-version = "0.1.0"
-dependencies = [
- "ethers",
- "eyre",
- "hex",
- "rand",
- "serde",
- "serde_json",
- "thiserror",
-]
-
-[[package]]
-name = "storm-trading-eth-flashbots"
-version = "0.1.0"
-dependencies = [
- "ethers",
- "ethers-flashbots",
- "eyre",
 ]
 
 [[package]]

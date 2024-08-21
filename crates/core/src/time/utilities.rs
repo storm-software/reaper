@@ -1,5 +1,5 @@
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-// storm_trading_core: A Rust library for quantitative finance tools.
+// reaper_core: A Rust library for quantitative finance tools.
 // Copyright (C) 2022-2024 https://github.com/avhz
 // Dual licensed under Apache 2.0 and MIT.
 // See:
@@ -76,7 +76,7 @@ pub fn today() -> Date {
 ///
 /// ```
 /// use time::{Date, Month};
-/// use storm_trading_core::time::utilities::get_days_in_years_in_range;
+/// use reaper_core::time::utilities::get_days_in_years_in_range;
 ///
 /// let start = Date::from_calendar_date(2023, Month::July, 1).unwrap();
 /// let end = Date::from_calendar_date(2025, Month::January, 1).unwrap();
@@ -112,7 +112,7 @@ pub fn days_between(start: Date, end: Date) -> i64 {
 ///
 /// ```
 /// use time::{Date, Month};
-/// use storm_trading_core::time::utilities::leap_year_count;
+/// use reaper_core::time::utilities::leap_year_count;
 ///
 /// let start = Date::from_calendar_date(2023, Month::July, 1).unwrap();
 /// let end = Date::from_calendar_date(2025, Month::January, 1).unwrap();

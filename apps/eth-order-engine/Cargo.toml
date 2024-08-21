@@ -1,5 +1,5 @@
 [package]
-name = "eth-order-engine"
+name = "reaper-eth-order-engine"
 version = "0.1.0"
 edition = "2021"
 
@@ -13,7 +13,7 @@ ethers.workspace = true
 reqwest.workspace = true
 serde_json.workspace = true
 url = "2.5.2"
-storm-trading-eth.workspace = true
+reaper-eth.workspace = true
 eyre = { version = "0.6" }
 
 # [lib]
@@ -21,5 +21,5 @@ eyre = { version = "0.6" }
 # path = "src/lib.rs"
 
 [[bin]]
-name = "eth-order-engine"
+name = "reaper-eth-order-engine"
 path = "src/main.rs"

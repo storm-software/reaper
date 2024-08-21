@@ -439,7 +439,7 @@ impl BlackScholesMerton {
 mod tests_black_scholes_merton {
     use super::*;
     use crate::assert_approx_equal;
-    use crate::storm_trading_core_EPSILON;
+    use crate::reaper_core_EPSILON;
     use time::Duration;
 
     #[test]
@@ -455,7 +455,7 @@ mod tests_black_scholes_merton {
             today() + Duration::days(91),
             TypeFlag::Call,
         );
-        assert_approx_equal!(bsm.price(), 2.121846776001, storm_trading_core_EPSILON);
+        assert_approx_equal!(bsm.price(), 2.121846776001, reaper_core_EPSILON);
     }
 
     #[test]
@@ -471,6 +471,6 @@ mod tests_black_scholes_merton {
             today() + Duration::days(182),
             TypeFlag::Put,
         );
-        assert_approx_equal!(bsm.price(), 2.456571166461579, storm_trading_core_EPSILON);
+        assert_approx_equal!(bsm.price(), 2.456571166461579, reaper_core_EPSILON);
     }
 }

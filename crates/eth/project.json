@@ -1,5 +1,5 @@
 {
-  "name": "storm-trading-eth",
+  "name": "reaper-eth",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "projectType": "library",
   "sourceRoot": "crates/eth/src",

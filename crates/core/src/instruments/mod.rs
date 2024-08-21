@@ -41,7 +41,7 @@
 //!   - [ ] Barrier
 //!
 //! ```ignore
-//! use storm_trading_core::instruments::*;
+//! use reaper_core::instruments::*;
 //! use time::{Duration, OffsetDateTime};
 //!
 //! let VanillaOption = EuropeanOption {

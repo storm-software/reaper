@@ -5,13 +5,13 @@
 //! # Example
 //!
 //! ```
-//! # use storm_trading_core::portfolio::{Portfolio, Position};
-//! # use storm_trading_core::instruments::options::{BlackScholesMerton, TypeFlag};
-//! # use storm_trading_core::iso::USD;
+//! # use reaper_core::portfolio::{Portfolio, Position};
+//! # use reaper_core::instruments::options::{BlackScholesMerton, TypeFlag};
+//! # use reaper_core::iso::USD;
 //! # use time::{Duration, OffsetDateTime};
 //! # use std::collections::HashMap;
-//! # use storm_trading_core::assert_approx_equal;
-//! # use storm_trading_core::time::today;
+//! # use reaper_core::assert_approx_equal;
+//! # use reaper_core::time::today;
 //!
 //! // Create a position of 100 call options.
 //! let position_1 = Position {

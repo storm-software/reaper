@@ -1,5 +1,5 @@
 [package]
-name = "storm-trading-eth-engine-core"
+name = "reaper-eth-engine-core"
 description = "A core Etherium trading crate containing schema definitions and validation logic."
 version = "0.1.0"
 edition = { workspace = true }
@@ -9,7 +9,7 @@ license = { workspace = true }
 categories = { workspace = true }
 keywords = { workspace = true }
 homepage = { workspace = true }
-documentation = "https://docs.rs/storm-trading-eth-engine-core"
+documentation = "https://docs.rs/reaper-eth-engine-core"
 readme = "./README.md"
 
 [dependencies]
@@ -22,7 +22,7 @@ thiserror.workspace = true
 hex = "0.4.3"
 
 [lib]
-name = "storm_trading_eth_engine_core"
+name = "reaper_eth_engine_core"
 path = "src/lib.rs"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html

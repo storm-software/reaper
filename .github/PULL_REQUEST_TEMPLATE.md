@@ -4,7 +4,7 @@
 
 Thank you good citizen for your hard work! Please provide the below details describing your PR.
 
-**Note:** Please read the [contributing guide](https://github.com/storm-software/storm-trading/blob/main/.github/CONTRIBUTING.md) before raising a pull request.
+**Note:** Please read the [contributing guide](https://github.com/storm-software/reaper/blob/main/.github/CONTRIBUTING.md) before raising a pull request.
 
 ## Pull request type
 

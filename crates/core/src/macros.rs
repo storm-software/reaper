@@ -1,4 +1,4 @@
-//! Macros for storm_trading_core.
+//! Macros for reaper_core.
 
 /// Helper macro for tests to test floating point approximate equality.
 #[macro_export]
@@ -49,7 +49,10 @@ macro_rules! plot_vector {
       .unwrap();
 
     chart.configure_mesh().draw().unwrap();
-    chart.draw_series(LineSeries::new(vec2d, RED)).unwrap().label($file);
+    chart
+      .draw_series(LineSeries::new(vec2d, RED))
+      .unwrap()
+      .label($file);
     chart
       .configure_series_labels()
       .background_style(WHITE.mix(0.8))

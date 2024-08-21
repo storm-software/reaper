@@ -17,11 +17,11 @@ members = [
 [workspace.package]
 version = "0.0.1"
 description = "💵 A monorepo containing various utilities, libraries, and applications used by Storm Software in trading processes"
-repository = "https://github.com/storm-software/storm-trading"
+repository = "https://github.com/storm-software/reaper"
 edition = "2021"
 authors = ["storm-software", "pat-sullivan"]
 license = "Apache-2.0"
-documentation = "https://stormsoftware.com/projects/storm-trading/docs"
+documentation = "https://stormsoftware.com/projects/reaper/docs"
 homepage = "https://stormsoftware.com"
 categories = [
     "config",
@@ -34,7 +34,7 @@ categories = [
 ]
 keywords = [
     "storm",
-    "storm-trading",
+    "reaper",
     "storm-software",
     "trading",
     "cryptocurrency",
@@ -51,11 +51,11 @@ keywords = [
 [workspace.dependencies]
 
 # Internal dependencies
-storm-trading-core = { path = "./crates/core" }
-storm-trading-eth = { path = "./crates/eth" }
-storm-trading-eth-flashbots = { path = "./crates/eth-flashbots" }
-storm-trading-eth-engine-core = { path = "./crates/eth-engine-core" }
-storm-trading-aws = { path = "./crates/aws" }
+reaper-core = { path = "./crates/core" }
+reaper-eth = { path = "./crates/eth" }
+reaper-eth-flashbots = { path = "./crates/eth-flashbots" }
+reaper-eth-engine-core = { path = "./crates/eth-engine-core" }
+reaper-aws = { path = "./crates/aws" }
 
 # External dependencies
 chrono = "0.4.22"

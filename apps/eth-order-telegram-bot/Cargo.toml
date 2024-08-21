@@ -1,5 +1,5 @@
 [package]
-name = "eth-order-telegram-bot"
+name = "reaper-eth-order-telegram-bot"
 version = "0.1.0"
 edition = "2021"
 description = "A Telegram bot used by Storm Software to handle Ethereum notifications."
@@ -28,17 +28,17 @@ teloxide = { version = "0.13", features = [
 mime = "0.3.17"
 regex = "1.10"
 aws-sdk-sns = "1.39.0"
-storm-trading-aws.workspace = true
-storm-trading-eth.workspace = true
+reaper-aws.workspace = true
+reaper-eth.workspace = true
 anyhow.workspace = true
 thiserror.workspace = true
 dotenvy.workspace = true
 
 [lib]
-name = "eth_order_telegram_bot"
+name = "reaper_eth_order_telegram_bot"
 path = "src/lib.rs"
 
 [[bin]]
-name = "eth-order-telegram-bot"
+name = "reaper-eth-order-telegram-bot"
 path = "src/main.rs"
 # test = false

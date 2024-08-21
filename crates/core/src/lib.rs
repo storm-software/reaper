@@ -1,4 +1,4 @@
-//! storm_trading_core: A Rust library for quantitative finance tools.
+//! reaper_core: A Rust library for quantitative finance tools.
 //!
 //! Any contributions are greatly appreciated. Make a PR or open an issue !
 //!
@@ -10,7 +10,7 @@
 //! In your Rust project's root directory, simply run:
 //!
 //! ```bash
-//! cargo add storm_trading_core
+//! cargo add reaper_core
 //! ```
 //!
 //! This will add the latest version to your project.
@@ -19,7 +19,7 @@
 //!
 //! ```toml
 //! [dependencies]
-//! storm_trading_core = "*"
+//! reaper_core = "*"
 //! ```
 //!
 //! replacing `"*"` with the version number you require, such as `"0.0.17"`.

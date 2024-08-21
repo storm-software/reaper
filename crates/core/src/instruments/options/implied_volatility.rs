@@ -1,5 +1,5 @@
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-// storm_trading_core: A Rust library for quantitative finance tools.
+// reaper_core: A Rust library for quantitative finance tools.
 // Copyright (C) 2023 https://github.com/avhz
 // Dual licensed under Apache 2.0 and MIT.
 // See:
@@ -72,9 +72,9 @@ pub(crate) const MAXIMUM_RATIONAL_CUBIC_CONTROL_PARAMETER_VALUE: f64 =
 /// If price is below intrinsic value, it returns -INF,
 /// if price is above intrinsic value, it returns INF.
 /// ```
-/// use storm_trading_core::instruments::options::implied_volatility::*;
-/// use storm_trading_core::instruments::options::TypeFlag;
-/// use storm_trading_core::assert_approx_equal;
+/// use reaper_core::instruments::options::implied_volatility::*;
+/// use reaper_core::instruments::options::TypeFlag;
+/// use reaper_core::assert_approx_equal;
 ///
 /// let price = 12.3;
 /// let S = 100.0;

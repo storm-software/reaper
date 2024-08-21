@@ -1,7 +1,7 @@
 import { getStormConfig } from "@storm-software/eslint";
 
 export default getStormConfig({
-  name: "storm-trading",
+  name: "reaper",
   rules: {
     "unicorn/no-null": 0,
     "unicorn/no-useless-switch-case": 0,

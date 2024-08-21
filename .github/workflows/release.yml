@@ -13,7 +13,7 @@ on:
 jobs:
   release:
     name: Release repository
-    if: github.repository == 'storm-software/storm-trading' && github.ref == 'refs/heads/main'
+    if: github.repository == 'storm-software/reaper' && github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     permissions:
       actions: read
@@ -125,7 +125,7 @@ jobs:
         shell: bash
 
       # - name: Print output path
-      #   run: dir /home/runner/work/storm-trading/storm-trading/dist/target/lambda/eth-execution-telegram-bot
+      #   run: dir /home/runner/work/reaper/reaper/dist/target/lambda/eth-execution-telegram-bot
       #   shell: bash
 
       # - name: Check terragrunt HCL
@@ -180,44 +180,44 @@ jobs:
 
       ### Run the Terragrunt deployment via Terramate in each changed stack
 
-      # - name: Install asdf
-      #   uses: asdf-vm/actions/setup@v3
+      - name: Install asdf
+        uses: asdf-vm/actions/setup@v3
 
-      # - name: Install Terraform and Terragrunt with asdf
-      #   run: |
-      #     asdf plugin add opentofu
-      #     asdf plugin add terragrunt
-      #     asdf install opentofu
-      #     asdf install terragrunt
+      - name: Install Terraform and Terragrunt with asdf
+        run: |
+          asdf plugin add opentofu
+          asdf plugin add terragrunt
+          asdf install opentofu
+          asdf install terragrunt
 
       # # Initialize a new or existing Terragrunt working directory by creating initial files, loading any remote state, downloading modules, etc.
-      # - name: Terragrunt Init
-      #   run: terragrunt init --terragrunt-non-interactive --terragrunt-working-dir deployment
-      #   env:
-      #     AWS_ACCESS_KEY_ID: ${{ secrets.STORM_BOT_AWS_ACCESS_KEY_ID }}
-      #     AWS_SECRET_ACCESS_KEY: ${{ secrets.STORM_BOT_AWS_SECRET_ACCESS_KEY }}
-      #     GITHUB_TOKEN: ${{ secrets.STORM_BOT_GITHUB_TOKEN }}
-      #     TF_LOG: trace
+      - name: Terragrunt Init
+        run: terragrunt init --terragrunt-non-interactive --terragrunt-working-dir deployment
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.STORM_BOT_AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.STORM_BOT_AWS_SECRET_ACCESS_KEY }}
+          GITHUB_TOKEN: ${{ secrets.STORM_BOT_GITHUB_TOKEN }}
+          TF_LOG: trace
 
-      # # Generates an execution plan for Terragrunt
-      # - name: Terragrunt Plan
-      #   run: terragrunt run-all plan --terragrunt-non-interactive --terragrunt-working-dir deployment
-      #   env:
-      #     AWS_ACCESS_KEY_ID: ${{ secrets.STORM_BOT_AWS_ACCESS_KEY_ID }}
-      #     AWS_SECRET_ACCESS_KEY: ${{ secrets.STORM_BOT_AWS_SECRET_ACCESS_KEY }}
-      #     GITHUB_TOKEN: ${{ secrets.STORM_BOT_GITHUB_TOKEN }}
-      #     TF_LOG: trace
+      # Generates an execution plan for Terragrunt
+      - name: Terragrunt Plan
+        run: terragrunt run-all plan --terragrunt-non-interactive --terragrunt-working-dir deployment
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.STORM_BOT_AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.STORM_BOT_AWS_SECRET_ACCESS_KEY }}
+          GITHUB_TOKEN: ${{ secrets.STORM_BOT_GITHUB_TOKEN }}
+          TF_LOG: trace
 
-      #   # On push to main, build or change infrastructure according to Terragrunt configuration files
-      #   # Note: It is recommended to set up a required "strict" status check in your repository for "Terragrunt Cloud". See the documentation on "strict" required status checks for more information: https://help.github.com/en/github/administering-a-repository/types-of-required-status-checks
-      # - name: Terragrunt Apply
-      #   if: github.ref == 'refs/heads/main' && github.event_name == 'push'
-      #   run: terragrunt run-all apply --terragrunt-non-interactive --terragrunt-working-dir deployment
-      #   env:
-      #     AWS_ACCESS_KEY_ID: ${{ secrets.STORM_BOT_AWS_ACCESS_KEY_ID }}
-      #     AWS_SECRET_ACCESS_KEY: ${{ secrets.STORM_BOT_AWS_SECRET_ACCESS_KEY }}
-      #     GITHUB_TOKEN: ${{ secrets.STORM_BOT_GITHUB_TOKEN }}
-      #     TF_LOG: trace
+        # On push to main, build or change infrastructure according to Terragrunt configuration files
+        # Note: It is recommended to set up a required "strict" status check in your repository for "Terragrunt Cloud". See the documentation on "strict" required status checks for more information: https://help.github.com/en/github/administering-a-repository/types-of-required-status-checks
+      - name: Terragrunt Apply
+        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+        run: terragrunt run-all apply --terragrunt-non-interactive --terragrunt-working-dir deployment
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.STORM_BOT_AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.STORM_BOT_AWS_SECRET_ACCESS_KEY }}
+          GITHUB_TOKEN: ${{ secrets.STORM_BOT_GITHUB_TOKEN }}
+          TF_LOG: trace
 
       # - name: Release Library Version Updates
       #   run: pnpm release --base=${{ env.NX_BASE }} --head=${{ env.NX_HEAD }}

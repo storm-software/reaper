@@ -1,5 +1,5 @@
 project:
-  name: storm-trading
+  name: reaper
   tz: America/New_York
   adrFolder: ./docs/decisions
   packages: []
