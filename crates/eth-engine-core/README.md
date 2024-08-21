@@ -10,13 +10,13 @@
 <b>
 <a href="https://stormsoftware.com" target="_blank">Website</a>  •
 <a href="https://github.com/storm-software/reaper" target="_blank">GitHub</a>  •
-<a href="https://discord.gg/MQ6YVzakM5">Discord</a>  •  <a href="https://stormstack.github.io/stormstack/" target="_blank">Docs</a>  •  <a href="https://stormsoftware.com/contact" target="_blank">Contact</a>  •
+<a href="https://t.me/storm_software">Telegram</a>  •  <a href="https://stormstack.github.io/stormstack/" target="_blank">Docs</a>  •  <a href="https://stormsoftware.com/contact" target="_blank">Contact</a>  •
 <a href="https://github.com/storm-software/reaper/issues/new?assignees=&labels=bug&template=bug-report.yml&title=Bug Report%3A+">Report a Bug</a>
 </b>
 </div>
 
 <br />
-This package is part of the ⚡<b>Reaper</b> monorepo. Reaper packages include CLI utility applications, tools, and various libraries used to create modern, scalable trading applications.
+This package is part of Storm Software's <b>💀 Reaper</b> monorepo. Reaper packages include CLI utility applications, tools, and various libraries used to create modern, scalable trading applications.
 <br />
 
 <h3 align="center">💻 Visit <a href="https://stormsoftware.com" target="_blank">stormsoftware.com</a> to stay up to date with this developer</h3><br />

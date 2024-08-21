@@ -2012,46 +2012,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "eth-order-engine"
-version = "0.1.0"
-dependencies = [
- "alloy-primitives",
- "alloy-sol-types",
- "anyhow",
- "bigdecimal",
- "ethers",
- "eyre",
- "reaper-eth",
- "reqwest 0.12.7",
- "serde_json",
- "url",
-]
-
-[[package]]
-name = "eth-order-telegram-bot"
-version = "0.1.0"
-dependencies = [
- "anyhow",
- "aws-config",
- "aws-sdk-sns",
- "chrono",
- "dotenvy",
- "lambda_http",
- "lambda_runtime",
- "mime",
- "reaper-aws",
- "reaper-eth",
- "regex",
- "reqwest 0.12.7",
- "serde",
- "serde_json",
- "teloxide",
- "thiserror",
- "tokio",
- "tracing",
-]
-
-[[package]]
 name = "ethabi"
 version = "18.0.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -5397,6 +5357,46 @@ dependencies = [
  "ethers",
  "ethers-flashbots",
  "eyre",
+]
+
+[[package]]
+name = "reaper-eth-order-engine"
+version = "0.1.0"
+dependencies = [
+ "alloy-primitives",
+ "alloy-sol-types",
+ "anyhow",
+ "bigdecimal",
+ "ethers",
+ "eyre",
+ "reaper-eth",
+ "reqwest 0.12.7",
+ "serde_json",
+ "url",
+]
+
+[[package]]
+name = "reaper-eth-order-telegram-bot"
+version = "0.1.0"
+dependencies = [
+ "anyhow",
+ "aws-config",
+ "aws-sdk-sns",
+ "chrono",
+ "dotenvy",
+ "lambda_http",
+ "lambda_runtime",
+ "mime",
+ "reaper-aws",
+ "reaper-eth",
+ "regex",
+ "reqwest 0.12.7",
+ "serde",
+ "serde_json",
+ "teloxide",
+ "thiserror",
+ "tokio",
+ "tracing",
 ]
 
 [[package]]

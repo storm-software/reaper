@@ -1,11 +1,11 @@
-<div align="center"><img src="https://pub-761b436209f44a4d886487c917806c08.r2.dev/storm-banner.gif" width="100%" alt="Storm-Trading" /></div>
+<div align="center"><img src="https://pub-761b436209f44a4d886487c917806c08.r2.dev/storm-banner.gif" width="100%" alt="Reaper" /></div>
 
 <br />
 <div align="center">
 <b>
-<a href="https://stormsoftware.com" target="_blank">Website</a>  •
+<a href="https://reaper.rs" target="_blank">Website</a>  •
 <a href="https://github.com/storm-software/reaper" target="_blank">GitHub</a>  •
-<a href="https://discord.gg/MQ6YVzakM5">Discord</a>  •  <a href="https://stormstack.github.io/stormstack/" target="_blank">Docs</a>  •  <a href="https://stormsoftware.com/contact" target="_blank">Contact</a>  •
+<a href="https://t.me/storm_software">Telegram</a>  •  <a href="https://reaper.rs/docs" target="_blank">Docs</a>  •  <a href="https://reaper.rs/contact" target="_blank">Contact</a>  •
 <a href="https://github.com/storm-software/reaper/issues/new?assignees=&labels=bug&template=bug-report.yml&title=Bug Report%3A+">Report a Bug</a>
 </b>
 </div>
@@ -14,8 +14,8 @@
 Storm Software's <b>💀 Reaper</b> monorepo contains various configurations and
 tools used to manage the Storm Software repositories. <br />
 
-Reaper is built using <a href="https://nx.dev/" target="_blank">Nx</a>, a set
-of extensible dev tools for monorepos, which helps you develop like Google,
+Reaper is built using <a href="https://nx.dev/" target="_blank">Nx</a>, a set of
+extensible dev tools for monorepos, which helps you develop like Google,
 Facebook, and Microsoft. Building on top of Nx, the Open System provides a set
 of tools and patterns that help you scale your monorepo to many teams while
 keeping the codebase maintainable.
@@ -46,6 +46,7 @@ keeping the codebase maintainable.
 
 <!-- START doctoc -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+
 ## Table of Contents
 
 - [Quick Features](#quick-features)
@@ -192,8 +193,8 @@ from `@reaper/my-lib`.
 
 ## Code Scaffolding
 
-Run `nx g @nx/react:component my-component --project=reaper` to generate a
-new component.
+Run `nx g @nx/react:component my-component --project=reaper` to generate a new
+component.
 
 <div align="right">[ <a href="#table-of-contents">Back to top ▲</a> ]</div>
 <br />
@@ -294,8 +295,8 @@ Please try to create bug reports that are:
 Please adhere to this project's [code of conduct](.github/CODE_OF_CONDUCT.md).
 
 You can use
-[markdownlint-cli](https://github.com/storm-software/reaper/markdownlint-cli)
-to check for common markdown style inconsistency.
+[markdownlint-cli](https://github.com/storm-software/reaper/markdownlint-cli) to
+check for common markdown style inconsistency.
 
 <div align="right">[ <a href="#table-of-contents">Back to top ▲</a> ]</div>
 <br />

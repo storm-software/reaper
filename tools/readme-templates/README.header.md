@@ -3,9 +3,9 @@
 
 <div align="center">
 <b>
-<a href="https://stormsoftware.com" target="_blank">Website</a>  •
+<a href="https://reaper.rs" target="_blank">Website</a>  •
 <a href="https://github.com/storm-software/reaper" target="_blank">GitHub</a>  •
-<a href="https://discord.gg/MQ6YVzakM5">Discord</a>  •  <a href="https://stormstack.github.io/stormstack/" target="_blank">Docs</a>  •  <a href="https://stormsoftware.com/contact" target="_blank">Contact</a>  •
+<a href="https://t.me/storm_software">Telegram</a>  •  <a href="https:/reaper.rs/docs" target="_blank">Docs</a>  •  <a href="https://reaper.rs/contact" target="_blank">Contact</a>  •
 <a href="https://github.com/storm-software/reaper/issues/new?assignees=&labels=bug&template=bug-report.yml&title=Bug Report%3A+">Report a Bug</a>
 </b>
 </div>
