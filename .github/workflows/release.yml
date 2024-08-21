@@ -201,12 +201,12 @@ jobs:
         if: steps.list.outputs.stdout
         id: init
         run: |
-          terramate run --changed -- terragrunt init -terragrunt-non-interactive-terragrunt-working-dir=deployment
+          terramate run --changed -- terragrunt init -terragrunt-non-interactive-terragrunt-working-dir=deployment -verbose
 
       - name: Create Terragrunt plan on changed stacks
         if: steps.list.outputs.stdout
         id: plan
-        run: terramate run --changed -- terragrunt run-all plan -lock-timeout=5m -out=out.tfplan -terragrunt-non-interactive -terragrunt-working-dir=deployment
+        run: terramate run --changed -- terragrunt run-all plan -lock-timeout=5m -out=out.tfplan -terragrunt-non-interactive -terragrunt-working-dir=deployment -verbose
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.STORM_BOT_AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.STORM_BOT_AWS_SECRET_ACCESS_KEY }}
@@ -223,7 +223,7 @@ jobs:
             --terraform-plan-file=out.tfplan \
             --terragrunt \
             -- \
-            terragrunt run-all apply -input=false -auto-approve -lock-timeout=5m -terragrunt-non-interactive -terragrunt-working-dir=deployment out.tfplan
+            terragrunt run-all apply -input=false -auto-approve -lock-timeout=5m -terragrunt-non-interactive -terragrunt-working-dir=deployment -verbose out.tfplan
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.STORM_BOT_AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.STORM_BOT_AWS_SECRET_ACCESS_KEY }}
@@ -239,7 +239,7 @@ jobs:
             --terraform-plan-file=drift.tfplan \
             --terragrunt \
             -- \
-            terragrunt run-all plan -terragrunt-non-interactive -terragrunt-working-dir=deployment -out=drift.tfplan -detailed-exitcode
+            terragrunt run-all plan -terragrunt-non-interactive -terragrunt-working-dir=deployment -out=drift.tfplan -detailed-exitcode -verbose
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.STORM_BOT_AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.STORM_BOT_AWS_SECRET_ACCESS_KEY }}
