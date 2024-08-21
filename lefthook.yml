@@ -38,15 +38,17 @@ pre-commit:
     #   glob: "**/*.*"
     #   run: "pnpm lint"
     #   stage_fixed: true
+    terramate-gen:
+      glob: "**/*.*"
+      run: "terramate generate"
+      stage_fixed: true
     lint-toml:
       glob: "**/*.toml"
-      run:
-        'pnpm exec taplo format --check
+      run: 'pnpm exec taplo format --check
         --config="./node_modules/@storm-software/linting-tools/taplo/.taplo.toml"'
     lint-filename:
       glob: "./{crates,apps,libs,tools}/**/*.*"
-      run:
-        'pnpm exec ls-lint
+      run: 'pnpm exec ls-lint
         --config="./node_modules/@storm-software/linting-tools/ls-lint/.ls-lint.yml"'
 
 commit-msg:
@@ -63,20 +65,17 @@ pre-push:
       stage_fixed: true
     format-prettier:
       glob: "!packages/workspace-tools/src/generators/*/files/**/*"
-      run:
-        "pnpm exec prettier {staged_files} --write --ignore-unknown
+      run: "pnpm exec prettier {staged_files} --write --ignore-unknown
         --no-error-on-unmatched-pattern --cache && git update-index"
       stage_fixed: true
     format-toml:
       glob: "**/*.toml"
-      run:
-        'pnpm exec taplo format
+      run: 'pnpm exec taplo format
         --config="./node_modules/@storm-software/linting-tools/taplo/.taplo.toml"
         && git update-index'
     format-readme:
       glob: "**/{README.md,package.json,executors.json,generators.json}"
-      run:
-        'pnpm exec storm-git readme-gen --templates="./tools/readme-templates"'
+      run: 'pnpm exec storm-git readme-gen --templates="./tools/readme-templates"'
       stage_fixed: true
     build:
       glob: "**/*.*"
