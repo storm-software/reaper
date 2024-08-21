@@ -2043,8 +2043,10 @@ dependencies = [
  "anyhow",
  "bigdecimal",
  "ethers",
+ "eyre",
  "reqwest 0.12.7",
  "serde_json",
+ "storm-trading-eth",
  "url",
 ]
 
@@ -2066,7 +2068,7 @@ dependencies = [
  "serde",
  "serde_json",
  "storm-trading-aws",
- "storm-trading-eth-core",
+ "storm-trading-eth",
  "teloxide",
  "thiserror",
  "tokio",
@@ -6441,11 +6443,12 @@ dependencies = [
 ]
 
 [[package]]
-name = "storm-trading-eth-core"
+name = "storm-trading-eth"
 version = "0.1.0"
 dependencies = [
  "ethers",
  "eyre",
+ "hex",
  "rand",
  "serde",
  "serde_json",

@@ -78,13 +78,13 @@ This crate can be installed using
 
 ```toml
 [dependencies]
-storm-trading-eth-core = "0.0.1"
+storm-trading-eth = "0.0.1"
 ```
 
 Or, via the command line:
 
 ```bash
-cargo add storm-trading-eth-core
+cargo add storm-trading-eth
 ```
 
 <!-- START doctoc -->
@@ -97,16 +97,16 @@ commands are available to assist in development.
 
 ### Building
 
-Run `nx build storm-trading-eth-core` to build the library.
+Run `nx build storm-trading-eth` to build the library.
 
 ### Running unit tests
 
-Run `nx test storm-trading-eth-core` to execute the unit tests via
+Run `nx test storm-trading-eth` to execute the unit tests via
 [Jest](https://jestjs.io).
 
 ### Linting
 
-Run `nx lint storm-trading-eth-core` to run [ESLint](https://eslint.org/) on the
+Run `nx lint storm-trading-eth` to run [ESLint](https://eslint.org/) on the
 package.
 
 <!-- START footer -->

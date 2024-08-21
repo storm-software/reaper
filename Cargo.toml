@@ -3,7 +3,7 @@
 resolver = "2"
 members = [
     "crates/core",
-    "crates/eth-core",
+    "crates/eth",
     "crates/aws",
     "apps/eth-order-telegram-bot",
     "apps/eth-order-engine",
@@ -61,5 +61,3 @@ strip = false
 lto = "fat"
 codegen-units = 16
 panic = "unwind"
-
-

@@ -12,6 +12,9 @@ out
 .nx/workspace-data
 .terragrunt-cache
 
+# logs
+logs/**/*
+
 # dependencies
 node_modules
 

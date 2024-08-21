@@ -34,7 +34,7 @@ aws-sdk-secretsmanager = "1.41.0"
 aws-sdk-sns = "1.39.0"
 # storm-trading-core = { path = "../../crates/core" }
 storm-trading-aws = { path = "../../crates/aws" }
-storm-trading-eth-core = { path = "../../crates/eth-core" }
+storm-trading-eth = { path = "../../crates/eth" }
 anyhow = "1.0.86"
 thiserror = "1.0.63"
 dotenvy = "0.15.7"

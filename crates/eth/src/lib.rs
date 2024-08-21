@@ -5,6 +5,7 @@
 
 pub mod constants;
 pub mod types;
+pub mod uniswap;
 pub mod utils;
 
 #[cfg(test)]

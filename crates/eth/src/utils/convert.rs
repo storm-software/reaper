@@ -1,8 +1,9 @@
 use ethers::prelude::{Address, U256};
+use std::str::FromStr;
 
 /// Converts &str to Address.
 pub fn to_address(address: &str) -> Address {
-  address.parse::<Address>().unwrap()
+  Address::from_str(address).unwrap()
 }
 
 /// Converts normal input into 1e18.

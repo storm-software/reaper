@@ -1,5 +1,5 @@
 [package]
-name = "storm-trading-eth-core"
+name = "storm-trading-eth"
 description = "A core Etherium trading crate containing schema definitions and validation logic."
 version = "0.1.0"
 edition = { workspace = true }
@@ -9,7 +9,7 @@ license = { workspace = true }
 categories = { workspace = true }
 keywords = { workspace = true }
 homepage = { workspace = true }
-documentation = "https://docs.rs/storm-trading-eth-core"
+documentation = "https://docs.rs/storm-trading-eth"
 readme = "./README.md"
 
 [dependencies]
@@ -21,9 +21,10 @@ rand = "0.8.5"
 # Errros
 eyre = { version = "0.6" }
 thiserror = "1.0.31"
+hex = "0.4.3"
 
 [lib]
-name = "storm_trading_eth_core"
+name = "storm_trading_eth"
 path = "src/lib.rs"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
