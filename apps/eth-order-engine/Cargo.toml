@@ -5,6 +5,20 @@ edition = "2021"
 
 
 [dependencies]
+alloy-primitives = "0.8.0"
+alloy-sol-types = "0.8.0"
+anyhow = "1.0.86"
+bigdecimal = "0.4.5"
+ethers = "2.0.14"
+reqwest = "0.12.7"
+serde_json = "1.0.125"
+url = "2.5.2"
 
 
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+[lib]
+name = "eth_order_engine"
+path = "src/lib.rs"
+
+[[bin]]
+name = "eth-order-engine"
+path = "src/main.rs"
