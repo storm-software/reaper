@@ -179,7 +179,7 @@ jobs:
 
       - name: List changed stacks
         id: list
-        run: terramate list --changed --verbose
+        run: terramate list --changed
 
       # - name: Configure AWS credentials
       #   if: steps.list.outputs.stdout
@@ -201,12 +201,12 @@ jobs:
         if: steps.list.outputs.stdout
         id: init
         run: |
-          terramate run --changed --verbose -- terragrunt init
+          terramate run --changed -- terragrunt init
 
       - name: Create Terragrunt plan on changed stacks
         if: steps.list.outputs.stdout
         id: plan
-        run: terramate run --changed --verbose -- terragrunt plan -lock-timeout=5m -out out.tfplan
+        run: terramate run --changed -- terragrunt plan -lock-timeout=5m -out out.tfplan
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.STORM_BOT_AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.STORM_BOT_AWS_SECRET_ACCESS_KEY }}
@@ -219,7 +219,6 @@ jobs:
         run: |
           terramate run \
             --changed \
-            --verbose \
             --cloud-sync-deployment \
             --terraform-plan-file=out.tfplan \
             --terragrunt \
@@ -236,7 +235,6 @@ jobs:
         run: |
           terramate run \
             --changed \
-            --verbose \
             --cloud-sync-drift-status \
             --terraform-plan-file=drift.tfplan \
             --terragrunt \
