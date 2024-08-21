@@ -8,9 +8,13 @@ use tracing_subscriber::{fmt, EnvFilter};
 pub fn init_telemetry(env_filter: String) {
   fmt()
     .json()
-    .with_max_level(EnvFilter::try_from_default_env().unwrap_or_else(|_| EnvFilter::new(env_filter)))
+    .with_env_filter(
+      EnvFilter::try_from_default_env().unwrap_or_else(|_| EnvFilter::new(env_filter)),
+    )
     // .with_current_span(false)
     .without_time()
-    // .with_target(false)
+    .with_target(false)
+    .with_file(true)
+    .with_line_number(true)
     .init()
 }

@@ -1,6 +1,6 @@
 [package]
 name = "storm-trading-aws"
-description = "A core Etherium trading crate containing schema definitions and validation logic."
+description = "A core AWS helper crate containing schema definitions and validation logic."
 version = "0.1.0"
 edition = { workspace = true }
 repository = { workspace = true }
@@ -13,11 +13,14 @@ documentation = "https://docs.rs/storm-trading-aws"
 readme = "./README.md"
 
 [dependencies]
-aws-config = "1.5.5"
 tracing = { version = "0.1", features = ["log"] }
 tracing-subscriber = { version = "0.3", default-features = false, features = [
     "fmt",
+    "json",
+    "env-filter",
+    "std",
 ] }
+aws-config = { version = "1.5.5", features = ["behavior-version-latest"] }
 
 [lib]
 name = "storm_trading_aws"
