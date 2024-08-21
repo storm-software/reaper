@@ -1,4 +1,4 @@
-use ethers::prelude::*;
+use ethers::prelude::{Address, U256};
 
 /// Converts &str to Address.
 pub fn to_address(address: &str) -> Address {

@@ -2295,6 +2295,7 @@ dependencies = [
  "const-hex",
  "enr",
  "ethers-core",
+ "futures-channel",
  "futures-core",
  "futures-timer",
  "futures-util",
@@ -6444,8 +6445,11 @@ name = "storm-trading-eth-core"
 version = "0.1.0"
 dependencies = [
  "ethers",
+ "eyre",
+ "rand",
  "serde",
  "serde_json",
+ "thiserror",
 ]
 
 [[package]]
