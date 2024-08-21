@@ -5,9 +5,9 @@ terramate {
     # Learn more: https://terramate.io/docs/cli/orchestration/safeguards
     disable_safeguards = [
       "git-untracked",
-    #   "git-uncommitted",
-    #   "git-out-of-sync",
-    #   "outdated-code",
+      "git-uncommitted",
+      "git-out-of-sync",
+      "outdated-code",
     ]
 
     cloud {
