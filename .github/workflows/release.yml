@@ -201,12 +201,12 @@ jobs:
         if: steps.list.outputs.stdout
         id: init
         run: |
-          terramate run --changed --verbose -- terragrunt init -terragrunt-non-interactive-terragrunt-working-dir=deployment -verbose
+          terramate run --changed --verbose -- terragrunt init
 
       - name: Create Terragrunt plan on changed stacks
         if: steps.list.outputs.stdout
         id: plan
-        run: terramate run --changed --verbose -- terragrunt run-all plan -lock-timeout=5m -out=out.tfplan -terragrunt-non-interactive -terragrunt-working-dir=deployment -verbose
+        run: terramate run --changed --verbose -- terragrunt plan -lock-timeout=5m -out out.tfplan
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.STORM_BOT_AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.STORM_BOT_AWS_SECRET_ACCESS_KEY }}
@@ -224,7 +224,7 @@ jobs:
             --terraform-plan-file=out.tfplan \
             --terragrunt \
             -- \
-            terragrunt run-all apply -input=false -auto-approve -lock-timeout=5m -terragrunt-non-interactive -terragrunt-working-dir=deployment -verbose out.tfplan
+            terragrunt apply -input=false -auto-approve -lock-timeout=5m out.tfplan
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.STORM_BOT_AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.STORM_BOT_AWS_SECRET_ACCESS_KEY }}
@@ -241,7 +241,7 @@ jobs:
             --terraform-plan-file=drift.tfplan \
             --terragrunt \
             -- \
-            terragrunt run-all plan -terragrunt-non-interactive -terragrunt-working-dir=deployment -out=drift.tfplan -detailed-exitcode -verbose
+            terragrunt plan -out drift.tfplan -detailed-exitcode
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.STORM_BOT_AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.STORM_BOT_AWS_SECRET_ACCESS_KEY }}

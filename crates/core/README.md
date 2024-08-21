@@ -40,7 +40,6 @@ This package is part of the ⚡<b>Storm Trading</b> monorepo. Storm Trading pack
 
 <!-- START doctoc -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-
 ## Table of Contents
 
 - [Storm Software - Trading Core Crate](#storm-software---trading-core-crate)

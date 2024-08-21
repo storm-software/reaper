@@ -2,6 +2,7 @@
 name = "eth-order-telegram-bot"
 version = "0.1.0"
 edition = "2021"
+description = "A Telegram bot used by Storm Software to handle Ethereum notifications"
 
 [dependencies]
 lambda_http = "0.13"
@@ -45,6 +46,3 @@ path = "src/lib.rs"
 name = "eth-order-telegram-bot"
 path = "src/main.rs"
 # test = false
-
-
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
