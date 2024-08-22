@@ -1,18 +1,12 @@
-#![doc = include_str!("../README.md")]
-#![deny(rust_2018_idioms, unsafe_code)]
-#![allow(clippy::needless_collect)] // the implementation of that rule is way too eager, it rejects necessary collects
-#![allow(clippy::derive_partial_eq_without_eq)]
+#![feature(trait_alias)]
+pub mod decoding;
+pub mod errors;
+pub mod executor;
+#[cfg(not(feature = "local-reth"))]
+pub mod local_provider;
+pub mod missing_token_info;
 
-pub mod constants;
-pub mod types;
-pub mod uniswap;
-pub mod utils;
-
-#[cfg(test)]
-mod tests {
-  #[test]
-  fn it_works() {
-    let result = 2 + 2;
-    assert_eq!(result, 4);
-  }
-}
+#[cfg(feature = "tests")]
+pub mod test_utils;
+#[cfg(feature = "tests")]
+pub use test_utils::*;

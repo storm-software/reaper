@@ -8,10 +8,10 @@ members = [
     "crates/core",
     "crates/eth",
     "crates/eth-flashbots",
-    "crates/eth-engine-core",
+    # "crates/eth-engine-core",
     "crates/aws",
     "apps/eth-order-telegram-bot",
-    "apps/eth-order-engine",
+    "apps/eth-order-fill-service",
 ]
 
 [workspace.package]
@@ -54,7 +54,7 @@ keywords = [
 reaper-core = { path = "./crates/core" }
 reaper-eth = { path = "./crates/eth" }
 reaper-eth-flashbots = { path = "./crates/eth-flashbots" }
-reaper-eth-engine-core = { path = "./crates/eth-engine-core" }
+# reaper-eth-engine-core = { path = "./crates/eth-engine-core" }
 reaper-aws = { path = "./crates/aws" }
 
 # External dependencies

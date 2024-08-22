@@ -8,9 +8,9 @@
 
 <div align="center">
 <b>
-<a href="https://stormsoftware.com" target="_blank">Website</a>  •
+<a href="https://reaper.rs" target="_blank">Website</a>  •
 <a href="https://github.com/storm-software/reaper" target="_blank">GitHub</a>  •
-<a href="https://t.me/storm_software">Telegram</a>  •  <a href="https://stormstack.github.io/stormstack/" target="_blank">Docs</a>  •  <a href="https://stormsoftware.com/contact" target="_blank">Contact</a>  •
+<a href="https://t.me/storm_software">Telegram</a>  •  <a href="https:/reaper.rs/docs" target="_blank">Docs</a>  •  <a href="https://reaper.rs/contact" target="_blank">Contact</a>  •
 <a href="https://github.com/storm-software/reaper/issues/new?assignees=&labels=bug&template=bug-report.yml&title=Bug Report%3A+">Report a Bug</a>
 </b>
 </div>
@@ -42,7 +42,7 @@ This package is part of Storm Software's <b>💀 Reaper</b> monorepo. Reaper pac
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 ## Table of Contents
 
-- [Storm Software - Cryptocurrency Trading Core Crate](#storm-software---cryptocurrency-trading-core-crate)
+- [Reaper - Ethereum Engine Core Crate](#reaper---ethereum-engine-core-crate)
   - [Installing](#installing)
   - [Development](#development)
     - [Building](#building)
@@ -65,7 +65,7 @@ This package is part of Storm Software's <b>💀 Reaper</b> monorepo. Reaper pac
 
 <!-- END header -->
 
-# Storm Software - Cryptocurrency Trading Core Crate
+# Reaper - Ethereum Engine Core Crate
 
 This crate is a core library for interacting with the Ethereum blockchain for
 trading purposes. It is part of the Storm Software suite of tools and libraries.
@@ -78,13 +78,13 @@ This crate can be installed using
 
 ```toml
 [dependencies]
-reaper-eth = "0.0.1"
+reaper-eth-engine-core = "0.0.1"
 ```
 
 Or, via the command line:
 
 ```bash
-cargo add reaper-eth
+cargo add reaper-eth-engine-core
 ```
 
 <!-- START doctoc -->
@@ -97,16 +97,16 @@ commands are available to assist in development.
 
 ### Building
 
-Run `nx build reaper-eth` to build the library.
+Run `nx build reaper-eth-engine-core` to build the library.
 
 ### Running unit tests
 
-Run `nx test reaper-eth` to execute the unit tests via
+Run `nx test reaper-eth-engine-core` to execute the unit tests via
 [Jest](https://jestjs.io).
 
 ### Linting
 
-Run `nx lint reaper-eth` to run [ESLint](https://eslint.org/) on the
+Run `nx lint reaper-eth-engine-core` to run [ESLint](https://eslint.org/) on the
 package.
 
 <!-- START footer -->

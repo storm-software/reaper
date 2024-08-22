@@ -5338,19 +5338,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "reaper-eth-engine-core"
-version = "0.1.0"
-dependencies = [
- "ethers",
- "eyre",
- "hex",
- "rand",
- "serde",
- "serde_json",
- "thiserror",
-]
-
-[[package]]
 name = "reaper-eth-flashbots"
 version = "0.1.0"
 dependencies = [
@@ -5360,7 +5347,7 @@ dependencies = [
 ]
 
 [[package]]
-name = "reaper-eth-order-engine"
+name = "reaper-eth-order-fill-service"
 version = "0.1.0"
 dependencies = [
  "alloy-primitives",

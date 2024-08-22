@@ -1,27 +1,27 @@
 {
-  "name": "eth-order-engine",
+  "name": "reaper-eth-order-fill-service",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "projectType": "application",
-  "sourceRoot": "apps/eth-order-engine/src",
+  "sourceRoot": "apps/eth-order-fill-service/src",
   "targets": {
-    "build-base": {
-      "cache": false,
-      "executor": "nx:run-commands",
-      "inputs": ["{workspaceRoot}/contracts/EthOrderExecutor.huff"],
-      "outputs": ["{workspaceRoot}/dist/bytecode/EthOrderExecutor.hex"],
-      "dependsOn": ["clean", "^build"],
-      "options": {
-        "commands": [
-          "huffc contracts/EthOrderExecutor.huff -b -e paris > dist/bytecode/EthOrderExecutor.hex"
-        ],
-        "color": true
-      }
-    },
+    // "build-base": {
+    //   "cache": false,
+    //   "executor": "nx:run-commands",
+    //   "inputs": ["{workspaceRoot}/contracts/EthOrderFillExecutor.huff"],
+    //   "outputs": ["{workspaceRoot}/dist/bytecode/EthOrderFillExecutor.hex"],
+    //   "dependsOn": ["clean", "^build"],
+    //   "options": {
+    //     "commands": [
+    //       "huffc contracts/EthOrderFillExecutor.huff -b -e paris > dist/bytecode/EthOrderFillExecutor.hex"
+    //     ],
+    //     "color": true
+    //   }
+    // },
     "build": {
       "executor": "@monodon/rust:build",
       "outputs": ["{options.target-dir}"],
       "options": {
-        "target-dir": "dist/target/eth-order-engine"
+        "target-dir": "dist/target/eth-order-fill-service"
       },
       "configurations": {
         "production": {
@@ -33,7 +33,7 @@
       "executor": "@monodon/rust:test",
       "outputs": ["{options.target-dir}"],
       "options": {
-        "target-dir": "dist/target/eth-order-engine"
+        "target-dir": "dist/target/eth-order-fill-service"
       },
       "configurations": {
         "production": {
@@ -45,14 +45,14 @@
       "executor": "@monodon/rust:lint",
       "outputs": ["{options.target-dir}"],
       "options": {
-        "target-dir": "dist/target/eth-order-engine"
+        "target-dir": "dist/target/eth-order-fill-service"
       }
     },
     "run": {
       "executor": "@monodon/rust:run",
       "outputs": ["{options.target-dir}"],
       "options": {
-        "target-dir": "dist/target/eth-order-engine"
+        "target-dir": "dist/target/eth-order-fill-service"
       },
       "configurations": {
         "production": {
