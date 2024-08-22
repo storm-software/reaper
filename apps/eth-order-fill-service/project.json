@@ -25,7 +25,6 @@
       },
       "configurations": {
         "production": {
-          "release": true,
           "profile": "maxperf"
         }
       }
@@ -38,7 +37,6 @@
       },
       "configurations": {
         "production": {
-          "release": true,
           "profile": "maxperf"
         }
       }
@@ -58,7 +56,6 @@
       },
       "configurations": {
         "production": {
-          "release": true,
           "profile": "maxperf"
         }
       }
