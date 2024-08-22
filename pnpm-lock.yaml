@@ -116,9 +116,6 @@ importers:
       nx:
         specifier: 19.6.2
         version: 19.6.2
-      nx-cloud:
-        specifier: 19.0.0
-        version: 19.0.0
       prettier:
         specifier: 3.3.2
         version: 3.3.2
@@ -1724,9 +1721,6 @@ packages:
 
   '@nrwl/node@19.6.2':
     resolution: {integrity: sha512-joF5rM2bvjOMLNfMGrtZJd1KRYSn9DHcDPxMKWFYP4jFdT2i8fgO+1eNj4onJttJc1PK20GICCoQ8NnNbG4lPA==}
-
-  '@nrwl/nx-cloud@19.0.0':
-    resolution: {integrity: sha512-3WuXq3KKXwKnbjOkYK0OXosjD02LIjC3kEkyMIbaE36O9dMp3k/sa4ZtDVC3tAoIrj17VLVmjKfoDYbED1rapw==}
 
   '@nrwl/nx-plugin@19.6.2':
     resolution: {integrity: sha512-Fbm+c5t0h2OF7BoouHM7vtSAnwoyyLScOZ2vcwbAF81yYN+PgSqNr6vXlaoU8s4BMEKQpOSx80NyntdvO7mPmQ==}
@@ -3878,10 +3872,6 @@ packages:
   dotenv-expand@11.0.6:
     resolution: {integrity: sha512-8NHi73otpWsZGBSZwwknTXS5pqMOrk9+Ssrna8xCaxkzEpU9OTf9R5ArQGVw03//Zmk9MOwLPng9WwndvpAJ5g==}
     engines: {node: '>=12'}
-
-  dotenv@10.0.0:
-    resolution: {integrity: sha512-rlBi9d8jpv9Sf1klPjNfFAuWDjKLwTIJJ/VxtoTwIR6hnZxcEOQCZg2oIL3MWBYw5GpUDKOEnND7LXTbIpQ03Q==}
-    engines: {node: '>=10'}
 
   dotenv@16.3.2:
     resolution: {integrity: sha512-HTlk5nmhkm8F6JcdXvHIzaorzCoziNQT9mGxLPVXW8wJF1TiGSL60ZGB4gHWabHOaMmWmhvk2/lPHfnBiT78AQ==}
@@ -6609,10 +6599,6 @@ packages:
 
   nwsapi@2.2.12:
     resolution: {integrity: sha512-qXDmcVlZV4XRtKFzddidpfVP4oMSGhga+xdMc25mv8kaLUHtgzCDhUxkrN8exkGdTlLNaXj7CV3GtON7zuGZ+w==}
-
-  nx-cloud@19.0.0:
-    resolution: {integrity: sha512-Aq1vQD8yBIdb5jLVpzsqmu8yDmMvRVdjaM30Pp1hghhlSvorGBlpTwY+TccZJv/hBtVO+SpXK8SnnegRZMrxdw==}
-    hasBin: true
 
   nx@18.1.0-beta.2:
     resolution: {integrity: sha512-LDGE3dmnbw/8o5OzKFqDN9hfbO2Kaq8I8bZnZ/idvjDH54Ie7nfTjNpM7EessLfYvn9sI4TDRy8FDcLrgBJniQ==}
@@ -11020,12 +11006,6 @@ snapshots:
       - typescript
       - verdaccio
 
-  '@nrwl/nx-cloud@19.0.0':
-    dependencies:
-      nx-cloud: 19.0.0
-    transitivePeerDependencies:
-      - debug
-
   '@nrwl/nx-plugin@19.6.2(@babel/traverse@7.25.3)(@types/node@20.14.14)(@zkochan/js-yaml@0.0.7)(eslint@9.5.0)(nx@19.6.2)(ts-node@10.9.2(@types/node@20.14.14)(typescript@5.5.3))(typescript@5.5.3)(verdaccio@5.31.1(typanion@3.14.0))':
     dependencies:
       '@nx/plugin': 19.6.2(@babel/traverse@7.25.3)(@types/node@20.14.14)(@zkochan/js-yaml@0.0.7)(eslint@9.5.0)(nx@19.6.2)(ts-node@10.9.2(@types/node@20.14.14)(typescript@5.5.3))(typescript@5.5.3)(verdaccio@5.31.1(typanion@3.14.0))
@@ -13928,8 +13908,6 @@ snapshots:
   dotenv-expand@11.0.6:
     dependencies:
       dotenv: 16.4.5
-
-  dotenv@10.0.0: {}
 
   dotenv@16.3.2: {}
 
@@ -17811,21 +17789,6 @@ snapshots:
       path-key: 4.0.0
 
   nwsapi@2.2.12: {}
-
-  nx-cloud@19.0.0:
-    dependencies:
-      '@nrwl/nx-cloud': 19.0.0
-      axios: 1.7.3
-      chalk: 4.1.2
-      dotenv: 10.0.0
-      fs-extra: 11.2.0
-      node-machine-id: 1.1.12
-      open: 8.4.2
-      strip-json-comments: 3.1.1
-      tar: 6.2.1
-      yargs-parser: 21.1.1
-    transitivePeerDependencies:
-      - debug
 
   nx@18.1.0-beta.2:
     dependencies:
