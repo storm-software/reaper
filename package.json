@@ -34,10 +34,10 @@
   },
   "license": "Not Applicable",
   "private": true,
-  "packageManager": "pnpm@9.6.0",
+  "packageManager": "pnpm@9.8.0",
   "engines": {
     "node": ">=20.11.0",
-    "pnpm": ">=9.6.0"
+    "pnpm": ">=9.8.0"
   },
   "keywords": [
     "storm",
@@ -110,28 +110,28 @@
     "@types/node": "^20.14.10",
     "conventional-changelog-conventionalcommits": "8.0.0",
     "copyfiles": "2.4.1",
-    "esbuild": "0.21.5",
-    "esbuild-register": "3.5.0",
-    "eslint": "9.5.0",
+    "esbuild": "0.23.1",
+    "esbuild-register": "3.6.0",
+    "eslint": "9.9.0",
     "eslint-config-prettier": "^9.1.0",
     "jest": "29.7.0",
     "jest-environment-jsdom": "29.7.0",
     "jest-environment-node": "29.7.0",
-    "knip": "5.25.2",
-    "lefthook": "1.6.18",
+    "knip": "5.27.3",
+    "lefthook": "1.7.14",
     "nx": "19.6.2",
-    "prettier": "3.3.2",
-    "rimraf": "5.0.7",
-    "sherif": "0.10.0",
-    "ts-jest": "29.1.5",
+    "prettier": "3.3.3",
+    "rimraf": "5.0.10",
+    "sherif": "0.11.0",
+    "ts-jest": "29.2.4",
     "ts-loader": "9.5.1",
     "ts-node": "10.9.2",
     "tslib": "^2.6.3",
     "typescript": "5.5.3",
-    "verdaccio": "5.31.1"
+    "verdaccio": "5.32.1"
   },
   "devDependencies": {
-    "@dotenvx/dotenvx": "^1.6.4"
+    "@dotenvx/dotenvx": "^1.9.0"
   },
   "devEngines": {
     "node": "20.x || 21.x"

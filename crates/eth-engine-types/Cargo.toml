@@ -45,7 +45,7 @@ malachite-q = { workspace = true, features = ["enable_serde"] }
 # serde
 serde = { workspace = true, features = ["derive"] }
 serde_json.workspace = true
-erased-serde = "0.3.31"
+erased-serde = "0.4.5"
 serde_with.workspace = true
 serde_repr.workspace = true
 
@@ -66,23 +66,23 @@ alloy-dyn-abi.workspace = true
 alloy-rlp.workspace = true
 parking_lot.workspace = true
 derive_more.workspace = true
-dyn-clone = "1.0.16"
+dyn-clone = "1.0.17"
 itertools.workspace = true
 rkyv.workspace = true
 redefined.workspace = true
 bytes.workspace = true
 colored.workspace = true
-indoc = "2"
-zstd = "0.13"
-paste = "1.0.14"
-pin-project = "1.1.4"
+indoc = "2.0.5"
+zstd = "0.13.2"
+paste = "1.0.15"
+pin-project = "1.1.5"
 clap.workspace = true
 indicatif.workspace = true
 hyper.workspace = true
 prettytable-rs = "0.10"
 
 # stats
-statrs = "0.16"
+statrs = "0.17.1"
 
 # errors
 eyre.workspace = true

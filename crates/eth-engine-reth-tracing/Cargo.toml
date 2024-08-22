@@ -41,18 +41,18 @@ tracing.workspace = true
 num_cpus.workspace = true
 revm-primitives.workspace = true
 revm-inspectors.workspace = true
-bitflags = "2.4"
+bitflags = "2.6.0"
 
 revm.workspace = true
 
 # error
-eyre = "0.6.8"
+eyre = "0.6.12"
 
 serde.workspace = true
 serde_json.workspace = true
 
 # Async
-tokio = { version = "1.28.2", features = ["full"] }
+tokio = { version = "1.39.3", features = ["full"] }
 
 [dev-dependencies]
 # reaper-eth-engine-core = { workspace = true, features = ["tests"] }
