@@ -30,9 +30,10 @@
     ".\\apps\\eth-order-telegram-bot\\Cargo.toml",
     ".\\apps\\eth-order-engine\\Cargo.toml"
   ],
-  "rust-analyzer.checkOnSave": true,
+  "rust-analyzer.checkOnSave": false,
   "rust-analyzer.diagnostics.enable": false,
   "rust-analyzer.diagnostics.experimental.enable": false,
+  "rust-analyzer.cachePriming.enable": false,
   /******************************
    * JSON Schemas
    ******************************/
@@ -120,7 +121,7 @@
   /******************************
    * eslint / prettier
    ******************************/
-  "prettier.requireConfig": true,
+  // "prettier.requireConfig": true,
   "prettier.bracketSameLine": true,
   "prettier.ignorePath": "./node_modules/@storm-software/prettier/.prettierignore",
   "prettier.enableDebugLogs": true,

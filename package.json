@@ -53,9 +53,9 @@
   "scripts": {
     "adr": "pnpm log4brains adr new",
     "adr-preview": "pnpm log4brains preview",
-    "build": "nx affected -t build --parallel=3 --exclude=reaper-eth-engine-core",
-    "build-all": "nx run-many -t build --all --parallel=3 --exclude=reaper-eth-engine-core",
-    "build-local": "nx affected -t build --parallel=3 --exclude=reaper-eth-order-telegram-bot,reaper-eth-engine-core && nx affected -t build-local --parallel=3 --exclude=reaper-eth-engine-core",
+    "build": "nx affected -t build --parallel=3 --configuration=production",
+    "build-all": "nx run-many -t build --all --parallel=3 --configuration=production",
+    "build-local": "nx affected -t build --parallel=3 --configuration=production --exclude=reaper-eth-order-telegram-bot && nx affected -t build-local --parallel=3 --configuration=production",
     "clean": "rimraf dist",
     "clean-packages": "rimraf dist/packages",
     "commit": "pnpm exec storm-git commit",
@@ -87,14 +87,15 @@
     "@ls-lint/ls-lint": "2.2.3",
     "@ltd/j-toml": "1.38.0",
     "@monodon/rust": "1.4.0",
-    "@nx/devkit": "19.5.6",
-    "@nx/esbuild": "19.5.6",
-    "@nx/eslint": "19.5.6",
-    "@nx/eslint-plugin": "19.5.6",
-    "@nx/jest": "19.5.6",
-    "@nx/js": "19.5.6",
-    "@nx/plugin": "19.5.6",
-    "@nx/workspace": "19.5.6",
+    "@nx/devkit": "19.6.2",
+    "@nx/esbuild": "19.6.2",
+    "@nx/eslint": "19.6.2",
+    "@nx/eslint-plugin": "19.6.2",
+    "@nx/jest": "19.6.2",
+    "@nx/js": "19.6.2",
+    "@nx/node": "19.6.2",
+    "@nx/plugin": "19.6.2",
+    "@nx/workspace": "19.6.2",
     "@storm-software/config": "latest",
     "@storm-software/config-tools": "latest",
     "@storm-software/eslint": "latest",
@@ -118,7 +119,7 @@
     "jest-environment-node": "29.7.0",
     "knip": "5.25.2",
     "lefthook": "1.6.18",
-    "nx": "19.5.6",
+    "nx": "19.6.2",
     "nx-cloud": "19.0.0",
     "prettier": "3.3.2",
     "rimraf": "5.0.7",
@@ -131,8 +132,7 @@
     "verdaccio": "5.31.1"
   },
   "devDependencies": {
-    "@dotenvx/dotenvx": "^1.6.4",
-    "@nx/node": "19.5.6"
+    "@dotenvx/dotenvx": "^1.6.4"
   },
   "devEngines": {
     "node": "20.x || 21.x"
