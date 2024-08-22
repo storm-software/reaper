@@ -12,7 +12,8 @@
       },
       "configurations": {
         "production": {
-          "release": true
+          "release": true,
+          "profile": "maxperf"
         }
       }
     },
@@ -37,7 +38,8 @@
       },
       "configurations": {
         "production": {
-          "release": true
+          "release": true,
+          "profile": "maxperf"
         }
       }
     },
@@ -46,6 +48,12 @@
       "outputs": ["{options.target-dir}"],
       "options": {
         "target-dir": "dist/target/eth-order-telegram-bot"
+      },
+      "configurations": {
+        "production": {
+          "release": true,
+          "profile": "maxperf"
+        }
       }
     },
     "run": {
@@ -56,7 +64,8 @@
       },
       "configurations": {
         "production": {
-          "release": true
+          "release": true,
+          "profile": "maxperf"
         }
       }
     }

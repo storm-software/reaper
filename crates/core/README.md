@@ -3,7 +3,7 @@
 <!-- markdownlint-disable -->
 
 
-<div align="center"><img src="https://pub-761b436209f44a4d886487c917806c08.r2.dev/storm-banner.gif" width="100%" alt="Storm Software" /></div>
+<div align="center"><img src="https://pub-761b436209f44a4d886487c917806c08.r2.dev/reaper-logo.png" width="45%" alt="Reaper" /></div>
 <br />
 
 <div align="center">
@@ -137,8 +137,8 @@ maintainable.
 
 ## Roadmap
 
-See the [open issues](https://github.com/storm-software/storm-stack/issues) for a
-list of proposed features (and known issues).
+See the [open issues](https://github.com/storm-software/storm-stack/issues) for
+a list of proposed features (and known issues).
 
 - [Top Feature Requests](https://github.com/storm-software/storm-stack/issues?q=label%3Aenhancement+is%3Aopen+sort%3Areactions-%2B1-desc)
   (Add your votes using the 👍 reaction)
@@ -243,7 +243,7 @@ specification. Contributions of any kind welcome!
 <br />
 
 <div align="center">
-<img src="https://pub-761b436209f44a4d886487c917806c08.r2.dev/logo-banner.png" width="100%" alt="Storm Software" />
+<img src="https://pub-761b436209f44a4d886487c917806c08.r2.dev/storm-banner.gif" width="100%" alt="Storm Software" />
 </div>
 <br />
 

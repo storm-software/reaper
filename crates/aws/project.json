@@ -9,6 +9,12 @@
       "outputs": ["{options.target-dir}"],
       "options": {
         "target-dir": "dist/target/aws"
+      },
+      "configurations": {
+        "production": {
+          "release": true,
+          "profile": "maxperf"
+        }
       }
     },
     "test": {
@@ -19,7 +25,8 @@
       },
       "configurations": {
         "production": {
-          "release": true
+          "release": true,
+          "profile": "maxperf"
         }
       }
     },
@@ -28,6 +35,12 @@
       "outputs": ["{options.target-dir}"],
       "options": {
         "target-dir": "dist/target/aws"
+      },
+      "configurations": {
+        "production": {
+          "release": true,
+          "profile": "maxperf"
+        }
       }
     }
   },
