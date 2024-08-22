@@ -25,7 +25,7 @@ jobs:
           fetch-depth: 0
 
       - name: Check if the pull request contains a single commit
-        if: github.event_name == 'pull_request'
+        if: github.event_name == 'pull_request' && github.actor != 'dependabot[bot]' && github.actor != 'renovate[bot]'
         run: |
           commit_count=${{ github.event.pull_request.commits }}
 
