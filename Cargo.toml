@@ -8,7 +8,9 @@ members = [
     "crates/core",
     "crates/eth",
     "crates/eth-flashbots",
-    # "crates/eth-engine-core",
+    "crates/eth-engine-reth-tracing",
+    "crates/eth-engine-relay-api",
+    "crates/eth-engine-types",
     "crates/aws",
     "apps/eth-order-telegram-bot",
     "apps/eth-order-fill-service",
@@ -16,13 +18,13 @@ members = [
 
 [workspace.package]
 version = "0.0.1"
-description = "💵 A monorepo containing various utilities, libraries, and applications used by Storm Software in trading processes"
+description = "💀 A monorepo containing various utilities, libraries, and applications used by Storm Software in trading processes"
 repository = "https://github.com/storm-software/reaper"
 edition = "2021"
 authors = ["storm-software", "pat-sullivan"]
 license = "Apache-2.0"
-documentation = "https://stormsoftware.com/projects/reaper/docs"
-homepage = "https://stormsoftware.com"
+documentation = "https://reaper.rs/docs"
+homepage = "https://reaper.rs"
 categories = [
     "config",
     "development-tools",
@@ -54,6 +56,8 @@ keywords = [
 reaper-core = { path = "./crates/core" }
 reaper-eth = { path = "./crates/eth" }
 reaper-eth-flashbots = { path = "./crates/eth-flashbots" }
+reaper-eth-engine-reth-tracing = { path = "./crates/eth-engine-reth-tracing" }
+reaper-eth-engine-relay-api = { path = "./crates/eth-engine-relay-api" }
 reaper-eth-engine-types = { path = "./crates/eth-engine-types" }
 reaper-aws = { path = "./crates/aws" }
 
@@ -152,6 +156,7 @@ env_logger = "0.10.0"
 # error handling
 thiserror = "1.0.44"
 eyre = "0.6.8"
+anyhow = "1.0.44"
 
 # http/rpc
 hyper = "0.14.25"
@@ -166,7 +171,6 @@ serde_repr = "0.1.16"
 
 # cli
 clap = { version = "4.4.6", features = ["derive"] }
-
 
 # Numbers
 malachite = "0.4.0"
@@ -184,7 +188,7 @@ backon = "0.4.4"
 c-kzg = "0.4.0"
 hex-literal = "0.4.1"
 rayon = "1.7.0"
-dotenv = "0.15.0"
+dotenvy = "0.15.7"
 semver = "1.0"
 lazy_static = "1.4.0"
 once_cell = "1.18.0"
@@ -202,6 +206,7 @@ num_cpus = "1.16.0"
 redefined = { git = "https://github.com/SorellaLabs/redefined" }
 bytes = "1.5"
 bitflags = "2.5.0"
+chrono = "0.4.19"
 
 arrow = "51.0.0"
 polars = { version = "0.38.3", features = ["lazy"] }

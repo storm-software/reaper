@@ -1,0 +1,35 @@
+{
+  "name": "reaper-eth-engine-reth-tracing",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "crates/eth-engine-reth-tracing/src",
+  "targets": {
+    "build": {
+      "executor": "@monodon/rust:check",
+      "outputs": ["{options.target-dir}"],
+      "options": {
+        "target-dir": "dist/target/eth-engine-reth-tracing"
+      }
+    },
+    "test": {
+      "executor": "@monodon/rust:test",
+      "outputs": ["{options.target-dir}"],
+      "options": {
+        "target-dir": "dist/target/eth-engine-reth-tracing"
+      },
+      "configurations": {
+        "production": {
+          "release": true
+        }
+      }
+    },
+    "lint": {
+      "executor": "@monodon/rust:lint",
+      "outputs": ["{options.target-dir}"],
+      "options": {
+        "target-dir": "dist/target/eth-engine-reth-tracing"
+      }
+    }
+  },
+  "tags": []
+}
