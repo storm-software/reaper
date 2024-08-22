@@ -124,46 +124,6 @@ jobs:
         run: pnpm build-all
         shell: bash
 
-      # - name: Print output path
-      #   run: dir /home/runner/work/reaper/reaper/dist/target/lambda/eth-execution-telegram-bot
-      #   shell: bash
-
-      # - name: Check terragrunt HCL
-      #   uses: gruntwork-io/terragrunt-action@v2
-      #   with:
-      #     tofu_version: 1.8
-      #     tg_version: 0.63.6
-      #     tg_dir: deployment/prod/eth-execution-lambda
-      #     tg_command: "hclfmt --terragrunt-check --terragrunt-diff"
-
-      # - name: Terragrunt Plan
-      #   uses: gruntwork-io/terragrunt-action@v2
-      #   with:
-      #     tofu_version: 1.8.0
-      #     tg_version: 0.63.6
-      #     tg_dir: deployment/prod/eth-execution-engine
-      #     tg_command: plan
-      #     tg_add_approve: 1
-      #   env:
-      #     AWS_ACCESS_KEY_ID: ${{ secrets.STORM_BOT_AWS_ACCESS_KEY_ID }}
-      #     AWS_SECRET_ACCESS_KEY: ${{ secrets.STORM_BOT_AWS_SECRET_ACCESS_KEY }}
-      #     GITHUB_TOKEN: ${{ secrets.STORM_BOT_GITHUB_TOKEN }}
-      #     TF_LOG: debug
-
-      # - name: Terragrunt Apply
-      #   uses: gruntwork-io/terragrunt-action@v2
-      #   with:
-      #     tofu_version: 1.8.0
-      #     tg_version: 0.63.6
-      #     tg_dir: deployment/prod/eth-execution-engine
-      #     tg_command: run-all apply
-      #     tg_add_approve: 1
-      #   env:
-      #     AWS_ACCESS_KEY_ID: ${{ secrets.STORM_BOT_AWS_ACCESS_KEY_ID }}
-      #     AWS_SECRET_ACCESS_KEY: ${{ secrets.STORM_BOT_AWS_SECRET_ACCESS_KEY }}
-      #     GITHUB_TOKEN: ${{ secrets.STORM_BOT_GITHUB_TOKEN }}
-      #     TF_LOG: debug
-
       # - name: Configure AWS credentials
       #   if: steps.list.outputs.stdout
       #   uses: aws-actions/configure-aws-credentials@v2
@@ -189,6 +149,14 @@ jobs:
           asdf plugin add terragrunt
           asdf install opentofu
           asdf install terragrunt
+
+      # - name: Check terragrunt HCL
+      #   uses: gruntwork-io/terragrunt-action@v2
+      #   with:
+      #     tofu_version: 1.8
+      #     tg_version: 0.63.6
+      #     tg_dir: deployment/prod/eth-execution-lambda
+      #     tg_command: "hclfmt --terragrunt-check --terragrunt-diff"
 
       # # Initialize a new or existing Terragrunt working directory by creating initial files, loading any remote state, downloading modules, etc.
       - name: Terragrunt Init
