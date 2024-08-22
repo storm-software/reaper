@@ -149,6 +149,11 @@
       "release"
     ]
   },
+  "pnpm": {
+    "overrides": {
+      "axios": ">=1.7.4"
+    }
+  },
   "prettier": "@storm-software/prettier/config.json",
   "triggerEmptyDevReleaseByIncrementingThisNumber": 0
 }
