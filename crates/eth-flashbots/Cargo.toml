@@ -15,7 +15,7 @@ readme = "./README.md"
 [dependencies]
 ethers = { version = "2.0.14", features = ["abigen", "ws", "rustls"] }
 ethers-flashbots = "0.15.0"
-eyre = { version = "0.6" }
+eyre = { version = "0.6.12" }
 
 [lib]
 name = "reaper_eth_flashbots"

@@ -13,7 +13,7 @@ reqwest.workspace = true
 serde_json.workspace = true
 url = "2.5.2"
 reaper-eth.workspace = true
-eyre = { version = "0.6" }
+eyre = { version = "0.6.12" }
 
 # [lib]
 # name = "eth_order_engine"
