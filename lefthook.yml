@@ -38,10 +38,6 @@ pre-commit:
     #   glob: "**/*.*"
     #   run: "pnpm lint"
     #   stage_fixed: true
-    format-terramate:
-      glob: "**/*.*"
-      run: "terramate generate"
-      stage_fixed: true
     lint-toml:
       glob: "**/*.toml"
       run: 'pnpm exec taplo format --check
@@ -77,10 +73,10 @@ pre-push:
       glob: "**/{README.md,package.json,executors.json,generators.json}"
       run: 'pnpm exec storm-git readme-gen --templates="./tools/readme-templates"'
       stage_fixed: true
-    build:
-      glob: "**/*.*"
-      run: "pnpm build-local"
-      stage_fixed: true
+    # build:
+    #   glob: "**/*.*"
+    #   run: "pnpm build-local"
+    #   stage_fixed: true
     validate:
       glob: "**/*.*"
       run: "pnpm exec storm-pre-push {staged_files}"

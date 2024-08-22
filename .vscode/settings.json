@@ -20,20 +20,25 @@
   //   "apps/**/src/**/Cargo.toml"
   // ],
   "rust-analyzer.linkedProjects": [
-    ".\\crates\\core\\Cargo.toml",
-    ".\\crates\\eth\\Cargo.toml",
-    ".\\crates\\eth-flashbots\\Cargo.toml",
-    ".\\crates\\eth-engine-reth-tracing\\Cargo.toml",
-    ".\\crates\\eth-engine-relay-api\\Cargo.toml",
-    ".\\crates\\eth-engine-types\\Cargo.toml",
-    ".\\crates\\aws\\Cargo.toml",
-    ".\\apps\\eth-order-telegram-bot\\Cargo.toml",
-    ".\\apps\\eth-order-engine\\Cargo.toml"
+    "crates\\core\\Cargo.toml",
+    "crates\\eth\\Cargo.toml",
+    "crates\\eth-flashbots\\Cargo.toml",
+    "crates\\eth-engine-reth-tracing\\Cargo.toml",
+    "crates\\eth-engine-relay-api\\Cargo.toml",
+    "crates\\eth-engine-types\\Cargo.toml",
+    "crates\\aws\\Cargo.toml",
+    "apps\\eth-order-telegram-bot\\Cargo.toml",
+    "apps\\eth-order-fill-service\\Cargo.toml"
   ],
   "rust-analyzer.checkOnSave": false,
   "rust-analyzer.diagnostics.enable": false,
   "rust-analyzer.diagnostics.experimental.enable": false,
   "rust-analyzer.cachePriming.enable": false,
+  "rust-analyzer.check.invocationStrategy": "once",
+  "rust-analyzer.cargo.allTargets": false,
+  "rust-analyzer.semanticHighlighting.punctuation.specialization.enable": true,
+  "rust-analyzer.inlayHints.maxLength": 35,
+  "rust-analyzer.runnables.extraArgs": ["--profile=debug-fast"],
   /******************************
    * JSON Schemas
    ******************************/
