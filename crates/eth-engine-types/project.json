@@ -1,21 +1,21 @@
 {
-  "name": "reaper-eth-engine-core",
+  "name": "reaper-eth-engine-types",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "projectType": "library",
-  "sourceRoot": "crates/eth-engine-core/src",
+  "sourceRoot": "crates/eth-engine-types/src",
   "targets": {
     "build": {
       "executor": "@monodon/rust:check",
       "outputs": ["{options.target-dir}"],
       "options": {
-        "target-dir": "dist/target/eth-engine-core"
+        "target-dir": "dist/target/eth-engine-types"
       }
     },
     "test": {
       "executor": "@monodon/rust:test",
       "outputs": ["{options.target-dir}"],
       "options": {
-        "target-dir": "dist/target/eth-engine-core"
+        "target-dir": "dist/target/eth-engine-types"
       },
       "configurations": {
         "production": {
@@ -27,7 +27,7 @@
       "executor": "@monodon/rust:lint",
       "outputs": ["{options.target-dir}"],
       "options": {
-        "target-dir": "dist/target/eth-engine-core"
+        "target-dir": "dist/target/eth-engine-types"
       }
     }
   },

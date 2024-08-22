@@ -1,5 +1,5 @@
 [package]
-name = "reaper-eth-engine-core"
+name = "reaper-eth-engine-types"
 description = "A core Etherium trading crate containing schema definitions and validation logic."
 version = "0.1.0"
 edition = { workspace = true }
@@ -9,7 +9,7 @@ license = { workspace = true }
 categories = { workspace = true }
 keywords = { workspace = true }
 homepage = { workspace = true }
-documentation = "https://docs.rs/reaper-eth-engine-core"
+documentation = "https://docs.rs/reaper-eth-engine-types"
 readme = "./README.md"
 
 [dependencies]
@@ -63,11 +63,6 @@ thiserror.workspace = true
 # web
 reqwest = { workspace = true, features = ["json"] }
 
-# tracing
-tracing = "0.1.37"
-tracing-subscriber.workspace = true
-colored.workspace = true
-
 # misc
 phf.workspace = true
 lazy_static.workspace = true
@@ -78,8 +73,8 @@ indicatif.workspace = true
 
 [dev-dependencies]
 serial_test.workspace = true
-reaper-eth-engine-core = { workspace = true, features = ["tests"] }
-reaper-eth-engine-classifier = { workspace = true, features = ["tests"] }
+# reaper-eth-engine-core = { workspace = true, features = ["tests"] }
+# reaper-eth-engine-classifier = { workspace = true, features = ["tests"] }
 dotenv.workspace = true
 tokio.workspace = true
 reth-tracing-ext.workspace = true
@@ -90,17 +85,17 @@ default = []
 dyn-decode = []
 tests = []
 local-reth = [
-    "reaper-eth-engine-types/local-reth",
+    # "reaper-eth-engine-types/local-reth",
     "reth-tracing-ext/local-reth",
-    "reaper-eth-engine-database/local-reth",
+    # "reaper-eth-engine-database/local-reth",
 ]
 local-clickhouse = [
-    "reaper-eth-engine-database/local-clickhouse",
+    # "reaper-eth-engine-database/local-clickhouse",
     "reth-tracing-ext/local-clickhouse",
 ]
 
 [lib]
-name = "reaper_eth_engine_core"
+name = "reaper_eth_engine_types"
 path = "src/lib.rs"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html

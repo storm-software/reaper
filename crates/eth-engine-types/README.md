@@ -40,6 +40,7 @@ This package is part of Storm Software's <b>💀 Reaper</b> monorepo. Reaper pac
 
 <!-- START doctoc -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+
 ## Table of Contents
 
 - [Reaper - Ethereum Engine Core Crate](#reaper---ethereum-engine-core-crate)
@@ -69,6 +70,15 @@ This package is part of Storm Software's <b>💀 Reaper</b> monorepo. Reaper pac
 
 This crate is a core library for interacting with the Ethereum blockchain for
 trading purposes. It is part of the Storm Software suite of tools and libraries.
+
+<!-- prettier-ignore-start -->
+<!-- markdownlint-disable -->
+
+> [!NOTE] 
+> We owe a major debt of gratitude to the [Brontes](https://github.com/SorellaLabs/brontes) project. This project is heavily inspired by the Brontes project, and we have used it as a base to build upon. We have made significant changes to the project, and have added many new features, but the core of the crate is based on Brontes.
+
+<!-- markdownlint-restore -->
+<!-- prettier-ignore-end -->
 
 ## Installing
 

@@ -23,6 +23,7 @@
     ".\\crates\\core\\Cargo.toml",
     ".\\crates\\eth\\Cargo.toml",
     ".\\crates\\eth-flashbots\\Cargo.toml",
+    ".\\crates\\eth-engine-types\\Cargo.toml",
     ".\\crates\\aws\\Cargo.toml",
     ".\\apps\\eth-order-telegram-bot\\Cargo.toml",
     ".\\apps\\eth-order-engine\\Cargo.toml"

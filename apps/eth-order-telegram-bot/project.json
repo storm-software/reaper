@@ -20,11 +20,11 @@
       "cache": false,
       "executor": "nx:run-commands",
       "inputs": ["rust", "^production"],
-      "outputs": ["{workspaceRoot}/apps/eth-order-telegram-bot/dist"],
+      "outputs": ["{workspaceRoot}/apps/reaper-eth-order-telegram-bot/dist"],
       "dependsOn": ["clean", "^build"],
       "options": {
         "commands": [
-          "cargo lambda build --release --output-format zip --package eth-order-telegram-bot --color always --verbose"
+          "cargo lambda build --release --output-format zip --package reaper-eth-order-telegram-bot --color always --verbose"
         ],
         "color": true
       }
