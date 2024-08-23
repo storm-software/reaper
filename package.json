@@ -1,7 +1,7 @@
 {
   "name": "@reaper/monorepo",
   "version": "0.0.0",
-  "description": "💀 A monorepo containing various utilities, libraries, and applications used by Storm Software in trading processes",
+  "description": "💀 Reaper is a collection of trading/quantitative finance libraries, applications, and tools that are primarily written in Rust.",
   "repository": {
     "type": "github",
     "url": "https://github.com/storm-software/reaper.git"

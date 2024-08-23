@@ -9,7 +9,12 @@
     //     "useFlatConfig": true
     //   }
     // },
-    "@storm-software/workspace-tools/plugins/rust",
+    {
+      "plugin": "@storm-software/workspace-tools/plugins/rust",
+      "options": {
+        "includeApps": false
+      }
+    },
     "@storm-software/workspace-tools/plugins/typescript"
   ]
 }

@@ -6,6 +6,8 @@
   "repository": "https://github.com/storm-software/reaper",
   "organization": "storm-software",
   "owner": "@storm-software/architecture",
+  "description": "Reaper is a collection of trading/quantitative finance libraries, applications, and tools that are primarily written in Rust.",
+  "preid": "alpha",
   "timezone": "America/New_York",
   "locale": "en-US",
   "logLevel": "all",
