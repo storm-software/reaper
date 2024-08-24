@@ -64,6 +64,7 @@ reaper-core = { path = "./crates/core" }
 reaper-eth = { path = "./crates/eth" }
 reaper-eth-flashbots = { path = "./crates/eth-flashbots" }
 reaper-eth-engine-macros = { path = "./crates/eth-engine-macros" }
+reaper-eth-engine-tracing = { path = "./crates/eth-engine-tracing" }
 reaper-eth-engine-reth-tracing = { path = "./crates/eth-engine-reth-tracing" }
 reaper-eth-engine-relay-api = { path = "./crates/eth-engine-relay-api" }
 reaper-eth-engine-types = { path = "./crates/eth-engine-types" }

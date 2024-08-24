@@ -73,15 +73,15 @@ impl ActionMacro {
         let dex_price_return = if action_type.to_string().to_lowercase().as_str()
             == "poolconfigupdate"
         {
-            quote!(Ok(::brontes_pricing::types::DexPriceMsg::DiscoveredPool(result)))
+            quote!(Ok(::reaper_eth_engine_pricing::types::DexPriceMsg::DiscoveredPool(result)))
         } else {
             quote!(
-                Ok(::brontes_pricing::types::DexPriceMsg::Update(
-                    ::brontes_pricing::types::PoolUpdate {
+                Ok(::reaper_eth_engine_pricing::types::DexPriceMsg::Update(
+                    ::reaper_eth_engine_pricing::types::PoolUpdate {
                         block,
                         tx_idx,
                         logs: call_info.logs.clone().to_vec(),
-                        action: ::brontes_types::normalized_actions::Action::#action_type(result)
+                        action: ::reaper_eth_engine_types::normalized_actions::Action::#action_type(result)
                     },
                 ))
             )
@@ -109,14 +109,14 @@ impl ActionMacro {
             pub struct #exchange_name_w_call;
 
             impl crate::IntoAction for #exchange_name_w_call {
-                fn decode_call_trace<DB: ::brontes_database::libmdbx::LibmdbxReader
-                    + ::brontes_database::libmdbx::DBWriter>(
+                fn decode_call_trace<DB: ::reaper_eth_engine_database::libmdbx::LibmdbxReader
+                    + ::reaper_eth_engine_database::libmdbx::DBWriter>(
                     &self,
-                    call_info: ::brontes_types::structured_trace::CallFrameInfo<'_>,
+                    call_info: ::reaper_eth_engine_types::structured_trace::CallFrameInfo<'_>,
                     block: u64,
                     tx_idx: u64,
                     db_tx: &DB
-                    ) -> ::eyre::Result<::brontes_pricing::types::DexPriceMsg> {
+                    ) -> ::eyre::Result<::reaper_eth_engine_pricing::types::DexPriceMsg> {
                     #call_data
                     #dex_price_return
                 }

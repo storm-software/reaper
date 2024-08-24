@@ -108,11 +108,11 @@ pub fn action_impl(input: TokenStream) -> TokenStream {
 /// ```
 /// an actual example would be
 /// ```ignore
-/// # use brontes_macros::{action_dispatch, action_impl};
-/// # use brontes_pricing::Protocol;
-/// # use brontes_types::normalized_actions::NormalizedSwap;
+/// # use reaper_eth_engine_macros::{action_dispatch, action_impl};
+/// # use reaper_eth_engine_macros_pricing::Protocol;
+/// # use reaper_eth_engine_macros_types::normalized_actions::NormalizedSwap;
 /// # use alloy_primitives::Address;
-/// # use brontes_database::libmdbx::tx::CompressedLibmdbxTx;
+/// # use reaper_eth_engine_macros_database::libmdbx::tx::CompressedLibmdbxTx;
 ///
 /// action_impl!(
 ///     Protocol::UniswapV2,

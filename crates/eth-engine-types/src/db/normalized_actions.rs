@@ -197,8 +197,8 @@ pub mod test {
     use std::sync::Arc;
 
     use alloy_primitives::hex;
-    use brontes_classifier::test_utils::ClassifierTestUtils;
-    use brontes_types::{
+    use reaper_eth_engine_classifier::test_utils::ClassifierTestUtils;
+    use reaper_eth_engine_types::{
         db::normalized_actions::{ActionKind, TransactionRoot},
         normalized_actions::Action,
         BlockTree,
@@ -210,7 +210,7 @@ pub mod test {
         classifier_utils.build_tree_tx(tx).await.unwrap().into()
     }
 
-    #[brontes_macros::test]
+    #[reaper_eth_engine_macros::test]
     async fn test_into_tx_root() {
         let tree = load_tree().await;
         let root = &tree.clone().tx_roots[0];

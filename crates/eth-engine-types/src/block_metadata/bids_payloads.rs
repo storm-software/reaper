@@ -1,25 +1,25 @@
 use std::hash::Hash;
 
 use ::reaper_eth_engine_relay_api::models::{
-  GetDeliveredPayloads200ResponseInner, GetReceivedBids200ResponseInner,
+  GetDeliveredPayloads200ResponseInner, GetReceivedBids200ResponseInner, Relays,
 };
 use serde::{Deserialize, Serialize};
 
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize, Hash)]
 pub struct RelayBid {
-  pub relay: Relays,
-  pub slot: u64,
-  pub parent_hash: String,
-  pub block_hash: String,
-  pub builder_pubkey: String,
+  pub relay:                  Relays,
+  pub slot:                   u64,
+  pub parent_hash:            String,
+  pub block_hash:             String,
+  pub builder_pubkey:         String,
   pub proposer_fee_recipient: String,
-  pub gas_limit: u64,
-  pub gas_used: u64,
-  pub value: u128,
-  pub block_number: u64,
-  pub num_tx: u64,
-  pub timestamp: u64,
-  pub timestamp_ms: u64,
+  pub gas_limit:              u64,
+  pub gas_used:               u64,
+  pub value:                  u128,
+  pub block_number:           u64,
+  pub num_tx:                 u64,
+  pub timestamp:              u64,
+  pub timestamp_ms:           u64,
 }
 
 impl RelayBid {
@@ -60,17 +60,17 @@ impl Ord for RelayBid {
 
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize, Hash, PartialOrd)]
 pub struct RelayPayload {
-  pub relay: Relays,
-  pub slot: u64,
-  pub parent_hash: String,
-  pub block_hash: String,
-  pub builder_pubkey: String,
+  pub relay:                  Relays,
+  pub slot:                   u64,
+  pub parent_hash:            String,
+  pub block_hash:             String,
+  pub builder_pubkey:         String,
   pub proposer_fee_recipient: String,
-  pub gas_limit: u64,
-  pub gas_used: u64,
-  pub value: u128,
-  pub block_number: u64,
-  pub num_tx: u64,
+  pub gas_limit:              u64,
+  pub gas_used:               u64,
+  pub value:                  u128,
+  pub block_number:           u64,
+  pub num_tx:                 u64,
 }
 
 impl RelayPayload {

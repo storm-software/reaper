@@ -157,7 +157,7 @@ impl<'a> TimeWindowTrades<'a> {
             });
 
         if res.is_none() {
-            tracing::debug!(target: "brontes_types::db::cex::time_window_vwam", ?pair, "No price VMAP found for {}-{} in time window.\n Tx: {}", dex_swap.token_in.symbol, dex_swap.token_out.symbol, format_etherscan_url(&tx_hash));
+            tracing::debug!(target: "reaper_eth_engine_types::db::cex::time_window_vwam", ?pair, "No price VMAP found for {}-{} in time window.\n Tx: {}", dex_swap.token_in.symbol, dex_swap.token_out.symbol, format_etherscan_url(&tx_hash));
         }
 
         res
@@ -177,7 +177,7 @@ impl<'a> TimeWindowTrades<'a> {
         self.intermediaries
             .iter()
             .filter_map(|intermediary| {
-                trace!(target: "brontes_types::db::cex::time_window_vwam", ?intermediary, "trying intermediary");
+                trace!(target: "reaper_eth_engine_types::db::cex::time_window_vwam", ?intermediary, "trying intermediary");
 
                 let pair0 = Pair(pair.0, *intermediary);
                 let pair1 = Pair(*intermediary, pair.1);
@@ -190,7 +190,7 @@ impl<'a> TimeWindowTrades<'a> {
                     bypass_intermediary_vol = true;
                 }
 
-                tracing::debug!(target: "brontes_types::db::cex::time_window_vwam", ?pair, ?intermediary, ?volume, "trying via intermediary");
+                tracing::debug!(target: "reaper_eth_engine_types::db::cex::time_window_vwam", ?pair, ?intermediary, ?volume, "trying via intermediary");
                 let first_leg = self.get_vwap_price(
                     config,
                     exchanges,
@@ -427,13 +427,13 @@ impl<'a> TimeWindowTrades<'a> {
 
             if trades.iter().map(|(_, t)| t.len()).sum::<usize>() != 0 {
                 trace!(
-                    target: "brontes_types::db::cex::time_window_vwam",
+                    target: "reaper_eth_engine_types::db::cex::time_window_vwam",
                     trade_qty = %trades.len(),
                     "have trades (flipped pair)"
                 );
                 for (_, trades) in &trades {
                     trace!(
-                    target: "brontes_types::db::cex::time_window_vwam",
+                    target: "reaper_eth_engine_types::db::cex::time_window_vwam",
                         trade_qty = %trades.len(),
                         "have trades inner(flipped)"
                     );
@@ -446,13 +446,13 @@ impl<'a> TimeWindowTrades<'a> {
         }
 
         trace!(
-            target: "brontes_types::db::cex::time_window_vwam",
+            target: "reaper_eth_engine_types::db::cex::time_window_vwam",
             trade_qty = %trades.len(),
             "have trades"
         );
         for (_, trades) in &trades {
             trace!(
-                target: "brontes_types::db::cex::time_window_vwam",
+                target: "reaper_eth_engine_types::db::cex::time_window_vwam",
                 trade_qty = %trades.len(),
                 "have trades inner"
             );
