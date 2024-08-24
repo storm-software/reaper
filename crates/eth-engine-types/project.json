@@ -1,5 +1,5 @@
 {
-  "name": "eth-engine-types",
+  "name": "reaper-eth-engine-types",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "projectType": "library",
   "sourceRoot": "crates/eth-engine-types/src",

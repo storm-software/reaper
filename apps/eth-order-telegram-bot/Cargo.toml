@@ -1,6 +1,6 @@
 [package]
 name = "reaper-eth-order-telegram-bot"
-private = false
+publish = false
 version = "0.0.1"
 edition = "2021"
 description = "A Telegram bot used by Storm Software to handle Ethereum notifications."

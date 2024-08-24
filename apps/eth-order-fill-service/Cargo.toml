@@ -1,6 +1,6 @@
 [package]
 name = "reaper-eth-order-fill-service"
-private = false
+publish = false
 version = "0.0.1"
 edition = "2021"
 

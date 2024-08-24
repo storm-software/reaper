@@ -13,7 +13,8 @@
 
 Storm Software's <b>💀 Reaper</b> monorepo is a collection of
 trading/quantitative finance libraries, applications, and tools that are
-primarily written in Rust. <br />
+primarily written in
+<a href="https://www.rust-lang.org/" target="_blank">Rust</a>. <br />
 
 Reaper is built using <a href="https://nx.dev/" target="_blank">Nx</a>, a set of
 extensible dev tools for monorepos, which helps you develop like Google,
@@ -47,6 +48,7 @@ keeping the codebase maintainable.
 
 <!-- START doctoc -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+
 ## Table of Contents
 
 - [Quick Features](#quick-features)
@@ -64,7 +66,7 @@ keeping the codebase maintainable.
   - [Running End-to-End Tests](#running-end-to-end-tests)
   - [Understand your workspace](#understand-your-workspace)
 - [☁ Nx Cloud](#-nx-cloud)
-  - [Distributed Computation Caching & Distributed Task Execution](#distributed-computation-caching--distributed-task-execution)
+  - [Distributed Computation Caching \& Distributed Task Execution](#distributed-computation-caching--distributed-task-execution)
 - [Roadmap](#roadmap)
 - [Contributing](#contributing)
 - [Support](#support)

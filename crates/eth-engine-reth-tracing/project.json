@@ -1,5 +1,5 @@
 {
-  "name": "eth-engine-reth-tracing",
+  "name": "reaper-eth-engine-reth-tracing",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "projectType": "library",
   "sourceRoot": "crates/eth-engine-reth-tracing/src",

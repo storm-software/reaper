@@ -1,5 +1,5 @@
 {
-  "name": "eth-engine-macros",
+  "name": "reaper-eth-engine-macros",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "projectType": "library",
   "sourceRoot": "crates/eth-engine-macros/src",
