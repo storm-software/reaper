@@ -40,7 +40,6 @@ This package is part of Storm Software's <b>💀 Reaper</b> monorepo. Reaper pac
 
 <!-- START doctoc -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-
 ## Table of Contents
 
 - [Reaper - Ethereum Engine Macros Crate](#reaper---ethereum-engine-macros-crate)

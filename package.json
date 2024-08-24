@@ -55,7 +55,7 @@
     "adr-preview": "pnpm log4brains preview",
     "build": "nx affected --target=build --parallel=3 --configuration=prod",
     "build-all": "nx run-many --target=build --all --parallel=3 --configuration=prod",
-    "build-local": "nx affected --target=build --parallel=3 --exclude=reaper-eth-order-telegram-bot && nx affected --target=build-local --parallel=3",
+    "build-local": "nx affected --target=build --parallel=3 --exclude=eth-order-telegram-bot && nx affected --target=build-local --parallel=3",
     "clean": "rimraf dist",
     "clean-packages": "rimraf dist/packages",
     "commit": "pnpm exec storm-git commit",
@@ -84,6 +84,7 @@
     "test": "echo Skipping all workspace testing..."
   },
   "dependencies": {
+    "@dotenvx/dotenvx": "^1.6.4",
     "@ls-lint/ls-lint": "2.2.3",
     "@ltd/j-toml": "1.38.0",
     "@monodon/rust": "1.4.0",
@@ -100,6 +101,7 @@
     "@storm-software/config-tools": "latest",
     "@storm-software/eslint": "latest",
     "@storm-software/git-tools": "latest",
+    "@storm-software/k8s-tools": "latest",
     "@storm-software/linting-tools": "latest",
     "@storm-software/prettier": "latest",
     "@storm-software/terraform-tools": "latest",
@@ -129,9 +131,6 @@
     "tslib": "^2.6.3",
     "typescript": "5.5.3",
     "verdaccio": "5.31.1"
-  },
-  "devDependencies": {
-    "@dotenvx/dotenvx": "^1.6.4"
   },
   "devEngines": {
     "node": "20.x || 21.x"

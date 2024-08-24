@@ -1,5 +1,5 @@
 {
-  "name": "reaper-eth-flashbots",
+  "name": "eth-flashbots",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "projectType": "library",
   "sourceRoot": "crates/eth-flashbots/src",
