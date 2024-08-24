@@ -16,6 +16,7 @@ members = [
     "crates/eth-engine-reth-tracing",
     "crates/eth-engine-relay-api",
     "crates/eth-engine-types",
+    "crates/eth-engine-pricing",
     "crates/aws",
     "apps/eth-order-telegram-bot",
     "apps/eth-order-fill-service",
@@ -75,6 +76,7 @@ reaper-eth-engine-core = { path = "./crates/eth-engine-core" }
 reaper-eth-engine-reth-tracing = { path = "./crates/eth-engine-reth-tracing" }
 reaper-eth-engine-relay-api = { path = "./crates/eth-engine-relay-api" }
 reaper-eth-engine-types = { path = "./crates/eth-engine-types" }
+reaper-eth-engine-pricing = { path = "./crates/eth-engine-pricing" }
 reaper-aws = { path = "./crates/aws" }
 
 # Reth

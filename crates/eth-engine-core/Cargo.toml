@@ -103,3 +103,7 @@ local-clickhouse = [
     "reaper-eth-engine-database/local-clickhouse",
     "reaper-eth-engine-reth-tracing/local-clickhouse",
 ]
+
+[lib]
+name = "reaper_eth_engine_core"
+path = "src/lib.rs"
