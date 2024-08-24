@@ -17,6 +17,7 @@ members = [
     "crates/eth-engine-relay-api",
     "crates/eth-engine-types",
     "crates/eth-engine-database",
+    "crates/eth-engine-libmdbx",
     "crates/eth-engine-pricing",
     "crates/eth-engine-classifier",
     "crates/aws",
@@ -79,6 +80,7 @@ reaper-eth-engine-reth-tracing = { path = "./crates/eth-engine-reth-tracing" }
 reaper-eth-engine-relay-api = { path = "./crates/eth-engine-relay-api" }
 reaper-eth-engine-types = { path = "./crates/eth-engine-types" }
 reaper-eth-engine-database = { path = "./crates/eth-engine-database" }
+reaper-eth-engine-libmdbx = { path = "./crates/eth-engine-libmdbx" }
 reaper-eth-engine-pricing = { path = "./crates/eth-engine-pricing" }
 reaper-eth-engine-classifier = { path = "./crates/eth-engine-classifier" }
 reaper-aws = { path = "./crates/aws" }

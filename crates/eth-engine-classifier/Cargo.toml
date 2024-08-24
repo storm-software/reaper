@@ -45,13 +45,9 @@ reth-db.workspace = true
 # tracing
 tracing.workspace = true
 
-# libmdbx stuff
-
-
 # serde
 serde = { workspace = true, features = ["derive"] }
 serde_json.workspace = true
-
 
 # misc
 hex-literal.workspace = true
@@ -105,3 +101,7 @@ local-clickhouse = [
     "reaper-eth-engine-database/local-clickhouse",
     "reaper-eth-engine-core/local-clickhouse",
 ]
+
+[lib]
+name = "reaper_eth_engine_classifier"
+path = "src/lib.rs"
