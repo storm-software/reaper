@@ -3,7 +3,7 @@
 
 use std::{cmp::Ordering, collections::BinaryHeap, hash::Hash};
 
-use brontes_types::{FastHashMap, FastHashSet, FastHasher};
+use reaper_eth_engine_types::{FastHashMap, FastHashSet, FastHasher};
 use indexmap::{
     map::Entry::{Occupied, Vacant},
     IndexMap,

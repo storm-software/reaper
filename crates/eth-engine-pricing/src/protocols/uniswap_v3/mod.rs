@@ -6,7 +6,7 @@ use alloy_primitives::{Address, FixedBytes, Log, B256, U256};
 use alloy_sol_macro::sol;
 use alloy_sol_types::{SolCall, SolEvent};
 use async_trait::async_trait;
-use brontes_types::{
+use reaper_eth_engine_types::{
     normalized_actions::Action, traits::TracingProvider, FastHashMap, ToScaledRational,
 };
 use malachite::Rational;

@@ -1,4 +1,4 @@
-use brontes_types::constants::USDC_ADDRESS;
+use reaper_eth_engine_types::constants::USDC_ADDRESS;
 use criterion::Criterion;
 use pricing_test_utils::bench::BrontesPricingBencher;
 

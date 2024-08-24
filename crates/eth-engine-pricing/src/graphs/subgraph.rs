@@ -12,7 +12,7 @@ use std::{
 };
 
 use alloy_primitives::Address;
-use brontes_types::{price_graph_types::*, FastHashMap, FastHashSet};
+use reaper_eth_engine_types::{price_graph_types::*, FastHashMap, FastHashSet};
 use itertools::Itertools;
 use malachite::{
     num::{
@@ -1036,7 +1036,7 @@ impl<K: PartialOrd, T> Ord for MinScored<K, T> {
 
 #[cfg(test)]
 pub mod test {
-    use brontes_types::Protocol;
+    use reaper_eth_engine_types::Protocol;
 
     use super::*;
 

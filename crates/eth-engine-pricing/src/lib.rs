@@ -11,7 +11,7 @@
 //! event occurs on a token. When this occurs a subgraph is made for the pair if
 //! one doesn't already exist. This allows for fast computation of a tokens
 //! price. These subgraphs constantly update with new blocks, updating their
-//! nodes and edges to reflect new liquidity pools.  
+//! nodes and edges to reflect new liquidity pools.
 //!
 //! ### Graph Management
 //! The system adds new pools to the token graph as they appear in new blocks,
@@ -20,8 +20,8 @@
 //! ### Lazy Loading
 //! New pools and their states are fetched as required
 
-use brontes_metrics::pricing::DexPricingMetrics;
-use brontes_types::{
+use reaper_eth_engine_metrics::pricing::DexPricingMetrics;
+use reaper_eth_engine_types::{
     db::dex::PriceAt, execute_on, normalized_actions::pool::NormalizedPoolConfigUpdate,
     BrontesTaskExecutor, UnboundedYapperReceiver,
 };
@@ -43,10 +43,10 @@ use std::{
 };
 
 use alloy_primitives::Address;
-pub use brontes_types::price_graph_types::{
+pub use reaper_eth_engine_types::price_graph_types::{
     PoolPairInfoDirection, PoolPairInformation, SubGraphEdge, SubGraphsEntry,
 };
-use brontes_types::{
+use reaper_eth_engine_types::{
     db::dex::{DexPrices, DexQuotes},
     pair::Pair,
     traits::TracingProvider,
@@ -186,7 +186,7 @@ impl<T: TracingProvider> BrontesBatchPricer<T> {
     /// Essentially, it ensures the graph manager remains synchronized with the
     /// latest block data, maintaining the integrity and accuracy of
     /// the decentralized exchange pricing mechanism.
-    #[brontes_macros::metrics_call(ptr=metrics,function_call_count, self.range_id, "on_pool_updates")]
+    #[reaper_eth_engine_macros::metrics_call(ptr=metrics,function_call_count, self.range_id, "on_pool_updates")]
     fn on_pool_updates(&mut self, updates: Vec<PoolUpdate>) {
         if updates.is_empty() {
             return
@@ -272,7 +272,7 @@ impl<T: TracingProvider> BrontesBatchPricer<T> {
         );
     }
 
-    #[brontes_macros::metrics_call(ptr=metrics,function_call_count, self.range_id, "pool_updates_no_pricing")]
+    #[reaper_eth_engine_macros::metrics_call(ptr=metrics,function_call_count, self.range_id, "pool_updates_no_pricing")]
     fn on_pool_update_no_pricing(&mut self, updates: Vec<PoolUpdate>) {
         if let Some(msg) = updates.first() {
             if msg.block > self.current_block {
@@ -562,7 +562,7 @@ impl<T: TracingProvider> BrontesBatchPricer<T> {
     /// pairs. In case of a load error, it handles the error by calling
     /// `on_state_load_error`.
 
-    #[brontes_macros::metrics_call(ptr=metrics,function_call_count, self.range_id, "pool_resolve")]
+    #[reaper_eth_engine_macros::metrics_call(ptr=metrics,function_call_count, self.range_id, "pool_resolve")]
     fn on_pool_resolve(&mut self, state: Vec<LazyResult>) {
         let failed_queries = state
             .into_iter()
@@ -635,7 +635,7 @@ impl<T: TracingProvider> BrontesBatchPricer<T> {
     /// the failed pair for requery. After processing the verification
     /// results, it requeues any pairs that need to be reverified due to failed
     /// verification.
-    #[brontes_macros::metrics_call(ptr=metrics,function_call_count, self.range_id, "try_verify_subgraph")]
+    #[reaper_eth_engine_macros::metrics_call(ptr=metrics,function_call_count, self.range_id, "try_verify_subgraph")]
     fn try_verify_subgraph(&mut self, pairs: Vec<(u64, Option<u64>, PairWithFirstPoolHop)>) {
         self.graph_manager
             .subgraph_verifier
@@ -683,7 +683,7 @@ impl<T: TracingProvider> BrontesBatchPricer<T> {
                     })
                 }
                 VerificationResults::Abort(pair, block) => {
-                    tracing::debug!(target: "brontes_pricing::missing_pricing",
+                    tracing::debug!(target: "reaper_eth_engine_pricing::missing_pricing",
                                     ?pair,
                                     ?block,
                                     "aborted verification process");
@@ -709,7 +709,7 @@ impl<T: TracingProvider> BrontesBatchPricer<T> {
     /// requerying if necessary. 3. In cases where no valid paths are found
     /// after requery, it escalates the verification by analyzing alternative
     /// paths or pairs.
-    #[brontes_macros::metrics_call(ptr=metrics,function_call_count, self.range_id, "bad_state_requery")]
+    #[reaper_eth_engine_macros::metrics_call(ptr=metrics,function_call_count, self.range_id, "bad_state_requery")]
     fn requery_bad_state_par(&mut self, pairs: Vec<RequeryPairs>, frayed_ext: bool) {
         if pairs.is_empty() {
             return
@@ -769,7 +769,7 @@ impl<T: TracingProvider> BrontesBatchPricer<T> {
     /// of the low liquidity nodes and generate all unique paths through each
     /// and then add it to the subgraph. And then allow for these low liquidity
     /// nodes as they are the only nodes for the given pair.
-    #[brontes_macros::metrics_call(ptr=metrics,function_call_count, self.range_id, "rundown")]
+    #[reaper_eth_engine_macros::metrics_call(ptr=metrics,function_call_count, self.range_id, "rundown")]
     fn par_rundown(&mut self, pairs: Vec<(PairWithFirstPoolHop, u64)>) {
         if pairs.is_empty() {
             return
@@ -880,7 +880,7 @@ impl<T: TracingProvider> BrontesBatchPricer<T> {
     /// The function returns a boolean indicating whether any lazy loading was
     /// triggered during its execution. This function ensures that all necessary
     /// pool states are loaded and ready for accurate subgraph verification.
-    #[brontes_macros::metrics_call(ptr=metrics,function_call_count, self.range_id, "add subgraph")]
+    #[reaper_eth_engine_macros::metrics_call(ptr=metrics,function_call_count, self.range_id, "add subgraph")]
     fn add_subgraph(
         &mut self,
         pair: PairWithFirstPoolHop,
@@ -940,7 +940,7 @@ impl<T: TracingProvider> BrontesBatchPricer<T> {
 
     /// if the state loader isn't loading anything and we still have pending
     /// pairs,
-    #[brontes_macros::metrics_call(ptr=metrics,function_call_count, self.range_id, "try_flush_out_pending_verification")]
+    #[reaper_eth_engine_macros::metrics_call(ptr=metrics,function_call_count, self.range_id, "try_flush_out_pending_verification")]
     fn try_flush_out_pending_verification(&mut self) {
         if !self.lazy_loader.can_progress(&self.completed_block) {
             return
@@ -989,7 +989,7 @@ impl<T: TracingProvider> BrontesBatchPricer<T> {
     }
 
     /// Attempts to resolve the block & start processing the next block.
-    #[brontes_macros::metrics_call(ptr=metrics,function_call_count, self.range_id, "try_resolve_block")]
+    #[reaper_eth_engine_macros::metrics_call(ptr=metrics,function_call_count, self.range_id, "try_resolve_block")]
     fn try_resolve_block(&mut self) -> Option<(u64, DexQuotes)> {
         // if there are still requests for the given block or the current block isn't
         // complete yet, then we wait
@@ -1121,7 +1121,7 @@ impl<T: TracingProvider> BrontesBatchPricer<T> {
         })
     }
 
-    #[brontes_macros::metrics_call(ptr=metrics,function_call_count, self.range_id, "on_close")]
+    #[reaper_eth_engine_macros::metrics_call(ptr=metrics,function_call_count, self.range_id, "on_close")]
     fn on_close(&mut self) -> Option<(u64, DexQuotes)> {
         if self.completed_block > self.current_block
             || !self
@@ -1173,7 +1173,7 @@ impl<T: TracingProvider> BrontesBatchPricer<T> {
         self.should_return().then_some((block, res))
     }
 
-    #[brontes_macros::metrics_call(ptr=metrics,function_call_count, self.range_id, "poll_state_processing")]
+    #[reaper_eth_engine_macros::metrics_call(ptr=metrics,function_call_count, self.range_id, "poll_state_processing")]
     fn poll_state_processing(
         &mut self,
         cx: &mut Context<'_>,
@@ -1203,7 +1203,7 @@ impl<T: TracingProvider> BrontesBatchPricer<T> {
 impl<T: TracingProvider> Stream for BrontesBatchPricer<T> {
     type Item = (u64, DexQuotes);
 
-    #[brontes_macros::metrics_call(ptr=metrics, poll_rate, self.range_id)]
+    #[reaper_eth_engine_macros::metrics_call(ptr=metrics, poll_rate, self.range_id)]
     fn poll_next(
         mut self: std::pin::Pin<&mut Self>,
         cx: &mut std::task::Context<'_>,

@@ -6,7 +6,7 @@ use std::{
 use alloy_primitives::{hex, Bytes, FixedBytes, U256};
 use alloy_sol_macro::sol;
 use alloy_sol_types::SolCall;
-use brontes_types::traits::TracingProvider;
+use reaper_eth_engine_types::traits::TracingProvider;
 use reth_primitives::{Address, Bytecode, StorageValue};
 use reth_rpc_types::{request::TransactionInput, TransactionRequest};
 
@@ -258,10 +258,10 @@ mod tests {
         );
     }
 
-    #[brontes_macros::test]
+    #[reaper_eth_engine_macros::test]
     #[cfg(feature = "local-reth")]
     async fn test_v3_slot0() {
-        let loader = brontes_core::test_utils::TraceLoader::new().await;
+        let loader = reaper_eth_engine_core::test_utils::TraceLoader::new().await;
         let provider = loader.get_provider();
 
         let block_number: u64 = 19450752;
@@ -285,10 +285,10 @@ mod tests {
         };
     }
 
-    #[brontes_macros::test]
+    #[reaper_eth_engine_macros::test]
     #[cfg(feature = "local-reth")]
     async fn test_v3_liquidity() {
-        let loader = brontes_core::test_utils::TraceLoader::new().await;
+        let loader = reaper_eth_engine_core::test_utils::TraceLoader::new().await;
         let provider = loader.get_provider();
         let block_number: u64 = 19450752;
         let pool_address = Address::new(hex!("cbcdf9626bc03e24f779434178a73a0b4bad62ed"));

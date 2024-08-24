@@ -4,15 +4,15 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
-#brontes 
-brontes-metrics.workspace = true
+#brontes
+reaper-eth-engine-metrics.workspace = true
 itertools = "0.12.0"
 redefined.workspace = true
 
 futures.workspace = true
 thiserror.workspace = true
 
-# reth 
+# reth
 reth-rpc-types.workspace = true
 reth-primitives.workspace = true
 reth-db.workspace = true
@@ -34,7 +34,7 @@ serde_with.workspace = true
 serde_repr.workspace = true
 alloy-rlp = { workspace = true, features = ["arrayvec"] }
 
-# pathfinding 
+# pathfinding
 pathfinding = "4.8.1"
 rustc-hash = "1.1.0"
 
@@ -61,13 +61,13 @@ rkyv.workspace = true
 dashmap = "5.5.3"
 
 criterion = { version = "0.5", features = ["async", "async_tokio"] }
-brontes-pricing = { workspace = true, features = ["tests"] }
-brontes-core = { workspace = true, features = ["tests"] }
-brontes-database = { workspace = true, features = ["tests"] }
-brontes-classifier = { workspace = true, features = ["tests"] }
-brontes-types = { workspace = true, features = ["tests"] }
+reaper-eth-engine-pricing = { workspace = true, features = ["tests"] }
+reaper-eth-engine-core = { workspace = true, features = ["tests"] }
+reaper-eth-engine-database = { workspace = true, features = ["tests"] }
+reaper-eth-engine-classifier = { workspace = true, features = ["tests"] }
+reaper-eth-engine-types = { workspace = true, features = ["tests"] }
 reth-tracing-ext = { workspace = true, features = ["tests"] }
-brontes-macros.workspace = true
+reaper-eth-engine-macros.workspace = true
 dotenv.workspace = true
 tokio.workspace = true
 rand = "0.8.5"
@@ -78,14 +78,14 @@ default = []
 uni-v3-ticks = []
 local-reth = [
   "reth-tracing-ext/local-reth",
-  "brontes-types/local-reth",
-  "brontes-core/local-reth",
-  "brontes-classifier/local-reth",
-  "brontes-database/local-reth",
+  "reaper-eth-engine-types/local-reth",
+  "reaper-eth-engine-core/local-reth",
+  "reaper-eth-engine-classifier/local-reth",
+  "reaper-eth-engine-database/local-reth",
 ]
 local-clickhouse = [
   "reth-tracing-ext/local-clickhouse",
-  "brontes-core/local-clickhouse",
-  "brontes-classifier/local-clickhouse",
-  "brontes-database/local-clickhouse",
+  "reaper-eth-engine-core/local-clickhouse",
+  "reaper-eth-engine-classifier/local-clickhouse",
+  "reaper-eth-engine-database/local-clickhouse",
 ]

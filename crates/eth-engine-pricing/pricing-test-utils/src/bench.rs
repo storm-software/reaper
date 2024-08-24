@@ -4,9 +4,9 @@ use std::{
 };
 
 use alloy_primitives::Address;
-use brontes_classifier::test_utils::{ClassifierTestUtils, ClassifierTestUtilsError};
-use brontes_pricing::{types::ProtocolState, LoadState};
-use brontes_types::{pair::Pair, Protocol};
+use reaper_eth_engine_classifier::test_utils::{ClassifierTestUtils, ClassifierTestUtilsError};
+use reaper_eth_engine_pricing::{types::ProtocolState, LoadState};
+use reaper_eth_engine_types::{pair::Pair, Protocol};
 use criterion::{black_box, BenchmarkId, Criterion};
 use futures::StreamExt;
 
@@ -109,7 +109,7 @@ impl BrontesPricingBencher {
                 self.inner.get_tracing_provider(),
                 block_number,
                 pool_pair,
-                brontes_pricing::types::PairWithFirstPoolHop::from_pair_gt(pool_pair, pool_pair),
+                reaper_eth_engine_pricing::types::PairWithFirstPoolHop::from_pair_gt(pool_pair, pool_pair),
             ))
             .unwrap()
             .2;
@@ -138,7 +138,7 @@ impl BrontesPricingBencher {
                             self.inner.get_tracing_provider(),
                             block_number,
                             pool_pair,
-                            brontes_pricing::types::PairWithFirstPoolHop::from_pair_gt(
+                            reaper_eth_engine_pricing::types::PairWithFirstPoolHop::from_pair_gt(
                                 pool_pair, pool_pair,
                             ),
                         )

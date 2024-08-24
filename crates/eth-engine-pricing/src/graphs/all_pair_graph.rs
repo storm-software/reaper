@@ -5,7 +5,7 @@ use std::{
 };
 
 use alloy_primitives::Address;
-use brontes_types::{pair::Pair, FastHashMap, FastHashSet};
+use reaper_eth_engine_types::{pair::Pair, FastHashMap, FastHashSet};
 use itertools::Itertools;
 use petgraph::prelude::*;
 use tracing::{debug, error};

@@ -2,7 +2,7 @@
 use std::time::Duration;
 
 use alloy_primitives::Address;
-use brontes_types::{FastHashSet, SubGraphEdge};
+use reaper_eth_engine_types::{FastHashSet, SubGraphEdge};
 use itertools::Itertools;
 use rayon::iter::{IntoParallelIterator, ParallelIterator};
 

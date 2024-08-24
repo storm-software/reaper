@@ -7,8 +7,8 @@ use std::{future::Future, sync::Arc};
 
 use alloy_primitives::{Address, Log};
 use async_trait::async_trait;
-use brontes_types::{normalized_actions::Action, pair::Pair, traits::TracingProvider};
-pub use brontes_types::{queries::make_call_request, Protocol};
+use reaper_eth_engine_types::{normalized_actions::Action, pair::Pair, traits::TracingProvider};
+pub use reaper_eth_engine_types::{queries::make_call_request, Protocol};
 use malachite::Rational;
 use tracing::{debug, warn};
 

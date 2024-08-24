@@ -1,0 +1,107 @@
+[package]
+name = "reaper-eth-engine-classifier"
+description = "A core Etherium trading crate containing schema definitions and validation logic."
+version = "0.0.1"
+publish = true
+edition = { workspace = true }
+repository = { workspace = true }
+authors = { workspace = true }
+license = { workspace = true }
+categories = { workspace = true }
+keywords = { workspace = true }
+homepage = { workspace = true }
+documentation = "https://docs.rs/reaper-eth-engine-classifier"
+readme = "./README.md"
+
+[[bench]]
+name = "classifier"
+harness = false
+
+[dependencies]
+reaper-eth-engine-types.workspace = true
+reaper-eth-engine-macros.workspace = true
+reaper-eth-engine-metrics.workspace = true
+reaper-eth-engine-database.workspace = true
+reaper-eth-engine-pricing.workspace = true
+reaper-eth-engine-core.workspace = true
+reaper-eth-engine-reth-tracing = { workspace = true, optional = true }
+
+# async
+tokio.workspace = true
+futures.workspace = true
+
+# alloy
+alloy-primitives.workspace = true
+alloy-sol-types.workspace = true
+alloy-sol-macro = { workspace = true, features = ["json"] }
+alloy-rpc-types.workspace = true
+alloy-rlp.workspace = true
+
+# reth
+reth-rpc-types.workspace = true
+reth-primitives.workspace = true
+reth-db.workspace = true
+
+# tracing
+tracing.workspace = true
+
+# libmdbx stuff
+
+
+# serde
+serde = { workspace = true, features = ["derive"] }
+serde_json.workspace = true
+
+
+# misc
+hex-literal.workspace = true
+rayon.workspace = true
+lazy_static.workspace = true
+once_cell.workspace = true
+malachite.workspace = true
+parking_lot.workspace = true
+paste = "1.0.14"
+phf.workspace = true
+itertools.workspace = true
+eyre.workspace = true
+
+# tests feature (unique)
+thiserror = { workspace = true, optional = true }
+criterion = { version = "0.5", features = [
+    "async",
+    "async_tokio",
+], optional = true }
+
+[dev-dependencies]
+strum = { workspace = true, features = ["derive"] }
+dotenv.workspace = true
+tokio.workspace = true
+serial_test.workspace = true
+thiserror.workspace = true
+reaper-eth-engine-pricing = { workspace = true, features = ["tests"] }
+reaper-eth-engine-classifier = { workspace = true, features = ["tests"] }
+reaper-eth-engine-core = { workspace = true, features = ["tests"] }
+reaper-eth-engine-database = { workspace = true, features = ["tests"] }
+reaper-eth-engine-reth-tracing.workspace = true
+criterion = "0.5"
+reaper-eth-engine-macros.workspace = true
+
+[features]
+default = []
+tests = [
+    "reaper-eth-engine-reth-tracing",
+    "reaper-eth-engine-core/tests",
+    "thiserror",
+    "criterion",
+    "reaper-eth-engine-pricing/tests",
+]
+local-reth = [
+    "reaper-eth-engine-core/local-reth",
+    "reaper-eth-engine-reth-tracing/local-reth",
+    "reaper-eth-engine-types/local-reth",
+]
+
+local-clickhouse = [
+    "reaper-eth-engine-database/local-clickhouse",
+    "reaper-eth-engine-core/local-clickhouse",
+]

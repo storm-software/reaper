@@ -8,7 +8,7 @@ use alloy_rlp::{RlpDecodable, RlpEncodable};
 use alloy_sol_macro::sol;
 use alloy_sol_types::SolEvent;
 use async_trait::async_trait;
-use brontes_types::{normalized_actions::Action, traits::TracingProvider, ToScaledRational};
+use reaper_eth_engine_types::{normalized_actions::Action, traits::TracingProvider, ToScaledRational};
 use malachite::{
     num::{arithmetic::traits::Pow, basic::traits::Zero},
     Natural, Rational,

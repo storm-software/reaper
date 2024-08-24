@@ -2,7 +2,7 @@ use std::sync::Arc;
 
 use alloy_sol_macro::sol;
 use alloy_sol_types::SolCall;
-use brontes_types::traits::TracingProvider;
+use reaper_eth_engine_types::traits::TracingProvider;
 use futures::TryFutureExt;
 use reth_rpc_types::{request::TransactionInput, TransactionRequest};
 
