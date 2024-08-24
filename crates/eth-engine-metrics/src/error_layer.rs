@@ -4,10 +4,10 @@ use tracing::{Level, Subscriber};
 use tracing_subscriber::Layer;
 
 #[derive(Clone)]
-pub struct BrontesErrorMetrics {
+pub struct ReaperEthEngineErrorMetrics {
   error_count: prometheus::IntCounterVec,
 }
-impl BrontesErrorMetrics {
+impl ReaperEthEngineErrorMetrics {
   pub fn new() -> Self {
     let error_count = prometheus::register_int_counter_vec!(
       "eth_engine_log_count_with_target",
@@ -19,13 +19,13 @@ impl BrontesErrorMetrics {
   }
 }
 
-impl Default for BrontesErrorMetrics {
+impl Default for ReaperEthEngineErrorMetrics {
   fn default() -> Self {
     Self::new()
   }
 }
 
-impl<S: Subscriber> Layer<S> for BrontesErrorMetrics {
+impl<S: Subscriber> Layer<S> for ReaperEthEngineErrorMetrics {
   fn on_event(&self, event: &tracing::Event<'_>, ctx: tracing_subscriber::layer::Context<'_, S>) {
     if event.metadata().level().eq(&Level::INFO)
       || event.metadata().level().eq(&Level::WARN)

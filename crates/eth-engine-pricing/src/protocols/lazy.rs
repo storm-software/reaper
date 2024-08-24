@@ -3,7 +3,7 @@ use std::{collections::hash_map::Entry, pin::Pin, sync::Arc, task::Poll};
 use alloy_primitives::Address;
 use reaper_eth_engine_metrics::pricing::DexPricingMetrics;
 use reaper_eth_engine_types::{
-    pair::Pair, traits::TracingProvider, unzip_either::IterExt, BrontesTaskExecutor, FastHashMap,
+    pair::Pair, traits::TracingProvider, unzip_either::IterExt, ReaperEthEngineTaskExecutor, FastHashMap,
     FastHashSet,
 };
 use futures::{stream::FuturesOrdered, Future, Stream, StreamExt};
@@ -70,11 +70,11 @@ pub struct LazyExchangeLoader<T: TracingProvider> {
     /// requests we are processing for a given block.
     req_per_block:     FastHashMap<BlockNumber, u64>,
     state_tracking:    LoadingStateTracker,
-    ex:                BrontesTaskExecutor,
+    ex:                ReaperEthEngineTaskExecutor,
 }
 
 impl<T: TracingProvider> LazyExchangeLoader<T> {
-    pub fn new(provider: Arc<T>, ex: BrontesTaskExecutor) -> Self {
+    pub fn new(provider: Arc<T>, ex: ReaperEthEngineTaskExecutor) -> Self {
         Self {
             state_tracking: LoadingStateTracker::default(),
             pool_buf: FastHashMap::default(),

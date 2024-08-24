@@ -11,7 +11,7 @@ use crate::{
     PoolPairInfoDirection, SubGraphEdge,
 };
 
-/// Manages the state of pools in the BrontesBatchPricer system, maintaining two
+/// Manages the state of pools in the ReaperEthEngineBatchPricer system, maintaining two
 /// types of state data: finalized and verification states.
 ///
 /// `StateTracker` is vital for managing the current state of pools.
@@ -27,7 +27,7 @@ use crate::{
 /// Key operations include updating pool states based on new data, managing
 /// states under verification, and transitioning states to finalized status upon
 /// verification completion. This careful management of pool states is essential
-/// for the BrontesBatchPricer system to provide accurate and current pricing
+/// for the ReaperEthEngineBatchPricer system to provide accurate and current pricing
 /// information for tokens on decentralized exchanges.
 #[derive(Debug, Clone)]
 pub struct StateTracker {

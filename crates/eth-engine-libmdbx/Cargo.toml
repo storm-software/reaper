@@ -39,5 +39,5 @@ return-borrowed = []
 read-tx-timeouts = ["dashmap", "dashmap/inline"]
 
 [lib]
-name = "reaper_eth_engine_reth_libmdbx"
+name = "reaper_eth_engine_libmdbx"
 path = "src/lib.rs"

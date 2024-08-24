@@ -31,7 +31,7 @@ use reaper_eth_engine_types::{
   pair::Pair,
   structured_trace::TxTrace,
   traits::TracingProvider,
-  BlockTree, BrontesTaskExecutor, FastHashMap, UnboundedYapperReceiver,
+  BlockTree, ReaperEthEngineTaskExecutor, FastHashMap, UnboundedYapperReceiver,
 };
 use reth_db::table::{Compress, Encode};
 use reth_interfaces::db::LogLevel;
@@ -105,7 +105,7 @@ impl LibmdbxReadWriter {
   pub fn init_db<P: AsRef<Path>>(
     path: P,
     log_level: Option<LogLevel>,
-    ex: &BrontesTaskExecutor,
+    ex: &ReaperEthEngineTaskExecutor,
     metrics: bool,
   ) -> eyre::Result<Self> {
     // 5 gb total

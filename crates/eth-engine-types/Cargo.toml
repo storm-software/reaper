@@ -14,8 +14,8 @@ documentation = "https://docs.rs/reaper-eth-engine-types"
 readme = "./README.md"
 
 [dependencies]
-reaper-eth-engine-relay-api.workspace = true
-reaper-eth-engine-macros.workspace = true
+reaper-eth-engine-relay-api = { path = "../eth-engine-relay-api" }
+reaper-eth-engine-macros = { path = "../eth-engine-macros" }
 
 # reth
 reth-rpc-types.workspace = true
@@ -99,15 +99,19 @@ reqwest.workspace = true
 dotenvy.workspace = true
 tokio.workspace = true
 serial_test.workspace = true
-reaper-eth-engine-macros.workspace = true
-reaper-eth-engine-types = { workspace = true, features = [
+reaper-eth-engine-macros = { path = "../eth-engine-macros" }
+reaper-eth-engine-types = { path = "../eth-engine-types", features = [
     "tests",
     "test_pricing",
 ] }
-reaper-eth-engine-classifier = { workspace = true, features = ["tests"] }
-reaper-eth-engine-core = { workspace = true, features = ["tests"] }
-reaper-eth-engine-database = { workspace = true, features = ["tests"] }
-reaper-eth-engine-reth-tracing.workspace = true
+reaper-eth-engine-classifier = { path = "../eth-engine-classifier", features = [
+    "tests",
+] }
+reaper-eth-engine-core = { path = "../eth-engine-core", features = ["tests"] }
+reaper-eth-engine-database = { path = "../eth-engine-database", features = [
+    "tests",
+] }
+reaper-eth-engine-reth-tracing = { path = "../eth-engine-reth-tracing" }
 
 [features]
 tests = []

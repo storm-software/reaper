@@ -10,12 +10,12 @@ use reaper_eth_engine_types::{pair::Pair, Protocol};
 use criterion::{black_box, BenchmarkId, Criterion};
 use futures::StreamExt;
 
-pub struct BrontesPricingBencher {
+pub struct ReaperEthEnginePricingBencher {
     inner:       Arc<ClassifierTestUtils>,
     quote_asset: Address,
     rt:          tokio::runtime::Runtime,
 }
-impl BrontesPricingBencher {
+impl ReaperEthEnginePricingBencher {
     pub fn new(quote_asset: Address) -> Self {
         let rt = tokio::runtime::Builder::new_multi_thread()
             .enable_all()

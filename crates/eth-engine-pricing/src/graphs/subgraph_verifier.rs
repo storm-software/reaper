@@ -12,7 +12,7 @@ use super::{
 use crate::{types::PairWithFirstPoolHop, AllPairGraph, PoolPairInfoDirection, SubGraphEdge};
 
 /// [`SubgraphVerifier`] Manages the verification of subgraphs for token pairs
-/// in the BrontesBatchPricer system. It ensures the accuracy and relevance of
+/// in the ReaperEthEngineBatchPricer system. It ensures the accuracy and relevance of
 /// subgraphs, which are essential for pricing tokens on DEXs.
 ///
 /// The struct performs several critical functions:

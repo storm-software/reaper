@@ -1,4 +1,4 @@
-//! [`BrontesBatchPricer`] calculates and track the prices of tokens
+//! [`ReaperEthEngineBatchPricer`] calculates and track the prices of tokens
 //! on decentralized exchanges on a per-transaction basis. It builds and
 //! maintains a main token graph which is used to derive smaller subgraphs used
 //! to price tokens relative to a defined quote token.
@@ -23,7 +23,7 @@
 use reaper_eth_engine_metrics::pricing::DexPricingMetrics;
 use reaper_eth_engine_types::{
     db::dex::PriceAt, execute_on, normalized_actions::pool::NormalizedPoolConfigUpdate,
-    BrontesTaskExecutor, UnboundedYapperReceiver,
+    ReaperEthEngineTaskExecutor, UnboundedYapperReceiver,
 };
 use rayon::iter::{IntoParallelIterator, ParallelIterator};
 
@@ -75,7 +75,7 @@ use crate::types::PoolState;
 /// of the pool would have to end at $350
 const MAX_BLOCK_MOVEMENT: Rational = Rational::const_from_unsigneds(9, 10);
 
-pub struct BrontesBatchPricer<T: TracingProvider> {
+pub struct ReaperEthEngineBatchPricer<T: TracingProvider> {
     range_id:        usize,
     quote_asset:     Address,
     current_block:   u64,
@@ -114,7 +114,7 @@ pub struct BrontesBatchPricer<T: TracingProvider> {
     metrics:         Option<DexPricingMetrics>,
 }
 
-impl<T: TracingProvider> BrontesBatchPricer<T> {
+impl<T: TracingProvider> ReaperEthEngineBatchPricer<T> {
     pub fn new(
         range_id: usize,
         finished: Arc<AtomicBool>,
@@ -126,7 +126,7 @@ impl<T: TracingProvider> BrontesBatchPricer<T> {
         new_graph_pairs: FastHashMap<Address, (Protocol, Pair)>,
         needs_more_data: Arc<AtomicBool>,
         metrics: Option<DexPricingMetrics>,
-        executor: BrontesTaskExecutor,
+        executor: ReaperEthEngineTaskExecutor,
     ) -> Self {
         Self {
             range_id,
@@ -173,7 +173,7 @@ impl<T: TracingProvider> BrontesBatchPricer<T> {
             .set_state(sub_graph_registry, verifier, state)
     }
 
-    /// Handles pool updates for the BrontesBatchPricer system.
+    /// Handles pool updates for the ReaperEthEngineBatchPricer system.
     ///
     /// This function processes a vector of `PoolUpdate` messages, updating the
     /// current block tracking and incorporating new pools into the graph
@@ -1200,7 +1200,7 @@ impl<T: TracingProvider> BrontesBatchPricer<T> {
     }
 }
 
-impl<T: TracingProvider> Stream for BrontesBatchPricer<T> {
+impl<T: TracingProvider> Stream for ReaperEthEngineBatchPricer<T> {
     type Item = (u64, DexQuotes);
 
     #[reaper_eth_engine_macros::metrics_call(ptr=metrics, poll_rate, self.range_id)]

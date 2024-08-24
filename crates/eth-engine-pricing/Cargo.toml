@@ -18,9 +18,9 @@ name = "bench"
 harness = false
 
 [dependencies]
-reaper-eth-engine-macros.workspace = true
-reaper-eth-engine-types.workspace = true
-reaper-eth-engine-metrics.workspace = true
+reaper-eth-engine-macros = { path = "../eth-engine-macros" }
+reaper-eth-engine-types = { path = "../eth-engine-types" }
+reaper-eth-engine-metrics = { path = "../eth-engine-metrics" }
 
 itertools = "0.12.0"
 redefined.workspace = true
@@ -86,13 +86,21 @@ criterion = { version = "0.5", features = [
 
 [dev-dependencies]
 pricing-test-utils = { path = "./pricing-test-utils" }
-reaper-eth-engine-pricing = { workspace = true, features = ["tests"] }
-reaper-eth-engine-core = { workspace = true, features = ["tests"] }
-reaper-eth-engine-database = { workspace = true, features = ["tests"] }
-reaper-eth-engine-classifier = { workspace = true, features = ["tests"] }
-reaper-eth-engine-types = { workspace = true, features = ["tests"] }
-reaper-eth-engine-reth-tracing = { workspace = true, features = ["tests"] }
-dotenv.workspace = true
+reaper-eth-engine-pricing = { path = "../eth-engine-pricing", features = [
+    "tests",
+] }
+reaper-eth-engine-core = { path = "../eth-engine-core", features = ["tests"] }
+reaper-eth-engine-database = { path = "../eth-engine-database", features = [
+    "tests",
+] }
+reaper-eth-engine-classifier = { path = "../eth-engine-classifier", features = [
+    "tests",
+] }
+reaper-eth-engine-types = { path = "../eth-engine-types", features = ["tests"] }
+reaper-eth-engine-reth-tracing = { path = "../eth-engine-reth-tracing", features = [
+    "tests",
+] }
+dotenvy.workspace = true
 tokio.workspace = true
 reth-provider.workspace = true
 rand = "0.8.5"
@@ -113,7 +121,7 @@ local-reth = [
 ]
 local-clickhouse = [
     "pricing-test-utils/local-clickhouse",
-    "reth-tracing-ext/local-clickhouse",
+    "reaper-eth-engine-reth-tracing/local-clickhouse",
     "reaper-eth-engine-core/local-clickhouse",
     "reaper-eth-engine-classifier/local-clickhouse",
     "reaper-eth-engine-database/local-clickhouse",

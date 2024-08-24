@@ -4,10 +4,10 @@ use reaper_eth_engine_types::{
     pair::Pair,
 };
 use criterion::Criterion;
-use pricing_test_utils::bench::BrontesPricingBencher;
+use pricing_test_utils::bench::ReaperEthEnginePricingBencher;
 
 pub fn bench_v3_price_requests(c: &mut Criterion) {
-    let bencher = BrontesPricingBencher::new(USDC_ADDRESS);
+    let bencher = ReaperEthEnginePricingBencher::new(USDC_ADDRESS);
     bencher
         .bench_pool_state_price(
             "uni v3 weth usdc price calc",
@@ -21,7 +21,7 @@ pub fn bench_v3_price_requests(c: &mut Criterion) {
 }
 
 pub fn bench_v3_state_loads(c: &mut Criterion) {
-    let bencher = BrontesPricingBencher::new(USDC_ADDRESS);
+    let bencher = ReaperEthEnginePricingBencher::new(USDC_ADDRESS);
     bencher
         .bench_pool_state_loads(
             "uni v3 weth usdc state load",
@@ -35,7 +35,7 @@ pub fn bench_v3_state_loads(c: &mut Criterion) {
 }
 
 pub fn bench_v2_price_requests(c: &mut Criterion) {
-    let bencher = BrontesPricingBencher::new(USDC_ADDRESS);
+    let bencher = ReaperEthEnginePricingBencher::new(USDC_ADDRESS);
     bencher
         .bench_pool_state_price(
             "uni v2 wbtc eth price calc",
@@ -49,7 +49,7 @@ pub fn bench_v2_price_requests(c: &mut Criterion) {
 }
 
 pub fn bench_v2_state_loads(c: &mut Criterion) {
-    let bencher = BrontesPricingBencher::new(USDC_ADDRESS);
+    let bencher = ReaperEthEnginePricingBencher::new(USDC_ADDRESS);
     bencher
         .bench_pool_state_loads(
             "uni v2 wbtc eth state load",

@@ -15,7 +15,7 @@ use malachite::{
 use super::{subgraph::PairSubGraph, PoolState};
 use crate::types::{PairWithFirstPoolHop, ProtocolState};
 
-/// Manages subgraphs in the BrontesBatchPricer module, crucial for DEX pricing.
+/// Manages subgraphs in the ReaperEthEngineBatchPricer module, crucial for DEX pricing.
 ///
 /// [`SubGraphRegistry`] handles dynamic management and maintenance of verified
 /// subgraphs, representing various token pairs. It responds to changes in the
@@ -27,7 +27,7 @@ use crate::types::{PairWithFirstPoolHop, ProtocolState};
 /// subgraph is compromised, ensuring the integrity and accuracy of pricing
 /// information.
 ///
-/// Mainly functioning within the BrontesBatchPricer system, it plays a key role
+/// Mainly functioning within the ReaperEthEngineBatchPricer system, it plays a key role
 /// in providing up-to-date and reliable pricing data in the decentralized
 /// exchange context.
 #[derive(Debug, Clone)]

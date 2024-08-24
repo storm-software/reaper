@@ -3,9 +3,9 @@ use std::sync::{atomic::AtomicBool, Arc};
 use alloy_primitives::{Address, TxHash};
 use reaper_eth_engine_classifier::Classifier;
 use reaper_eth_engine_core::test_utils::*;
-use reaper_eth_engine_pricing::{types::DexPriceMsg, BrontesBatchPricer, GraphManager};
+use reaper_eth_engine_pricing::{types::DexPriceMsg, ReaperEthEngineBatchPricer, GraphManager};
 use reaper_eth_engine_types::{
-    normalized_actions::Action, traits::TracingProvider, tree::BlockTree, BrontesTaskManager,
+    normalized_actions::Action, traits::TracingProvider, tree::BlockTree, ReaperEthEngineTaskManager,
     FastHashMap, UnboundedYapperReceiver,
 };
 use thiserror::Error;
@@ -29,7 +29,7 @@ impl PricingTestUtils {
         block: u64,
         end_block: Option<u64>,
         rx: UnboundedReceiver<DexPriceMsg>,
-    ) -> Result<BrontesBatchPricer<Box<dyn TracingProvider>>, PricingTestError> {
+    ) -> Result<ReaperEthEngineBatchPricer<Box<dyn TracingProvider>>, PricingTestError> {
         let pairs = self
             .tracer
             .libmdbx
@@ -54,8 +54,8 @@ impl PricingTestUtils {
         } else {
             FastHashMap::default()
         };
-        let ex = BrontesTaskManager::current().executor();
-        Ok(BrontesBatchPricer::new(
+        let ex = ReaperEthEngineTaskManager::current().executor();
+        Ok(ReaperEthEngineBatchPricer::new(
             0,
             Arc::new(AtomicBool::new(false)),
             self.quote_address,
@@ -75,7 +75,7 @@ impl PricingTestUtils {
     pub async fn setup_dex_pricer_for_block(
         &self,
         block: u64,
-    ) -> PricingResult<(BrontesBatchPricer<Box<dyn TracingProvider>>, BlockTree<Action>)> {
+    ) -> PricingResult<(ReaperEthEngineBatchPricer<Box<dyn TracingProvider>>, BlockTree<Action>)> {
         let BlockTracesWithHeaderAnd { traces, header, .. } =
             self.tracer.get_block_traces_with_header(block).await?;
 
@@ -90,7 +90,7 @@ impl PricingTestUtils {
     pub async fn setup_dex_pricer_for_tx(
         &self,
         tx_hash: TxHash,
-    ) -> Result<BrontesBatchPricer<Box<dyn TracingProvider>>, PricingTestError> {
+    ) -> Result<ReaperEthEngineBatchPricer<Box<dyn TracingProvider>>, PricingTestError> {
         let TxTracesWithHeaderAnd { trace, header, block, .. } =
             self.tracer.get_tx_trace_with_header(tx_hash).await?;
         let (tx, rx) = unbounded_channel();

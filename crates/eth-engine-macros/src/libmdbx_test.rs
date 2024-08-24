@@ -41,7 +41,7 @@ pub fn parse(item: ItemFn, attr: TokenStream) -> syn::Result<TokenStream> {
       #vis
       #sig
       {
-          dotenv::dotenv().expect("failed to load env");
+          dotenvy::dotenv().expect("failed to load env");
           ::reaper_eth_engine_core::test_utils::init_tracing();
           ::reaper_eth_engine_types::wait_for_tests(#threads, || {
               std::thread::spawn(move || {

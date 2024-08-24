@@ -425,7 +425,7 @@ static RETH_DB_HANDLE: OnceLock<Arc<DatabaseEnv>> = OnceLock::new();
 pub async fn get_db_handle(handle: Handle) -> &'static LibmdbxReadWriter {
   *DB_HANDLE
     .get_or_init(|| async {
-      let _ = dotenv::dotenv();
+      let _ = dotenvy::dotenv();
       init_tracing();
       let reaper_eth_engine_db_path = env::var("REAPER_ETH_ENGINE_TEST_DB_PATH")
         .expect("No REAPER_ETH_ENGINE_TEST_DB_PATH in .env");
@@ -549,7 +549,7 @@ pub async fn init_trace_parser(
   libmdbx: &'static LibmdbxReadWriter,
   max_tasks: u32,
 ) -> TraceParser<Box<dyn TracingProvider>, LibmdbxReadWriter> {
-  let executor = reaper_eth_engine_types::BrontesTaskManager::new(handle.clone(), true);
+  let executor = reaper_eth_engine_types::ReaperEthEngineTaskManager::new(handle.clone(), true);
 
   let db_path = env::var("DB_PATH").expect("No DB_PATH in .env");
   let db_path = std::path::Path::new(&db_path);

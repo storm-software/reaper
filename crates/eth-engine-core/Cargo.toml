@@ -18,11 +18,11 @@ name = "parsing"
 harness = false
 
 [dependencies]
-reaper-eth-engine-types.workspace = true
-reaper-eth-engine-metrics.workspace = true
-reaper-eth-engine-tracing.workspace = true
-reaper-eth-engine-database.workspace = true
-reaper-eth-engine-reth-tracing.workspace = true
+reaper-eth-engine-types = { path = "../eth-engine-types" }
+reaper-eth-engine-metrics = { path = "../eth-engine-metrics" }
+reaper-eth-engine-tracing = { path = "../eth-engine-tracing" }
+reaper-eth-engine-database = { path = "../eth-engine-database" }
+reaper-eth-engine-reth-tracing = { path = "../eth-engine-reth-tracing" }
 
 # Reth
 reth-tasks.workspace = true
@@ -77,17 +77,19 @@ colored.workspace = true
 phf.workspace = true
 lazy_static.workspace = true
 auto_impl.workspace = true
-dotenv.workspace = true
+dotenvy.workspace = true
 itertools.workspace = true
 indicatif.workspace = true
 
 [dev-dependencies]
 serial_test.workspace = true
-reaper-eth-engine-core = { workspace = true, features = ["tests"] }
-reaper-eth-engine-classifier = { workspace = true, features = ["tests"] }
-dotenv.workspace = true
+reaper-eth-engine-core = { path = "../eth-engine-core", features = ["tests"] }
+reaper-eth-engine-classifier = { path = "../eth-engine-classifier", features = [
+    "tests",
+] }
+dotenvy.workspace = true
 tokio.workspace = true
-reaper-eth-engine-reth-tracing.workspace = true
+reaper-eth-engine-reth-tracing = { path = "../eth-engine-reth-tracing" }
 criterion = { version = "0.5", features = ["async", "async_tokio"] }
 
 [features]

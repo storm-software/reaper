@@ -14,18 +14,18 @@ documentation = "https://docs.rs/reaper-eth-engine-database"
 readme = "./README.md"
 
 [dependencies]
-reaper-eth-engine-types.workspace = true
-reaper-eth-engine-pricing.workspace = true
-reaper-eth-engine-metrics.workspace = true
-reaper-eth-engine-macros.workspace = true
-reaper-eth-engine-libmdbx = { workspace = true, features = [
+reaper-eth-engine-types = { path = "../eth-engine-types" }
+reaper-eth-engine-pricing = { path = "../eth-engine-pricing" }
+reaper-eth-engine-metrics = { path = "../eth-engine-metrics" }
+reaper-eth-engine-macros = { path = "../eth-engine-macros" }
+reaper-eth-engine-libmdbx = { path = "../eth-engine-libmdbx", features = [
     "read-tx-timeouts",
 ] }
+reaper-eth-engine-reth-tracing = { path = "../eth-engine-reth-tracing" }
 
 moka = { version = "0.12.7", features = ["sync"] }
 regex = "1"
 
-reth-tracing-ext.workspace = true
 # alloy
 alloy-primitives = { workspace = true, features = [
     "rand",
@@ -107,7 +107,7 @@ tracing.workspace = true
 backon.workspace = true
 eyre.workspace = true
 parking_lot.workspace = true
-dotenv.workspace = true
+dotenvy.workspace = true
 bincode = "2.0.0-rc.3"
 redefined.workspace = true
 derive_more = "0.99.17"
@@ -137,12 +137,16 @@ serial_test.workspace = true
 test-fuzz = "4"
 async-trait.workspace = true
 reth-tasks.workspace = true
-reaper-eth-engine-core = { workspace = true, features = ["tests"] }
-reaper-eth-engine-classifier = { workspace = true, features = ["tests"] }
-reaper-eth-engine-database = { workspace = true, features = ["tests"] }
-reaper-eth-engine-types = { workspace = true }
-reaper-eth-engine-pricing = { workspace = true, features = ["tests"] }
-reaper-eth-engine-macros.workspace = true
+reaper-eth-engine-core = { path = "../eth-engine-core", features = ["tests"] }
+reaper-eth-engine-classifier = { path = "../eth-engine-classifier", features = [
+    "tests",
+] }
+reaper-eth-engine-database = { path = "../eth-engine-database", features = [
+    "tests",
+] }
+reaper-eth-engine-types = { path = "../eth-engine-types" }
+reaper-eth-engine-pricing = { path = "../eth-engine-pricing" }
+reaper-eth-engine-macros = { path = "../eth-engine-macros" }
 criterion = "0.5.1"
 
 [[bench]]
@@ -168,7 +172,7 @@ required-features = ["sorella-server"]
 [build-dependencies]
 serde.workspace = true
 toml = "0.8.9"
-reaper-eth-engine-types.workspace = true
+reaper-eth-engine-types = { path = "../eth-engine-types" }
 alloy-primitives.workspace = true
 
 [features]

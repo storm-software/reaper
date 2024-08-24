@@ -8,7 +8,7 @@ use std::{
 use futures::FutureExt;
 use libmdbx::libmdbx_writer::InitTables;
 use rayon::iter::*;
-use reaper_eth_engine_types::{db::dex::make_filter_key_range, BrontesTaskExecutor};
+use reaper_eth_engine_types::{db::dex::make_filter_key_range, ReaperEthEngineTaskExecutor};
 use tokio::sync::Notify;
 
 use super::rclone_wrapper::BlockRangeList;
@@ -52,7 +52,7 @@ pub struct LibmdbxPartitioner {
   parent_db:           LibmdbxReadWriter,
   partition_db_folder: PathBuf,
   start_block:         u64,
-  executor:            BrontesTaskExecutor,
+  executor:            ReaperEthEngineTaskExecutor,
 }
 
 impl LibmdbxPartitioner {
@@ -60,7 +60,7 @@ impl LibmdbxPartitioner {
     parent_db: LibmdbxReadWriter,
     partition_db_folder: PathBuf,
     start_block: u64,
-    executor: BrontesTaskExecutor,
+    executor: ReaperEthEngineTaskExecutor,
   ) -> Self {
     fs_extra::dir::create_all(&partition_db_folder, false)
       .expect("failed to create partition db folder");

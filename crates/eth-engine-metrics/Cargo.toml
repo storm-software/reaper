@@ -14,7 +14,7 @@ documentation = "https://docs.rs/reaper-eth-engine-metrics"
 readme = "./README.md"
 
 [dependencies]
-reaper-eth-engine-types.workspace = true
+reaper-eth-engine-types = { path = "../eth-engine-types" }
 
 # async
 tokio = { workspace = true, features = ["full", "tracing"] }
@@ -28,6 +28,7 @@ alloy-primitives.workspace = true
 reth-primitives.workspace = true
 colored.workspace = true
 reth-interfaces.workspace = true
+
 # metrics
 metrics-exporter-prometheus.workspace = true
 metrics-util.workspace = true

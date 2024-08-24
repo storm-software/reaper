@@ -14,7 +14,7 @@ documentation = "https://docs.rs/reaper-eth-engine-reth-tracing"
 readme = "./README.md"
 
 [dependencies]
-reaper-eth-engine-types.workspace = true
+reaper-eth-engine-types = { path = "../eth-engine-types" }
 
 # Reth
 reth-node-ethereum.workspace = true
@@ -56,8 +56,8 @@ serde_json.workspace = true
 tokio = { version = "1.28.2", features = ["full"] }
 
 [dev-dependencies]
-reaper-eth-engine-core = { workspace = true, features = ["tests"] }
-reaper-eth-engine-macros.workspace = true
+reaper-eth-engine-core = { path = "../eth-engine-core" }
+reaper-eth-engine-macros = { path = "../eth-engine-macros" }
 dotenvy.workspace = true
 
 [features]

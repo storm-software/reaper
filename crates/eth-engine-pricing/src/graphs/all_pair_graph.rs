@@ -45,7 +45,7 @@ impl Deref for EdgeWithInsertBlock {
 }
 
 /// [`AllPairGraph`] Represents the interconnected network of token pairs in
-/// decentralized exchanges (DEXs), crucial for the BrontesBatchPricer system's
+/// decentralized exchanges (DEXs), crucial for the ReaperEthEngineBatchPricer system's
 /// ability to analyze and calculate token prices.
 ///
 /// [`AllPairGraph`] forms a graph structure where each node represents a token

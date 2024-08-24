@@ -35,6 +35,7 @@
     "crates\\eth-engine-pricing\\Cargo.toml",
     "crates\\eth-engine-classifier\\Cargo.toml",
     "crates\\aws\\Cargo.toml",
+    "apps\\eth-engine\\Cargo.toml",
     "apps\\eth-order-telegram-bot\\Cargo.toml",
     "apps\\eth-order-fill-service\\Cargo.toml"
   ],
