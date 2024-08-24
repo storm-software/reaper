@@ -8,6 +8,7 @@ members = [
     "crates/core",
     "crates/eth",
     "crates/eth-flashbots",
+    "crates/eth-engine-macros",
     "crates/eth-engine-reth-tracing",
     "crates/eth-engine-relay-api",
     "crates/eth-engine-types",
@@ -42,6 +43,12 @@ keywords = [
     "cryptocurrency",
     "crypto",
     "ethereum",
+    "mev",
+    "arbitrage",
+    "sandwitch",
+    "flashbots",
+    "blockchain",
+    "defi",
     "quantitative-finance",
     "quantitative-trading",
     "quantitative-analysis",
@@ -56,6 +63,7 @@ keywords = [
 reaper-core = { path = "./crates/core" }
 reaper-eth = { path = "./crates/eth" }
 reaper-eth-flashbots = { path = "./crates/eth-flashbots" }
+reaper-eth-engine-macros = { path = "./crates/eth-engine-macros" }
 reaper-eth-engine-reth-tracing = { path = "./crates/eth-engine-reth-tracing" }
 reaper-eth-engine-relay-api = { path = "./crates/eth-engine-relay-api" }
 reaper-eth-engine-types = { path = "./crates/eth-engine-types" }
@@ -225,36 +233,3 @@ aws-config = "1.5.5"
 
 # Ethers
 ethers = { version = "2.0.14", features = ["abigen", "ws", "rustls"] }
-
-
-## ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-## COMPILATION PROFILES
-## ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-[profile.dev]
-debug = 0
-
-[profile.release]
-lto = "thin"
-strip = "debuginfo"
-codegen-units = 16
-panic = "unwind"
-
-## To compile a release build with debug symbols, use:
-## `cargo build --profile=release-with-debug`
-[profile.release-with-debug]
-inherits = "release"
-strip = false
-lto = "fat"
-debug = true
-
-[profile.debug-fast]
-inherits = "release"
-strip = "none"
-debug = true
-
-[profile.maxperf]
-inherits = "release"
-lto = "fat"
-codegen-units = 1
-incremental = false

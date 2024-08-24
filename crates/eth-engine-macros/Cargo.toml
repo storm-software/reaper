@@ -1,0 +1,28 @@
+[package]
+name = "reaper-eth-engine-macros"
+description = "A core Etherium trading crate containing schema definitions and validation logic."
+version = "0.0.1"
+publish = true
+edition = { workspace = true }
+repository = { workspace = true }
+authors = { workspace = true }
+license = { workspace = true }
+categories = { workspace = true }
+keywords = { workspace = true }
+homepage = { workspace = true }
+documentation = "https://docs.rs/reaper-eth-engine-macros"
+readme = "./README.md"
+
+[dependencies]
+syn = { version = "2.0.37", features = ["full"] }
+quote = "1.0.33"
+itertools.workspace = true
+proc-macro2 = "1.0.78"
+
+[features]
+tests = []
+
+[lib]
+proc-macro = true
+name = "reaper_eth_engine_macros"
+path = "src/lib.rs"

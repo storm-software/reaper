@@ -53,9 +53,9 @@
   "scripts": {
     "adr": "pnpm log4brains adr new",
     "adr-preview": "pnpm log4brains preview",
-    "build": "nx affected -t build --parallel=3 --configuration=production",
-    "build-all": "nx run-many -t build --all --parallel=3 --configuration=production",
-    "build-local": "nx affected -t build --parallel=3 --exclude=reaper-eth-order-telegram-bot && nx affected -t build-local --parallel=3",
+    "build": "nx affected --target=build --parallel=3 --configuration=prod",
+    "build-all": "nx run-many --target=build --all --parallel=3 --configuration=prod",
+    "build-local": "nx affected --target=build --parallel=3 --exclude=reaper-eth-order-telegram-bot && nx affected --target=build-local --parallel=3",
     "clean": "rimraf dist",
     "clean-packages": "rimraf dist/packages",
     "commit": "pnpm exec storm-git commit",

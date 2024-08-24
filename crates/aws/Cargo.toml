@@ -1,8 +1,8 @@
 [package]
 name = "reaper-aws"
 description = "A core AWS helper crate containing schema definitions and validation logic."
-version = "0.1.0"
-private = false
+version = "0.0.1"
+publish = true
 edition = { workspace = true }
 repository = { workspace = true }
 authors = { workspace = true }

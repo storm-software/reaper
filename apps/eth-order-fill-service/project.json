@@ -24,8 +24,8 @@
         "target-dir": "dist/target/eth-order-fill-service"
       },
       "configurations": {
-        "production": {
-          "profile": "maxperf"
+        "prod": {
+          "profile": "prod"
         }
       }
     },
@@ -36,8 +36,8 @@
         "target-dir": "dist/target/eth-order-fill-service"
       },
       "configurations": {
-        "production": {
-          "profile": "maxperf"
+        "prod": {
+          "profile": "prod"
         }
       }
     },
@@ -55,8 +55,8 @@
         "target-dir": "dist/target/eth-order-fill-service"
       },
       "configurations": {
-        "production": {
-          "profile": "maxperf"
+        "prod": {
+          "profile": "prod"
         }
       }
     }

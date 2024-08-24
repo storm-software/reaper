@@ -1,7 +1,7 @@
 [package]
 name = "reaper-eth-order-fill-service"
-private = true
-version = "0.1.0"
+private = false
+version = "0.0.1"
 edition = "2021"
 
 [dependencies]

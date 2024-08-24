@@ -103,7 +103,7 @@ jobs:
           token: ${{ secrets.STORM_BOT_GITHUB_TOKEN }}
 
       - uses: actions/checkout@v4
-        name: Checkout [Default Branch]
+        name: Checkout `main` branch
         if: ${{ github.event_name != 'pull_request' }}
         with:
           # We need to fetch all branches and commits so that Nx affected has a base to compare against.
@@ -124,6 +124,10 @@ jobs:
         run: pnpm build-all
         shell: bash
 
+      - name: Run clippy script
+        run: cargo clippy --workspace --lib --examples --tests --benches --all-features -- -D warnings
+        shell: bash
+
       # - name: Configure AWS credentials
       #   if: steps.list.outputs.stdout
       #   uses: aws-actions/configure-aws-credentials@v2
@@ -137,8 +141,6 @@ jobs:
       # - name: Verify AWS credentials
       #   if: steps.list.outputs.stdout
       #   run: aws sts get-caller-identity
-
-      ### Run the Terragrunt deployment via Terramate in each changed stack
 
       - name: Install asdf
         uses: asdf-vm/actions/setup@v3
@@ -165,7 +167,7 @@ jobs:
           AWS_ACCESS_KEY_ID: ${{ secrets.STORM_BOT_AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.STORM_BOT_AWS_SECRET_ACCESS_KEY }}
           GITHUB_TOKEN: ${{ secrets.STORM_BOT_GITHUB_TOKEN }}
-          TF_LOG: trace
+          TF_LOG: debug
 
       # Generates an execution plan for Terragrunt
       - name: Terragrunt Plan
@@ -174,7 +176,7 @@ jobs:
           AWS_ACCESS_KEY_ID: ${{ secrets.STORM_BOT_AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.STORM_BOT_AWS_SECRET_ACCESS_KEY }}
           GITHUB_TOKEN: ${{ secrets.STORM_BOT_GITHUB_TOKEN }}
-          TF_LOG: trace
+          TF_LOG: debug
 
         # On push to main, build or change infrastructure according to Terragrunt configuration files
         # Note: It is recommended to set up a required "strict" status check in your repository for "Terragrunt Cloud". See the documentation on "strict" required status checks for more information: https://help.github.com/en/github/administering-a-repository/types-of-required-status-checks
@@ -185,7 +187,7 @@ jobs:
           AWS_ACCESS_KEY_ID: ${{ secrets.STORM_BOT_AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.STORM_BOT_AWS_SECRET_ACCESS_KEY }}
           GITHUB_TOKEN: ${{ secrets.STORM_BOT_GITHUB_TOKEN }}
-          TF_LOG: trace
+          TF_LOG: debug
 
       # - name: Release Library Version Updates
       #   run: pnpm release --base=${{ env.NX_BASE }} --head=${{ env.NX_HEAD }}

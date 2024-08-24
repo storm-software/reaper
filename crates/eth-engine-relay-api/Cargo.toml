@@ -1,8 +1,8 @@
 [package]
 name = "reaper-eth-engine-relay-api"
 description = "API specification for MEV-Boost PBS relays."
-version = "0.1.0"
-private = false
+version = "0.0.1"
+publish = true
 edition = { workspace = true }
 repository = { workspace = true }
 authors = { workspace = true }

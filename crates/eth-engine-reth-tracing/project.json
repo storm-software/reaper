@@ -11,8 +11,8 @@
         "target-dir": "dist/target/eth-engine-reth-tracing"
       },
       "configurations": {
-        "production": {
-          "profile": "maxperf"
+        "prod": {
+          "profile": "prod"
         }
       }
     },
@@ -23,8 +23,8 @@
         "target-dir": "dist/target/eth-engine-reth-tracing"
       },
       "configurations": {
-        "production": {
-          "profile": "maxperf"
+        "prod": {
+          "profile": "prod"
         }
       }
     },
@@ -35,8 +35,8 @@
         "target-dir": "dist/target/eth-engine-reth-tracing"
       },
       "configurations": {
-        "production": {
-          "profile": "maxperf"
+        "prod": {
+          "profile": "prod"
         }
       }
     }

@@ -11,20 +11,19 @@
         "target-dir": "dist/target/eth-order-telegram-bot"
       },
       "configurations": {
-        "production": {
-          "profile": "maxperf"
+        "prod": {
+          "profile": "prod"
         }
       }
     },
     "build": {
-      "cache": false,
       "executor": "nx:run-commands",
       "inputs": ["rust", "^production"],
-      "outputs": ["{workspaceRoot}/apps/reaper-eth-order-telegram-bot/dist"],
+      "outputs": ["{workspaceRoot}/dist/target/eth-order-telegram-bot"],
       "dependsOn": ["clean", "^build"],
       "options": {
         "commands": [
-          "cargo lambda build --release --output-format zip --package reaper-eth-order-telegram-bot --color always --verbose"
+          "cargo lambda build --profile prod --output-format zip --package reaper-eth-order-telegram-bot"
         ],
         "color": true
       }
@@ -36,8 +35,8 @@
         "target-dir": "dist/target/eth-order-telegram-bot"
       },
       "configurations": {
-        "production": {
-          "profile": "maxperf"
+        "prod": {
+          "profile": "prod"
         }
       }
     },
@@ -48,8 +47,8 @@
         "target-dir": "dist/target/eth-order-telegram-bot"
       },
       "configurations": {
-        "production": {
-          "profile": "maxperf"
+        "prod": {
+          "profile": "prod"
         }
       }
     },
@@ -60,8 +59,8 @@
         "target-dir": "dist/target/eth-order-telegram-bot"
       },
       "configurations": {
-        "production": {
-          "profile": "maxperf"
+        "prod": {
+          "profile": "prod"
         }
       }
     }
