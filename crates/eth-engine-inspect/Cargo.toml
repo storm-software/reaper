@@ -1,0 +1,123 @@
+[package]
+name = "reaper-eth-inspect"
+description = "A core Etherium trading crate containing schema definitions and validation logic."
+version = "0.0.1"
+publish = true
+edition = { workspace = true }
+repository = { workspace = true }
+authors = { workspace = true }
+license = { workspace = true }
+categories = { workspace = true }
+keywords = { workspace = true }
+homepage = { workspace = true }
+documentation = "https://docs.rs/reaper-eth-flashbots"
+readme = "./README.md"
+
+[[bench]]
+name = "inspectors"
+harness = false
+
+[dependencies]
+reaper-eth-engine-types.workspace = true
+reaper-eth-engine-database.workspace = true
+reaper-eth-engine-metrics.workspace = true
+reaper-eth-engine-core = { workspace = true, optional = true }
+reaper-eth-engine-classifier = { workspace = true, optional = true }
+reaper-eth-engine-pricing = { workspace = true, optional = true }
+
+# database
+clickhouse.workspace = true
+
+# web
+hyper-tls.workspace = true
+hyper.workspace = true
+
+# alloy
+alloy-sol-macro.workspace = true
+alloy-sol-types.workspace = true
+alloy-primitives.workspace = true
+alloy-json-abi.workspace = true
+alloy-rpc-types.workspace = true
+
+reqwest.workspace = true
+# async
+async-trait.workspace = true
+rayon.workspace = true
+futures.workspace = true
+tokio.workspace = true
+async-scoped = { version = "0.7.1", features = ["use-tokio"] }
+
+# reth
+reth-primitives.workspace = true
+reth-rpc-types.workspace = true
+
+# tracing
+tracing.workspace = true
+
+# error handling
+thiserror.workspace = true
+
+
+# serde
+serde_with = { workspace = true, features = ["macros"] }
+serde.workspace = true
+serde_json.workspace = true
+
+# numbers
+malachite.workspace = true
+
+# misc
+strum = { workspace = true, features = ["derive"] }
+lazy_static.workspace = true
+auto_impl.workspace = true
+itertools.workspace = true
+eyre.workspace = true
+colored.workspace = true
+
+criterion = { version = "0.5", features = [
+    "async",
+    "async_tokio",
+], optional = true }
+
+[dev-dependencies]
+dotenv.workspace = true
+serial_test.workspace = true
+reaper-eth-engine-classifier = { workspace = true, features = ["tests"] }
+reaper-eth-engine-core = { workspace = true, features = ["tests"] }
+reaper-eth-engine-inspect = { workspace = true, features = ["tests"] }
+reaper-eth-engine-pricing = { workspace = true, features = ["tests"] }
+reaper-eth-engine-macros.workspace = true
+tracing-subscriber.workspace = true
+reth-db.workspace = true
+reaper-eth-engine-types = { workspace = true, features = ["tests"] }
+reaper-eth-engine-database.workspace = true
+tokio.workspace = true
+reth-tracing-ext.workspace = true
+criterion = { version = "0.5" }
+rand = "0.8.5"
+statrs = "0.16"
+
+[features]
+sorella-server = ["local-reth", "local-clickhouse"]
+
+tests = [
+    "reaper-eth-engine-classifier/tests",
+    "reaper-eth-engine-core/tests",
+    "reaper-eth-engine-pricing/tests",
+    "criterion",
+]
+
+local-reth = [
+    "reaper-eth-engine-core/local-reth",
+    "reth-tracing-ext/local-reth",
+    "reaper-eth-engine-types/local-reth",
+]
+
+local-clickhouse = [
+    "reaper-eth-engine-database/local-clickhouse",
+    "reaper-eth-engine-core/local-clickhouse",
+]
+
+[lib]
+name = "reaper_eth_engine_inspect"
+path = "src/lib.rs"

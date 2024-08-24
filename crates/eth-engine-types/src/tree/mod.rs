@@ -336,7 +336,7 @@ impl<V: NormalizedAction> BlockTree<V> {
   /// catches all panics and errors and makes sure to log with block number to
   /// ensure easy debugging
   fn run_in_span_mut<Ret: Send>(&mut self, action: impl Fn(&mut Self) -> Ret) -> Ret {
-    let span = span!(Level::ERROR, "eth-engine-tree", block = self.header.number);
+    let span = span!(Level::ERROR, "reaper-eth-engine-tree", block = self.header.number);
     let g = span.enter();
 
     let res = std::panic::catch_unwind(AssertUnwindSafe(|| action(self)));
@@ -359,7 +359,7 @@ impl<V: NormalizedAction> BlockTree<V> {
   }
 
   fn run_in_span_ref<Ret: Send>(self: Arc<Self>, action: impl Fn(Arc<Self>) -> Ret) -> Ret {
-    let span = span!(Level::ERROR, "eth-engine-tree", block = self.header.number);
+    let span = span!(Level::ERROR, "reaper-eth-engine-tree", block = self.header.number);
     let g = span.enter();
 
     let res = std::panic::catch_unwind(AssertUnwindSafe(|| action(self)));
