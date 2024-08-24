@@ -16,7 +16,9 @@
 </div>
 
 <br />
-This package is part of Storm Software's <b>💀 Reaper</b> monorepo. Reaper packages include CLI utility applications, tools, and various libraries used to create modern, scalable trading applications.
+This package is part of Storm Software's <b>💀 Reaper</b> monorepo - a collection of
+trading/quantitative finance libraries, applications, and tools that are
+primarily written in <a href="https://www.rust-lang.org/" target="_blank">Rust</a>. <br />
 <br />
 
 <h3 align="center">💻 Visit <a href="https://stormsoftware.com" target="_blank">stormsoftware.com</a> to stay up to date with this developer</h3><br />

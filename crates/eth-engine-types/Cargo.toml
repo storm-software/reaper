@@ -15,7 +15,7 @@ readme = "./README.md"
 
 [dependencies]
 reaper-eth-engine-relay-api.workspace = true
-# reaper-eth-engine-macros.workspace = true
+reaper-eth-engine-macros.workspace = true
 
 # reth
 reth-rpc-types.workspace = true

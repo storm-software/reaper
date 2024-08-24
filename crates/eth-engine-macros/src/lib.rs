@@ -93,10 +93,10 @@ use crate::action_classifier::{ActionDispatch, ActionMacro};
 ///  ````
 ///  ```|index, from_address, target_address, return_data, log_data|```
 pub fn action_impl(input: TokenStream) -> TokenStream {
-    parse_macro_input!(input as ActionMacro)
-        .expand()
-        .unwrap_or_else(syn::Error::into_compile_error)
-        .into()
+  parse_macro_input!(input as ActionMacro)
+    .expand()
+    .unwrap_or_else(syn::Error::into_compile_error)
+    .into()
 }
 
 #[proc_macro]
@@ -135,10 +135,10 @@ pub fn action_impl(input: TokenStream) -> TokenStream {
 /// action_dispatch!(ClassifierDispatch, UniswapV2swapCall);
 /// ```
 pub fn action_dispatch(input: TokenStream) -> TokenStream {
-    parse_macro_input!(input as ActionDispatch)
-        .expand()
-        .unwrap_or_else(syn::Error::into_compile_error)
-        .into()
+  parse_macro_input!(input as ActionDispatch)
+    .expand()
+    .unwrap_or_else(syn::Error::into_compile_error)
+    .into()
 }
 
 #[proc_macro]
@@ -151,17 +151,17 @@ pub fn action_dispatch(input: TokenStream) -> TokenStream {
 /// ```ignore
 /// |deployed_address: Add       ress, decoded_call_data: DeployCall, provider: Arc<T>| { <body> }
 /// ```
-pub fn discovery_impl(input: Tok enStream) -> TokenStream {
-    discovery_classifier::discov ery_impl(input.into())
-        .unwrap_or_else(syn::Error::into_compile_error)
-        .into()
+pub fn discovery_impl(input: TokenStream) -> TokenStream {
+  discovery_classifier::discovery_impl(input.into())
+    .unwrap_or_else(syn::Error::into_compile_error)
+    .into()
 }
 
 #[proc_macro]
 /// # Eth Curve Pool Discovery
 /// Curve is weird s        ince each factory contract (7 of them) has multiple
-/// implementa              tions of each create base/plain/meta pool, so it has it's own impl
-/// ### Fields
+/// implementa              tions of each create base/plain/meta pool, so it has
+/// it's own impl ### Fields
 /// 1. `Protocol` (enum in types) - Curve version
 /// 2. Path to the `sol!` generated abi for the factory
 /// 3. `x` concatenated with the factory address
@@ -180,9 +180,9 @@ pub fn discovery_impl(input: Tok enStream) -> TokenStream {
 /// );
 /// ```
 pub fn curve_discovery_impl(input: TokenStream) -> TokenStream {
-    discovery_classifier::curve::curve_discovery_impl(input.into())
-        .unwrap_or_else(syn::Error::into_compile_error)
-        .into()
+  discovery_classifier::curve::curve_discovery_impl(input.into())
+    .unwrap_or_else(syn::Error::into_compile_error)
+    .into()
 }
 
 #[proc_macro]
@@ -192,33 +192,33 @@ pub fn curve_discovery_impl(input: TokenStream) -> TokenStream {
 /// discovery_dispatch!(<DispatchStructName>, [discovery_impl_name..],);
 /// ```
 pub fn discovery_dispatch(input: TokenStream) -> TokenStream {
-    discovery_classifier::discovery_dispatch(input.into())
-        .unwrap_or_else(syn::Error::into_compile_error)
-        .into()
+  discovery_classifier::discovery_dispatch(input.into())
+    .unwrap_or_else(syn::Error::into_compile_error)
+    .into()
 }
 
 #[proc_macro_attribute]
 pub fn test(attr: TokenStream, item: TokenStream) -> TokenStream {
-    let item = parse_macro_input!(item as ItemFn);
-    libmdbx_test::parse(item, attr.into())
-        .unwrap_or_else(syn::Error::into_compile_error)
-        .into()
+  let item = parse_macro_input!(item as ItemFn);
+  libmdbx_test::parse(item, attr.into())
+    .unwrap_or_else(syn::Error::into_compile_error)
+    .into()
 }
 
 #[proc_macro_attribute]
 pub fn bench_time(attr: TokenStream, item: TokenStream) -> TokenStream {
-    let item = parse_macro_input!(item as ItemFn);
-    bench_struct_methods::parse(item, attr.into())
-        .unwrap_or_else(syn::Error::into_compile_error)
-        .into()
+  let item = parse_macro_input!(item as ItemFn);
+  bench_struct_methods::parse(item, attr.into())
+    .unwrap_or_else(syn::Error::into_compile_error)
+    .into()
 }
 
 #[proc_macro_derive(Transposable)]
 pub fn transposable(item: TokenStream) -> TokenStream {
-    let i_struct = parse_macro_input!(item as DeriveInput);
-    transpose::parse(i_struct)
-        .unwrap_or_else(syn::Error::into_compile_error)
-        .into()
+  let i_struct = parse_macro_input!(item as DeriveInput);
+  transpose::parse(i_struct)
+    .unwrap_or_else(syn::Error::into_compile_error)
+    .into()
 }
 
 /// Simple utils for counters and gauges when it comes to tracking function
@@ -226,8 +226,8 @@ pub fn transposable(item: TokenStream) -> TokenStream {
 /// be counted
 #[proc_macro_attribute]
 pub fn metrics_call(attr: TokenStream, item: TokenStream) -> TokenStream {
-    let item = parse_macro_input!(item as ItemFn);
-    function_metrics::parse(item, attr.into())
-        .unwrap_or_else(syn::Error::into_compile_error)
-        .into()
+  let item = parse_macro_input!(item as ItemFn);
+  function_metrics::parse(item, attr.into())
+    .unwrap_or_else(syn::Error::into_compile_error)
+    .into()
 }

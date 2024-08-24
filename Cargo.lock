@@ -8156,6 +8156,7 @@ dependencies = [
  "pin-project",
  "prettytable-rs",
  "rayon",
+ "reaper-eth-engine-macros",
  "reaper-eth-engine-relay-api",
  "redefined",
  "reqwest 0.12.7",

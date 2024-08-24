@@ -169,7 +169,7 @@ anyhow = "1.0.44"
 # http/rpc
 hyper = "0.14.25"
 hyper-tls = "0.5.0"
-reqwest = "0.12.2"
+reqwest = { version = "0.12.2", default-features = false }
 
 # Serde
 serde = "1.0.205"

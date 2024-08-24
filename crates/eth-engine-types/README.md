@@ -18,7 +18,7 @@
 <br />
 This package is part of Storm Software's <b>💀 Reaper</b> monorepo - a collection of
 trading/quantitative finance libraries, applications, and tools that are
-primarily written in <a href="https://www.rust-lang.org/">Rust</a>. <br />
+primarily written in <a href="https://www.rust-lang.org/" target="_blank">Rust</a>. <br />
 <br />
 
 <h3 align="center">💻 Visit <a href="https://stormsoftware.com" target="_blank">stormsoftware.com</a> to stay up to date with this developer</h3><br />
@@ -97,9 +97,6 @@ Or, via the command line:
 ```bash
 cargo add reaper-eth-engine-core
 ```
-
-<!-- START doctoc -->
-<!-- END doctoc -->
 
 ## Development
 
