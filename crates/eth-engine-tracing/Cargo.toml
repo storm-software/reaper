@@ -13,8 +13,10 @@ homepage = { workspace = true }
 documentation = "https://docs.rs/reaper-eth-engine-tracing"
 readme = "./README.md"
 
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
-
 [dependencies]
 tracing = { workspace = true }
 tracing-subscriber = { workspace = true }
+
+[lib]
+name = "reaper_eth_engine_tracing"
+path = "src/lib.rs"

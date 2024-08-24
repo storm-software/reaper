@@ -64,12 +64,12 @@ dotenvy.workspace = true
 [features]
 tests = []
 local-reth = [
-    # "brontes-types/local-reth",
-    # "brontes-core/local-reth"
+    # "eth-engine-types/local-reth",
+    # "eth-engine-core/local-reth"
 ]
 local-clickhouse = [
-    # "brontes-core/local-clickhouse",
-    # "brontes-types/local-clickhouse",
+    # "eth-engine-core/local-clickhouse",
+    # "eth-engine-types/local-clickhouse",
 ]
 
 [lib]
