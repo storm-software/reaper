@@ -1,4 +1,4 @@
-use brontes_macros::{action_dispatch, discovery_dispatch};
+use reaper_eth_engine_macros::{action_dispatch, discovery_dispatch};
 use futures::StreamExt;
 pub mod erc20;
 

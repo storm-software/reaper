@@ -1,6 +1,6 @@
-use brontes_macros::action_impl;
-use brontes_pricing::Protocol;
-use brontes_types::{normalized_actions::NormalizedNewPool, structured_trace::CallInfo};
+use reaper_eth_engine_macros::action_impl;
+use reaper_eth_engine_pricing::Protocol;
+use reaper_eth_engine_types::{normalized_actions::NormalizedNewPool, structured_trace::CallInfo};
 
 action_impl!(
     Protocol::CompoundV2,
@@ -38,14 +38,14 @@ action_impl!(
 #[cfg(test)]
 mod tests {
     use alloy_primitives::{hex, B256};
-    use brontes_types::{
+    use reaper_eth_engine_types::{
         normalized_actions::{pool::NormalizedNewPool, Action},
         Protocol, TreeSearchBuilder,
     };
 
     use crate::test_utils::ClassifierTestUtils;
 
-    #[brontes_macros::test]
+    #[reaper_eth_engine_macros::test]
     async fn test_compound_v2_discovery() {
         let classifier_utils = ClassifierTestUtils::new().await;
         let compound_v2_discovery =

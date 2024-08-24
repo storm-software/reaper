@@ -1,5 +1,5 @@
-use brontes_macros::action_impl;
-use brontes_types::{
+use reaper_eth_engine_macros::action_impl;
+use reaper_eth_engine_types::{
     normalized_actions::{NormalizedBurn, NormalizedFlashLoan, NormalizedMint, NormalizedSwap},
     structured_trace::CallInfo,
     Protocol, ToScaledRational,
@@ -191,8 +191,8 @@ mod tests {
     use std::str::FromStr;
 
     use alloy_primitives::{hex, Address, B256};
-    use brontes_classifier::test_utils::ClassifierTestUtils;
-    use brontes_types::{
+    use reaper_eth_engine_classifier::test_utils::ClassifierTestUtils;
+    use reaper_eth_engine_types::{
         constants::WETH_ADDRESS,
         db::token_info::{TokenInfo, TokenInfoWithAddress},
         normalized_actions::Action,
@@ -201,7 +201,7 @@ mod tests {
 
     use super::*;
 
-    #[brontes_macros::test]
+    #[reaper_eth_engine_macros::test]
     async fn test_dodo_buy_shares() {
         let classifier_utils = ClassifierTestUtils::new().await;
         let mint =
@@ -256,7 +256,7 @@ mod tests {
             .unwrap();
     }
 
-    #[brontes_macros::test]
+    #[reaper_eth_engine_macros::test]
     async fn test_dodo_sell_shares() {
         let classifier_utils = ClassifierTestUtils::new().await;
         let mint =
@@ -312,7 +312,7 @@ mod tests {
     }
 
     // Tested but couldn't find a transaction that was less than 300 lines of
-    // trace. #[brontes_macros::test]
+    // trace. #[reaper_eth_engine_macros::test]
     // async fn test_dodo_sell_base() {
     //     let classifier_utils = ClassifierTestUtils::new().await;
     //     let swap =

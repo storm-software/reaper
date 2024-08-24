@@ -1,5 +1,5 @@
-use brontes_macros::action_impl;
-use brontes_types::{
+use reaper_eth_engine_macros::action_impl;
+use reaper_eth_engine_types::{
     normalized_actions::{NormalizedFlashLoan, NormalizedLiquidation},
     structured_trace::CallInfo,
     utils::ToScaledRational,
@@ -116,7 +116,7 @@ action_impl!(
 #[cfg(test)]
 mod tests {
     use alloy_primitives::{hex, Address, B256, U256};
-    use brontes_types::{
+    use reaper_eth_engine_types::{
         normalized_actions::{Action, NormalizedLiquidation},
         Protocol, TreeSearchBuilder,
     };
@@ -124,7 +124,7 @@ mod tests {
 
     use crate::test_utils::ClassifierTestUtils;
 
-    #[brontes_macros::test]
+    #[reaper_eth_engine_macros::test]
     async fn test_aave_v3_liquidation() {
         let classifier_utils = ClassifierTestUtils::new().await;
         let aave_v3_liquidation =

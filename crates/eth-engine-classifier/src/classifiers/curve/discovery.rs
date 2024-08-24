@@ -1,9 +1,9 @@
 use std::sync::Arc;
 
 use alloy_primitives::{Address, U256};
-use brontes_macros::{curve_discovery_impl, discovery_impl};
-use brontes_pricing::make_call_request;
-use brontes_types::{
+use reaper_eth_engine_macros::{curve_discovery_impl, discovery_impl};
+use reaper_eth_engine_pricing::make_call_request;
+use reaper_eth_engine_types::{
     normalized_actions::pool::NormalizedNewPool, traits::TracingProvider, Protocol,
 };
 
@@ -121,7 +121,7 @@ async fn parse_meta_pool<T: TracingProvider>(
 #[cfg(test)]
 mod tests {
     use alloy_primitives::{hex, Address, FixedBytes, B256};
-    use brontes_types::{normalized_actions::pool::NormalizedNewPool, Protocol};
+    use reaper_eth_engine_types::{normalized_actions::pool::NormalizedNewPool, Protocol};
 
     use super::query_base_pool;
     use crate::test_utils::ClassifierTestUtils;
@@ -148,7 +148,7 @@ mod tests {
             .unwrap();
     }
 
-    #[brontes_macros::test]
+    #[reaper_eth_engine_macros::test]
     async fn test_curve_v1_metapool_discovery() {
         verify_discovery(
             hex!("49878ff3e5e0de4f45c875c94977c154a4f6bea22640f72e85a18434672e3bb2").into(),
@@ -164,7 +164,7 @@ mod tests {
         .await;
     }
 
-    #[brontes_macros::test]
+    #[reaper_eth_engine_macros::test]
     async fn test_curve_v2_metapool_plainpool1_discovery() {
         verify_discovery(
             hex!("6f9223d991fa3620d7295f5c7e96581bbbfcd6eb03054ebd85ed3b1d06472217").into(),
@@ -178,7 +178,7 @@ mod tests {
         .await;
     }
 
-    #[brontes_macros::test]
+    #[reaper_eth_engine_macros::test]
     async fn test_curve_v2_metapool_plainpool2_discovery() {
         verify_discovery(
             hex!("cf98501f3158251d2659c556f74e3429fbee4671d8b443269707550481f8d915").into(),
@@ -192,7 +192,7 @@ mod tests {
         .await;
     }
 
-    #[brontes_macros::test]
+    #[reaper_eth_engine_macros::test]
     async fn test_curve_v2_metapool_plainpool3_discovery() {
         verify_discovery(
             hex!("6d80735b4a78471669dd66301df030be9e71447d7c35a40331a3f55a8b74ec4e").into(),
@@ -207,7 +207,7 @@ mod tests {
         .await;
     }
 
-    #[brontes_macros::test]
+    #[reaper_eth_engine_macros::test]
     async fn test_query_base_pool_i128() {
         let utils = ClassifierTestUtils::new().await;
         let tracer = utils.get_tracing_provider();
@@ -227,7 +227,7 @@ mod tests {
     // No base_pools using `coins(U256)` method found,
     // but no good way to find them.
 
-    #[brontes_macros::test]
+    #[reaper_eth_engine_macros::test]
     async fn test_curve_v2_metapool_metapool1_discovery() {
         verify_discovery(
             hex!("11dfcfa281837030ac8c994828fe174fdd75cfa8a66971b4b84fb38a1bb08597").into(),
@@ -243,7 +243,7 @@ mod tests {
         .await;
     }
 
-    #[brontes_macros::test]
+    #[reaper_eth_engine_macros::test]
     async fn test_curve_v2_metapool_metapool2_discovery() {
         verify_discovery(
             hex!("59814dc53b4d415b68662433f6eea167ae64370432283598b5314b81a4801abb").into(),
@@ -258,7 +258,7 @@ mod tests {
         .await;
     }
 
-    #[brontes_macros::test]
+    #[reaper_eth_engine_macros::test]
     async fn test_curve_crvUSD_metapool_plainpool1_discovery() {
         verify_discovery(
             hex!("4dab0bee84b26935d93556d7d7d38e7fca091793842ea02c2e583260b64f6a3b").into(),
@@ -274,7 +274,7 @@ mod tests {
 
     // No pools found for methods plainpool2, plainpool3, metapool1, or metapool2.
 
-    #[brontes_macros::test]
+    #[reaper_eth_engine_macros::test]
     async fn test_curve_crypto_swap_discovery() {
         let utils = ClassifierTestUtils::new().await;
         let tx =
@@ -306,7 +306,7 @@ mod tests {
             .unwrap();
     }
 
-    #[brontes_macros::test]
+    #[reaper_eth_engine_macros::test]
     async fn test_curve_tri_crypto_discovery() {
         let utils = ClassifierTestUtils::new().await;
         let tx =

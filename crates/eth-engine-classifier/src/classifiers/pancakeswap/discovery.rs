@@ -1,6 +1,6 @@
 use alloy_primitives::Address;
-use brontes_macros::discovery_impl;
-use brontes_pricing::Protocol;
+use reaper_eth_engine_macros::discovery_impl;
+use reaper_eth_engine_pricing::Protocol;
 
 discovery_impl!(
     PancakeSwapV3Discovery,
@@ -47,13 +47,13 @@ discovery_impl!(
 #[cfg(test)]
 pub mod test {
     use alloy_primitives::{hex, Address, TxHash};
-    use brontes_types::{
+    use reaper_eth_engine_types::{
         db::token_info::TokenInfoWithAddress, normalized_actions::pool::NormalizedNewPool, Protocol,
     };
 
     use crate::test_utils::ClassifierTestUtils;
 
-    #[brontes_macros::test]
+    #[reaper_eth_engine_macros::test]
     async fn test_pancake_v3_discovery() {
         let utils = ClassifierTestUtils::new().await;
         let tx =

@@ -1,6 +1,6 @@
-use brontes_macros::action_impl;
-use brontes_pricing::Protocol;
-use brontes_types::{
+use reaper_eth_engine_macros::action_impl;
+use reaper_eth_engine_pricing::Protocol;
+use reaper_eth_engine_types::{
     normalized_actions::NormalizedLiquidation, structured_trace::CallInfo, utils::ToScaledRational,
 };
 
@@ -40,7 +40,7 @@ action_impl!(
 #[cfg(test)]
 mod tests {
     use alloy_primitives::{hex, Address, B256, U256};
-    use brontes_types::{
+    use reaper_eth_engine_types::{
         db::token_info::TokenInfoWithAddress,
         normalized_actions::{Action, NormalizedLiquidation},
         Protocol, TreeSearchBuilder,
@@ -49,7 +49,7 @@ mod tests {
 
     use crate::test_utils::ClassifierTestUtils;
 
-    #[brontes_macros::test]
+    #[reaper_eth_engine_macros::test]
     async fn test_compound_v2_liquidation() {
         let classifier_utils = ClassifierTestUtils::new().await;
         classifier_utils.ensure_protocol(
@@ -65,7 +65,7 @@ mod tests {
 
         let debt = TokenInfoWithAddress {
             address: hex!("39aa39c021dfbae8fac545936693ac917d5e7563").into(),
-            inner:   brontes_types::db::token_info::TokenInfo {
+            inner:   reaper_eth_engine_types::db::token_info::TokenInfo {
                 decimals: 8,
                 symbol:   "cUSDC".to_string(),
             },
@@ -73,7 +73,7 @@ mod tests {
 
         let collateral = TokenInfoWithAddress {
             address: hex!("70e36f6BF80a52b3B46b3aF8e106CC0ed743E8e4").into(),
-            inner:   brontes_types::db::token_info::TokenInfo {
+            inner:   reaper_eth_engine_types::db::token_info::TokenInfo {
                 decimals: 8,
                 symbol:   "CompoundCollateral".to_string(),
             },

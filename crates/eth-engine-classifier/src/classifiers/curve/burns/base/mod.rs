@@ -14,14 +14,14 @@ pub use base4::*;
 mod tests {
 
     use alloy_primitives::{hex, Address, B256, U256};
-    use brontes_classifier::test_utils::ClassifierTestUtils;
-    use brontes_types::{
+    use reaper_eth_engine_classifier::test_utils::ClassifierTestUtils;
+    use reaper_eth_engine_types::{
         db::token_info::{TokenInfo, TokenInfoWithAddress},
         normalized_actions::{Action, NormalizedBurn},
         Protocol, ToScaledRational, TreeSearchBuilder,
     };
 
-    #[brontes_macros::test]
+    #[reaper_eth_engine_macros::test]
     async fn test_curve_base_remove_liquidity() {
         let classifier_utils = ClassifierTestUtils::new().await;
         classifier_utils.ensure_protocol(
@@ -82,7 +82,7 @@ mod tests {
             .unwrap();
     }
 
-    #[brontes_macros::test]
+    #[reaper_eth_engine_macros::test]
     async fn test_curve_base_remove_liquidity_imbalanced() {
         let classifier_utils = ClassifierTestUtils::new().await;
         classifier_utils.ensure_protocol(
@@ -142,7 +142,7 @@ mod tests {
             .unwrap();
     }
 
-    #[brontes_macros::test]
+    #[reaper_eth_engine_macros::test]
     async fn test_curve_base_remove_liquidity_one() {
         let classifier_utils = ClassifierTestUtils::new().await;
         classifier_utils.ensure_protocol(

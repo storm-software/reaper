@@ -1,6 +1,6 @@
 use alloy_primitives::Address;
-use brontes_macros::discovery_impl;
-use brontes_pricing::Protocol;
+use reaper_eth_engine_macros::discovery_impl;
+use reaper_eth_engine_pricing::Protocol;
 
 // Balancer V1 pool factory. See balancer pool lifecycle:
 // https://balancer.gitbook.io/balancer/core-concepts/protocol/pool-lifecycle
@@ -35,11 +35,11 @@ discovery_impl!(
 #[cfg(test)]
 mod tests {
     use alloy_primitives::{hex, Address, B256};
-    use brontes_types::{normalized_actions::pool::NormalizedNewPool, Protocol};
+    use reaper_eth_engine_types::{normalized_actions::pool::NormalizedNewPool, Protocol};
 
     use crate::test_utils::ClassifierTestUtils;
 
-    #[brontes_macros::test]
+    #[reaper_eth_engine_macros::test]
     async fn test_balancer_v1_discovery() {
         let utils = ClassifierTestUtils::new().await;
         let tx =

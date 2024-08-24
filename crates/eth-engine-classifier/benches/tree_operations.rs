@@ -1,8 +1,8 @@
 use std::str::FromStr;
 
 use alloy_primitives::B256;
-use brontes_classifier::test_utils::ClassifierBenchUtils;
-use brontes_types::{normalized_actions::Action, TreeSearchBuilder};
+use reaper_eth_engine_classifier::test_utils::ClassifierBenchUtils;
+use reaper_eth_engine_types::{normalized_actions::Action, TreeSearchBuilder};
 use criterion::{criterion_group, Criterion};
 
 fn bench_collect_tx(c: &mut Criterion) {

@@ -1,9 +1,9 @@
 use std::{cmp::min, sync::Arc};
 
 use alloy_primitives::{Log, U256};
-use brontes_core::missing_token_info::load_missing_token_info;
-use brontes_pricing::types::PoolUpdate;
-use brontes_types::{
+use reaper_eth_engine_core::missing_token_info::load_missing_token_info;
+use reaper_eth_engine_pricing::types::PoolUpdate;
+use reaper_eth_engine_types::{
     normalized_actions::{
         pool::NormalizedNewPool, MultiCallFrameClassification, MultiFrameRequest, NormalizedAction,
         NormalizedEthTransfer, NormalizedTransfer,
@@ -15,9 +15,9 @@ use malachite::{num::basic::traits::Zero, Rational};
 
 mod tree_pruning;
 pub(crate) mod utils;
-use brontes_database::libmdbx::{DBWriter, LibmdbxReader};
-use brontes_pricing::types::DexPriceMsg;
-use brontes_types::{
+use reaper_eth_engine_database::libmdbx::{DBWriter, LibmdbxReader};
+use reaper_eth_engine_pricing::types::DexPriceMsg;
+use reaper_eth_engine_types::{
     normalized_actions::{Action, SelfdestructWithIndex},
     structured_trace::{TraceActions, TransactionTraceWithLogs, TxTrace},
     traits::TracingProvider,
@@ -481,7 +481,7 @@ impl<'db, T: TracingProvider, DB: LibmdbxReader + DBWriter> Classifier<'db, T, D
 
                 // Return the adjusted transfer as an action
                 Some((
-                    vec![DexPriceMsg::Update(brontes_pricing::types::PoolUpdate {
+                    vec![DexPriceMsg::Update(reaper_eth_engine_pricing::types::PoolUpdate {
                         block,
                         tx_idx,
                         logs: vec![],
@@ -510,7 +510,7 @@ impl<'db, T: TracingProvider, DB: LibmdbxReader + DBWriter> Classifier<'db, T, D
                         };
 
                         return Some((
-                            vec![DexPriceMsg::Update(brontes_pricing::types::PoolUpdate {
+                            vec![DexPriceMsg::Update(reaper_eth_engine_pricing::types::PoolUpdate {
                                 block,
                                 tx_idx,
                                 logs: vec![],
@@ -553,7 +553,7 @@ impl<'db, T: TracingProvider, DB: LibmdbxReader + DBWriter> Classifier<'db, T, D
         let created_addr = trace.get_create_output();
 
         if created_addr == Address::ZERO {
-            tracing::error!(target: "brontes_classifier::discovery", "created address is zero address");
+            tracing::error!(target: "reaper_eth_engine_classifier::discovery", "created address is zero address");
             return (vec![], vec![Action::Unclassified(trace)])
         }
 
@@ -574,7 +574,7 @@ impl<'db, T: TracingProvider, DB: LibmdbxReader + DBWriter> Classifier<'db, T, D
                 head.get_all_parent_nodes_for_discovery(&mut all_nodes, start_index, trace_index);
 
                 trace!(
-                    target: "brontes_classifier::discovery",
+                    target: "reaper_eth_engine_classifier::discovery",
                     "Found {} parent nodes for created address: {}, start index: {}, end index: {}",
                     all_nodes.len(),
                     created_addr,
@@ -584,7 +584,7 @@ impl<'db, T: TracingProvider, DB: LibmdbxReader + DBWriter> Classifier<'db, T, D
             }
             None => {
                 trace!(
-                    target: "brontes_classifier::discovery",
+                    target: "reaper_eth_engine_classifier::discovery",
                     "No root head found for trace index: {}",
                     trace_index
                 );
@@ -601,7 +601,7 @@ impl<'db, T: TracingProvider, DB: LibmdbxReader + DBWriter> Classifier<'db, T, D
 
         if search_data.is_empty() {
             trace!(
-                target: "brontes_classifier::discovery",
+                target: "reaper_eth_engine_classifier::discovery",
                 "No parent calldata found for created address: {}",
                 created_addr
             );
@@ -616,7 +616,7 @@ impl<'db, T: TracingProvider, DB: LibmdbxReader + DBWriter> Classifier<'db, T, D
                 // insert the pool returning if it has token values.
                 .map(|pool| async {
                     trace!(
-                        target: "brontes_classifier::discovery",
+                        target: "reaper_eth_engine_classifier::discovery",
                         "Discovered new {} pool:
                         \nAddress:{}
                         ",

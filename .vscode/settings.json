@@ -30,6 +30,7 @@
     "crates\\eth-engine-core\\Cargo.toml",
     "crates\\eth-engine-relay-api\\Cargo.toml",
     "crates\\eth-engine-types\\Cargo.toml",
+    "crates\\eth-engine-database\\Cargo.toml",
     "crates\\eth-engine-pricing\\Cargo.toml",
     "crates\\eth-engine-classifier\\Cargo.toml",
     "crates\\aws\\Cargo.toml",

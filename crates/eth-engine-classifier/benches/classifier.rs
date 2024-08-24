@@ -1,4 +1,4 @@
-use brontes_classifier::test_utils::ClassifierBenchUtils;
+use reaper_eth_engine_classifier::test_utils::ClassifierBenchUtils;
 use criterion::{criterion_group, criterion_main, Criterion};
 use tree_operations::tree_operations;
 
