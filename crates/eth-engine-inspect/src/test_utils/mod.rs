@@ -1,7 +1,7 @@
 //! This module provides testing utilities and fixtures for the
-//! `brontes-inspect` crate. It includes support for setting up test scenarios,
-//! running inspectors with specific configurations, and validating the outcomes
-//! against expected results.
+//! `reaper-eth-engine-inspect` crate. It includes support for setting up test
+//! scenarios, running inspectors with specific configurations, and validating
+//! the outcomes against expected results.
 //!
 //! ## Modules
 //!

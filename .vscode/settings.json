@@ -27,6 +27,7 @@
     "crates\\eth-engine-tracing\\Cargo.toml",
     "crates\\eth-engine-metrics\\Cargo.toml",
     "crates\\eth-engine-inspect\\Cargo.toml",
+    "crates\\eth-engine-core\\Cargo.toml",
     "crates\\eth-engine-relay-api\\Cargo.toml",
     "crates\\eth-engine-types\\Cargo.toml",
     "crates\\aws\\Cargo.toml",

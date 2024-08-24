@@ -1,6 +1,7 @@
-//! The `composer` module in `brontes-inspect` specializes in analyzing and
-//! processing MEV data. Its primary functions include composing complex MEV
-//! types from simpler ones and deduplicating overlapping MEV occurrences.
+//! The `composer` module in `reaper-eth-engine-inspect` specializes in
+//! analyzing and processing MEV data. Its primary functions include composing
+//! complex MEV types from simpler ones and deduplicating overlapping MEV
+//! occurrences.
 //!
 //! Leveraging the concepts of MEV composability and precedence, this module
 //! aims to provide a structured and insightful representation of MEV activities

@@ -1,5 +1,5 @@
 //! Provides a set of utilities and helpers for testing inspectors within the
-//! `brontes-inspect` crate. This includes functions for creating transaction
+//! `reaper-eth-engine-inspect` crate. This includes functions for creating transaction
 //! trees, applying pricing information, and running inspectors with various
 //! configurations to assert expected MEV (Miner Extractable Value) outcomes.
 //!

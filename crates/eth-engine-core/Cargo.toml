@@ -1,0 +1,105 @@
+[package]
+name = "reaper-eth-engine-core"
+description = "A core Etherium trading crate containing schema definitions and validation logic."
+version = "0.0.1"
+publish = true
+edition = { workspace = true }
+repository = { workspace = true }
+authors = { workspace = true }
+license = { workspace = true }
+categories = { workspace = true }
+keywords = { workspace = true }
+homepage = { workspace = true }
+documentation = "https://docs.rs/reaper-eth-engine-core"
+readme = "./README.md"
+
+[[bench]]
+name = "parsing"
+harness = false
+
+[dependencies]
+reaper-eth-engine-types.workspace = true
+reaper-eth-engine-metrics.workspace = true
+reaper-eth-engine-tracing.workspace = true
+reaper-eth-engine-database.workspace = true
+reaper-eth-engine-reth-tracing.workspace = true
+
+# Reth
+reth-tasks.workspace = true
+reth-rpc.workspace = true
+reth-rpc-api.workspace = true
+reth-rpc-types.workspace = true
+reth-primitives.workspace = true
+reth-provider.workspace = true
+reth-transaction-pool.workspace = true
+reth-network-api.workspace = true
+reth-db.workspace = true
+reth-blockchain-tree.workspace = true
+reth-beacon-consensus.workspace = true
+reth-interfaces.workspace = true
+reth-metrics.workspace = true
+ruint = { workspace = true, features = ["primitive-types", "rlp"] }
+once_cell.workspace = true
+
+# async
+
+tokio = { workspace = true, features = ["full", "tracing"] }
+futures.workspace = true
+async-trait.workspace = true
+malachite.workspace = true
+# alloy
+alloy-sol-types.workspace = true
+alloy-sol-macro.workspace = true
+alloy-primitives.workspace = true
+alloy-json-abi.workspace = true
+alloy-dyn-abi = { workspace = true, features = ["default"] }
+alloy-provider.workspace = true
+alloy-transport-http.workspace = true
+alloy-rpc-types = { workspace = true, features = ["jsonrpsee-types"] }
+
+# Serde
+serde.workspace = true
+serde_json.workspace = true
+
+# error handling
+eyre.workspace = true
+thiserror.workspace = true
+
+# web
+reqwest = { workspace = true, features = ["json"] }
+
+# tracing
+tracing = "0.1.37"
+tracing-subscriber.workspace = true
+colored.workspace = true
+
+# misc
+phf.workspace = true
+lazy_static.workspace = true
+auto_impl.workspace = true
+dotenv.workspace = true
+itertools.workspace = true
+indicatif.workspace = true
+
+[dev-dependencies]
+serial_test.workspace = true
+reaper-eth-engine-core = { workspace = true, features = ["tests"] }
+reaper-eth-engine-classifier = { workspace = true, features = ["tests"] }
+dotenv.workspace = true
+tokio.workspace = true
+reaper-eth-engine-reth-tracing.workspace = true
+criterion = { version = "0.5", features = ["async", "async_tokio"] }
+
+[features]
+default = []
+dyn-decode = []
+tests = []
+local-reth = [
+    "reaper-eth-engine-types/local-reth",
+    "reaper-eth-engine-reth-tracing/local-reth",
+    "reaper-eth-engine-database/local-reth",
+]
+local-clickhouse = [
+    "reaper-eth-engine-database/local-clickhouse",
+    "reaper-eth-engine-reth-tracing/local-clickhouse",
+]
