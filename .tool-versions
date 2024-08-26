@@ -1,2 +1,5 @@
+nodejs 20.14.0
+rust nightly
+zig 0.13.0
 terragrunt 0.63.6
 opentofu 1.8.0
