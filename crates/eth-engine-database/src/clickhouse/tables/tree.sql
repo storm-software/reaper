@@ -12,7 +12,7 @@ CREATE TABLE reaper.tree ON CLUSTER eth_cluster0
     `trace_nodes.action` Array(Nullable(String)),
     `run_id` UInt64
 )
-ENGINE = ReplicatedReplacingMergeTree('/clickhouse/eth_cluster0/tables/all/reaper_eth_engine/tree', '{replica}', `run_id`)
+ENGINE = ReplicatedReplacingMergeTree('/clickhouse/eth_cluster0/tables/all/reaper/tree', '{replica}', `run_id`)
 PRIMARY KEY (`block_number`, `tx_hash`)
 ORDER BY (`block_number`, `tx_hash`)
 SETTINGS index_granularity = 8192, parts_to_throw_insert = 10000

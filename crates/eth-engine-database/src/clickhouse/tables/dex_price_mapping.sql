@@ -5,6 +5,6 @@ CREATE TABLE reaper.dex_price_mapping ON CLUSTER eth_cluster0
     `quote` Array(Tuple(Tuple(String, String), Tuple(Tuple(Array(UInt64), Array(UInt64)), Tuple(Array(UInt64), Array(UInt64)), Tuple(String, String), bool))),
     `last_updated` UInt64 DEFAULT now()
 )
-ENGINE = ReplicatedReplacingMergeTree('/clickhouse/eth_cluster0/tables/all/reaper_eth_engine/dex_price_mapping', '{replica}', `last_updated`)
+ENGINE = ReplicatedReplacingMergeTree('/clickhouse/eth_cluster0/tables/all/reaper/dex_price_mapping', '{replica}', `last_updated`)
 PRIMARY KEY (`block_number`, `tx_idx`)
 ORDER BY(`block_number`, `tx_idx`)
