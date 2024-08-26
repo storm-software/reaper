@@ -6,6 +6,9 @@ edition = "2021"
 description = "A Telegram bot used by Storm Software to handle Ethereum notifications."
 
 [dependencies]
+reaper-aws = { path = "../../crates/aws" }
+reaper-eth = { path = "../../crates/eth" }
+
 aws-config = { workspace = true, features = ["behavior-version-latest"] }
 chrono.workspace = true
 lambda_http = "0.13"
@@ -29,8 +32,6 @@ teloxide = { version = "0.13", features = [
 mime = "0.3.17"
 regex = "1.10"
 aws-sdk-sns = "1.39.0"
-reaper-aws.workspace = true
-reaper-eth.workspace = true
 anyhow.workspace = true
 thiserror.workspace = true
 dotenvy.workspace = true

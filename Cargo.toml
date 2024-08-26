@@ -8,9 +8,9 @@ members = [
     "crates/core",
     "crates/eth",
     "crates/eth-flashbots",
-    "crates/eth-engine-metrics",
     "crates/eth-engine-macros",
     "crates/eth-engine-tracing",
+    "crates/eth-engine-metrics",
     "crates/eth-engine-inspect",
     "crates/eth-engine-core",
     "crates/eth-engine-reth-tracing",
@@ -19,6 +19,7 @@ members = [
     "crates/eth-engine-database",
     "crates/eth-engine-libmdbx",
     "crates/eth-engine-pricing",
+    "crates/eth-engine-pricing/pricing-test-utils",
     "crates/eth-engine-classifier",
     "crates/aws",
     "apps/eth-engine",
@@ -67,24 +68,6 @@ keywords = [
 ]
 
 [workspace.dependencies]
-
-# Internal dependencies
-# reaper-core = { path = "./crates/core" }
-# reaper-eth = { path = "./crates/eth" }
-# reaper-eth-flashbots = { path = "./crates/eth-flashbots" }
-# reaper-eth-engine-metrics = { path = "./crates/eth-engine-metrics" }
-# reaper-eth-engine-macros = { path = "./crates/eth-engine-macros" }
-# reaper-eth-engine-tracing = { path = "./crates/eth-engine-tracing" }
-# reaper-eth-engine-inspect = { path = "./crates/eth-engine-inspect" }
-# reaper-eth-engine-core = { path = "./crates/eth-engine-core" }
-# reaper-eth-engine-reth-tracing = { path = "./crates/eth-engine-reth-tracing" }
-# reaper-eth-engine-relay-api = { path = "./crates/eth-engine-relay-api" }
-# reaper-eth-engine-types = { path = "./crates/eth-engine-types" }
-# reaper-eth-engine-database = { path = "./crates/eth-engine-database" }
-# reaper-eth-engine-libmdbx = { path = "./crates/eth-engine-libmdbx" }
-# reaper-eth-engine-pricing = { path = "./crates/eth-engine-pricing" }
-# reaper-eth-engine-classifier = { path = "./crates/eth-engine-classifier" }
-# reaper-aws = { path = "./crates/aws" }
 
 # Reth
 reth-node-ethereum = { git = "https://github.com/paradigmxyz/reth", package = "reth-node-ethereum", rev = "ac29b4b" }

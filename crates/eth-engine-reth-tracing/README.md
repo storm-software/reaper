@@ -42,7 +42,6 @@ primarily written in <a href="https://www.rust-lang.org/" target="_blank">Rust</
 
 <!-- START doctoc -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-
 ## Table of Contents
 
 - [Reaper - Ethereum Engine Core Crate](#reaper---ethereum-engine-core-crate)

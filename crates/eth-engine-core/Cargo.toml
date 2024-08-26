@@ -21,8 +21,8 @@ harness = false
 reaper-eth-engine-types = { path = "../eth-engine-types" }
 reaper-eth-engine-metrics = { path = "../eth-engine-metrics" }
 reaper-eth-engine-tracing = { path = "../eth-engine-tracing" }
-reaper-eth-engine-database = { path = "../eth-engine-database" }
-reaper-eth-engine-reth-tracing = { path = "../eth-engine-reth-tracing" }
+# reaper-eth-engine-database = { path = "../eth-engine-database" }
+# reaper-eth-engine-reth-tracing = { path = "../eth-engine-reth-tracing" }
 
 # Reth
 reth-tasks.workspace = true
@@ -83,7 +83,6 @@ indicatif.workspace = true
 
 [dev-dependencies]
 serial_test.workspace = true
-reaper-eth-engine-core = { path = "../eth-engine-core", features = ["tests"] }
 reaper-eth-engine-classifier = { path = "../eth-engine-classifier", features = [
     "tests",
 ] }
@@ -98,12 +97,12 @@ dyn-decode = []
 tests = []
 local-reth = [
     "reaper-eth-engine-types/local-reth",
-    "reaper-eth-engine-reth-tracing/local-reth",
-    "reaper-eth-engine-database/local-reth",
+    # "reaper-eth-engine-reth-tracing/local-reth",
+    # "reaper-eth-engine-database/local-reth",
 ]
 local-clickhouse = [
-    "reaper-eth-engine-database/local-clickhouse",
-    "reaper-eth-engine-reth-tracing/local-clickhouse",
+    # "reaper-eth-engine-database/local-clickhouse",
+    # "reaper-eth-engine-reth-tracing/local-clickhouse",
 ]
 
 [lib]

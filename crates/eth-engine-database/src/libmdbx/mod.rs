@@ -2,14 +2,14 @@
 #![allow(private_bounds)]
 
 use std::{
-    ffi::c_int,
-    path::Path,
-    time::{Duration, Instant},
+  ffi::c_int,
+  path::Path,
+  time::{Duration, Instant},
 };
 pub mod db_utils;
 mod env;
-pub use reaper_eth_engine_types::db::traits::{DBWriter, LibmdbxReader};
 pub use db_utils::*;
+pub use reaper_eth_engine_types::db::traits::{DBWriter, LibmdbxReader};
 pub mod cache_middleware;
 pub use cache_middleware::*;
 
@@ -18,28 +18,28 @@ pub mod libmdbx_writer;
 
 pub mod initialize;
 mod libmdbx_read_write;
-use reaper_eth_engine_libmdbx::{RO, RW};
 use env::{DatabaseArguments, DatabaseEnv, DatabaseEnvKind};
 use eyre::Context;
 use implementation::compressed_wrappers::tx::CompressedLibmdbxTx;
 use initialize::LibmdbxInitializer;
 pub use libmdbx_read_write::{
-    determine_eth_prices, LibmdbxInit, LibmdbxReadWriter, StateToInitialize,
+  determine_eth_prices, LibmdbxInit, LibmdbxReadWriter, StateToInitialize,
 };
+use reaper_eth_engine_libmdbx::{RO, RW};
 use reth_db::{
-    is_database_empty,
-    models::client_version::ClientVersion,
-    transaction::DbTx,
-    version::{check_db_version_file, create_db_version_file, DatabaseVersionError},
-    DatabaseError,
+  is_database_empty,
+  models::client_version::ClientVersion,
+  transaction::DbTx,
+  version::{check_db_version_file, create_db_version_file, DatabaseVersionError},
+  DatabaseError,
 };
 use reth_interfaces::db::LogLevel;
 use tables::*;
 use tracing::info;
 
 use self::{
-    cursor::CompressedCursor,
-    types::{CompressedTable, LibmdbxData},
+  cursor::CompressedCursor,
+  types::{CompressedTable, LibmdbxData},
 };
 
 pub mod implementation;
@@ -58,183 +58,182 @@ pub struct Libmdbx(DatabaseEnv);
 
 #[inline]
 pub(crate) fn mdbx_result(err_code: c_int) -> eyre::Result<bool> {
-    match err_code {
-        reth_mdbx_sys::MDBX_SUCCESS => Ok(false),
-        reth_mdbx_sys::MDBX_RESULT_TRUE => Ok(true),
-        _ => Err(eyre::eyre!("shit no good")),
-    }
+  match err_code {
+    reth_mdbx_sys::MDBX_SUCCESS => Ok(false),
+    reth_mdbx_sys::MDBX_RESULT_TRUE => Ok(true),
+    _ => Err(eyre::eyre!("shit no good")),
+  }
 }
 
 impl Libmdbx {
-    /// Opens up an existing database or creates a new one at the specified
-    /// path. Creates tables if necessary. Opens in read/write mode.
-    pub fn init_db<P: AsRef<Path>>(path: P, log_level: Option<LogLevel>) -> eyre::Result<Self> {
-        let rpath = path.as_ref();
-        if is_database_empty(rpath) {
-            std::fs::create_dir_all(rpath).wrap_err_with(|| {
-                format!("Could not create database directory {}", rpath.display())
-            })?;
-            // create_db_version_file(rpath)?;
-        } else {
-            match check_db_version_file(rpath) {
-                Ok(_) => (),
-                Err(DatabaseVersionError::MissingFile) => create_db_version_file(rpath)?,
-                Err(err) => return Err(err.into()),
-            }
+  /// Opens up an existing database or creates a new one at the specified
+  /// path. Creates tables if necessary. Opens in read/write mode.
+  pub fn init_db<P: AsRef<Path>>(path: P, log_level: Option<LogLevel>) -> eyre::Result<Self> {
+    let rpath = path.as_ref();
+    if is_database_empty(rpath) {
+      std::fs::create_dir_all(rpath)
+        .wrap_err_with(|| format!("Could not create database directory {}", rpath.display()))?;
+      // create_db_version_file(rpath)?;
+    } else {
+      match check_db_version_file(rpath) {
+        Ok(_) => (),
+        Err(DatabaseVersionError::MissingFile) => create_db_version_file(rpath)?,
+        Err(err) => return Err(err.into()),
+      }
+    }
+
+    let db = DatabaseEnv::open(
+      rpath,
+      DatabaseEnvKind::RW,
+      DatabaseArguments::new(ClientVersion::default()).with_log_level(log_level),
+    )?;
+
+    db.with_raw_env_ptr(|ptr| unsafe {
+      mdbx_result(reth_mdbx_sys::mdbx_env_set_option(
+        ptr,
+        reth_mdbx_sys::MDBX_opt_sync_bytes,
+        // 2 gb
+        GIGABYTE * 2,
+      ))
+    })?;
+
+    let this = Self(db);
+    this.create_tables()?;
+
+    Ok(this)
+  }
+
+  /// Creates all the defined tables, opens if already created
+  fn create_tables(&self) -> Result<(), DatabaseError> {
+    let tx = CompressedLibmdbxTx::new_rw_tx(&self.0)?;
+
+    for table in Tables::ALL {
+      tx.0.create_table(&table)?;
+    }
+
+    tx.commit()?;
+
+    Ok(())
+  }
+
+  /// Clears a table in the database
+  pub fn clear_table<T>(&self) -> eyre::Result<()>
+  where
+    T: CompressedTable,
+    T::Value: From<T::DecompressedValue> + Into<T::DecompressedValue>,
+  {
+    info!(target: "reaper-eth-engine::init", "{} -- Clearing Table", T::NAME);
+    let tx = self.rw_tx()?;
+    tx.clear::<T>()?;
+    tx.commit()?;
+
+    Ok(())
+  }
+
+  /// writes to a table
+  pub fn write_table<T, D>(&self, entries: &[D]) -> Result<(), DatabaseError>
+  where
+    T: CompressedTable,
+    T::Value: From<T::DecompressedValue> + Into<T::DecompressedValue>,
+    D: LibmdbxData<T>,
+  {
+    self.update_db(|tx| {
+      entries
+        .iter()
+        .map(|entry| {
+          let e = entry.into_key_val();
+          tx.put::<T>(e.key, e.value)
+        })
+        .collect::<Result<Vec<_>, DatabaseError>>()?;
+      Ok::<(), DatabaseError>(())
+    })??;
+
+    Ok(())
+  }
+
+  /// Takes a function and passes a RW transaction
+  /// makes sure it's committed at the end of execution
+  pub fn update_db<F, R>(&self, f: F) -> Result<R, DatabaseError>
+  where
+    F: FnOnce(&CompressedLibmdbxTx<RW>) -> R,
+  {
+    let tx = self.rw_tx()?;
+
+    let res = f(&tx);
+    tx.commit()?;
+
+    Ok(res)
+  }
+
+  /// Used when exporting db to parquet, automatically will deal with
+  /// longstanding writes.
+  pub fn export_db<F, R, T, I>(
+    &self,
+    mut start: Option<T::Key>,
+    mut i: I,
+    f: F,
+  ) -> eyre::Result<Vec<R>>
+  where
+    T: CompressedTable,
+    T::Key: Clone,
+    T::Value: From<T::DecompressedValue> + Into<T::DecompressedValue>,
+    I: FnMut(Option<T::Key>, &CompressedLibmdbxTx<RO>) -> eyre::Result<CompressedCursor<T, RO>>,
+    F: Fn(&mut CompressedCursor<T, RO>) -> eyre::Result<Option<R>>,
+  {
+    let mut res = Vec::new();
+
+    loop {
+      let time = Instant::now();
+      let tx = self.ro_tx()?;
+      let mut cur = i(start.clone(), &tx)?;
+      while time.elapsed() < Duration::from_secs(30) {
+        let call_res = f(&mut cur)?;
+        match call_res {
+          Some(val) => res.push(val),
+          None => return Ok(res),
         }
-
-        let db = DatabaseEnv::open(
-            rpath,
-            DatabaseEnvKind::RW,
-            DatabaseArguments::new(ClientVersion::default()).with_log_level(log_level),
-        )?;
-
-        db.with_raw_env_ptr(|ptr| unsafe {
-            mdbx_result(reth_mdbx_sys::mdbx_env_set_option(
-                ptr,
-                reth_mdbx_sys::MDBX_opt_sync_bytes,
-                // 2 gb
-                GIGABYTE * 2,
-            ))
-        })?;
-
-        let this = Self(db);
-        this.create_tables()?;
-
-        Ok(this)
+      }
+      if let Some(key) = cur.prev()? {
+        start = Some(key.0);
+      } else {
+        return Ok(res)
+      }
+      tracing::info!("recycling tx on long lived read");
+      tx.commit()?;
     }
+  }
 
-    /// Creates all the defined tables, opens if already created
-    fn create_tables(&self) -> Result<(), DatabaseError> {
-        let tx = CompressedLibmdbxTx::new_rw_tx(&self.0)?;
+  pub fn view_db<F, R>(&self, f: F) -> eyre::Result<R>
+  where
+    F: FnOnce(&CompressedLibmdbxTx<RO>) -> eyre::Result<R>,
+  {
+    let tx = self.ro_tx()?;
+    let res = f(&tx);
 
-        for table in Tables::ALL {
-            tx.0.create_table(&table)?;
-        }
+    tx.commit()?;
+    res
+  }
 
-        tx.commit()?;
+  /// returns a RO transaction
+  fn ro_tx(&self) -> eyre::Result<CompressedLibmdbxTx<RO>> {
+    let tx = CompressedLibmdbxTx::new_ro_tx(&self.0)?;
 
-        Ok(())
-    }
+    Ok(tx)
+  }
 
-    /// Clears a table in the database
-    pub fn clear_table<T>(&self) -> eyre::Result<()>
-    where
-        T: CompressedTable,
-        T::Value: From<T::DecompressedValue> + Into<T::DecompressedValue>,
-    {
-        info!(target: "brontes::init", "{} -- Clearing Table", T::NAME);
-        let tx = self.rw_tx()?;
-        tx.clear::<T>()?;
-        tx.commit()?;
+  fn no_timeout_ro_tx(&self) -> eyre::Result<CompressedLibmdbxTx<RO>> {
+    let mut tx = CompressedLibmdbxTx::new_ro_tx(&self.0)?;
+    tx.0.disable_long_read_transaction_safety();
 
-        Ok(())
-    }
+    Ok(tx)
+  }
 
-    /// writes to a table
-    pub fn write_table<T, D>(&self, entries: &[D]) -> Result<(), DatabaseError>
-    where
-        T: CompressedTable,
-        T::Value: From<T::DecompressedValue> + Into<T::DecompressedValue>,
-        D: LibmdbxData<T>,
-    {
-        self.update_db(|tx| {
-            entries
-                .iter()
-                .map(|entry| {
-                    let e = entry.into_key_val();
-                    tx.put::<T>(e.key, e.value)
-                })
-                .collect::<Result<Vec<_>, DatabaseError>>()?;
-            Ok::<(), DatabaseError>(())
-        })??;
+  /// returns a RW transaction
+  fn rw_tx(&self) -> Result<CompressedLibmdbxTx<RW>, DatabaseError> {
+    let tx = CompressedLibmdbxTx::new_rw_tx(&self.0)?;
 
-        Ok(())
-    }
-
-    /// Takes a function and passes a RW transaction
-    /// makes sure it's committed at the end of execution
-    pub fn update_db<F, R>(&self, f: F) -> Result<R, DatabaseError>
-    where
-        F: FnOnce(&CompressedLibmdbxTx<RW>) -> R,
-    {
-        let tx = self.rw_tx()?;
-
-        let res = f(&tx);
-        tx.commit()?;
-
-        Ok(res)
-    }
-
-    /// Used when exporting db to parquet, automatically will deal with
-    /// longstanding writes.
-    pub fn export_db<F, R, T, I>(
-        &self,
-        mut start: Option<T::Key>,
-        mut i: I,
-        f: F,
-    ) -> eyre::Result<Vec<R>>
-    where
-        T: CompressedTable,
-        T::Key: Clone,
-        T::Value: From<T::DecompressedValue> + Into<T::DecompressedValue>,
-        I: FnMut(Option<T::Key>, &CompressedLibmdbxTx<RO>) -> eyre::Result<CompressedCursor<T, RO>>,
-        F: Fn(&mut CompressedCursor<T, RO>) -> eyre::Result<Option<R>>,
-    {
-        let mut res = Vec::new();
-
-        loop {
-            let time = Instant::now();
-            let tx = self.ro_tx()?;
-            let mut cur = i(start.clone(), &tx)?;
-            while time.elapsed() < Duration::from_secs(30) {
-                let call_res = f(&mut cur)?;
-                match call_res {
-                    Some(val) => res.push(val),
-                    None => return Ok(res),
-                }
-            }
-            if let Some(key) = cur.prev()? {
-                start = Some(key.0);
-            } else {
-                return Ok(res)
-            }
-            tracing::info!("recycling tx on long lived read");
-            tx.commit()?;
-        }
-    }
-
-    pub fn view_db<F, R>(&self, f: F) -> eyre::Result<R>
-    where
-        F: FnOnce(&CompressedLibmdbxTx<RO>) -> eyre::Result<R>,
-    {
-        let tx = self.ro_tx()?;
-        let res = f(&tx);
-
-        tx.commit()?;
-        res
-    }
-
-    /// returns a RO transaction
-    fn ro_tx(&self) -> eyre::Result<CompressedLibmdbxTx<RO>> {
-        let tx = CompressedLibmdbxTx::new_ro_tx(&self.0)?;
-
-        Ok(tx)
-    }
-
-    fn no_timeout_ro_tx(&self) -> eyre::Result<CompressedLibmdbxTx<RO>> {
-        let mut tx = CompressedLibmdbxTx::new_ro_tx(&self.0)?;
-        tx.0.disable_long_read_transaction_safety();
-
-        Ok(tx)
-    }
-
-    /// returns a RW transaction
-    fn rw_tx(&self) -> Result<CompressedLibmdbxTx<RW>, DatabaseError> {
-        let tx = CompressedLibmdbxTx::new_rw_tx(&self.0)?;
-
-        Ok(tx)
-    }
+    Ok(tx)
+  }
 }
 
 /*

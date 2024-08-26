@@ -145,7 +145,7 @@ impl<TP: TracingProvider, CH: ClickhouseHandle> LibmdbxInitializer<TP, CH> {
         not.notified().await;
       }
       Err(e) => {
-        error!(target: "brontes::init", error=%e, "error initing {}", T::NAME)
+        error!(target: "reaper-eth-engine::init", error=%e, "error initing {}", T::NAME)
       }
     }
 
@@ -211,7 +211,7 @@ impl<TP: TracingProvider, CH: ClickhouseHandle> LibmdbxInitializer<TP, CH> {
             not.notified().await;
           }
           Err(e) => {
-            info!(target: "brontes::init", "{} -- Error Writing -- {:?}", T::NAME, e);
+            info!(target: "reaper-eth-engine::init", "{} -- Error Writing -- {:?}", T::NAME, e);
             metrics.increment_query_errors(T::NAME, &e);
             return Ok::<(), eyre::Report>(())
           }
@@ -268,7 +268,7 @@ impl<TP: TracingProvider, CH: ClickhouseHandle> LibmdbxInitializer<TP, CH> {
             not.notified().await;
           }
           Err(e) => {
-            info!(target: "brontes::init", "{} -- Error Writing -- {:?}", T::NAME, e);
+            info!(target: "reaper-eth-engine::init", "{} -- Error Writing -- {:?}", T::NAME, e);
             return Ok::<(), eyre::Report>(())
           }
         }
@@ -323,12 +323,12 @@ impl<TP: TracingProvider, CH: ClickhouseHandle> LibmdbxInitializer<TP, CH> {
 
     let Ok(config) = toml::from_str::<tomlTable>(&{
       let Ok(path) = std::fs::read_to_string(workspace_dir) else {
-        tracing::error!(target: "brontes::init", "failed to read classifier_config");
+        tracing::error!(target: "reaper-eth-engine::init", "failed to read classifier_config");
         return;
       };
       path
     }) else {
-      tracing::error!(target: "brontes::init", "failed to load toml");
+      tracing::error!(target: "reaper-eth-engine::init", "failed to load toml");
       return;
     };
 

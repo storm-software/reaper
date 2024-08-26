@@ -24,7 +24,7 @@ reaper-eth-engine-metrics = { path = "../eth-engine-metrics" }
 reaper-eth-engine-database = { path = "../eth-engine-database" }
 reaper-eth-engine-pricing = { path = "../eth-engine-pricing" }
 reaper-eth-engine-core = { path = "../eth-engine-core" }
-reaper-eth-engine-reth-tracing = { wpath = "../eth-engine-reth-tracing", optional = true }
+reaper-eth-engine-reth-tracing = { path = "../eth-engine-reth-tracing", optional = true }
 
 # async
 tokio.workspace = true

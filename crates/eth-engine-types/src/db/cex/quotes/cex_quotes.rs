@@ -3,7 +3,7 @@
 //! CeFi - Defi arbitrage.
 //!
 //! ## Data Flow and Storage
-//! - Data is initially queried from a ClickHouse database using `brontes init`.
+//! - Data is initially queried from a ClickHouse database using `reaper_eth_engine init`.
 //! - The queried data gets deserialized into `CexPriceMap` struct.
 //! - It is then stored in our local libmdbx database in the `cex_price_map`
 //!   table.

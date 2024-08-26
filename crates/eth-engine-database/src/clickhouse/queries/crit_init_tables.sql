@@ -7,7 +7,7 @@ with
     WHERE length(pools.tokens) >= 2
   ),
   tokens as (
-    select cast(count(distinct address), 'UInt64') as tokens from brontes.token_info
+    select cast(count(distinct address), 'UInt64') as tokens from reaper_eth_engine.token_info
   ),
   builder as (
     select cast(count(), 'UInt64') as builder from reaper_eth_engine_api.builder_info

@@ -104,7 +104,7 @@ impl Clickhouse {
   pub async fn get_and_inc_run_id(&self) -> eyre::Result<u64> {
     let id = (self
       .client
-      .query_one::<u64, _>("select max(run_id) from brontes.run_id", &())
+      .query_one::<u64, _>("select max(run_id) from reaper_eth_engine.run_id", &())
       .await?
       + 1)
       .into();
@@ -1133,7 +1133,7 @@ mod tests {
       .await
       .unwrap();
 
-    let query = "SELECT * FROM brontes.dex_price_mapping";
+    let query = "SELECT * FROM reaper_eth_engine.dex_price_mapping";
     let queried: DexQuotesWithBlockNumber = db.query_one(query, &()).await.unwrap();
 
     assert_eq!(queried, case0);

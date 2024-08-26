@@ -13,7 +13,7 @@ ethers.workspace = true
 reqwest.workspace = true
 serde_json.workspace = true
 url = "2.5.2"
-reaper-eth.workspace = true
+reaper-eth = { path = "../../crates/eth" }
 eyre = { version = "0.6" }
 
 # [lib]

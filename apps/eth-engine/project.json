@@ -1,0 +1,51 @@
+{
+  "name": "reaper-eth-engine",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "sourceRoot": "apps/eth-engine/src",
+  "targets": {
+    "build": {
+      "executor": "@monodon/rust:build",
+      "outputs": ["{options.target-dir}"],
+      "options": {
+        "target-dir": "dist/target/eth-engine"
+      },
+      "configurations": {
+        "prod": {
+          "profile": "prod"
+        }
+      }
+    },
+    "test": {
+      "executor": "@monodon/rust:test",
+      "outputs": ["{options.target-dir}"],
+      "options": {
+        "target-dir": "dist/target/eth-engine"
+      },
+      "configurations": {
+        "prod": {
+          "profile": "prod"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@monodon/rust:lint",
+      "outputs": ["{options.target-dir}"],
+      "options": {
+        "target-dir": "dist/target/eth-engine"
+      }
+    },
+    "run": {
+      "executor": "@monodon/rust:run",
+      "outputs": ["{options.target-dir}"],
+      "options": {
+        "target-dir": "dist/target/eth-engine"
+      },
+      "configurations": {
+        "prod": {
+          "profile": "prod"
+        }
+      }
+    }
+  }
+}

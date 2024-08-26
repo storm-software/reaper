@@ -31,7 +31,7 @@ use reaper_eth_engine_types::{
   pair::Pair,
   structured_trace::TxTrace,
   traits::TracingProvider,
-  BlockTree, ReaperEthEngineTaskExecutor, FastHashMap, UnboundedYapperReceiver,
+  BlockTree, FastHashMap, ReaperEthEngineTaskExecutor, UnboundedYapperReceiver,
 };
 use reth_db::table::{Compress, Encode};
 use reth_interfaces::db::LogLevel;
@@ -328,8 +328,8 @@ impl LibmdbxInit for LibmdbxReadWriter {
       .first()?
       .ok_or_else(|| {
         eyre::eyre!(
-          "no start block found. database most likely empty.\n run `brontes db download-snapshot \
-           <place-to-write-db>` in order to download the most recent db"
+          "no start block found. database most likely empty.\n run `reaper_eth_engine db \
+           download-snapshot <place-to-write-db>` in order to download the most recent db"
         )
       })?
       .0;
@@ -338,8 +338,8 @@ impl LibmdbxInit for LibmdbxReadWriter {
       .last()?
       .ok_or_else(|| {
         eyre::eyre!(
-          "no end block found. database most likely empty.\n run `brontes db download-snapshot \
-           <place-to-write-db>` in order to download the most recent db"
+          "no end block found. database most likely empty.\n run `reaper_eth_engine db \
+           download-snapshot <place-to-write-db>` in order to download the most recent db"
         )
       })?
       .0;

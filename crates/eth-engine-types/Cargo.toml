@@ -100,30 +100,30 @@ dotenvy.workspace = true
 tokio.workspace = true
 serial_test.workspace = true
 reaper-eth-engine-macros = { path = "../eth-engine-macros" }
-reaper-eth-engine-types = { path = "../eth-engine-types", features = [
-    "tests",
-    "test_pricing",
-] }
+# reaper-eth-engine-types = { path = "../eth-engine-types", features = [
+#     "tests",
+#     "test_pricing",
+# ] }
 reaper-eth-engine-classifier = { path = "../eth-engine-classifier", features = [
     "tests",
 ] }
-reaper-eth-engine-core = { path = "../eth-engine-core", features = ["tests"] }
-reaper-eth-engine-database = { path = "../eth-engine-database", features = [
-    "tests",
-] }
-reaper-eth-engine-reth-tracing = { path = "../eth-engine-reth-tracing" }
+# reaper-eth-engine-core = { path = "../eth-engine-core", features = ["tests"] }
+# reaper-eth-engine-database = { path = "../eth-engine-database", features = [
+#     "tests",
+# ] }
+# reaper-eth-engine-reth-tracing = { path = "../eth-engine-reth-tracing" }
 
 [features]
 tests = []
 test_pricing = []
 local-reth = [
-    "reaper-eth-engine-types/local-reth",
-    "reaper-eth-engine-reth-tracing/local-reth",
-    "reaper-eth-engine-database/local-reth",
+    # "reaper-eth-engine-types/local-reth",
+    # "reaper-eth-engine-reth-tracing/local-reth",
+    # "reaper-eth-engine-database/local-reth",
 ]
 local-clickhouse = [
-    "reaper-eth-engine-database/local-clickhouse",
-    "reaper-eth-engine-reth-tracing/local-clickhouse",
+    # "reaper-eth-engine-database/local-clickhouse",
+    # "reaper-eth-engine-reth-tracing/local-clickhouse",
 ]
 
 [lib]

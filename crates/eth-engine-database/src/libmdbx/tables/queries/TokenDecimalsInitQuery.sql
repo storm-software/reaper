@@ -1,4 +1,4 @@
-SELECT 
-    address, 
+SELECT
+    address,
     (decimals, symbol) AS info
-FROM brontes.token_info
+FROM reaper_eth_engine.token_info

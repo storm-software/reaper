@@ -85,7 +85,7 @@ criterion = { version = "0.5", features = [
 ], optional = true }
 
 [dev-dependencies]
-pricing-test-utils = { path = "./pricing-test-utils" }
+reaper-eth-engine-pricing-test-utils = { path = "./pricing-test-utils" }
 reaper-eth-engine-pricing = { path = "../eth-engine-pricing", features = [
     "tests",
 ] }
@@ -113,14 +113,14 @@ tests = ["criterion"]
 uni-v3-ticks = []
 local-reth = [
     "reaper-eth-engine-reth-tracing/local-reth",
-    "pricing-test-utils/local-reth",
+    "reaper-eth-engine-pricing-test-utils/local-reth",
     "reaper-eth-engine-types/local-reth",
     "reaper-eth-engine-core/local-reth",
     "reaper-eth-engine-classifier/local-reth",
     "reaper-eth-engine-database/local-reth",
 ]
 local-clickhouse = [
-    "pricing-test-utils/local-clickhouse",
+    "reaper-eth-engine-pricing-test-utils/local-clickhouse",
     "reaper-eth-engine-reth-tracing/local-clickhouse",
     "reaper-eth-engine-core/local-clickhouse",
     "reaper-eth-engine-classifier/local-clickhouse",

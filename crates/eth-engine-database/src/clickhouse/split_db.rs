@@ -237,7 +237,7 @@ impl Future for ClickhouseBuffered {
 
       while let Poll::Ready(Some(val)) = this.futs.poll_next_unpin(cx) {
         if let Err(e) = val {
-          tracing::error!(target: "brontes", "error writing to clickhouse {:?}", e);
+          tracing::error!(target: "reaper-eth-engine", "error writing to clickhouse {:?}", e);
         }
       }
 

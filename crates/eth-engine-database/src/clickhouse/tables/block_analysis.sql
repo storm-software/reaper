@@ -1,7 +1,7 @@
-CREATE TABLE brontes.block_analysis ON CLUSTER eth_cluster0  
+CREATE TABLE reaper_eth_engine.block_analysis ON CLUSTER eth_cluster0
 (
     `block_number` UInt64,
-    `eth_price` Float64, 
+    `eth_price` Float64,
 
     -- all
     `all_total_profit`                Float64,
@@ -440,9 +440,9 @@ CREATE TABLE brontes.block_analysis ON CLUSTER eth_cluster0
     `builder_address`        String,
     `proposer_profit_usd`    Nullable(Float64),
     `proposer_profit_eth`    Nullable(Float64),
-    
+
     `run_id` UInt64
-) 
-ENGINE = ReplicatedReplacingMergeTree('/clickhouse/eth_cluster0/tables/all/brontes/block_analysis', '{replica}', `run_id`)
+)
+ENGINE = ReplicatedReplacingMergeTree('/clickhouse/eth_cluster0/tables/all/reaper_eth_engine/block_analysis', '{replica}', `run_id`)
 PRIMARY KEY (`block_number`)
 ORDER BY (`block_number`)

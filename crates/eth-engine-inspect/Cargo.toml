@@ -1,5 +1,5 @@
 [package]
-name = "reaper-eth-inspect"
+name = "reaper-eth-engine-inspect"
 description = "A core Etherium trading crate containing schema definitions and validation logic."
 version = "0.0.1"
 publish = true
@@ -24,6 +24,7 @@ reaper-eth-engine-metrics = { path = "../eth-engine-metrics" }
 reaper-eth-engine-core = { path = "../eth-engine-core", optional = true }
 reaper-eth-engine-classifier = { path = "../eth-engine-classifier", optional = true }
 reaper-eth-engine-pricing = { path = "../eth-engine-pricing", optional = true }
+reaper-eth-engine-reth-tracing = { path = "../eth-engine-reth-tracing", optional = true }
 
 # database
 clickhouse.workspace = true
@@ -84,7 +85,6 @@ dotenvy.workspace = true
 serial_test.workspace = true
 reaper-eth-engine-classifier = { path = "../eth-engine-classifier" }
 reaper-eth-engine-core = { path = "../eth-engine-core" }
-reaper-eth-engine-inspect = { path = "../eth-engine-inspect" }
 reaper-eth-engine-pricing = { path = "../eth-engine-pricing" }
 reaper-eth-engine-macros = { path = "../eth-engine-macros" }
 tracing-subscriber.workspace = true
@@ -92,7 +92,7 @@ reth-db.workspace = true
 reaper-eth-engine-types = { path = "../eth-engine-types" }
 reaper-eth-engine-database = { path = "../eth-engine-database" }
 tokio.workspace = true
-reaper-reth-tracing = { path = "../reaper-reth-tracing" }
+reaper-eth-engine-reth-tracing = { path = "../eth-engine-reth-tracing" }
 criterion = { version = "0.5" }
 rand = "0.8.5"
 statrs = "0.16"
@@ -109,7 +109,7 @@ tests = [
 
 local-reth = [
     "reaper-eth-engine-core/local-reth",
-    "reth-tracing-ext/local-reth",
+    "reaper-eth-engine-reth-tracing/local-reth",
     "reaper-eth-engine-types/local-reth",
 ]
 
