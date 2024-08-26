@@ -32,6 +32,15 @@ runs:
     #     asdf install zig
     #   shell: bash
 
+    - name: Install Cargo Lambda
+      uses: jaxxstorm/action-install-gh-release@v1.9.0
+      with:
+        repo: cargo-lambda/cargo-lambda
+        # Note: make sure you are using a recent version of cargo-lambda (the one below isn't kept in sync with new releases)
+        tag: v1.3.0 # Remove this if you want to grab always the latest version
+        platform: linux # Other valid options: 'windows' or 'darwin'
+        # arch: aarch64 # Other valid options for linux: 'aarch64'
+
     - name: Restore cached npm dependencies
       id: cache-dependencies-restore
       uses: actions/cache/restore@v4
@@ -92,15 +101,6 @@ runs:
     #     # Note: make sure you are using a recent version of zig (the one below isn't kept in sync with new releases)
     #     zig-version: 0.13.0
 
-    - name: Install Cargo Lambda
-      uses: jaxxstorm/action-install-gh-release@v1.9.0
-      with:
-        repo: cargo-lambda/cargo-lambda
-        # Note: make sure you are using a recent version of cargo-lambda (the one below isn't kept in sync with new releases)
-        tag: v1.3.0 # Remove this if you want to grab always the latest version
-        platform: linux # Other valid options: 'windows' or 'darwin'
-        # arch: aarch64 # Other valid options for linux: 'aarch64'
-
-    - uses: Swatinem/rust-cache@v2
-      with:
-        key: "cargo-${{ hashFiles('**/Cargo.lock') }}-${{ hashFiles('.tool-versions') }}"
+    # - uses: Swatinem/rust-cache@v2
+    #   with:
+    #     key: "cargo-${{ hashFiles('**/Cargo.lock') }}-${{ hashFiles('.tool-versions') }}"

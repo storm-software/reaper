@@ -10,6 +10,11 @@ on:
     branches:
       - "main"
 
+env:
+  NX_BASE: ${{ github.event.before }}
+  NX_HEAD: ${{ github.sha }}
+  RUST_WITHOUT: rust-docs
+
 jobs:
   start:
     name: Started CI workflow
@@ -155,6 +160,7 @@ jobs:
         uses: nrwl/nx-set-shas@v4
         with:
           main-branch-name: main
+          error-on-no-successful-workflows: false
 
       - name: Run lint
         run: pnpm nx affected --target=lint --parallel=5 --exclude=docs-* --base=${{ env.NX_BASE }} --head=${{ env.NX_HEAD }}
@@ -202,6 +208,7 @@ jobs:
         uses: nrwl/nx-set-shas@v4
         with:
           main-branch-name: main
+          error-on-no-successful-workflows: false
 
       - name: Run build
         run: pnpm nx run-many --target=build --parallel=5 --configuration=prod --exclude=docs-*
