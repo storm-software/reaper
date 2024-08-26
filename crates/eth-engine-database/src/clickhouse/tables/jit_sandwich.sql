@@ -24,7 +24,7 @@ CREATE TABLE mev.jit_sandwich ON CLUSTER eth_cluster0
     ),
     `frontrun_gas_details` Nested(
         `tx_hash` String,
-        `coinbase_transfer` Nullable(UInt128), 
+        `coinbase_transfer` Nullable(UInt128),
         `priority_fee` UInt128,
         `gas_used` UInt128,
         `effective_gas_price` UInt128
@@ -42,7 +42,7 @@ CREATE TABLE mev.jit_sandwich ON CLUSTER eth_cluster0
     ),
     `victim_gas_details` Nested(
         `tx_hash` String,
-        `coinbase_transfer` Nullable(UInt128), 
+        `coinbase_transfer` Nullable(UInt128),
         `priority_fee` UInt128,
         `gas_used` UInt128,
         `effective_gas_price` UInt128
@@ -70,13 +70,13 @@ CREATE TABLE mev.jit_sandwich ON CLUSTER eth_cluster0
     ),
     `backrun_gas_details` Nested(
         `tx_hash` String,
-        `coinbase_transfer` Nullable(UInt128), 
+        `coinbase_transfer` Nullable(UInt128),
         `priority_fee` UInt128,
         `gas_used` UInt128,
         `effective_gas_price` UInt128
     ),
     `run_id` UInt64
-) 
+)
 ENGINE = ReplicatedReplacingMergeTree('/clickhouse/eth_cluster0/tables/all/mev/jit_sandwich', '{replica}', `run_id`)
 PRIMARY KEY (`block_number`, `frontrun_tx_hash`)
 ORDER BY (`block_number`, `frontrun_tx_hash` )
