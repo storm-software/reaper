@@ -2,7 +2,7 @@ use std::{pin::Pin, time::Instant};
 
 use alloy_primitives::Address;
 use dashmap::DashMap;
-use eth_engine_types::Protocol;
+use reaper_eth_engine_types::Protocol;
 use metrics::{Counter, Gauge, Histogram};
 use prometheus::IntCounterVec;
 
