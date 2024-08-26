@@ -1,4 +1,4 @@
-name: Release
+name: CI/CD
 
 on:
   workflow_dispatch:
@@ -11,15 +11,10 @@ on:
       - "main"
 
 jobs:
-  release:
-    name: Release repository
-    if: github.repository == 'storm-software/reaper' && github.ref == 'refs/heads/main'
+  start:
+    name: Started CI workflow
+    if: github.repository == 'storm-software/reaper' && github.event.pull_request.draft == false
     runs-on: ubuntu-latest
-    permissions:
-      actions: read
-      contents: write
-      id-token: write
-
     steps:
       - name: Send Slack notification - Deployment started
         uses: slackapi/slack-github-action@v1.26.0
@@ -84,14 +79,14 @@ jobs:
           TELEGRAM_TOKEN: ${{ secrets.STORM_BOT_TELEGRAM_TOKEN }}
           TELEGRAM_CHAT: ${{ secrets.STORM_BOT_TELEGRAM_NOTIFICATION_CHAT }}
 
-      # - name: Setup workspace
-      #   uses: storm-software/action-setup@main
-      #   with:
-      #     packageManager: pnpm
-      #     packageManagerVersion: 9.6.0
-      #     stormBot: ${{ env.STORM_BOT }}
-      #     stormBotGitHubToken: ${{ secrets.STORM_BOT_GITHUB_TOKEN }}
-
+  clippy:
+    name: Clippy validate
+    if: always() && !cancelled() && !contains(needs.*.result, 'failure') && github.event.pull_request.draft == false
+    needs:
+      - start
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
       - uses: actions/checkout@v4
         name: Checkout [Pull Request]
         if: ${{ github.event_name == 'pull_request' }}
@@ -116,16 +111,102 @@ jobs:
           storm_bot_private_key: ${{ secrets.STORM_BOT_PRIVATE_KEY }}
           storm_bot_passphrase: ${{ secrets.STORM_BOT_PASSPHRASE }}
 
-      - uses: nrwl/nx-set-shas@v4
+      - name: "run clippy"
+        run: cargo clippy --workspace --lib --examples
+        env:
+          RUSTFLAGS: -D warnings
+
+      # - name: "clippy all"
+      #   run: cargo clippy --workspace --lib --examples --tests --benches --all-features
+      #   env:
+      #     RUSTFLAGS: -D warnings
+
+  lint:
+    name: Lint validate
+    if: always() && !cancelled() && !contains(needs.*.result, 'failure') && github.event.pull_request.draft == false
+    needs:
+      - start
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        name: Checkout [Pull Request]
+        if: ${{ github.event_name == 'pull_request' }}
+        with:
+          # By default, PRs will be checked-out based on the Merge Commit, but we want the actual branch HEAD.
+          ref: ${{ github.event.pull_request.head.sha }}
+          # We need to fetch all branches and commits so that Nx affected has a base to compare against.
+          fetch-depth: 0
+          token: ${{ secrets.STORM_BOT_GITHUB_TOKEN }}
+
+      - uses: actions/checkout@v4
+        name: Checkout `main` branch
+        if: ${{ github.event_name != 'pull_request' }}
+        with:
+          # We need to fetch all branches and commits so that Nx affected has a base to compare against.
+          fetch-depth: 0
+          token: ${{ secrets.STORM_BOT_GITHUB_TOKEN }}
+
+      - name: Setup workspace
+        uses: ./.github/actions/setup
+        with:
+          storm_bot_private_key: ${{ secrets.STORM_BOT_PRIVATE_KEY }}
+          storm_bot_passphrase: ${{ secrets.STORM_BOT_PASSPHRASE }}
+
+      - name: Setup Nx SHAs
+        uses: nrwl/nx-set-shas@v4
         with:
           main-branch-name: main
 
-      - name: Run build script
-        run: pnpm build-all
+      - name: Run lint
+        run: pnpm nx affected --target=lint --parallel=5 --exclude=docs-* --base=${{ env.NX_BASE }} --head=${{ env.NX_HEAD }}
         shell: bash
 
-      - name: Run clippy script
-        run: cargo clippy --workspace --lib --examples --tests --benches --all-features -- -D warnings
+  release:
+    name: Build and release
+    if: always() && !cancelled() && !contains(needs.*.result, 'failure') && github.event.pull_request.draft == false
+    needs:
+      - start
+      - clippy
+      - lint
+    runs-on: ubuntu-latest
+    permissions:
+      actions: read
+      contents: write
+      id-token: write
+
+    steps:
+      - uses: actions/checkout@v4
+        name: Checkout [Pull Request]
+        if: ${{ github.event_name == 'pull_request' }}
+        with:
+          # By default, PRs will be checked-out based on the Merge Commit, but we want the actual branch HEAD.
+          ref: ${{ github.event.pull_request.head.sha }}
+          # We need to fetch all branches and commits so that Nx affected has a base to compare against.
+          fetch-depth: 0
+          token: ${{ secrets.STORM_BOT_GITHUB_TOKEN }}
+
+      - uses: actions/checkout@v4
+        name: Checkout `main` branch
+        if: ${{ github.event_name != 'pull_request' }}
+        with:
+          # We need to fetch all branches and commits so that Nx affected has a base to compare against.
+          fetch-depth: 0
+          token: ${{ secrets.STORM_BOT_GITHUB_TOKEN }}
+
+      - name: Setup workspace
+        uses: ./.github/actions/setup
+        with:
+          storm_bot_private_key: ${{ secrets.STORM_BOT_PRIVATE_KEY }}
+          storm_bot_passphrase: ${{ secrets.STORM_BOT_PASSPHRASE }}
+
+      - name: Setup Nx SHAs
+        uses: nrwl/nx-set-shas@v4
+        with:
+          main-branch-name: main
+
+      - name: Run build
+        run: pnpm nx run-many --target=build --parallel=5 --configuration=prod --exclude=docs-*
         shell: bash
 
       # - name: Configure AWS credentials
@@ -189,21 +270,25 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.STORM_BOT_GITHUB_TOKEN }}
           TF_LOG: debug
 
-      # - name: Release Library Version Updates
-      #   run: pnpm release --base=${{ env.NX_BASE }} --head=${{ env.NX_HEAD }}
-      #   env:
-      #     GITHUB_ACTOR: ${{ github.actor }}
-      #     GITHUB_TOKEN: ${{ github.token }}
-      #     GH_TOKEN: ${{ github.token }}
-      #     NPM_TOKEN: ${{ secrets.STORM_BOT_NPM_TOKEN }}
-      #     CARGO_REGISTRY_TOKEN: ${{ secrets.STORM_BOT_CARGO_TOKEN }}
-      #     STORM_BOT: Stormie-Bot
-      #     STORM_WORKSPACE_ROOT: ${{ github.workspace }}
-      #     STORM_REPOSITORY: ${{ github.repositoryUrl }}
-      #     TAG: ${{ inputs.tag }}
+      - name: Release Library Version Updates
+        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+        run: pnpm release --base=${{ env.NX_BASE }} --head=${{ env.NX_HEAD }}
+        env:
+          GITHUB_ACTOR: ${{ github.actor }}
+          GITHUB_TOKEN: ${{ github.token }}
+          GH_TOKEN: ${{ github.token }}
+          NPM_TOKEN: ${{ secrets.STORM_BOT_NPM_TOKEN }}
+          CARGO_REGISTRY_TOKEN: ${{ secrets.STORM_BOT_CARGO_TOKEN }}
+          STORM_BOT: Stormie-Bot
+          STORM_WORKSPACE_ROOT: ${{ github.workspace }}
+          STORM_REPOSITORY: ${{ github.repositoryUrl }}
+          TAG: ${{ inputs.tag }}
 
   success:
     needs:
+      - start
+      - clippy
+      - lint
       - release
     if: ${{ success() }}
     name: Send success notification
@@ -275,6 +360,9 @@ jobs:
 
   failure:
     needs:
+      - start
+      - clippy
+      - lint
       - release
     if: ${{ failure() }}
     name: Send failure notification
@@ -351,6 +439,9 @@ jobs:
 
   cancelled:
     needs:
+      - start
+      - clippy
+      - lint
       - release
     if: ${{ cancelled() }}
     name: Send cancelled notification

@@ -4,7 +4,7 @@ use std::{
   sync::Arc,
 };
 
-use reaper_eth_engine_types::{structured_trace::TxTrace, ReaperTaskExecutor};
+use reaper_eth_engine_types::{structured_trace::TxTrace, ReaperEthEngineTaskExecutor};
 use reth_beacon_consensus::BeaconConsensus;
 use reth_blockchain_tree::{
   externals::TreeExternals, BlockchainTree, BlockchainTreeConfig, ShareableBlockchainTree,
@@ -60,7 +60,7 @@ impl TracingClient {
   pub fn new_with_db(
     db: Arc<DatabaseEnv>,
     max_tasks: u64,
-    task_executor: ReaperTaskExecutor,
+    task_executor: ReaperEthEngineTaskExecutor,
     static_files_path: PathBuf,
   ) -> Self {
     let chain = MAINNET.clone();
@@ -131,7 +131,7 @@ impl TracingClient {
     Self { api, trace, provider_factory }
   }
 
-  pub fn new(db_path: &Path, max_tasks: u64, task_executor: ReaperTaskExecutor) -> Self {
+  pub fn new(db_path: &Path, max_tasks: u64, task_executor: ReaperEthEngineTaskExecutor) -> Self {
     let db = Arc::new(init_db(db_path).unwrap());
     let mut static_files = db_path.to_path_buf();
     static_files.pop();

@@ -1,6 +1,6 @@
 # Documentation and mdbook related jobs.
 
-name: docs
+name: Docs
 
 on:
   push:
@@ -40,10 +40,6 @@ jobs:
           storm_bot_private_key: ${{ secrets.STORM_BOT_PRIVATE_KEY }}
           storm_bot_passphrase: ${{ secrets.STORM_BOT_PASSPHRASE }}
 
-      - uses: Swatinem/rust-cache@v2
-        with:
-          key: "docs-${{ hashFiles('**/Cargo.lock') }}"
-
       - name: Install mdbook-linkcheck
         run: |
           mkdir mdbook-linkcheck
@@ -82,10 +78,6 @@ jobs:
         with:
           storm_bot_private_key: ${{ secrets.STORM_BOT_PRIVATE_KEY }}
           storm_bot_passphrase: ${{ secrets.STORM_BOT_PASSPHRASE }}
-
-      - uses: Swatinem/rust-cache@v2
-        with:
-          key: "docs-${{ hashFiles('**/Cargo.lock') }}"
 
       - run: git config --global url."https://x-access-token:${{ secrets.STORM_BOT_GITHUB_TOKEN }}@github.com/".insteadOf "https://github.com/"
         shell: bash

@@ -25,7 +25,7 @@ use tokio::{
 };
 use tracing::{debug, error, Instrument};
 
-static EXECUTOR: OnceCell<ReaperTaskExecutor> = OnceCell::const_new();
+static EXECUTOR: OnceCell<ReaperEthEngineTaskExecutor> = OnceCell::const_new();
 
 #[derive(Debug)]
 #[must_use = "ReaperEthEngineTaskManager must be polled to monitor critical tasks"]
@@ -101,8 +101,8 @@ impl ReaperEthEngineTaskManager {
 
   /// Returns a new `TaskExecutor` that can spawn new tasks onto the tokio
   /// runtime this type is connected to.
-  pub fn executor(&self) -> ReaperTaskExecutor {
-    ReaperTaskExecutor {
+  pub fn executor(&self) -> ReaperEthEngineTaskExecutor {
+    ReaperEthEngineTaskExecutor {
       handle:            self.handle.clone(),
       on_shutdown:       self.on_shutdown.clone(),
       panicked_tasks_tx: self.panicked_tasks_tx.clone(),
@@ -151,7 +151,7 @@ impl Future for ReaperEthEngineTaskManager {
 }
 
 #[derive(Debug, Clone)]
-pub struct ReaperTaskExecutor {
+pub struct ReaperEthEngineTaskExecutor {
   /// Handle to the tokio runtime this task manager is associated with.
   ///
   /// See [`Handle`] docs.
@@ -164,7 +164,7 @@ pub struct ReaperTaskExecutor {
   graceful_tasks:    Arc<AtomicUsize>,
 }
 
-impl ReaperTaskExecutor {
+impl ReaperEthEngineTaskExecutor {
   /// panics if not  in a task_manager scope
   pub fn current() -> &'static Self {
     EXECUTOR
@@ -442,13 +442,13 @@ impl ReaperTaskExecutor {
   }
 }
 
-impl TaskSpawner for ReaperTaskExecutor {
+impl TaskSpawner for ReaperEthEngineTaskExecutor {
   fn spawn(&self, fut: BoxFuture<'static, ()>) -> JoinHandle<()> {
     self.spawn(fut)
   }
 
   fn spawn_critical(&self, name: &'static str, fut: BoxFuture<'static, ()>) -> JoinHandle<()> {
-    ReaperTaskExecutor::spawn_critical(self, name, fut)
+    ReaperEthEngineTaskExecutor::spawn_critical(self, name, fut)
   }
 
   fn spawn_blocking(&self, fut: BoxFuture<'static, ()>) -> JoinHandle<()> {
@@ -460,11 +460,11 @@ impl TaskSpawner for ReaperTaskExecutor {
     name: &'static str,
     fut: BoxFuture<'static, ()>,
   ) -> JoinHandle<()> {
-    ReaperTaskExecutor::spawn_critical_blocking(self, name, fut)
+    ReaperEthEngineTaskExecutor::spawn_critical_blocking(self, name, fut)
   }
 }
 
-impl TaskSpawnerExt for ReaperTaskExecutor {
+impl TaskSpawnerExt for ReaperEthEngineTaskExecutor {
   fn spawn_critical_with_graceful_shutdown_signal<F>(
     &self,
     name: &'static str,
@@ -473,7 +473,7 @@ impl TaskSpawnerExt for ReaperTaskExecutor {
   where
     F: Future<Output = ()> + Send + 'static,
   {
-    ReaperTaskExecutor::spawn_critical_with_graceful_shutdown_signal(self, name, f)
+    ReaperEthEngineTaskExecutor::spawn_critical_with_graceful_shutdown_signal(self, name, f)
   }
 
   fn spawn_with_graceful_shutdown_signal<F>(
@@ -483,7 +483,7 @@ impl TaskSpawnerExt for ReaperTaskExecutor {
   where
     F: Future<Output = ()> + Send + 'static,
   {
-    ReaperTaskExecutor::spawn_with_graceful_shutdown_signal(self, f)
+    ReaperEthEngineTaskExecutor::spawn_with_graceful_shutdown_signal(self, f)
   }
 }
 

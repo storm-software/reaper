@@ -86,10 +86,11 @@ runs:
         npm config set //registry.npmjs.org/:_authToken=$NPM_TOKEN
       shell: bash
 
-    - name: Cache npm dependencies
+    - name: Add rust toolchain
       uses: dtolnay/rust-toolchain@nightly
       with:
         toolchain: nightly
+        components: clippy,rustfmt
 
     - name: Install Zig toolchain
       uses: korandoru/setup-zig@v1
@@ -105,3 +106,7 @@ runs:
         tag: v1.3.0 # Remove this if you want to grab always the latest version
         platform: linux # Other valid options: 'windows' or 'darwin'
         # arch: aarch64 # Other valid options for linux: 'aarch64'
+
+    - uses: Swatinem/rust-cache@v2
+      with:
+        key: "reaper-${{ hashFiles('**/Cargo.lock') }}"
