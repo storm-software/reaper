@@ -1,4 +1,4 @@
-CREATE TABLE reaper_eth_engine.tree ON CLUSTER eth_cluster0
+CREATE TABLE reaper.tree ON CLUSTER eth_cluster0
 (
     `block_number` UInt64,
     `tx_hash` String,

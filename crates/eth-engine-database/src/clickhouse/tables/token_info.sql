@@ -1,4 +1,4 @@
-CREATE TABLE reaper_eth_engine.token_info ON CLUSTER eth_cluster0
+CREATE TABLE reaper.token_info ON CLUSTER eth_cluster0
 (
     `address` String,
     `symbol` String,

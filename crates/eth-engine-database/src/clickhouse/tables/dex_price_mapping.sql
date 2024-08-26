@@ -1,4 +1,4 @@
-CREATE TABLE reaper_eth_engine.dex_price_mapping ON CLUSTER eth_cluster0
+CREATE TABLE reaper.dex_price_mapping ON CLUSTER eth_cluster0
 (
     `block_number` UInt64,
     `tx_idx` UInt64,

@@ -1,4 +1,4 @@
-CREATE TABLE reaper_eth_engine.run_id ON CLUSTER eth_cluster0
+CREATE TABLE reaper.run_id ON CLUSTER eth_cluster0
 (
     `run_id` UInt64,
     `last_updated` UInt64 DEFAULT now()

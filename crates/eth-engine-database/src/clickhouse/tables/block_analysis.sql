@@ -1,4 +1,4 @@
-CREATE TABLE reaper_eth_engine.block_analysis ON CLUSTER eth_cluster0
+CREATE TABLE reaper.block_analysis ON CLUSTER eth_cluster0
 (
     `block_number` UInt64,
     `eth_price` Float64,

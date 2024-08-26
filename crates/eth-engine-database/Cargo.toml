@@ -142,12 +142,18 @@ reth-tasks = { workspace = true }
 reaper-eth-engine-types = { path = "../eth-engine-types" }
 reaper-eth-engine-pricing = { path = "../eth-engine-pricing" }
 reaper-eth-engine-macros = { path = "../eth-engine-macros" }
-
 serial_test.workspace = true
 test-fuzz = "4"
 async-trait.workspace = true
 reth-tasks.workspace = true
 criterion = "0.5.1"
+
+
+[build-dependencies]
+reaper-eth-engine-types = { path = "../eth-engine-types" }
+serde.workspace = true
+toml = "0.8.9"
+alloy-primitives.workspace = true
 
 [[bench]]
 name = "cex_downloader_benchmarks"
@@ -169,13 +175,6 @@ name = "db_query"
 path = "tests/db_query.rs"
 required-features = ["sorella-server"]
 
-[build-dependencies]
-reaper-eth-engine-types = { path = "../eth-engine-types" }
-
-serde.workspace = true
-toml = "0.8.9"
-alloy-primitives.workspace = true
-
 [features]
 sorella-server = ["local-reth", "local-clickhouse"]
 tests = [
@@ -186,7 +185,6 @@ local-reth = [
     # "reaper-eth-engine-reth-tracing/local-reth",
     # "reaper-eth-engine-types/local-reth",
 ]
-
 local-clickhouse = [
     "db-interfaces",
     # "reaper-eth-engine-core/local-clickhouse",
