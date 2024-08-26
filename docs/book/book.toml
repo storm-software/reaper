@@ -2,12 +2,12 @@
 authors = ["Storm Software"]
 language = "en"
 multilingual = false
-src = "docs/book"
+src = "src"
 title = "Reaper Book"
 description = "An internal Storm Software book that outlines the Reaper project."
 
 [output.html]
-theme = "docs/book/theme"
+theme = "src/theme"
 git-repository-url = "https://github.com/storm-software/reaper"
 default-theme = "ayu"
 no-section-label = true
@@ -18,7 +18,7 @@ enable = true
 level = 1
 
 [build]
-build-dir = "target/docs/book"
+build-dir = "../../dist/docs/book"
 
 [rust]
 edition = "2021"

@@ -106,7 +106,7 @@ jobs:
 
       - name: Build book
         run: |
-          mdbook build
+          pnpm nx run docs-book:build
 
       - name: Build docs
         run: cargo doc --no-deps --all-features
@@ -117,18 +117,18 @@ jobs:
 
       - name: Move docs to book folder
         run: |
-          mv dist/target/doc dist/target/docs/book/docs
+          mv dist/target/doc dist/docs/book/docs
 
       - name: Archive artifact
         shell: sh
         run: |
-          chmod -c -R +rX "dist/target/docs/book" |
+          chmod -c -R +rX "dist/docs/book" |
           while read line; do
              echo "::warning title=Invalid file permissions automatically fixed::$line"
           done
           tar \
             --dereference --hard-dereference \
-            --directory "dist/target/docs/book" \
+            --directory "dist/docs/book" \
             -cvf "$RUNNER_TEMP/artifact.tar" \
             --exclude=.git \
             --exclude=.github \

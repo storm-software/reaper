@@ -1,4 +1,5 @@
-<div align="center"><img src="https://public.storm-cdn.com/reaper-logo.png" width="45%" alt="Reaper" /></div>
+<div align="center"><img src="https://public.storm-cdn.com/reaper-circle.png#gh-light-mode-only" width="45%" alt="Reaper" /></div>
+<div align="center"><img src="https://public.storm-cdn.com/reaper-white-circle.png#gh-dark-mode-only" width="45%" alt="Reaper" /></div>
 <br />
 
 <div align="center">

@@ -1,9 +1,7 @@
 # Reaper Book
 
-_Documentation for Reaper users and developers._
-
 <div style="text-align: center;">
-    <img src="https://public.storm-cdn.com/reaper-logo-banner.png" alt="Reaper" style="width: 100%; height: auto;">
+    <img src="https://public.storm-cdn.com/reaper-circle.png" alt="Reaper" style="width: 65%; height: auto;">
 </div>
 
 The <b>💀 Reaper</b> monorepo is a collection of trading/quantitative finance
