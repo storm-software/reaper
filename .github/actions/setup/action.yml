@@ -86,8 +86,10 @@ runs:
         npm config set //registry.npmjs.org/:_authToken=$NPM_TOKEN
       shell: bash
 
-    - name: Install Rust toolchain
-      uses: dtolnay/rust-toolchain@stable
+    - name: Cache npm dependencies
+      uses: dtolnay/rust-toolchain@nightly
+      with:
+        toolchain: nightly
 
     - name: Install Zig toolchain
       uses: korandoru/setup-zig@v1

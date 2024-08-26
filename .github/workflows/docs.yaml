@@ -1,0 +1,165 @@
+# Documentation and mdbook related jobs.
+
+name: docs
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  merge_group:
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    name: lint
+    timeout-minutes: 60
+
+    steps:
+      - uses: actions/checkout@v4
+        name: Checkout [Pull Request]
+        if: ${{ github.event_name == 'pull_request' }}
+        with:
+          # By default, PRs will be checked-out based on the Merge Commit, but we want the actual branch HEAD.
+          ref: ${{ github.event.pull_request.head.sha }}
+          # We need to fetch all branches and commits so that Nx affected has a base to compare against.
+          fetch-depth: 0
+          token: ${{ secrets.STORM_BOT_GITHUB_TOKEN }}
+
+      - uses: actions/checkout@v4
+        name: Checkout `main` branch
+        if: ${{ github.event_name != 'pull_request' }}
+        with:
+          # We need to fetch all branches and commits so that Nx affected has a base to compare against.
+          fetch-depth: 0
+          token: ${{ secrets.STORM_BOT_GITHUB_TOKEN }}
+
+      - name: Setup workspace
+        uses: ./.github/actions/setup
+        with:
+          storm_bot_private_key: ${{ secrets.STORM_BOT_PRIVATE_KEY }}
+          storm_bot_passphrase: ${{ secrets.STORM_BOT_PASSPHRASE }}
+
+      - uses: Swatinem/rust-cache@v2
+        with:
+          key: "docs-${{ hashFiles('**/Cargo.lock') }}"
+
+      - name: Install mdbook-linkcheck
+        run: |
+          mkdir mdbook-linkcheck
+          curl -sSL -o mdbook-linkcheck.zip https://github.com/Michael-F-Bryan/mdbook-linkcheck/releases/latest/download/mdbook-linkcheck.x86_64-unknown-linux-gnu.zip
+          unzip mdbook-linkcheck.zip -d ./mdbook-linkcheck
+          chmod +x $(pwd)/mdbook-linkcheck/mdbook-linkcheck
+          echo $(pwd)/mdbook-linkcheck >> $GITHUB_PATH
+
+      - name: Run linkcheck
+        run: mdbook-linkcheck --standalone
+
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+        name: Checkout [Pull Request]
+        if: ${{ github.event_name == 'pull_request' }}
+        with:
+          # By default, PRs will be checked-out based on the Merge Commit, but we want the actual branch HEAD.
+          ref: ${{ github.event.pull_request.head.sha }}
+          # We need to fetch all branches and commits so that Nx affected has a base to compare against.
+          fetch-depth: 0
+          token: ${{ secrets.STORM_BOT_GITHUB_TOKEN }}
+
+      - uses: actions/checkout@v4
+        name: Checkout `main` branch
+        if: ${{ github.event_name != 'pull_request' }}
+        with:
+          # We need to fetch all branches and commits so that Nx affected has a base to compare against.
+          fetch-depth: 0
+          token: ${{ secrets.STORM_BOT_GITHUB_TOKEN }}
+
+      - name: Setup workspace
+        uses: ./.github/actions/setup
+        with:
+          storm_bot_private_key: ${{ secrets.STORM_BOT_PRIVATE_KEY }}
+          storm_bot_passphrase: ${{ secrets.STORM_BOT_PASSPHRASE }}
+
+      - uses: Swatinem/rust-cache@v2
+        with:
+          key: "docs-${{ hashFiles('**/Cargo.lock') }}"
+
+      - run: git config --global url."https://x-access-token:${{ secrets.STORM_BOT_GITHUB_TOKEN }}@github.com/".insteadOf "https://github.com/"
+        shell: bash
+      - run: git config --global url."https://${{ secrets.STORM_BOT_GITHUB_TOKEN }}@github.com/".insteadOf "git@github.com:"
+        shell: bash
+
+      - name: Install mdbook
+        run: |
+          mkdir mdbook
+          curl -sSL https://github.com/rust-lang/mdBook/releases/download/v0.4.14/mdbook-v0.4.14-x86_64-unknown-linux-gnu.tar.gz | tar -xz --directory=./mdbook
+          echo $(pwd)/mdbook >> $GITHUB_PATH
+
+      - name: Install mdbook-template
+        run: |
+          mkdir mdbook-template
+          curl -sSL https://github.com/sgoudham/mdbook-template/releases/latest/download/mdbook-template-x86_64-unknown-linux-gnu.tar.gz | tar -xz --directory=./mdbook-template
+          echo $(pwd)/mdbook-template >> $GITHUB_PATH
+
+      - name: Build book
+        run: |
+          mdbook build
+
+      - name: Build docs
+        run: cargo doc --no-deps --all-features
+        env:
+          RUSTDOCFLAGS:
+            --cfg docsrs --show-type-layout --generate-link-to-definition --enable-index-page
+            -Zunstable-options
+
+      - name: Move docs to book folder
+        run: |
+          mv dist/target/doc dist/target/docs/book/docs
+
+      - name: Archive artifact
+        shell: sh
+        run: |
+          chmod -c -R +rX "dist/target/docs/book" |
+          while read line; do
+             echo "::warning title=Invalid file permissions automatically fixed::$line"
+          done
+          tar \
+            --dereference --hard-dereference \
+            --directory "dist/target/docs/book" \
+            -cvf "$RUNNER_TEMP/artifact.tar" \
+            --exclude=.git \
+            --exclude=.github \
+            .
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: github-pages
+          path: ${{ runner.temp }}/artifact.tar
+          retention-days: 1
+          if-no-files-found: error
+
+  deploy:
+    # Only deploy if a push to main
+    if: github.ref_name == 'main' && github.event_name == 'push'
+    runs-on: ubuntu-latest
+    needs: [lint, build]
+
+    # Grant GITHUB_TOKEN the permissions required to make a Pages deployment
+    permissions:
+      pages: write
+      id-token: write
+
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    timeout-minutes: 60
+
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v2

@@ -23,7 +23,7 @@
       "dependsOn": ["clean", "^build"],
       "options": {
         "commands": [
-          "cargo lambda build --profile prod --output-format zip --package reaper-eth-order-telegram-bot"
+          "cargo lambda build --profile prod --output-format zip --package reaper-eth-order-telegram-bot --target-dir dist/target/eth-order-telegram-bot"
         ],
         "color": true
       }

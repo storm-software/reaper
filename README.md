@@ -1,4 +1,4 @@
-<div align="center"><img src="https://pub-761b436209f44a4d886487c917806c08.r2.dev/reaper-logo.png" width="45%" alt="Reaper" /></div>
+<div align="center"><img src="https://public.storm-cdn.com/reaper-logo.png" width="45%" alt="Reaper" /></div>
 <br />
 
 <div align="center">
@@ -48,6 +48,7 @@ keeping the codebase maintainable.
 
 <!-- START doctoc -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+
 ## Table of Contents
 
 - [Quick Features](#quick-features)
@@ -65,7 +66,7 @@ keeping the codebase maintainable.
   - [Running End-to-End Tests](#running-end-to-end-tests)
   - [Understand your workspace](#understand-your-workspace)
 - [☁ Nx Cloud](#-nx-cloud)
-  - [Distributed Computation Caching & Distributed Task Execution](#distributed-computation-caching--distributed-task-execution)
+  - [Distributed Computation Caching \& Distributed Task Execution](#distributed-computation-caching--distributed-task-execution)
 - [Roadmap](#roadmap)
 - [Contributing](#contributing)
 - [Support](#support)

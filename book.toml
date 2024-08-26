@@ -7,7 +7,7 @@ title = "Reaper Book"
 description = "An internal Storm Software book that outlines the Reaper project."
 
 [output.html]
-theme = "book/theme"
+theme = "docs/book/theme"
 git-repository-url = "https://github.com/storm-software/reaper"
 default-theme = "ayu"
 no-section-label = true
