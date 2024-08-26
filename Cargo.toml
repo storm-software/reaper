@@ -66,6 +66,7 @@ keywords = [
     "algorithmic-trading",
     "monorepo",
 ]
+readme = "./README.md"
 
 [workspace.dependencies]
 
