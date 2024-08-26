@@ -15,7 +15,6 @@ readme = "./README.md"
 
 [dependencies]
 reaper-eth-engine-types = { path = "../eth-engine-types" }
-reaper-eth-engine-core = { path = "../eth-engine-core" }
 reaper-eth-engine-macros = { path = "../eth-engine-macros" }
 
 # Reth
@@ -58,19 +57,19 @@ serde_json.workspace = true
 tokio = { version = "1.28.2", features = ["full"] }
 
 [dev-dependencies]
-reaper-eth-engine-core = { path = "../eth-engine-core" }
+# reaper-eth-engine-core = { path = "../eth-engine-core" }
 reaper-eth-engine-macros = { path = "../eth-engine-macros" }
 dotenvy.workspace = true
 
 [features]
 tests = []
 local-reth = [
-    "reaper-eth-engine-types/local-reth",
-    "reaper-eth-engine-core/local-reth",
+    # "reaper-eth-engine-types/local-reth",
+    # "reaper-eth-engine-core/local-reth",
 ]
 local-clickhouse = [
-    "reaper-eth-engine-core/local-clickhouse",
-    "reaper-eth-engine-types/local-clickhouse",
+    # "reaper-eth-engine-core/local-clickhouse",
+    # "reaper-eth-engine-types/local-clickhouse",
 ]
 
 [lib]

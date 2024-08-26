@@ -21,8 +21,8 @@ harness = false
 reaper-eth-engine-types = { path = "../eth-engine-types" }
 reaper-eth-engine-metrics = { path = "../eth-engine-metrics" }
 reaper-eth-engine-tracing = { path = "../eth-engine-tracing" }
-# reaper-eth-engine-database = { path = "../eth-engine-database" }
-# reaper-eth-engine-reth-tracing = { path = "../eth-engine-reth-tracing" }
+reaper-eth-engine-database = { path = "../eth-engine-database" }
+reaper-eth-engine-reth-tracing = { path = "../eth-engine-reth-tracing" }
 
 # Reth
 reth-tasks.workspace = true
@@ -85,7 +85,7 @@ indicatif.workspace = true
 # reaper-eth-engine-classifier = { path = "../eth-engine-classifier", features = [
 #     "tests",
 # ] }
-# reaper-eth-engine-reth-tracing = { path = "../eth-engine-reth-tracing" }
+reaper-eth-engine-reth-tracing = { path = "../eth-engine-reth-tracing" }
 serial_test.workspace = true
 dotenvy.workspace = true
 tokio.workspace = true

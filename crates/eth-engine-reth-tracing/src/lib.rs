@@ -183,43 +183,43 @@ pub fn init_db<P: AsRef<Path> + Debug>(path: P) -> eyre::Result<DatabaseEnv> {
   reth_db::open_db_read_only(path.as_ref(), DatabaseArguments::new(Default::default()))
 }
 
-#[cfg(all(test, feature = "local-reth"))]
-pub mod test {
-  use futures::future::join_all;
-  use reaper_eth_engine_core::test_utils::TraceLoader;
-  use reth_primitives::{BlockId, BlockNumberOrTag};
+// #[cfg(all(test, feature = "local-reth"))]
+// pub mod test {
+//   use futures::future::join_all;
+//   use reaper_eth_engine_core::test_utils::TraceLoader;
+//   use reth_primitives::{BlockId, BlockNumberOrTag};
 
-  #[reaper_eth_engine_macros::test]
-  async fn ensure_traces_eq() {
-    let block = 18500018;
-    let loader = TraceLoader::new().await;
-    let tp = loader.tracing_provider.get_tracer();
-    let mut traces = join_all((0..20).map(|_| async {
-      tp.replay_block_transactions(BlockId::Number(BlockNumberOrTag::Number(block)))
-        .await
-        .unwrap()
-        .unwrap()
-    }))
-    .await;
+//   #[reaper_eth_engine_macros::test]
+//   async fn ensure_traces_eq() {
+//     let block = 18500018;
+//     let loader = TraceLoader::new().await;
+//     let tp = loader.tracing_provider.get_tracer();
+//     let mut traces = join_all((0..20).map(|_| async {
+//       tp.replay_block_transactions(BlockId::Number(BlockNumberOrTag::Number(block)))
+//         .await
+//         .unwrap()
+//         .unwrap()
+//     }))
+//     .await;
 
-    let cmp = traces.pop().unwrap();
-    traces
-      .into_iter()
-      .for_each(|trace| assert_eq!(cmp, trace, "got traces that aren't equal"));
-  }
+//     let cmp = traces.pop().unwrap();
+//     traces
+//       .into_iter()
+//       .for_each(|trace| assert_eq!(cmp, trace, "got traces that aren't equal"));
+//   }
 
-  #[reaper_eth_engine_macros::test]
-  async fn ensure_no_failure() {
-    let block = 19586294;
-    let loader = TraceLoader::new().await;
-    let tp = loader.tracing_provider.get_tracer();
-    let mut traces = tp
-      .replay_block_transactions(BlockId::Number(BlockNumberOrTag::Number(block)))
-      .await
-      .unwrap()
-      .unwrap();
-    let res = traces.remove(6);
-    let not_broken = res.is_success;
-    assert!(not_broken, "shit failed when shouldn't of: {:#?}", res);
-  }
-}
+//   #[reaper_eth_engine_macros::test]
+//   async fn ensure_no_failure() {
+//     let block = 19586294;
+//     let loader = TraceLoader::new().await;
+//     let tp = loader.tracing_provider.get_tracer();
+//     let mut traces = tp
+//       .replay_block_transactions(BlockId::Number(BlockNumberOrTag::Number(block)))
+//       .await
+//       .unwrap()
+//       .unwrap();
+//     let res = traces.remove(6);
+//     let not_broken = res.is_success;
+//     assert!(not_broken, "shit failed when shouldn't of: {:#?}", res);
+//   }
+// }

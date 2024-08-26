@@ -27,9 +27,9 @@ use reth_db::DatabaseEnv;
 use reth_primitives::{BlockHash, Header, B256};
 use reth_provider::ProviderError;
 #[cfg(feature = "local-reth")]
-use reth_tracing_ext::init_db;
+use reaper_eth_engine_reth_tracing::init_db;
 #[cfg(feature = "local-reth")]
-use reth_tracing_ext::TracingClient;
+use reaper_eth_engine_reth_tracing::TracingClient;
 use serde::{Deserialize, Serialize};
 use thiserror::Error;
 use tokio::{

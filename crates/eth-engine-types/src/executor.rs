@@ -28,8 +28,8 @@ use tracing::{debug, error, Instrument};
 static EXECUTOR: OnceCell<ReaperTaskExecutor> = OnceCell::const_new();
 
 #[derive(Debug)]
-#[must_use = "ReaperTaskManager must be polled to monitor critical tasks"]
-pub struct ReaperTaskManager {
+#[must_use = "ReaperEthEngineTaskManager must be polled to monitor critical tasks"]
+pub struct ReaperEthEngineTaskManager {
   /// Handle to the tokio runtime this task manager is associated with.
   ///
   /// See [`Handle`] docs.
@@ -48,8 +48,8 @@ pub struct ReaperTaskManager {
   graceful_tasks:    Arc<AtomicUsize>,
 }
 
-impl ReaperTaskManager {
-  /// Returns a a `ReaperTaskManager` over the currently running Runtime.
+impl ReaperEthEngineTaskManager {
+  /// Returns a a `ReaperEthEngineTaskManager` over the currently running Runtime.
   ///
   /// # Panics
   ///
@@ -141,7 +141,7 @@ impl ReaperTaskManager {
   }
 }
 
-impl Future for ReaperTaskManager {
+impl Future for ReaperEthEngineTaskManager {
   type Output = PanickedTaskError;
 
   fn poll(self: Pin<&mut Self>, cx: &mut Context<'_>) -> Poll<Self::Output> {
@@ -406,7 +406,7 @@ impl ReaperTaskExecutor {
 
   /// This spawns a regular task onto the runtime.
   ///
-  /// The [ReaperTaskManager] will wait until the given future has completed
+  /// The [ReaperEthEngineTaskManager] will wait until the given future has completed
   /// before shutting down.
   ///
   /// # Example
