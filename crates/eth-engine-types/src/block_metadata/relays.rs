@@ -6,7 +6,7 @@ use reth_primitives::BlockHash;
 use strum::IntoEnumIterator;
 
 use super::RelayBlockMetadata;
-use crate::block_metadata::{RelayBid, RelayPayload};
+use crate::block_metadata::bids_payloads::{RelayBid, RelayPayload};
 
 macro_rules! relays {
     ($([$relay:ident, $min_block:literal, $url:expr]),*) => {

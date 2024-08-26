@@ -42,6 +42,7 @@ primarily written in <a href="https://www.rust-lang.org/" target="_blank">Rust</
 
 <!-- START doctoc -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+
 ## Table of Contents
 
 - [Reaper - Ethereum Engine API client for OpenAPI](#reaper---ethereum-engine-api-client-for-openapi)
@@ -78,14 +79,13 @@ This crate contains the API specification for MEV-Boost PBS relays.
 For more information, please visit
 [https://github.com/flashbots/relay-specs](https://github.com/flashbots/relay-specs)
 
-<!-- prettier-ignore-start -->
-<!-- markdownlint-disable -->
-
-> [!NOTE] 
-> We owe a major debt of gratitude to the [Brontes](https://github.com/SorellaLabs/brontes) project. This project is heavily inspired by the Brontes project, and we have used it as a base to build upon. We have made significant changes to the project, and have added many new features, but the core of the crate is based on Brontes.
-
-<!-- markdownlint-restore -->
-<!-- prettier-ignore-end -->
+> **Note**
+>
+> We owe a major debt of gratitude to the
+> [Brontes](https://github.com/SorellaLabs/brontes) project. This project is
+> heavily inspired by the Brontes project, and we have used it as a base to
+> build upon. We have made significant changes to the project, and have added
+> many new features, but the core of the crate is based on Brontes.
 
 ## Overview
 

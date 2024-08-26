@@ -57,7 +57,7 @@ pre-push:
   commands:
     format:
       glob: "**/*.*"
-      run: "pnpm format"
+      run: "pnpm nx format:write --files={staged_files}"
       stage_fixed: true
     format-prettier:
       glob: "!packages/workspace-tools/src/generators/*/files/**/*"

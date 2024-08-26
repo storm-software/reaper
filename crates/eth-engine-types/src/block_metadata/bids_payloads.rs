@@ -1,9 +1,8 @@
 use std::hash::Hash;
-
-use ::reaper_eth_engine_relay_api::models::{
+use reaper_eth_engine_relay_api::models::{
   GetDeliveredPayloads200ResponseInner, GetReceivedBids200ResponseInner
 };
-crate::block_metadata::relays::*;
+use crate::block_metadata::relays::*;
 use serde::{Deserialize, Serialize};
 
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize, Hash)]

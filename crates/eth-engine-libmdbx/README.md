@@ -42,6 +42,7 @@ primarily written in <a href="https://www.rust-lang.org/" target="_blank">Rust</
 
 <!-- START doctoc -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+
 ## Table of Contents
 
 - [Reaper - Ethereum Engine LibMDBX Bindings Crate](#reaper---ethereum-engine-libmdbx-bindings-crate)
@@ -75,14 +76,13 @@ trading purposes. It is part of the Storm Software suite of tools and libraries.
 
 Rust bindings for [libmdbx](https://libmdbx.dqdkfa.ru).
 
-<!-- prettier-ignore-start -->
-<!-- markdownlint-disable -->
-
-> [!NOTE] 
-> We owe a major debt of gratitude to the [Brontes](https://github.com/SorellaLabs/brontes) project. This project is heavily inspired by the Brontes project, and we have used it as a base to build upon. We have made significant changes to the project, and have added many new features, but the core of the crate is based on Brontes.
-
-<!-- markdownlint-restore -->
-<!-- prettier-ignore-end -->
+> **Note**
+>
+> We owe a major debt of gratitude to the
+> [Brontes](https://github.com/SorellaLabs/brontes) project. This project is
+> heavily inspired by the Brontes project, and we have used it as a base to
+> build upon. We have made significant changes to the project, and have added
+> many new features, but the core of the crate is based on Brontes.
 
 ## Installing
 
@@ -92,13 +92,13 @@ This crate can be installed using
 
 ```toml
 [dependencies]
-reaper-eth-engine-core = "0.0.1"
+reaper-eth-engine-libmdbx = "0.0.1"
 ```
 
 Or, via the command line:
 
 ```bash
-cargo add reaper-eth-engine-core
+cargo add reaper-eth-engine-libmdbx
 ```
 
 ## Development
@@ -108,17 +108,17 @@ commands are available to assist in development.
 
 ### Building
 
-Run `nx build reaper-eth-engine-core` to build the library.
+Run `nx build reaper-eth-engine-libmdbx` to build the library.
 
 ### Running unit tests
 
-Run `nx test reaper-eth-engine-core` to execute the unit tests via
+Run `nx test reaper-eth-engine-libmdbx` to execute the unit tests via
 [Jest](https://jestjs.io).
 
 ### Linting
 
-Run `nx lint reaper-eth-engine-core` to run [ESLint](https://eslint.org/) on the
-package.
+Run `nx lint reaper-eth-engine-libmdbx` to run [ESLint](https://eslint.org/) on
+the package.
 
 ## Updating the libmdbx Version
 

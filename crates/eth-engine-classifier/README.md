@@ -42,9 +42,10 @@ primarily written in <a href="https://www.rust-lang.org/" target="_blank">Rust</
 
 <!-- START doctoc -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+
 ## Table of Contents
 
-- [Reaper - Ethereum Engine Core Crate](#reaper---ethereum-engine-core-crate)
+- [Reaper - Ethereum Engine Classifier Crate](#reaper---ethereum-engine-classifier-crate)
   - [Installing](#installing)
   - [Development](#development)
     - [Building](#building)
@@ -67,19 +68,18 @@ primarily written in <a href="https://www.rust-lang.org/" target="_blank">Rust</
 
 <!-- END header -->
 
-# Reaper - Ethereum Engine Core Crate
+# Reaper - Ethereum Engine Classifier Crate
 
 This crate is a core library for interacting with the Ethereum blockchain for
 trading purposes. It is part of the Storm Software suite of tools and libraries.
 
-<!-- prettier-ignore-start -->
-<!-- markdownlint-disable -->
-
-> [!NOTE] 
-> We owe a major debt of gratitude to the [Brontes](https://github.com/SorellaLabs/brontes) project. This project is heavily inspired by the Brontes project, and we have used it as a base to build upon. We have made significant changes to the project, and have added many new features, but the core of the crate is based on Brontes.
-
-<!-- markdownlint-restore -->
-<!-- prettier-ignore-end -->
+> **Note**
+>
+> We owe a major debt of gratitude to the
+> [Brontes](https://github.com/SorellaLabs/brontes) project. This project is
+> heavily inspired by the Brontes project, and we have used it as a base to
+> build upon. We have made significant changes to the project, and have added
+> many new features, but the core of the crate is based on Brontes.
 
 ## Installing
 
@@ -89,13 +89,13 @@ This crate can be installed using
 
 ```toml
 [dependencies]
-reaper-eth-engine-core = "0.0.1"
+reaper-eth-engine-classifier = "0.0.1"
 ```
 
 Or, via the command line:
 
 ```bash
-cargo add reaper-eth-engine-core
+cargo add reaper-eth-engine-classifier
 ```
 
 ## Development
@@ -105,17 +105,17 @@ commands are available to assist in development.
 
 ### Building
 
-Run `nx build reaper-eth-engine-core` to build the library.
+Run `nx build reaper-eth-engine-classifier` to build the library.
 
 ### Running unit tests
 
-Run `nx test reaper-eth-engine-core` to execute the unit tests via
+Run `nx test reaper-eth-engine-classifier` to execute the unit tests via
 [Jest](https://jestjs.io).
 
 ### Linting
 
-Run `nx lint reaper-eth-engine-core` to run [ESLint](https://eslint.org/) on the
-package.
+Run `nx lint reaper-eth-engine-classifier` to run [ESLint](https://eslint.org/)
+on the package.
 
 <!-- START footer -->
 <!-- prettier-ignore-start -->

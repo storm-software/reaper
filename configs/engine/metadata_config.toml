@@ -1,0 +1,66 @@
+# AddressMetadata config
+
+[metadata."0x111111125421cA6dc452d289314280a0f8842A65"]
+entity_name = "1inch"
+nametag = "1inch v6: Aggregation Router"
+labels = [
+    "DEX",
+    "Aggregation Router V6",
+    "SC:sourcecodeverified",
+    "1inch",
+    "CN:AggregationRouterV6",
+]
+address_type = "dex-aggregator"
+
+[metadata."0x111111125421cA6dc452d289314280a0f8842A65".contract_info]
+verified_contract = true
+contract_creator = "0xccbdbd9b0309a77fc6a56e087ff2765ff394012e"
+reputation = 1
+
+[metadata."0x111111125421cA6dc452d289314280a0f8842A65".social_metadata]
+twitter = "https://twitter.com/1inch"
+website_url = "https://app.1inch.io/"
+crunchbase = "https://www.crunchbase.com/organization/1inch-limited"
+linkedin = "https://www.linkedin.com/company/1inch"
+
+#------------------------------------------------------------------
+
+[metadata."0xdB5889E35e379Ef0498aaE126fc2CCE1fbD23216"]
+entity_name = "Banana Gun"
+nametag = "Banana Gun Router"
+labels = ["Telegram Bot", "Router", "Banana Gun"]
+address_type = "router"
+
+[metadata."0xdB5889E35e379Ef0498aaE126fc2CCE1fbD23216".contract_info]
+verified_contract = false
+contract_creator = "0x37aAb97476bA8dC785476611006fD5dDA4eed66B"
+reputation = 1
+
+[metadata."0xdB5889E35e379Ef0498aaE126fc2CCE1fbD23216".social_metadata]
+twitter = "https://twitter.com/BananaGunBot"
+twitter_followers = 59800
+website_url = "https://bananagun.io/"
+
+
+[metadata."0x3c11F6265Ddec22f4d049Dde480615735f451646"]
+entity_name = "MimicSwap"
+nametag = "Mimic: Swapper"
+labels = ["DefiAutomation", "SC:sourcecodeverified", "automation"]
+address_type = "defi-automation"
+
+[metadata."0x3c11F6265Ddec22f4d049Dde480615735f451646".contract_info]
+verified_contract = true
+contract_creator = "0x55fb751f3022D56888fb3249002C1004579753C7"
+reputation = 1
+
+[metadata."0x3c11F6265Ddec22f4d049Dde480615735f451646".social_metadata]
+twitter = "https://twitter.com/mimicfi"
+twitter_followers = 873
+website_url = "https://mimic.fi"
+crunchbase = "https://www.crunchbase.com/organization/mimic-finance"
+linkedin = "https://www.linkedin.com/company/mimic-finance"
+
+
+# Aave was incorectly labelles as unverified, this corects that
+[metadata."0x87870bca3f3fd6335c3f4ce8392d69350b4fa4e2".contract_info]
+verified_contract = true
