@@ -53,7 +53,7 @@ jobs:
           echo $(pwd)/mdbook-linkcheck >> $GITHUB_PATH
 
       - name: Run linkcheck
-        run: mdbook-linkcheck --standalone
+        run: pnpm nx run docs-book:lint-linkcheck
 
   build:
     runs-on: ubuntu-latest

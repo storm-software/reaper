@@ -5,8 +5,9 @@
   "sourceRoot": "docs/book",
   "targets": {
     "dev": {
+      "cache": true,
       "executor": "nx:run-commands",
-      "inputs": ["rust", "^production"],
+      "inputs": ["{workspaceRoot}/docs/book/**/*"],
       "outputs": ["{workspaceRoot}/dist/docs/book"],
       "dependsOn": ["clean", "^build"],
       "options": {
@@ -16,12 +17,25 @@
       }
     },
     "build": {
+      "cache": true,
       "executor": "nx:run-commands",
-      "inputs": ["rust", "^production"],
+      "inputs": ["{workspaceRoot}/docs/book/**/*"],
       "outputs": ["{workspaceRoot}/dist/docs/book"],
       "dependsOn": ["clean", "^build"],
       "options": {
         "commands": ["mdbook build"],
+        "cwd": "docs/book",
+        "color": true
+      }
+    },
+    "lint-linkcheck": {
+      "cache": true,
+      "executor": "nx:run-commands",
+      "inputs": ["{workspaceRoot}/docs/book/**/*"],
+      "outputs": ["{workspaceRoot}/dist/docs/book"],
+      "dependsOn": ["clean", "^build"],
+      "options": {
+        "commands": ["mdbook-linkcheck --standalone"],
         "cwd": "docs/book",
         "color": true
       }

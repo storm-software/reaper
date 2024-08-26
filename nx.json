@@ -16,5 +16,6 @@
       }
     },
     "@storm-software/workspace-tools/plugins/typescript"
-  ]
+  ],
+  "defaultProject": "reaper-eth-engine"
 }
