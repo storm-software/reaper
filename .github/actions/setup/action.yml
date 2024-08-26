@@ -55,9 +55,11 @@ runs:
     - name: Install NodeJs with asdf
       run: |
         asdf plugin add nodejs
+        asdf plugin add pnpm
         asdf plugin add rust
         asdf plugin add zig
         asdf install nodejs
+        asdf install pnpm
         asdf install rust
         asdf install zig
       shell: bash
