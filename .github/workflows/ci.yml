@@ -221,13 +221,13 @@ jobs:
       #   if: steps.list.outputs.stdout
       #   run: aws sts get-caller-identity
 
-      - name: Install Terraform and Terragrunt with asdf
-        run: |
-          asdf plugin add opentofu
-          asdf plugin add terragrunt
-          asdf install opentofu
-          asdf install terragrunt
-        shell: bash
+      # - name: Install Terraform and Terragrunt with asdf
+      #   run: |
+      #     asdf plugin add opentofu
+      #     asdf plugin add terragrunt
+      #     asdf install opentofu
+      #     asdf install terragrunt
+      #   shell: bash
 
       # - name: Check terragrunt HCL
       #   uses: gruntwork-io/terragrunt-action@v2
