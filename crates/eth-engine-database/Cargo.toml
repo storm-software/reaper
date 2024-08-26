@@ -148,7 +148,6 @@ async-trait.workspace = true
 reth-tasks.workspace = true
 criterion = "0.5.1"
 
-
 [build-dependencies]
 reaper-eth-engine-types = { path = "../eth-engine-types" }
 serde.workspace = true

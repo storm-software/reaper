@@ -163,7 +163,7 @@ jobs:
           error-on-no-successful-workflows: false
 
       - name: Run lint
-        run: pnpm nx affected --target=lint --parallel=5 --exclude=docs-* --base=${{ env.NX_BASE }} --head=${{ env.NX_HEAD }}
+        run: pnpm nx affected --target=lint --parallel=3 --exclude=docs-* --base=${{ env.NX_BASE }} --head=${{ env.NX_HEAD }}
         shell: bash
 
   release:
@@ -211,7 +211,7 @@ jobs:
           error-on-no-successful-workflows: false
 
       - name: Run build
-        run: pnpm nx run-many --target=build --parallel=5 --configuration=prod --exclude=docs-*
+        run: pnpm nx run-many --target=build --parallel=3 --configuration=prod --exclude=docs-*
         shell: bash
 
       # - name: Configure AWS credentials
@@ -228,13 +228,13 @@ jobs:
       #   if: steps.list.outputs.stdout
       #   run: aws sts get-caller-identity
 
-      - name: Install OpenTofu and Terragrunt with asdf
-        run: |
-          asdf plugin add opentofu
-          asdf plugin add terragrunt
-          asdf install opentofu
-          asdf install terragrunt
-        shell: bash
+      # - name: Install OpenTofu and Terragrunt with asdf
+      #   run: |
+      #     asdf plugin add opentofu
+      #     asdf plugin add terragrunt
+      #     asdf install opentofu
+      #     asdf install terragrunt
+      #   shell: bash
 
       # - name: Check terragrunt HCL
       #   uses: gruntwork-io/terragrunt-action@v2
