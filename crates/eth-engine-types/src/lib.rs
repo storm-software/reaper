@@ -13,6 +13,7 @@
 #![feature(const_mut_refs)]
 #![allow(internal_features)]
 #![allow(clippy::type_complexity)]
+#![allow(clippy::too_long_first_doc_paragraph)]
 
 pub mod multi_block;
 pub use multi_block::*;

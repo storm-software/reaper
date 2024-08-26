@@ -131,13 +131,10 @@ default = [
     "reaper-eth-engine-classifier/default",
     "jemalloc",
 ]
-
 jemalloc = ["reaper-eth-engine-metrics/jemalloc"]
 jemalloc-prof = ["jemalloc", "tikv-jemallocator/profiling"]
 dhat-heap = []
-
 sorella-server = ["local-reth", "local-clickhouse"]
-
 tests = [
     "reaper-eth-engine-core/tests",
     "reaper-eth-engine-database/tests",
@@ -145,7 +142,6 @@ tests = [
     "reaper-eth-engine-inspect/tests",
     "reaper-eth-engine-pricing/tests",
 ]
-
 local-reth = [
     "reaper-eth-engine-core/local-reth",
     "reaper-eth-engine-database/local-reth",
@@ -154,7 +150,6 @@ local-reth = [
     "reaper-eth-engine-inspect/local-reth",
     "reaper-eth-engine-reth-tracing/local-reth",
 ]
-
 local-clickhouse = [
     "reaper-eth-engine-database/local-clickhouse",
     "reaper-eth-engine-core/local-clickhouse",
@@ -162,7 +157,6 @@ local-clickhouse = [
     "reaper-eth-engine-classifier/local-clickhouse",
     "reaper-eth-engine-types/local-clickhouse",
 ]
-
 uni-v3-ticks = ["reaper-eth-engine-pricing/uni-v3-ticks"]
 dyn-decode = ["reaper-eth-engine-core/dyn-decode"]
 

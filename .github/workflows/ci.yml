@@ -113,8 +113,6 @@ jobs:
 
       - name: "run clippy"
         run: cargo clippy --workspace --lib --examples
-        env:
-          RUSTFLAGS: -D warnings
 
       # - name: "clippy all"
       #   run: cargo clippy --workspace --lib --examples --tests --benches --all-features

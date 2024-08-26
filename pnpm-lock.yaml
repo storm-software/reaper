@@ -67,19 +67,19 @@ importers:
         version: 0.1.0(@nx/devkit@19.6.2(nx@19.6.2))(nx@19.6.2)
       '@storm-software/linting-tools':
         specifier: latest
-        version: 1.78.0
+        version: 1.79.0
       '@storm-software/prettier':
         specifier: latest
         version: 0.26.0(prettier@3.3.2)(typescript@5.5.3)
       '@storm-software/terraform-tools':
         specifier: latest
-        version: 0.8.0(@nx/devkit@19.6.2(nx@19.6.2))(nx@19.6.2)
+        version: 0.8.1(@nx/devkit@19.6.2(nx@19.6.2))(nx@19.6.2)
       '@storm-software/testing-tools':
         specifier: latest
         version: 1.53.0(@nx/jest@19.6.2(@babel/traverse@7.25.3)(@types/node@20.14.14)(nx@19.6.2)(ts-node@10.9.2(@types/node@20.14.14)(typescript@5.5.3))(typescript@5.5.3)(verdaccio@5.31.1(typanion@3.14.0)))(jest@29.7.0(@types/node@20.14.14)(ts-node@10.9.2(@types/node@20.14.14)(typescript@5.5.3)))
       '@storm-software/workspace-tools':
         specifier: latest
-        version: 1.157.0(@microsoft/api-extractor@7.46.2(@types/node@20.14.14))(@nx/devkit@19.6.2(nx@19.6.2))(@nx/esbuild@19.6.2(@babel/traverse@7.25.3)(@types/node@20.14.14)(esbuild@0.21.5)(nx@19.6.2)(typescript@5.5.3)(verdaccio@5.31.1(typanion@3.14.0)))(esbuild@0.21.5)(nx@19.6.2)(ts-node@10.9.2(@types/node@20.14.14)(typescript@5.5.3))(typescript@5.5.3)
+        version: 1.158.0(@microsoft/api-extractor@7.46.2(@types/node@20.14.14))(@nx/devkit@19.6.2(nx@19.6.2))(@nx/esbuild@19.6.2(@babel/traverse@7.25.3)(@types/node@20.14.14)(esbuild@0.21.5)(nx@19.6.2)(typescript@5.5.3)(verdaccio@5.31.1(typanion@3.14.0)))(esbuild@0.21.5)(nx@19.6.2)(ts-node@10.9.2(@types/node@20.14.14)(typescript@5.5.3))(typescript@5.5.3)
       '@taplo/cli':
         specifier: 0.7.0
         version: 0.7.0
@@ -2276,8 +2276,8 @@ packages:
       '@nx/devkit': ^19.6.2
       nx: ^19.6.2
 
-  '@storm-software/linting-tools@1.78.0':
-    resolution: {integrity: sha512-4LnLKR/fABmBVRJvH8tuoKvt8kW692/JhB1X1ltkg8hkz5HoqVoymygNtDaIhkSlSQd376XwLd4Y/03WumAs3A==}
+  '@storm-software/linting-tools@1.79.0':
+    resolution: {integrity: sha512-4KJbiLBXj1NtALsCEG/j4d8SPrMvwwURu+iC+VPaIZ/1kD8DHCnooqCS/fqLS6rNYRStuQUreSTTWPEc17/LSQ==}
     hasBin: true
 
   '@storm-software/prettier@0.26.0':
@@ -2289,11 +2289,11 @@ packages:
       prettier-plugin-tailwindcss:
         optional: true
 
-  '@storm-software/terraform-tools@0.8.0':
-    resolution: {integrity: sha512-XWEP5rgJQ2Y+5kBs7cXy5ha7kV0tZcolK2pfyO0YDesfzHz5blgBV180N+7E5NUsBGmGSC3H/AdHj5e+ayzLRg==}
+  '@storm-software/terraform-tools@0.8.1':
+    resolution: {integrity: sha512-82UyQ/YrQUIpkyBkhBj6tUzPpzEetLyh9HZPiejm9E1btB6TuBQ2DeH66z1pmqzZXQ6OLB1Y3ogcx5B7DaRg+g==}
     peerDependencies:
-      '@nx/devkit': ^19.5.6
-      nx: ^19.5.6
+      '@nx/devkit': ^19.6.2
+      nx: ^19.6.2
 
   '@storm-software/testing-tools@1.53.0':
     resolution: {integrity: sha512-PmUC5Gt/JKk3h0MTYj4JIpnUMTtXbLLhmVbPH0Rlt8/B2e+oItZNus2xLgf4A4qt61Aahx9iHxh4kPZo8Y9loQ==}
@@ -2301,8 +2301,8 @@ packages:
       '@nx/jest': ^19.5.6
       jest: 29.7.0
 
-  '@storm-software/workspace-tools@1.157.0':
-    resolution: {integrity: sha512-WRmb0Q05rfbAsLpuDUeKnEkIfjIq+VulUJGGBBydpzgxqcp2D74+AQd6XdHxGPdF7f6Id3S9rqSkBYpymImOOg==}
+  '@storm-software/workspace-tools@1.158.0':
+    resolution: {integrity: sha512-CN49jApr1OeQ9OxM0cKN5Nl5p9ZJLdsY425dTNRzuIAP76pREx921OE/hS/93rpLZ805iYlt1au5BPPkzLwexw==}
     peerDependencies:
       '@microsoft/api-extractor': 7.46.2
       '@nx/devkit': ^19.6.2
@@ -10974,6 +10974,21 @@ snapshots:
       - typescript
       - verdaccio
 
+  '@nrwl/js@19.6.2(@babel/traverse@7.25.3)(@types/node@20.14.14)(nx@19.6.2)(typescript@5.4.2)(verdaccio@5.31.1(typanion@3.14.0))':
+    dependencies:
+      '@nx/js': 19.6.2(@babel/traverse@7.25.3)(@types/node@20.14.14)(nx@19.6.2)(typescript@5.4.2)(verdaccio@5.31.1(typanion@3.14.0))
+    transitivePeerDependencies:
+      - '@babel/traverse'
+      - '@swc-node/register'
+      - '@swc/core'
+      - '@swc/wasm'
+      - '@types/node'
+      - debug
+      - nx
+      - supports-color
+      - typescript
+      - verdaccio
+
   '@nrwl/js@19.6.2(@babel/traverse@7.25.3)(@types/node@20.14.14)(nx@19.6.2)(typescript@5.5.3)(verdaccio@5.31.1(typanion@3.14.0))':
     dependencies:
       '@nx/js': 19.6.2(@babel/traverse@7.25.3)(@types/node@20.14.14)(nx@19.6.2)(typescript@5.5.3)(verdaccio@5.31.1(typanion@3.14.0))
@@ -11196,7 +11211,7 @@ snapshots:
       '@babel/preset-env': 7.25.3(@babel/core@7.25.2)
       '@babel/preset-typescript': 7.24.7(@babel/core@7.25.2)
       '@babel/runtime': 7.25.0
-      '@nrwl/js': 19.6.2(@babel/traverse@7.25.3)(@types/node@20.14.14)(nx@19.6.2)(typescript@5.5.3)(verdaccio@5.31.1(typanion@3.14.0))
+      '@nrwl/js': 19.6.2(@babel/traverse@7.25.3)(@types/node@20.14.14)(nx@19.6.2)(typescript@5.4.2)(verdaccio@5.31.1(typanion@3.14.0))
       '@nx/devkit': 19.6.2(nx@19.6.2)
       '@nx/workspace': 19.6.2
       babel-plugin-const-enum: 1.2.0(@babel/core@7.25.2)
@@ -11854,7 +11869,7 @@ snapshots:
       - '@swc/core'
       - debug
 
-  '@storm-software/linting-tools@1.78.0':
+  '@storm-software/linting-tools@1.79.0':
     dependencies:
       '@cspell/dict-ada': 4.0.2
       '@cspell/dict-aws': 4.0.2
@@ -11947,7 +11962,7 @@ snapshots:
       - typescript
       - vue-tsc
 
-  '@storm-software/terraform-tools@0.8.0(@nx/devkit@19.6.2(nx@19.6.2))(nx@19.6.2)':
+  '@storm-software/terraform-tools@0.8.1(@nx/devkit@19.6.2(nx@19.6.2))(nx@19.6.2)':
     dependencies:
       '@nx/devkit': 19.6.2(nx@19.6.2)
       '@nx/workspace': 19.6.2
@@ -11964,7 +11979,7 @@ snapshots:
       '@nx/jest': 19.6.2(@babel/traverse@7.25.3)(@types/node@20.14.14)(nx@19.6.2)(ts-node@10.9.2(@types/node@20.14.14)(typescript@5.5.3))(typescript@5.5.3)(verdaccio@5.31.1(typanion@3.14.0))
       jest: 29.7.0(@types/node@20.14.14)(ts-node@10.9.2(@types/node@20.14.14)(typescript@5.5.3))
 
-  '@storm-software/workspace-tools@1.157.0(@microsoft/api-extractor@7.46.2(@types/node@20.14.14))(@nx/devkit@19.6.2(nx@19.6.2))(@nx/esbuild@19.6.2(@babel/traverse@7.25.3)(@types/node@20.14.14)(esbuild@0.21.5)(nx@19.6.2)(typescript@5.5.3)(verdaccio@5.31.1(typanion@3.14.0)))(esbuild@0.21.5)(nx@19.6.2)(ts-node@10.9.2(@types/node@20.14.14)(typescript@5.5.3))(typescript@5.5.3)':
+  '@storm-software/workspace-tools@1.158.0(@microsoft/api-extractor@7.46.2(@types/node@20.14.14))(@nx/devkit@19.6.2(nx@19.6.2))(@nx/esbuild@19.6.2(@babel/traverse@7.25.3)(@types/node@20.14.14)(esbuild@0.21.5)(nx@19.6.2)(typescript@5.5.3)(verdaccio@5.31.1(typanion@3.14.0)))(esbuild@0.21.5)(nx@19.6.2)(ts-node@10.9.2(@types/node@20.14.14)(typescript@5.5.3))(typescript@5.5.3)':
     dependencies:
       '@anatine/esbuild-decorators': 0.2.19(esbuild@0.21.5)
       '@ltd/j-toml': 1.38.0
