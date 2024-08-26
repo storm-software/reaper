@@ -5,24 +5,24 @@ edition = "2021"
 
 [dependencies]
 reaper-eth-engine-metrics = { path = "../../eth-engine-metrics" }
-reaper-eth-engine-pricing = { path = "../../eth-engine-pricing", features = [
-    "tests",
-] }
-reaper-eth-engine-core = { path = "../../eth-engine-core", features = [
-    "tests",
-] }
-reaper-eth-engine-database = { path = "../../eth-engine-database", features = [
-    "tests",
-] }
-reaper-eth-engine-classifier = { path = "../../eth-engine-classifier", features = [
-    "tests",
-] }
-reaper-eth-engine-types = { path = "../../eth-engine-types", features = [
-    "tests",
-] }
-reaper-eth-engine-reth-tracing = { path = "../../eth-engine-reth-tracing", features = [
-    "tests",
-] }
+# reaper-eth-engine-pricing = { path = "../../eth-engine-pricing", features = [
+#     "tests",
+# ] }
+# reaper-eth-engine-core = { path = "../../eth-engine-core", features = [
+#     "tests",
+# ] }
+# reaper-eth-engine-database = { path = "../../eth-engine-database", features = [
+#     "tests",
+# ] }
+# reaper-eth-engine-classifier = { path = "../../eth-engine-classifier", features = [
+#     "tests",
+# ] }
+# reaper-eth-engine-types = { path = "../../eth-engine-types", features = [
+#     "tests",
+# ] }
+# reaper-eth-engine-reth-tracing = { path = "../../eth-engine-reth-tracing", features = [
+#     "tests",
+# ] }
 reaper-eth-engine-macros = { path = "../../eth-engine-macros" }
 
 itertools = "0.12.0"
@@ -88,15 +88,15 @@ eyre.workspace = true
 default = []
 uni-v3-ticks = []
 local-reth = [
-    "reaper-eth-engine-reth-tracing/local-reth",
-    "reaper-eth-engine-types/local-reth",
-    "reaper-eth-engine-core/local-reth",
-    "reaper-eth-engine-classifier/local-reth",
-    "reaper-eth-engine-database/local-reth",
+    # "reaper-eth-engine-reth-tracing/local-reth",
+    # "reaper-eth-engine-types/local-reth",
+    # "reaper-eth-engine-core/local-reth",
+    # "reaper-eth-engine-classifier/local-reth",
+    # "reaper-eth-engine-database/local-reth",
 ]
 local-clickhouse = [
-    "reaper-eth-engine-reth-tracing/local-clickhouse",
-    "reaper-eth-engine-core/local-clickhouse",
-    "reaper-eth-engine-classifier/local-clickhouse",
-    "reaper-eth-engine-database/local-clickhouse",
+    # "reaper-eth-engine-reth-tracing/local-clickhouse",
+    # "reaper-eth-engine-core/local-clickhouse",
+    # "reaper-eth-engine-classifier/local-clickhouse",
+    # "reaper-eth-engine-database/local-clickhouse",
 ]

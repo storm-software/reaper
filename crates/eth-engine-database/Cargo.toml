@@ -133,20 +133,21 @@ auto_impl.workspace = true
 reth-tasks = { workspace = true }
 
 [dev-dependencies]
+# reaper-eth-engine-core = { path = "../eth-engine-core", features = ["tests"] }
+# reaper-eth-engine-classifier = { path = "../eth-engine-classifier", features = [
+#     "tests",
+# ] }
+# reaper-eth-engine-database = { path = "../eth-engine-database", features = [
+#     "tests",
+# ] }
+reaper-eth-engine-types = { path = "../eth-engine-types" }
+reaper-eth-engine-pricing = { path = "../eth-engine-pricing" }
+reaper-eth-engine-macros = { path = "../eth-engine-macros" }
+
 serial_test.workspace = true
 test-fuzz = "4"
 async-trait.workspace = true
 reth-tasks.workspace = true
-reaper-eth-engine-core = { path = "../eth-engine-core", features = ["tests"] }
-reaper-eth-engine-classifier = { path = "../eth-engine-classifier", features = [
-    "tests",
-] }
-reaper-eth-engine-database = { path = "../eth-engine-database", features = [
-    "tests",
-] }
-reaper-eth-engine-types = { path = "../eth-engine-types" }
-reaper-eth-engine-pricing = { path = "../eth-engine-pricing" }
-reaper-eth-engine-macros = { path = "../eth-engine-macros" }
 criterion = "0.5.1"
 
 [[bench]]
@@ -170,24 +171,27 @@ path = "tests/db_query.rs"
 required-features = ["sorella-server"]
 
 [build-dependencies]
+reaper-eth-engine-types = { path = "../eth-engine-types" }
+
 serde.workspace = true
 toml = "0.8.9"
-reaper-eth-engine-types = { path = "../eth-engine-types" }
 alloy-primitives.workspace = true
 
 [features]
 sorella-server = ["local-reth", "local-clickhouse"]
-tests = ["reaper-eth-engine-pricing/tests"]
+tests = [
+    # "reaper-eth-engine-pricing/tests"
+]
 local-reth = [
-    "reaper-eth-engine-core/local-reth",
-    "reaper-eth-engine-reth-tracing/local-reth",
-    "reaper-eth-engine-types/local-reth",
+    # "reaper-eth-engine-core/local-reth",
+    # "reaper-eth-engine-reth-tracing/local-reth",
+    # "reaper-eth-engine-types/local-reth",
 ]
 
 local-clickhouse = [
     "db-interfaces",
-    "reaper-eth-engine-core/local-clickhouse",
-    "reaper-eth-engine-database/local-clickhouse",
+    # "reaper-eth-engine-core/local-clickhouse",
+    # "reaper-eth-engine-database/local-clickhouse",
 ]
 
 [lib]

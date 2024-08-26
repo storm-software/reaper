@@ -69,41 +69,42 @@ criterion = { version = "0.5", features = [
 ], optional = true }
 
 [dev-dependencies]
+# reaper-eth-engine-pricing = { path = "../eth-engine-pricing", features = [
+#     "tests",
+# ] }
+# reaper-eth-engine-classifier = { path = "../eth-engine-classifier", features = [
+#     "tests",
+# ] }
+# reaper-eth-engine-core = { path = "../eth-engine-core", features = ["tests"] }
+reaper-eth-engine-database = { path = "../eth-engine-database" }
+reaper-eth-engine-reth-tracing = { path = "../eth-engine-reth-tracing" }
+reaper-eth-engine-macros = { path = "../eth-engine-macros" }
+
+criterion = "0.5"
 strum = { workspace = true, features = ["derive"] }
 dotenvy.workspace = true
 tokio.workspace = true
 serial_test.workspace = true
 thiserror.workspace = true
-reaper-eth-engine-pricing = { path = "../eth-engine-pricing", features = [
-    "tests",
-] }
-reaper-eth-engine-classifier = { path = "../eth-engine-classifier", features = [
-    "tests",
-] }
-reaper-eth-engine-core = { path = "../eth-engine-core", features = ["tests"] }
-reaper-eth-engine-database = { path = "../eth-engine-database" }
-reaper-eth-engine-reth-tracing = { path = "../eth-engine-reth-tracing" }
-criterion = "0.5"
-reaper-eth-engine-macros = { path = "../eth-engine-macros" }
 
 [features]
 default = []
 tests = [
-    "reaper-eth-engine-reth-tracing",
-    "reaper-eth-engine-core/tests",
+    # "reaper-eth-engine-reth-tracing",
+    # "reaper-eth-engine-core/tests",
     "thiserror",
     "criterion",
-    "reaper-eth-engine-pricing/tests",
+    # "reaper-eth-engine-pricing/tests",
 ]
 local-reth = [
-    "reaper-eth-engine-core/local-reth",
-    "reaper-eth-engine-reth-tracing/local-reth",
-    "reaper-eth-engine-types/local-reth",
+    # "reaper-eth-engine-core/local-reth",
+    # "reaper-eth-engine-reth-tracing/local-reth",
+    # "reaper-eth-engine-types/local-reth",
 ]
 
 local-clickhouse = [
-    "reaper-eth-engine-database/local-clickhouse",
-    "reaper-eth-engine-core/local-clickhouse",
+    # "reaper-eth-engine-database/local-clickhouse",
+    # "reaper-eth-engine-core/local-clickhouse",
 ]
 
 [lib]

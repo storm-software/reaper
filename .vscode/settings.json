@@ -33,6 +33,7 @@
     "crates\\eth-engine-database\\Cargo.toml",
     "crates\\eth-engine-libmdbx\\Cargo.toml",
     "crates\\eth-engine-pricing\\Cargo.toml",
+    "crates\\eth-engine-pricing\\pricing-test-utils\\Cargo.toml",
     "crates\\eth-engine-classifier\\Cargo.toml",
     "crates\\aws\\Cargo.toml",
     "apps\\eth-engine\\Cargo.toml",

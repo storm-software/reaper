@@ -85,21 +85,21 @@ criterion = { version = "0.5", features = [
 ], optional = true }
 
 [dev-dependencies]
-reaper-eth-engine-pricing-test-utils = { path = "./pricing-test-utils" }
-reaper-eth-engine-pricing = { path = "../eth-engine-pricing", features = [
-    "tests",
-] }
-reaper-eth-engine-core = { path = "../eth-engine-core", features = ["tests"] }
-reaper-eth-engine-database = { path = "../eth-engine-database", features = [
-    "tests",
-] }
-reaper-eth-engine-classifier = { path = "../eth-engine-classifier", features = [
-    "tests",
-] }
-reaper-eth-engine-types = { path = "../eth-engine-types", features = ["tests"] }
-reaper-eth-engine-reth-tracing = { path = "../eth-engine-reth-tracing", features = [
-    "tests",
-] }
+# reaper-eth-engine-pricing-test-utils = { path = "./pricing-test-utils" }
+# reaper-eth-engine-pricing = { path = "../eth-engine-pricing", features = [
+#     "tests",
+# ] }
+# reaper-eth-engine-core = { path = "../eth-engine-core", features = ["tests"] }
+# reaper-eth-engine-database = { path = "../eth-engine-database", features = [
+#     "tests",
+# ] }
+# reaper-eth-engine-classifier = { path = "../eth-engine-classifier", features = [
+#     "tests",
+# ] }
+# reaper-eth-engine-types = { path = "../eth-engine-types", features = ["tests"] }
+# reaper-eth-engine-reth-tracing = { path = "../eth-engine-reth-tracing", features = [
+#     "tests",
+# ] }
 dotenvy.workspace = true
 tokio.workspace = true
 reth-provider.workspace = true
@@ -112,19 +112,19 @@ sorella-server = ["local-reth", "local-clickhouse"]
 tests = ["criterion"]
 uni-v3-ticks = []
 local-reth = [
-    "reaper-eth-engine-reth-tracing/local-reth",
-    "reaper-eth-engine-pricing-test-utils/local-reth",
-    "reaper-eth-engine-types/local-reth",
-    "reaper-eth-engine-core/local-reth",
-    "reaper-eth-engine-classifier/local-reth",
-    "reaper-eth-engine-database/local-reth",
+    # "reaper-eth-engine-reth-tracing/local-reth",
+    # "reaper-eth-engine-pricing-test-utils/local-reth",
+    # "reaper-eth-engine-types/local-reth",
+    # "reaper-eth-engine-core/local-reth",
+    # "reaper-eth-engine-classifier/local-reth",
+    # "reaper-eth-engine-database/local-reth",
 ]
 local-clickhouse = [
-    "reaper-eth-engine-pricing-test-utils/local-clickhouse",
-    "reaper-eth-engine-reth-tracing/local-clickhouse",
-    "reaper-eth-engine-core/local-clickhouse",
-    "reaper-eth-engine-classifier/local-clickhouse",
-    "reaper-eth-engine-database/local-clickhouse",
+    # "reaper-eth-engine-pricing-test-utils/local-clickhouse",
+    # "reaper-eth-engine-reth-tracing/local-clickhouse",
+    # "reaper-eth-engine-core/local-clickhouse",
+    # "reaper-eth-engine-classifier/local-clickhouse",
+    # "reaper-eth-engine-database/local-clickhouse",
 ]
 
 [lib]

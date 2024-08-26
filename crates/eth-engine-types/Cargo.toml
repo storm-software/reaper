@@ -104,9 +104,9 @@ reaper-eth-engine-macros = { path = "../eth-engine-macros" }
 #     "tests",
 #     "test_pricing",
 # ] }
-reaper-eth-engine-classifier = { path = "../eth-engine-classifier", features = [
-    "tests",
-] }
+# reaper-eth-engine-classifier = { path = "../eth-engine-classifier", features = [
+#     "tests",
+# ] }
 # reaper-eth-engine-core = { path = "../eth-engine-core", features = ["tests"] }
 # reaper-eth-engine-database = { path = "../eth-engine-database", features = [
 #     "tests",
