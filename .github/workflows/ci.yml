@@ -160,10 +160,11 @@ jobs:
         uses: nrwl/nx-set-shas@v4
         with:
           main-branch-name: main
-          error-on-no-successful-workflows: false
+          error-on-no-successful-workflow: false
+          set-environment-variables-for-job: true
 
       - name: Run lint
-        run: pnpm nx affected --target=lint --parallel=3 --exclude=docs-* --base=${{ env.NX_BASE }} --head=${{ env.NX_HEAD }}
+        run: pnpm nx affected --target=lint --exclude=docs-* --base=${{ env.NX_BASE }} --head=${{ env.NX_HEAD }}
         shell: bash
 
   release:
@@ -208,7 +209,8 @@ jobs:
         uses: nrwl/nx-set-shas@v4
         with:
           main-branch-name: main
-          error-on-no-successful-workflows: false
+          error-on-no-successful-workflow: false
+          set-environment-variables-for-job: true
 
       - name: Run build
         run: pnpm nx run-many --target=build --parallel=3 --configuration=prod --exclude=docs-*

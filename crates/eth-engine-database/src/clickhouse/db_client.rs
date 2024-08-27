@@ -109,7 +109,7 @@ impl Clickhouse {
       + 1)
       .into();
 
-    self.client.insert_one::<ReaperEthEngineRun_Id>(&id).await?;
+    self.client.insert_one::<EngineRun_Id>(&id).await?;
 
     Ok(id.run_id)
   }
@@ -1112,7 +1112,7 @@ mod tests {
   async fn token_info(db: &ClickhouseTestClient<ReaperEthEngineClickhouseTables>) {
     let case0 = TokenInfoWithAddress::default();
 
-    db.insert_one::<ReaperEthEngineToken_Info>(&case0)
+    db.insert_one::<EngineToken_Info>(&case0)
       .await
       .unwrap();
   }
@@ -1129,7 +1129,7 @@ mod tests {
       quote:        Some(case0_map),
     };
 
-    db.insert_one::<ReaperEthEngineDex_Price_Mapping>(&case0)
+    db.insert_one::<EngineDex_Price_Mapping>(&case0)
       .await
       .unwrap();
 
@@ -1339,7 +1339,7 @@ mod tests {
   async fn block_analysis(db: &ClickhouseTestClient<ReaperEthEngineClickhouseTables>) {
     let case0 = BlockAnalysis::default();
 
-    db.insert_one::<ReaperEthEngineBlock_Analysis>(&DbDataWithRunId::new_with_run_id(case0, 0))
+    db.insert_one::<EngineBlock_Analysis>(&DbDataWithRunId::new_with_run_id(case0, 0))
       .await
       .unwrap();
   }
@@ -1355,7 +1355,7 @@ mod tests {
       })
       .collect::<Vec<_>>();
 
-    db.insert_many::<ReaperEthEngineTree>(&roots).await.unwrap();
+    db.insert_many::<EngineTree>(&roots).await.unwrap();
   }
 
   async fn run_all(database: &ClickhouseTestClient<ReaperEthEngineClickhouseTables>) {

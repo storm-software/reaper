@@ -12,8 +12,8 @@ clickhouse_dbms!(
   ReaperEthEngineClickhouseTables,
   "eth_cluster0",
   [
-    ReaperEthEngineDex_Price_Mapping,
-    ReaperEthEngineBlock_Analysis,
+    EngineDex_Price_Mapping,
+    EngineBlock_Analysis,
     MevMev_Blocks,
     MevBundle_Header,
     MevSearcher_Tx,
@@ -24,10 +24,10 @@ clickhouse_dbms!(
     MevJit,
     MevSandwiches,
     MevAtomic_Arbs,
-    ReaperEthEngineToken_Info,
+    EngineToken_Info,
     EthereumPools,
-    ReaperEthEngineTree,
-    ReaperEthEngineRun_Id
+    EngineTree,
+    EngineRun_Id
   ]
 );
 
@@ -35,22 +35,22 @@ impl ReaperEthEngineClickhouseTables {
   pub const fn is_big(&self) -> bool {
     matches!(
       self,
-      ReaperEthEngineClickhouseTables::ReaperEthEngineDex_Price_Mapping
-        | ReaperEthEngineClickhouseTables::ReaperEthEngineTree
+      ReaperEthEngineClickhouseTables::EngineDex_Price_Mapping
+        | ReaperEthEngineClickhouseTables::EngineTree
     )
   }
 }
 
 remote_clickhouse_table!(
   ReaperEthEngineClickhouseTables,
-  [Reaper, Dex_Price_Mapping],
+  [Engine, Dex_Price_Mapping],
   DexQuotesWithBlockNumber,
   "crates/eth-engine-database/src/clickhouse/tables/"
 );
 
 remote_clickhouse_table!(
   ReaperEthEngineClickhouseTables,
-  [Reaper, Block_Analysis],
+  [Engine, Block_Analysis],
   DbDataWithRunId<BlockAnalysis>,
   "crates/eth-engine-database/src/clickhouse/tables/"
 );
@@ -127,7 +127,7 @@ remote_clickhouse_table!(
 
 remote_clickhouse_table!(
   ReaperEthEngineClickhouseTables,
-  [Reaper, Token_Info],
+  [Engine, Token_Info],
   TokenInfoWithAddress,
   "crates/eth-engine-database/src/clickhouse/tables/"
 );
@@ -141,14 +141,14 @@ remote_clickhouse_table!(
 
 remote_clickhouse_table!(
   ReaperEthEngineClickhouseTables,
-  [Reaper, Tree],
+  [Engine, Tree],
   DbDataWithRunId<TransactionRoot>,
   "crates/eth-engine-database/src/clickhouse/tables/"
 );
 
 remote_clickhouse_table!(
   ReaperEthEngineClickhouseTables,
-  [Reaper, Run_Id],
+  [Engine, Run_Id],
   RunId,
   "crates/eth-engine-database/src/clickhouse/tables/"
 );
@@ -229,7 +229,7 @@ macro_rules! db_types {
 }
 
 db_types!(
-  (DexQuotesWithBlockNumber, ReaperEthEngineDex_Price_Mapping, false),
+  (DexQuotesWithBlockNumber, EngineDex_Price_Mapping, false),
   (MevBlock, MevMev_Blocks, true),
   (BundleHeader, MevBundle_Header, true),
   (SearcherTx, MevSearcher_Tx, true),
@@ -240,9 +240,9 @@ db_types!(
   (JitLiquidity, MevJit, true),
   (Sandwich, MevSandwiches, true),
   (AtomicArb, MevAtomic_Arbs, true),
-  (TokenInfoWithAddress, ReaperEthEngineToken_Info, false),
+  (TokenInfoWithAddress, EngineToken_Info, false),
   (ProtocolInfoClickhouse, EthereumPools, false),
-  (TransactionRoot, ReaperEthEngineTree, true),
-  (BlockAnalysis, ReaperEthEngineBlock_Analysis, true),
-  (RunId, ReaperEthEngineRun_Id, false)
+  (TransactionRoot, EngineTree, true),
+  (BlockAnalysis, EngineBlock_Analysis, true),
+  (RunId, EngineRun_Id, false)
 );

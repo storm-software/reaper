@@ -1,4 +1,4 @@
-CREATE TABLE reaper.block_analysis ON CLUSTER eth_cluster0
+CREATE TABLE engine.block_analysis ON CLUSTER eth_cluster0
 (
     `block_number` UInt64,
     `eth_price` Float64,
@@ -443,6 +443,6 @@ CREATE TABLE reaper.block_analysis ON CLUSTER eth_cluster0
 
     `run_id` UInt64
 )
-ENGINE = ReplicatedReplacingMergeTree('/clickhouse/eth_cluster0/tables/all/reaper/block_analysis', '{replica}', `run_id`)
+ENGINE = ReplicatedReplacingMergeTree('/clickhouse/eth_cluster0/tables/all/engine/block_analysis', '{replica}', `run_id`)
 PRIMARY KEY (`block_number`)
 ORDER BY (`block_number`)

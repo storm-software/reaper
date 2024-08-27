@@ -41,14 +41,17 @@
     "apps\\eth-order-fill-service\\Cargo.toml"
   ],
   "rust-analyzer.checkOnSave": false,
-  "rust-analyzer.diagnostics.enable": false,
+  "rust-analyzer.diagnostics.enable": true,
   "rust-analyzer.diagnostics.experimental.enable": false,
   "rust-analyzer.cachePriming.enable": false,
-  "rust-analyzer.check.invocationStrategy": "once",
+  "rust-analyzer.check.invocationStrategy": "per_workspace",
   "rust-analyzer.cargo.allTargets": false,
   "rust-analyzer.semanticHighlighting.punctuation.specialization.enable": true,
   "rust-analyzer.inlayHints.maxLength": 35,
   "rust-analyzer.runnables.extraArgs": ["--profile=debug-fast"],
+  "rust-analyzer.typing.autoClosingAngleBrackets.enable": true,
+  "rust-analyzer.diagnostics.styleLints.enable": true,
+  // "rust-analyzer.cargo.buildScripts.overrideCommand": null
   /******************************
    * JSON Schemas
    ******************************/

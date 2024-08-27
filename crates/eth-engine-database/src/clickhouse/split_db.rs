@@ -118,12 +118,12 @@ impl ClickhouseBuffered {
       (MevSandwiches, Sandwich),
       (MevAtomic_Arbs, AtomicArb),
       (MevLiquidations, Liquidation),
-      (ReaperEthEngineDex_Price_Mapping, DexQuotesWithBlockNumber),
-      (ReaperEthEngineToken_Info, TokenInfoWithAddress),
+      (EngineDex_Price_Mapping, DexQuotesWithBlockNumber),
+      (EngineToken_Info, TokenInfoWithAddress),
       (EthereumPools, ProtocolInfoClickhouse),
-      (ReaperEthEngineTree, TransactionRoot),
-      (ReaperEthEngineBlock_Analysis, BlockAnalysis),
-      (ReaperEthEngineRun_Id, RunId)
+      (EngineTree, TransactionRoot),
+      (EngineBlock_Analysis, BlockAnalysis),
+      (EngineRun_Id, RunId)
     );
 
     Ok(())
