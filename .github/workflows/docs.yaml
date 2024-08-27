@@ -105,7 +105,7 @@ jobs:
           pnpm nx run docs-book:build
 
       - name: Build docs
-        run: pnpm nx affected --target=docs --parallel=3 --configuration=production --exclude=docs-*
+        run: pnpm nx affected --target=docs --parallel=3 --configuration=production --include=crates/* --exclude=docs-* --base=${{ env.NX_BASE }} --head=${{ env.NX_HEAD }}
         env:
           RUSTDOCFLAGS:
             --cfg docsrs --show-type-layout --generate-link-to-definition --enable-index-page
@@ -113,7 +113,7 @@ jobs:
 
       - name: Move docs to book folder
         run: |
-          mv dist/docs dist/book/projects
+          mv dist/docs/crates dist/book
 
       - name: Archive artifact
         shell: sh
