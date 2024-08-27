@@ -32,7 +32,7 @@
     "type": "github",
     "url": "https://github.com/sponsors/storm-software"
   },
-  "license": "Not Applicable",
+  "license": "Apache-2.0",
   "private": true,
   "packageManager": "pnpm@9.8.0",
   "engines": {
@@ -139,6 +139,8 @@
   "nx": {
     "includedScripts": [
       "lint-ls",
+      "lint-toml",
+      "lint-prettier",
       "lint",
       "format",
       "format-readme",

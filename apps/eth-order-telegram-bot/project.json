@@ -5,13 +5,18 @@
   "sourceRoot": "apps/eth-order-telegram-bot/src",
   "targets": {
     "build-local": {
-      "executor": "@monodon/rust:build",
-      "outputs": ["{options.target-dir}"],
+      "executor": "@storm-software/workspace-tools:cargo-build",
+      "outputs": ["{workspaceRoot}/dist/target/apps/eth-order-telegram-bot"],
+      "dependsOn": ["clean", "^build"],
       "options": {
-        "target-dir": "dist/target/eth-order-telegram-bot"
+        "outputPath": "dist/target/apps/eth-order-telegram-bot"
       },
+      "defaultConfiguration": "development",
       "configurations": {
-        "prod": {
+        "development": {
+          "profile": "dev"
+        },
+        "production": {
           "profile": "prod"
         }
       }
@@ -19,49 +24,13 @@
     "build": {
       "executor": "nx:run-commands",
       "inputs": ["rust", "^production"],
-      "outputs": ["{workspaceRoot}/dist/target/eth-order-telegram-bot"],
+      "outputs": ["{workspaceRoot}/dist/target/apps/eth-order-telegram-bot"],
       "dependsOn": ["clean", "^build"],
       "options": {
         "commands": [
-          "cargo lambda build --profile prod --output-format zip --package reaper-eth-order-telegram-bot --target-dir dist/target/eth-order-telegram-bot"
+          "cargo lambda build --profile prod --output-format zip --package reaper-eth-order-telegram-bot --target-dir dist/target/apps/eth-order-telegram-bot"
         ],
         "color": true
-      }
-    },
-    "test": {
-      "executor": "@monodon/rust:test",
-      "outputs": ["{options.target-dir}"],
-      "options": {
-        "target-dir": "dist/target/eth-order-telegram-bot"
-      },
-      "configurations": {
-        "prod": {
-          "profile": "prod"
-        }
-      }
-    },
-    "lint": {
-      "executor": "@monodon/rust:lint",
-      "outputs": ["{options.target-dir}"],
-      "options": {
-        "target-dir": "dist/target/eth-order-telegram-bot"
-      },
-      "configurations": {
-        "prod": {
-          "profile": "prod"
-        }
-      }
-    },
-    "run": {
-      "executor": "@monodon/rust:run",
-      "outputs": ["{options.target-dir}"],
-      "options": {
-        "target-dir": "dist/target/eth-order-telegram-bot"
-      },
-      "configurations": {
-        "prod": {
-          "profile": "prod"
-        }
       }
     }
   },

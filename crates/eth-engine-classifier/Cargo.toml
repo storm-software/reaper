@@ -12,10 +12,6 @@ homepage = { workspace = true }
 documentation = "https://docs.rs/reaper-eth-engine-classifier"
 readme = "./README.md"
 
-[[bench]]
-name = "classifier"
-harness = false
-
 [dependencies]
 reaper-eth-engine-types = { path = "../eth-engine-types" }
 reaper-eth-engine-macros = { path = "../eth-engine-macros" }
@@ -109,3 +105,7 @@ local-clickhouse = [
 [lib]
 name = "reaper_eth_engine_classifier"
 path = "src/lib.rs"
+
+[[bench]]
+name = "classifier"
+harness = false

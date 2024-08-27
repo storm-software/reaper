@@ -2,5 +2,7 @@ nodejs 20.14.0
 pnpm 9.8.0
 rust nightly
 zig 0.13.0
+mdbook 0.4.14
+mdbook-linkcheck 0.7.7
 terragrunt 0.63.6
 opentofu 1.8.0

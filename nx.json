@@ -1,21 +1,30 @@
 {
+  "$schema": "https://cdn.jsdelivr.net/npm/nx/schemas/nx-schema.json",
   "extends": "@storm-software/workspace-tools/config/nx.json",
   "plugins": [
-    // {
-    //   "plugin": "@nx/eslint/plugin",
-    //   "exclude": ["packages/**/__fixtures__/**/*"],
-    //   "options": {
-    //     "targetName": "lint",
-    //     "useFlatConfig": true
-    //   }
-    // },
+    {
+      "plugin": "@nx/eslint/plugin",
+      "exclude": ["packages/**/__fixtures__/**/*"],
+      "options": {
+        "targetName": "lint",
+        "useFlatConfig": true
+      }
+    },
+    "@storm-software/workspace-tools/plugins/typescript",
     {
       "plugin": "@storm-software/workspace-tools/plugins/rust",
       "options": {
-        "includeApps": false
+        "toolchain": "nightly",
+        "profiles": {
+          "development": "dev",
+          "production": "prod"
+        }
       }
-    },
-    "@storm-software/workspace-tools/plugins/typescript"
+    }
   ],
-  "defaultProject": "reaper-eth-engine"
+  "defaultProject": "reaper-eth-engine",
+  "parallel": 1,
+  "defaultBase": "main",
+  "useDaemonProcess": true,
+  "useInferencePlugins": true
 }

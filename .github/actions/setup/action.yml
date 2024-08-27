@@ -20,17 +20,13 @@ runs:
     - name: Install asdf
       uses: asdf-vm/actions/install@v3
 
-    # - name: Install NodeJs with asdf
-    #   run: |
-    #     asdf plugin add nodejs
-    #     asdf plugin add pnpm
-    #     asdf plugin add rust
-    #     asdf plugin add zig
-    #     asdf install nodejs
-    #     asdf install pnpm
-    #     asdf install rust
-    #     asdf install zig
-    #   shell: bash
+    - name: Install Tooling with asdf
+      run: |
+        asdf install nodejs
+        asdf install pnpm
+        asdf install rust
+        asdf install zig
+      shell: bash
 
     - name: Install Cargo Lambda
       uses: jaxxstorm/action-install-gh-release@v1.9.0

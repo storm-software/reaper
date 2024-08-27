@@ -11,10 +11,9 @@ on:
 
 jobs:
   lint:
+    name: Lint docs
     runs-on: ubuntu-latest
-    name: lint
-    timeout-minutes: 60
-
+    timeout-minutes: 45
     steps:
       - uses: actions/checkout@v4
         name: Checkout [Pull Request]
@@ -40,18 +39,24 @@ jobs:
           storm_bot_private_key: ${{ secrets.STORM_BOT_PRIVATE_KEY }}
           storm_bot_passphrase: ${{ secrets.STORM_BOT_PASSPHRASE }}
 
-      - name: Install mdbook-linkcheck
+      - name: Install mdbook-linkcheck with asdf
         run: |
-          mkdir mdbook-linkcheck
-          curl -sSL -o mdbook-linkcheck.zip https://github.com/Michael-F-Bryan/mdbook-linkcheck/releases/latest/download/mdbook-linkcheck.x86_64-unknown-linux-gnu.zip
-          unzip mdbook-linkcheck.zip -d ./mdbook-linkcheck
-          chmod +x $(pwd)/mdbook-linkcheck/mdbook-linkcheck
-          echo $(pwd)/mdbook-linkcheck >> $GITHUB_PATH
+          asdf install mdbook-linkcheck
+        shell: bash
+
+      # - name: Install mdbook-linkcheck
+      #   run: |
+      #     mkdir mdbook-linkcheck
+      #     curl -sSL -o mdbook-linkcheck.zip https://github.com/Michael-F-Bryan/mdbook-linkcheck/releases/latest/download/mdbook-linkcheck.x86_64-unknown-linux-gnu.zip
+      #     unzip mdbook-linkcheck.zip -d ./mdbook-linkcheck
+      #     chmod +x $(pwd)/mdbook-linkcheck/mdbook-linkcheck
+      #     echo $(pwd)/mdbook-linkcheck >> $GITHUB_PATH
 
       - name: Run linkcheck
-        run: pnpm nx run docs-book:lint-linkcheck
+        run: pnpm nx run docs-book:lint
 
   build:
+    name: Build docs
     runs-on: ubuntu-latest
     timeout-minutes: 60
     steps:
@@ -84,11 +89,10 @@ jobs:
       - run: git config --global url."https://${{ secrets.STORM_BOT_GITHUB_TOKEN }}@github.com/".insteadOf "git@github.com:"
         shell: bash
 
-      - name: Install mdbook
+      - name: Install mdbook with asdf
         run: |
-          mkdir mdbook
-          curl -sSL https://github.com/rust-lang/mdBook/releases/download/v0.4.14/mdbook-v0.4.14-x86_64-unknown-linux-gnu.tar.gz | tar -xz --directory=./mdbook
-          echo $(pwd)/mdbook >> $GITHUB_PATH
+          asdf install mdbook
+        shell: bash
 
       - name: Install mdbook-template
         run: |
@@ -101,7 +105,7 @@ jobs:
           pnpm nx run docs-book:build
 
       - name: Build docs
-        run: cargo doc --no-deps --all-features
+        run: pnpm nx affected --target=docs --parallel=3 --configuration=production --exclude=docs-*
         env:
           RUSTDOCFLAGS:
             --cfg docsrs --show-type-layout --generate-link-to-definition --enable-index-page
@@ -109,18 +113,18 @@ jobs:
 
       - name: Move docs to book folder
         run: |
-          mv dist/target/doc dist/docs/book/docs
+          mv dist/docs dist/book/projects
 
       - name: Archive artifact
         shell: sh
         run: |
-          chmod -c -R +rX "dist/docs/book" |
+          chmod -c -R +rX "dist/book" |
           while read line; do
              echo "::warning title=Invalid file permissions automatically fixed::$line"
           done
           tar \
             --dereference --hard-dereference \
-            --directory "dist/docs/book" \
+            --directory "dist/book" \
             -cvf "$RUNNER_TEMP/artifact.tar" \
             --exclude=.git \
             --exclude=.github \
@@ -135,22 +139,17 @@ jobs:
           if-no-files-found: error
 
   deploy:
-    # Only deploy if a push to main
+    name: Deploy docs
     if: github.ref_name == 'main' && github.event_name == 'push'
     runs-on: ubuntu-latest
     needs: [lint, build]
-
-    # Grant GITHUB_TOKEN the permissions required to make a Pages deployment
+    timeout-minutes: 60
     permissions:
       pages: write
       id-token: write
-
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
-
-    timeout-minutes: 60
-
     steps:
       - name: Deploy to GitHub Pages
         id: deployment

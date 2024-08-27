@@ -7,8 +7,8 @@
     "dev": {
       "cache": true,
       "executor": "nx:run-commands",
-      "inputs": ["{workspaceRoot}/docs/book/**/*"],
-      "outputs": ["{workspaceRoot}/dist/docs/book"],
+      "inputs": ["{workspaceRoot}/book/**/*"],
+      "outputs": ["{workspaceRoot}/dist/book"],
       "dependsOn": ["clean", "^build"],
       "options": {
         "commands": ["mdbook serve --open"],
@@ -19,8 +19,8 @@
     "build": {
       "cache": true,
       "executor": "nx:run-commands",
-      "inputs": ["{workspaceRoot}/docs/book/**/*"],
-      "outputs": ["{workspaceRoot}/dist/docs/book"],
+      "inputs": ["{workspaceRoot}/book/**/*"],
+      "outputs": ["{workspaceRoot}/dist/book"],
       "dependsOn": ["clean", "^build"],
       "options": {
         "commands": ["mdbook build"],
@@ -28,11 +28,11 @@
         "color": true
       }
     },
-    "lint-linkcheck": {
+    "lint": {
       "cache": true,
       "executor": "nx:run-commands",
-      "inputs": ["{workspaceRoot}/docs/book/**/*"],
-      "outputs": ["{workspaceRoot}/dist/docs/book"],
+      "inputs": ["{workspaceRoot}/book/**/*"],
+      "outputs": ["{workspaceRoot}/dist/book"],
       "dependsOn": ["clean", "^build"],
       "options": {
         "commands": ["mdbook-linkcheck --standalone"],
