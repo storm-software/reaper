@@ -184,7 +184,6 @@ jobs:
     if: always() && !cancelled() && !contains(needs.*.result, 'failure') && github.event.pull_request.draft == false
     needs:
       - start
-      - lint
     runs-on: ubuntu-latest
     permissions:
       actions: read
@@ -321,7 +320,6 @@ jobs:
   success:
     needs:
       - start
-      - lint
       - release
     if: ${{ success() }}
     name: Send success notification
@@ -394,7 +392,6 @@ jobs:
   failure:
     needs:
       - start
-      - lint
       - release
     if: ${{ failure() }}
     name: Send failure notification
@@ -472,7 +469,6 @@ jobs:
   cancelled:
     needs:
       - start
-      - lint
       - release
     if: ${{ cancelled() }}
     name: Send cancelled notification

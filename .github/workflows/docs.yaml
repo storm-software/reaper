@@ -100,6 +100,13 @@ jobs:
           curl -sSL https://github.com/sgoudham/mdbook-template/releases/latest/download/mdbook-template-x86_64-unknown-linux-gnu.tar.gz | tar -xz --directory=./mdbook-template
           echo $(pwd)/mdbook-template >> $GITHUB_PATH
 
+      - name: Setup Nx SHAs
+        uses: nrwl/nx-set-shas@v4
+        with:
+          main-branch-name: main
+          error-on-no-successful-workflow: false
+          set-environment-variables-for-job: true
+
       - name: Build book
         run: |
           pnpm nx run docs-book:build
@@ -113,27 +120,27 @@ jobs:
 
       - name: Move docs to book folder
         run: |
-          mv dist/docs/crates dist/book
+          mv dist/docs/crates dist/docs/book
 
       - name: Archive artifact
         shell: sh
         run: |
-          chmod -c -R +rX "dist/book" |
+          chmod -c -R +rX "dist/docs/book" |
           while read line; do
              echo "::warning title=Invalid file permissions automatically fixed::$line"
           done
           tar \
             --dereference --hard-dereference \
-            --directory "dist/book" \
+            --directory "dist/docs/book" \
             -cvf "$RUNNER_TEMP/artifact.tar" \
             --exclude=.git \
             --exclude=.github \
             .
 
       - name: Upload artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
-          name: github-pages
+          name: book-artifact
           path: ${{ runner.temp }}/artifact.tar
           retention-days: 1
           if-no-files-found: error
@@ -142,7 +149,9 @@ jobs:
     name: Deploy docs
     if: github.ref_name == 'main' && github.event_name == 'push'
     runs-on: ubuntu-latest
-    needs: [lint, build]
+    needs:
+      - lint
+      - build
     timeout-minutes: 60
     permissions:
       pages: write
@@ -153,4 +162,6 @@ jobs:
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v2
+        uses: actions/deploy-pages@v4
+        with:
+          artifact_name: book-artifact
