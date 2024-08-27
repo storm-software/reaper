@@ -45,112 +45,112 @@ remote_clickhouse_table!(
   ReaperEthEngineClickhouseTables,
   [Reaper, Dex_Price_Mapping],
   DexQuotesWithBlockNumber,
-  "crates/reaper-eth-engine-database/src/clickhouse/tables/"
+  "crates/eth-engine-database/src/clickhouse/tables/"
 );
 
 remote_clickhouse_table!(
   ReaperEthEngineClickhouseTables,
   [Reaper, Block_Analysis],
   DbDataWithRunId<BlockAnalysis>,
-  "crates/reaper-eth-engine-database/src/clickhouse/tables/"
+  "crates/eth-engine-database/src/clickhouse/tables/"
 );
 
 remote_clickhouse_table!(
   ReaperEthEngineClickhouseTables,
   [Mev, Mev_Blocks],
   DbDataWithRunId<MevBlock>,
-  "crates/reaper-eth-engine-database/src/clickhouse/tables/"
+  "crates/eth-engine-database/src/clickhouse/tables/"
 );
 
 remote_clickhouse_table!(
   ReaperEthEngineClickhouseTables,
   [Mev, Bundle_Header],
   DbDataWithRunId<BundleHeader>,
-  "crates/reaper-eth-engine-database/src/clickhouse/tables/"
+  "crates/eth-engine-database/src/clickhouse/tables/"
 );
 
 remote_clickhouse_table!(
   ReaperEthEngineClickhouseTables,
   [Mev, Searcher_Tx],
   DbDataWithRunId<SearcherTx>,
-  "crates/reaper-eth-engine-database/src/clickhouse/tables/"
+  "crates/eth-engine-database/src/clickhouse/tables/"
 );
 
 remote_clickhouse_table!(
   ReaperEthEngineClickhouseTables,
   [Mev, Cex_Dex],
   DbDataWithRunId<CexDex>,
-  "crates/reaper-eth-engine-database/src/clickhouse/tables/"
+  "crates/eth-engine-database/src/clickhouse/tables/"
 );
 
 remote_clickhouse_table!(
   ReaperEthEngineClickhouseTables,
   [Mev, Cex_Dex_Quotes],
   DbDataWithRunId<CexDexQuote>,
-  "crates/reaper-eth-engine-database/src/clickhouse/tables/"
+  "crates/eth-engine-database/src/clickhouse/tables/"
 );
 
 remote_clickhouse_table!(
   ReaperEthEngineClickhouseTables,
   [Mev, Liquidations],
   DbDataWithRunId<Liquidation>,
-  "crates/reaper-eth-engine-database/src/clickhouse/tables/"
+  "crates/eth-engine-database/src/clickhouse/tables/"
 );
 
 remote_clickhouse_table!(
   ReaperEthEngineClickhouseTables,
   [Mev, Jit_Sandwich],
   DbDataWithRunId<JitLiquiditySandwich>,
-  "crates/reaper-eth-engine-database/src/clickhouse/tables/"
+  "crates/eth-engine-database/src/clickhouse/tables/"
 );
 
 remote_clickhouse_table!(
   ReaperEthEngineClickhouseTables,
   [Mev, Jit],
   DbDataWithRunId<JitLiquidity>,
-  "crates/reaper-eth-engine-database/src/clickhouse/tables/"
+  "crates/eth-engine-database/src/clickhouse/tables/"
 );
 
 remote_clickhouse_table!(
   ReaperEthEngineClickhouseTables,
   [Mev, Sandwiches],
   DbDataWithRunId<Sandwich>,
-  "crates/reaper-eth-engine-database/src/clickhouse/tables/"
+  "crates/eth-engine-database/src/clickhouse/tables/"
 );
 
 remote_clickhouse_table!(
   ReaperEthEngineClickhouseTables,
   [Mev, Atomic_Arbs],
   DbDataWithRunId<AtomicArb>,
-  "crates/reaper-eth-engine-database/src/clickhouse/tables/"
+  "crates/eth-engine-database/src/clickhouse/tables/"
 );
 
 remote_clickhouse_table!(
   ReaperEthEngineClickhouseTables,
   [Reaper, Token_Info],
   TokenInfoWithAddress,
-  "crates/reaper-eth-engine-database/src/clickhouse/tables/"
+  "crates/eth-engine-database/src/clickhouse/tables/"
 );
 
 remote_clickhouse_table!(
   ReaperEthEngineClickhouseTables,
   [Ethereum, Pools],
   ProtocolInfoClickhouse,
-  "crates/reaper-eth-engine-database/src/clickhouse/tables/"
+  "crates/eth-engine-database/src/clickhouse/tables/"
 );
 
 remote_clickhouse_table!(
   ReaperEthEngineClickhouseTables,
   [Reaper, Tree],
   DbDataWithRunId<TransactionRoot>,
-  "crates/reaper-eth-engine-database/src/clickhouse/tables/"
+  "crates/eth-engine-database/src/clickhouse/tables/"
 );
 
 remote_clickhouse_table!(
   ReaperEthEngineClickhouseTables,
   [Reaper, Run_Id],
   RunId,
-  "crates/reaper-eth-engine-database/src/clickhouse/tables/"
+  "crates/eth-engine-database/src/clickhouse/tables/"
 );
 
 pub struct ReaperEthEngineClickhouseData {
