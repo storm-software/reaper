@@ -43,14 +43,14 @@ impl ReaperEthEngineClickhouseTables {
 
 remote_clickhouse_table!(
   ReaperEthEngineClickhouseTables,
-  [ReaperEthEngine, Dex_Price_Mapping],
+  [Reaper, Dex_Price_Mapping],
   DexQuotesWithBlockNumber,
   "crates/reaper-eth-engine-database/src/clickhouse/tables/"
 );
 
 remote_clickhouse_table!(
   ReaperEthEngineClickhouseTables,
-  [ReaperEthEngine, Block_Analysis],
+  [Reaper, Block_Analysis],
   DbDataWithRunId<BlockAnalysis>,
   "crates/reaper-eth-engine-database/src/clickhouse/tables/"
 );
@@ -127,7 +127,7 @@ remote_clickhouse_table!(
 
 remote_clickhouse_table!(
   ReaperEthEngineClickhouseTables,
-  [ReaperEthEngine, Token_Info],
+  [Reaper, Token_Info],
   TokenInfoWithAddress,
   "crates/reaper-eth-engine-database/src/clickhouse/tables/"
 );
@@ -141,14 +141,14 @@ remote_clickhouse_table!(
 
 remote_clickhouse_table!(
   ReaperEthEngineClickhouseTables,
-  [ReaperEthEngine, Tree],
+  [Reaper, Tree],
   DbDataWithRunId<TransactionRoot>,
   "crates/reaper-eth-engine-database/src/clickhouse/tables/"
 );
 
 remote_clickhouse_table!(
   ReaperEthEngineClickhouseTables,
-  [ReaperEthEngine, Run_Id],
+  [Reaper, Run_Id],
   RunId,
   "crates/reaper-eth-engine-database/src/clickhouse/tables/"
 );
