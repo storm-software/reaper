@@ -57,22 +57,19 @@ pre-push:
   commands:
     format:
       glob: "**/*.*"
-      run: "pnpm nx format:write --files={staged_files} && git update-index"
+      run: "pnpm nx format:write --files={staged_files}"
       stage_fixed: true
     format-prettier:
       glob: "!packages/workspace-tools/src/generators/*/files/**/*"
-      run: "pnpm exec prettier {staged_files} --write --ignore-unknown
-        --no-error-on-unmatched-pattern --cache && git update-index"
+      run: "pnpm exec prettier {staged_files} --write --ignore-unknown --no-error-on-unmatched-pattern --cache"
       stage_fixed: true
     format-toml:
       glob: "**/*.toml"
-      run: 'pnpm exec taplo format
-        --config="./node_modules/@storm-software/linting-tools/taplo/.taplo.toml"
-        && git update-index'
+      run: 'pnpm exec taplo format --config="./node_modules/@storm-software/linting-tools/taplo/.taplo.toml"'
       stage_fixed: true
     format-readme:
       glob: "**/{README.md,package.json,executors.json,generators.json}"
-      run: 'pnpm exec storm-git readme-gen --templates="./tools/readme-templates" && git update-index'
+      run: 'pnpm exec storm-git readme-gen --templates="./tools/readme-templates"'
       stage_fixed: true
     # build:
     #   glob: "**/*.*"

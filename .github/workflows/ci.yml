@@ -234,9 +234,9 @@ jobs:
         run: pnpm nx affected --targets=lint --configuration=production --exclude=@reaper/monorepo,docs-* --base=${{ env.NX_BASE }} --head=${{ env.NX_HEAD }}
         shell: bash
 
-      - name: Run taplo
-        run: pnpm exec taplo format --check --config="./node_modules/@storm-software/linting-tools/taplo/.taplo.toml"
-        shell: bash
+      # - name: Run taplo
+      #   run: pnpm exec taplo format --check --config="./node_modules/@storm-software/linting-tools/taplo/.taplo.toml"
+      #   shell: bash
 
       # - name: Run Format task for affected projects
       #   run: pnpm nx affected --targets=format --configuration=production --exclude=@reaper/monorepo,docs-* --base=${{ env.NX_BASE }} --head=${{ env.NX_HEAD }}
