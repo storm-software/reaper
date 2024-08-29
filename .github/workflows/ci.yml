@@ -244,7 +244,7 @@ jobs:
       #   shell: bash
 
       - name: Run build
-        run: pnpm nx run-many --targets=build --parallel=2 --configuration=production --exclude=@reaper/monorepo,docs-*
+        run: pnpm nx run-many --targets=build --nxBail --configuration=production --exclude=@reaper/monorepo,docs-*
         shell: bash
 
       # - name: Configure AWS credentials
