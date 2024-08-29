@@ -235,3 +235,35 @@ aws-config = "1.5.5"
 
 # Ethers
 ethers = { version = "2.0.14", features = ["abigen", "ws", "rustls"] }
+
+
+## ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+## COMPILATION PROFILES
+## ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+[profile.dev]
+debug = true
+incremental = true
+
+[profile.release]
+lto = "thin"
+strip = "debuginfo"
+codegen-units = 16
+panic = "unwind"
+
+[profile.release-with-debug]
+inherits = "release"
+strip = false
+lto = "fat"
+debug = true
+
+[profile.debug-fast]
+inherits = "release"
+strip = "none"
+debug = true
+
+[profile.prod]
+inherits = "release"
+lto = "fat"
+codegen-units = 1
+incremental = false
