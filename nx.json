@@ -14,7 +14,7 @@
     {
       "plugin": "@storm-software/workspace-tools/plugins/rust",
       "options": {
-        "toolchain": "nightly-x86_64-unknown-linux-gnu",
+        "toolchain": "nightly",
         "profiles": {
           "development": "dev",
           "production": "prod"
