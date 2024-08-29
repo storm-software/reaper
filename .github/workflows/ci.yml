@@ -207,7 +207,7 @@ jobs:
         run: pnpm nx run docs-book:lint
 
   build:
-    name: Lint workspace
+    name: Build workspace
     if: always() && !cancelled() && !contains(needs.*.result, 'failure') && github.event.pull_request.draft == false
     needs:
       - start
@@ -334,11 +334,12 @@ jobs:
 
   analyze:
     name: Analyze
+    if: always() && !cancelled() && !contains(needs.*.result, 'failure') && github.event.pull_request.draft == false
+    needs:
       - start
       - setup
       - lint
       - build
-    if: always() && !cancelled() && !contains(needs.*.result, 'failure') && github.event.pull_request.draft == false
     # Runner size impacts CodeQL analysis time. To learn more, please see:
     #   - https://gh.io/recommended-hardware-resources-for-running-codeql
     #   - https://gh.io/supported-runners-and-hardware-resources
@@ -427,7 +428,7 @@ jobs:
           artifact_name: book-artifact
 
   release:
-    name: Lint, format, build and release
+    name: Release workspace
     if: always() && !cancelled() && !contains(needs.*.result, 'failure') && github.event.pull_request.draft == false
     needs:
       - start
