@@ -211,7 +211,7 @@ jobs:
     needs:
       - start
       - setup
-    runs-on: ubuntu-latest-m
+    runs-on: ubuntu-latest
     timeout-minutes: 60
     permissions:
       actions: read
@@ -246,7 +246,7 @@ jobs:
           error-on-no-successful-workflow: false
           set-environment-variables-for-job: true
       - name: Run build
-        run: pnpm nx-cloud record -- nx run-many --targets=build --nxBail --configuration=production --exclude=@reaper/monorepo,docs-*
+        run: pnpm nx-cloud record -- nx run-many --targets=build --nxBail --configuration=production --projects=eth-engine,eth-order-telegram-bot
         shell: bash
         env:
           RUST_FLAGS: -Z unstable-options -D warnings
@@ -400,7 +400,7 @@ jobs:
           languages: ${{ matrix.language }}
 
       - name: Run build
-        run: pnpm nx-cloud record -- nx run-many --targets=build --nxBail --configuration=production --exclude=@reaper/monorepo,docs-*
+        run: pnpm nx-cloud record -- nx run-many --targets=build --nxBail --configuration=production --projects=eth-engine,eth-order-telegram-bot
         shell: bash
 
       - name: Perform CodeQL Analysis
@@ -475,7 +475,7 @@ jobs:
           set-environment-variables-for-job: true
 
       - name: Run build
-        run: pnpm nx-cloud record -- nx run-many --targets=build --nxBail --configuration=production --exclude=@reaper/monorepo,docs-*
+        run: pnpm nx-cloud record -- nx run-many --targets=build --nxBail --configuration=production --projects=eth-engine,eth-order-telegram-bot
         shell: bash
 
       # - name: Configure AWS credentials
