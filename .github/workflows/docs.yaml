@@ -112,7 +112,7 @@ jobs:
           pnpm nx run docs-book:build
 
       - name: Build docs
-        run: pnpm nx affected --target=docs --parallel=3 --configuration=production --include=crates/* --exclude=docs-* --base=${{ env.NX_BASE }} --head=${{ env.NX_HEAD }}
+        run: pnpm nx affected --targets=docs --nxBail --configuration=production --exclude=@reaper/monorepo,docs-* --base=${{ env.NX_BASE }} --head=${{ env.NX_HEAD }}
         env:
           RUSTDOCFLAGS:
             --cfg docsrs --show-type-layout --generate-link-to-definition --enable-index-page

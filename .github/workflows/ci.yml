@@ -231,7 +231,7 @@ jobs:
         shell: bash
 
       - name: Run lint task for affected projects
-        run: pnpm nx affected --target=lint --parallel=3 --configuration=production --exclude=docs-* --base=${{ env.NX_BASE }} --head=${{ env.NX_HEAD }}
+        run: pnpm nx affected --targets=lint --configuration=production --exclude=@reaper/monorepo,docs-* --base=${{ env.NX_BASE }} --head=${{ env.NX_HEAD }}
         shell: bash
 
       - name: Run taplo
@@ -239,11 +239,11 @@ jobs:
         shell: bash
 
       - name: Run Format task for affected projects
-        run: pnpm nx affected --target=format --configuration=production --exclude=docs-* --base=${{ env.NX_BASE }} --head=${{ env.NX_HEAD }}
+        run: pnpm nx affected --targets=format --configuration=production --exclude=@reaper/monorepo,docs-* --base=${{ env.NX_BASE }} --head=${{ env.NX_HEAD }}
         shell: bash
 
       - name: Run build
-        run: pnpm nx run-many --target=build --parallel=3 --configuration=production --exclude=docs-*
+        run: pnpm nx run-many --targets=build --configuration=production --exclude=@reaper/monorepo,docs-*
         shell: bash
 
       # - name: Configure AWS credentials

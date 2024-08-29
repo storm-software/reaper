@@ -23,7 +23,7 @@
     }
   ],
   "defaultProject": "reaper-eth-engine",
-  "parallel": 1,
+  "parallel": 4,
   "defaultBase": "main",
   "useDaemonProcess": true,
   "useInferencePlugins": true

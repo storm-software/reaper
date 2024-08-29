@@ -64,7 +64,7 @@ importers:
         version: 2.53.0
       '@storm-software/k8s-tools':
         specifier: latest
-        version: 0.1.1(@nx/devkit@19.6.2(nx@19.6.2))(nx@19.6.2)
+        version: 0.2.0(@nx/devkit@19.6.2(nx@19.6.2))(nx@19.6.2)
       '@storm-software/linting-tools':
         specifier: latest
         version: 1.79.0
@@ -79,7 +79,7 @@ importers:
         version: 1.53.0(@nx/jest@19.6.2(@babel/traverse@7.25.3)(@types/node@20.14.14)(nx@19.6.2)(ts-node@10.9.2(@types/node@20.14.14)(typescript@5.5.3))(typescript@5.5.3)(verdaccio@5.31.1(typanion@3.14.0)))(jest@29.7.0(@types/node@20.14.14)(ts-node@10.9.2(@types/node@20.14.14)(typescript@5.5.3)))
       '@storm-software/workspace-tools':
         specifier: latest
-        version: 1.161.1(@microsoft/api-extractor@7.46.2(@types/node@20.14.14))(@nx/devkit@19.6.2(nx@19.6.2))(@nx/esbuild@19.6.2(@babel/traverse@7.25.3)(@types/node@20.14.14)(esbuild@0.21.5)(nx@19.6.2)(typescript@5.5.3)(verdaccio@5.31.1(typanion@3.14.0)))(esbuild@0.21.5)(nx@19.6.2)(ts-node@10.9.2(@types/node@20.14.14)(typescript@5.5.3))(typescript@5.5.3)
+        version: 1.162.0(@microsoft/api-extractor@7.46.2(@types/node@20.14.14))(@nx/devkit@19.6.2(nx@19.6.2))(@nx/esbuild@19.6.2(@babel/traverse@7.25.3)(@types/node@20.14.14)(esbuild@0.21.5)(nx@19.6.2)(typescript@5.5.3)(verdaccio@5.31.1(typanion@3.14.0)))(esbuild@0.21.5)(nx@19.6.2)(ts-node@10.9.2(@types/node@20.14.14)(typescript@5.5.3))(typescript@5.5.3)
       '@taplo/cli':
         specifier: 0.7.0
         version: 0.7.0
@@ -154,12 +154,6 @@ importers:
         version: 5.31.1(typanion@3.14.0)
 
 packages:
-
-  '@actions/exec@1.1.1':
-    resolution: {integrity: sha512-+sCcHHbVdk93a0XT19ECtO/gIXoxvdsgQLzb2fE2/5sIZmWQuluYyjPQtrtTHdU1YzTZ7bAPN4sITq2xi1679w==}
-
-  '@actions/io@1.1.3':
-    resolution: {integrity: sha512-wi9JjgKLYS7U/z8PPbco+PvTb/nRWjeoFlJ1Qer83k/3C5PHQi28hiVdeE2kHXmIL99mQFawx8qt/JPjZilJ8Q==}
 
   '@ampproject/remapping@2.3.0':
     resolution: {integrity: sha512-30iZtAPgz+LTIYoeivqYo853f02jBYSd5uGnGpkFV0M3xOt9aN73erkgYAmZU43x4VfqcnLxW9Kpg3R5LC4YYw==}
@@ -2270,8 +2264,8 @@ packages:
     resolution: {integrity: sha512-BZy6eEPkNFoRUOw1mLWQRCMnyFlod0GHKwjNghGRacC0bSySEnVOx7f1/eavuN1DXJV6DkOXWSw7g1PVkiR/hw==}
     hasBin: true
 
-  '@storm-software/k8s-tools@0.1.1':
-    resolution: {integrity: sha512-3+eiTK/lb16VrWxWaL/VvjmvPExYRzIXPSa5aJFOImkJA2cAvkxxHyVHiIGn5cherGjpqh6fbdV6b1fXI5k4tQ==}
+  '@storm-software/k8s-tools@0.2.0':
+    resolution: {integrity: sha512-ihTNCgINEubdn5Jn9HfMMF1/DNg9BWrgMmHq6xST05wjWbpMaSDGa4/kkT0b4WXyDoWrHmsJlaqjRfuLJsSBVw==}
     peerDependencies:
       '@nx/devkit': ^19.6.2
       nx: ^19.6.2
@@ -2301,8 +2295,8 @@ packages:
       '@nx/jest': ^19.5.6
       jest: 29.7.0
 
-  '@storm-software/workspace-tools@1.161.1':
-    resolution: {integrity: sha512-U5Ys930piuFYaQ4gdNbPXTN8UPpm/Z7mn0yG3jCwJPng3uQ6N9ggDaS4TimzwKsQd24EAXX6hRQV1F4Vjh/xXA==}
+  '@storm-software/workspace-tools@1.162.0':
+    resolution: {integrity: sha512-TDoYWMSGhCz2tWftqyzCB0VFSIs2kXtpx0R+e69mzSCB7Pw9kiWb1wDaUuVy7lm0/BlgRjwx9LAipk8bEo6uqQ==}
     peerDependencies:
       '@microsoft/api-extractor': 7.46.2
       '@nx/devkit': ^19.6.2
@@ -8927,12 +8921,6 @@ packages:
 
 snapshots:
 
-  '@actions/exec@1.1.1':
-    dependencies:
-      '@actions/io': 1.1.3
-
-  '@actions/io@1.1.3': {}
-
   '@ampproject/remapping@2.3.0':
     dependencies:
       '@jridgewell/gen-mapping': 0.3.5
@@ -11856,9 +11844,8 @@ snapshots:
       - debug
       - supports-color
 
-  '@storm-software/k8s-tools@0.1.1(@nx/devkit@19.6.2(nx@19.6.2))(nx@19.6.2)':
+  '@storm-software/k8s-tools@0.2.0(@nx/devkit@19.6.2(nx@19.6.2))(nx@19.6.2)':
     dependencies:
-      '@actions/exec': 1.1.1
       '@nx/devkit': 19.6.2(nx@19.6.2)
       '@nx/workspace': 19.6.2
       js-yaml: 4.1.0
@@ -11979,7 +11966,7 @@ snapshots:
       '@nx/jest': 19.6.2(@babel/traverse@7.25.3)(@types/node@20.14.14)(nx@19.6.2)(ts-node@10.9.2(@types/node@20.14.14)(typescript@5.5.3))(typescript@5.5.3)(verdaccio@5.31.1(typanion@3.14.0))
       jest: 29.7.0(@types/node@20.14.14)(ts-node@10.9.2(@types/node@20.14.14)(typescript@5.5.3))
 
-  '@storm-software/workspace-tools@1.161.1(@microsoft/api-extractor@7.46.2(@types/node@20.14.14))(@nx/devkit@19.6.2(nx@19.6.2))(@nx/esbuild@19.6.2(@babel/traverse@7.25.3)(@types/node@20.14.14)(esbuild@0.21.5)(nx@19.6.2)(typescript@5.5.3)(verdaccio@5.31.1(typanion@3.14.0)))(esbuild@0.21.5)(nx@19.6.2)(ts-node@10.9.2(@types/node@20.14.14)(typescript@5.5.3))(typescript@5.5.3)':
+  '@storm-software/workspace-tools@1.162.0(@microsoft/api-extractor@7.46.2(@types/node@20.14.14))(@nx/devkit@19.6.2(nx@19.6.2))(@nx/esbuild@19.6.2(@babel/traverse@7.25.3)(@types/node@20.14.14)(esbuild@0.21.5)(nx@19.6.2)(typescript@5.5.3)(verdaccio@5.31.1(typanion@3.14.0)))(esbuild@0.21.5)(nx@19.6.2)(ts-node@10.9.2(@types/node@20.14.14)(typescript@5.5.3))(typescript@5.5.3)':
     dependencies:
       '@anatine/esbuild-decorators': 0.2.19(esbuild@0.21.5)
       '@ltd/j-toml': 1.38.0
