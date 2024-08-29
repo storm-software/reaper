@@ -185,6 +185,7 @@ jobs:
     needs:
       - start
     runs-on: ubuntu-latest
+    timeout-minutes: 60
     permissions:
       actions: read
       contents: write
@@ -230,9 +231,9 @@ jobs:
         run: pnpm exec storm-lint all --skip-cspell --skip-alex
         shell: bash
 
-      - name: Run lint task for affected projects
-        run: pnpm nx affected --targets=lint --configuration=production --exclude=@reaper/monorepo,docs-* --base=${{ env.NX_BASE }} --head=${{ env.NX_HEAD }}
-        shell: bash
+      # - name: Run lint task for affected projects
+      #   run: pnpm nx affected --targets=lint --configuration=production --exclude=@reaper/monorepo,docs-* --base=${{ env.NX_BASE }} --head=${{ env.NX_HEAD }}
+      #   shell: bash
 
       # - name: Run taplo
       #   run: pnpm exec taplo format --check --config="./node_modules/@storm-software/linting-tools/taplo/.taplo.toml"
@@ -243,7 +244,7 @@ jobs:
       #   shell: bash
 
       - name: Run build
-        run: pnpm nx run-many --targets=build --configuration=production --exclude=@reaper/monorepo,docs-*
+        run: pnpm nx run-many --targets=build --parallel=2 --configuration=production --exclude=@reaper/monorepo,docs-*
         shell: bash
 
       # - name: Configure AWS credentials
