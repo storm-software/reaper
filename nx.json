@@ -1,12 +1,10 @@
 {
   "$schema": "https://cdn.jsdelivr.net/npm/nx/schemas/nx-schema.json",
-  "extends": "@storm-software/workspace-tools/config/nx.json",
+  "extends": "@storm-software/workspace-tools/config/nx-cloud.json",
   "plugins": [
     {
       "plugin": "@nx/eslint/plugin",
-      "exclude": [
-        "packages/**/__fixtures__/**/*"
-      ],
+      "exclude": ["packages/**/__fixtures__/**/*"],
       "options": {
         "targetName": "lint",
         "useFlatConfig": true
@@ -25,9 +23,5 @@
     }
   ],
   "defaultProject": "reaper-eth-engine",
-  "parallel": 2,
-  "defaultBase": "main",
-  "useDaemonProcess": true,
-  "useInferencePlugins": true,
   "nxCloudAccessToken": "ZmQ0NThmMTEtNzI3Mi00MDI5LWEzZTgtYTk3ODg3Yjc1NmNkfHJlYWQtd3JpdGU="
 }

@@ -8,7 +8,7 @@ on:
         required: false
   push:
     branches:
-      - "main"
+      - main
 
 env:
   NX_BASE: ${{ github.event.before }}
@@ -44,7 +44,6 @@ jobs:
              }
         env:
           SLACK_BOT_TOKEN: ${{ secrets.STORM_BOT_SLACK_TOKEN }}
-
       - name: Send Discord notification - Deployment started
         uses: Ilshidur/action-discord@master
         with:
@@ -75,7 +74,6 @@ jobs:
             github.event.head_commit.url }}", "icon_url":
             "https://pub-761b436209f44a4d886487c917806c08.r2.dev/icon-fill.png"
             } }]'
-
       - name: Send Telegram notification - Deployment started
         uses: storm-software/action-telegram-notify@main
         with:
@@ -84,103 +82,8 @@ jobs:
           TELEGRAM_TOKEN: ${{ secrets.STORM_BOT_TELEGRAM_TOKEN }}
           TELEGRAM_CHAT: ${{ secrets.STORM_BOT_TELEGRAM_NOTIFICATION_CHAT }}
 
-  # clippy:
-  #   name: Clippy validate
-  #   if: always() && !cancelled() && !contains(needs.*.result, 'failure') && github.event.pull_request.draft == false
-  #   needs:
-  #     - start
-  #   runs-on: ubuntu-latest
-  #   timeout-minutes: 30
-  #   steps:
-  #     - uses: actions/checkout@v4
-  #       name: Checkout [Pull Request]
-  #       if: ${{ github.event_name == 'pull_request' }}
-  #       with:
-  #         # By default, PRs will be checked-out based on the Merge Commit, but we want the actual branch HEAD.
-  #         ref: ${{ github.event.pull_request.head.sha }}
-  #         # We need to fetch all branches and commits so that Nx affected has a base to compare against.
-  #         fetch-depth: 0
-  #         token: ${{ secrets.STORM_BOT_GITHUB_TOKEN }}
-
-  #     - uses: actions/checkout@v4
-  #       name: Checkout `main` branch
-  #       if: ${{ github.event_name != 'pull_request' }}
-  #       with:
-  #         # We need to fetch all branches and commits so that Nx affected has a base to compare against.
-  #         fetch-depth: 0
-  #         token: ${{ secrets.STORM_BOT_GITHUB_TOKEN }}
-
-  #     - name: Setup workspace
-  #       uses: ./.github/actions/setup
-  #       with:
-  #         storm_bot_private_key: ${{ secrets.STORM_BOT_PRIVATE_KEY }}
-  #         storm_bot_passphrase: ${{ secrets.STORM_BOT_PASSPHRASE }}
-
-  #     - name: "run clippy"
-  #       run: cargo clippy --workspace --lib --examples
-
-  # - name: "clippy all"
-  #   run: cargo clippy --workspace --lib --examples --tests --benches --all-features
-  #   env:
-  #     RUSTFLAGS: -D warnings
-
-  # lint:
-  #   name: Lint validate
-  #   if: always() && !cancelled() && !contains(needs.*.result, 'failure') && github.event.pull_request.draft == false
-  #   needs:
-  #     - start
-  #   runs-on: ubuntu-latest
-  #   timeout-minutes: 30
-  #   steps:
-  #     - uses: actions/checkout@v4
-  #       name: Checkout [Pull Request]
-  #       if: ${{ github.event_name == 'pull_request' }}
-  #       with:
-  #         # By default, PRs will be checked-out based on the Merge Commit, but we want the actual branch HEAD.
-  #         ref: ${{ github.event.pull_request.head.sha }}
-  #         # We need to fetch all branches and commits so that Nx affected has a base to compare against.
-  #         fetch-depth: 0
-  #         token: ${{ secrets.STORM_BOT_GITHUB_TOKEN }}
-
-  #     - uses: actions/checkout@v4
-  #       name: Checkout `main` branch
-  #       if: ${{ github.event_name != 'pull_request' }}
-  #       with:
-  #         # We need to fetch all branches and commits so that Nx affected has a base to compare against.
-  #         fetch-depth: 0
-  #         token: ${{ secrets.STORM_BOT_GITHUB_TOKEN }}
-
-  #     - name: Setup workspace
-  #       uses: ./.github/actions/setup
-  #       with:
-  #         storm_bot_private_key: ${{ secrets.STORM_BOT_PRIVATE_KEY }}
-  #         storm_bot_passphrase: ${{ secrets.STORM_BOT_PASSPHRASE }}
-
-  #     - name: Setup Nx SHAs
-  #       uses: nrwl/nx-set-shas@v4
-  #       with:
-  #         main-branch-name: main
-  #         error-on-no-successful-workflow: false
-  #         set-environment-variables-for-job: true
-
-  #     - name: Run lint-ls
-  #       run: pnpm exec ls-lint --config="./node_modules/@storm-software/linting-tools/ls-lint/.ls-lint.yml"
-  #       shell: bash
-
-  #     - name: Run lint-taplo
-  #       run: pnpm exec taplo format --check --config="./node_modules/@storm-software/linting-tools/taplo/.taplo.toml"
-  #       shell: bash
-
-  #     - name: Run storm-lint
-  #       run: pnpm exec storm-lint all --skip-cspell --skip-alex
-  #       shell: bash
-
-  #     - name: Run lint task for affected projects
-  #       run: pnpm nx affected --target=lint --parallel=3 --configuration=production --exclude=docs-* --base=${{ env.NX_BASE }} --head=${{ env.NX_HEAD }}
-  #       shell: bash
-
-  release:
-    name: Lint, format, build and release
+  setup:
+    name: Setup workspace
     if: always() && !cancelled() && !contains(needs.*.result, 'failure') && github.event.pull_request.draft == false
     needs:
       - start
@@ -190,7 +93,6 @@ jobs:
       actions: read
       contents: write
       id-token: write
-
     steps:
       - uses: actions/checkout@v4
         name: Checkout [Pull Request]
@@ -201,7 +103,6 @@ jobs:
           # We need to fetch all branches and commits so that Nx affected has a base to compare against.
           fetch-depth: 0
           token: ${{ secrets.STORM_BOT_GITHUB_TOKEN }}
-
       - uses: actions/checkout@v4
         name: Checkout `main` branch
         if: ${{ github.event_name != 'pull_request' }}
@@ -209,7 +110,271 @@ jobs:
           # We need to fetch all branches and commits so that Nx affected has a base to compare against.
           fetch-depth: 0
           token: ${{ secrets.STORM_BOT_GITHUB_TOKEN }}
+      - name: Setup workspace
+        uses: ./.github/actions/setup
+        with:
+          storm_bot_private_key: ${{ secrets.STORM_BOT_PRIVATE_KEY }}
+          storm_bot_passphrase: ${{ secrets.STORM_BOT_PASSPHRASE }}
 
+  lint:
+    name: Lint workspace
+    if: always() && !cancelled() && !contains(needs.*.result, 'failure') && github.event.pull_request.draft == false
+    needs:
+      - start
+      - setup
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    permissions:
+      actions: read
+      contents: write
+      id-token: write
+    steps:
+      - uses: actions/checkout@v4
+        name: Checkout [Pull Request]
+        if: ${{ github.event_name == 'pull_request' }}
+        with:
+          # By default, PRs will be checked-out based on the Merge Commit, but we want the actual branch HEAD.
+          ref: ${{ github.event.pull_request.head.sha }}
+          # We need to fetch all branches and commits so that Nx affected has a base to compare against.
+          fetch-depth: 0
+          token: ${{ secrets.STORM_BOT_GITHUB_TOKEN }}
+      - uses: actions/checkout@v4
+        name: Checkout `main` branch
+        if: ${{ github.event_name != 'pull_request' }}
+        with:
+          # We need to fetch all branches and commits so that Nx affected has a base to compare against.
+          fetch-depth: 0
+          token: ${{ secrets.STORM_BOT_GITHUB_TOKEN }}
+      - name: Setup workspace
+        uses: ./.github/actions/setup
+        with:
+          storm_bot_private_key: ${{ secrets.STORM_BOT_PRIVATE_KEY }}
+          storm_bot_passphrase: ${{ secrets.STORM_BOT_PASSPHRASE }}
+      - name: Setup Nx SHAs
+        uses: nrwl/nx-set-shas@v4
+        with:
+          main-branch-name: main
+          error-on-no-successful-workflow: false
+          set-environment-variables-for-job: true
+      - name: Run lint-ls
+        run: pnpm exec ls-lint --config="./node_modules/@storm-software/linting-tools/ls-lint/.ls-lint.yml"
+        shell: bash
+      - name: Run storm-lint
+        run: pnpm exec storm-lint all --skip-cspell --skip-alex
+        shell: bash
+      # - name: Run taplo
+      #   run: pnpm exec taplo format --check --config="./node_modules/@storm-software/linting-tools/taplo/.taplo.toml"
+      #   shell: bash
+      - name: Run lint task for affected projects
+        run: pnpm nx-cloud record -- nx affected --targets=lint --configuration=production --exclude=@reaper/monorepo,docs-* --base=${{ env.NX_BASE }} --head=${{ env.NX_HEAD }}
+        shell: bash
+
+  lint-docs:
+    name: Lint documentation
+    if: always() && !cancelled() && !contains(needs.*.result, 'failure') && github.event.pull_request.draft == false
+    needs:
+      - start
+      - setup
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+        name: Checkout [Pull Request]
+        if: ${{ github.event_name == 'pull_request' }}
+        with:
+          # By default, PRs will be checked-out based on the Merge Commit, but we want the actual branch HEAD.
+          ref: ${{ github.event.pull_request.head.sha }}
+          # We need to fetch all branches and commits so that Nx affected has a base to compare against.
+          fetch-depth: 0
+          token: ${{ secrets.STORM_BOT_GITHUB_TOKEN }}
+      - uses: actions/checkout@v4
+        name: Checkout `main` branch
+        if: ${{ github.event_name != 'pull_request' }}
+        with:
+          # We need to fetch all branches and commits so that Nx affected has a base to compare against.
+          fetch-depth: 0
+          token: ${{ secrets.STORM_BOT_GITHUB_TOKEN }}
+      - name: Setup workspace
+        uses: ./.github/actions/setup
+        with:
+          storm_bot_private_key: ${{ secrets.STORM_BOT_PRIVATE_KEY }}
+          storm_bot_passphrase: ${{ secrets.STORM_BOT_PASSPHRASE }}
+      - name: Install mdbook-linkcheck with asdf
+        run: |
+          asdf install mdbook-linkcheck
+        shell: bash
+      - name: Run linkcheck
+        run: pnpm nx run docs-book:lint
+
+  build:
+    name: Lint workspace
+    if: always() && !cancelled() && !contains(needs.*.result, 'failure') && github.event.pull_request.draft == false
+    needs:
+      - start
+      - setup
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    permissions:
+      actions: read
+      contents: write
+      id-token: write
+    steps:
+      - uses: actions/checkout@v4
+        name: Checkout [Pull Request]
+        if: ${{ github.event_name == 'pull_request' }}
+        with:
+          # By default, PRs will be checked-out based on the Merge Commit, but we want the actual branch HEAD.
+          ref: ${{ github.event.pull_request.head.sha }}
+          # We need to fetch all branches and commits so that Nx affected has a base to compare against.
+          fetch-depth: 0
+          token: ${{ secrets.STORM_BOT_GITHUB_TOKEN }}
+      - uses: actions/checkout@v4
+        name: Checkout `main` branch
+        if: ${{ github.event_name != 'pull_request' }}
+        with:
+          # We need to fetch all branches and commits so that Nx affected has a base to compare against.
+          fetch-depth: 0
+          token: ${{ secrets.STORM_BOT_GITHUB_TOKEN }}
+      - name: Setup workspace
+        uses: ./.github/actions/setup
+        with:
+          storm_bot_private_key: ${{ secrets.STORM_BOT_PRIVATE_KEY }}
+          storm_bot_passphrase: ${{ secrets.STORM_BOT_PASSPHRASE }}
+      - name: Setup Nx SHAs
+        uses: nrwl/nx-set-shas@v4
+        with:
+          main-branch-name: main
+          error-on-no-successful-workflow: false
+          set-environment-variables-for-job: true
+      - name: Run build
+        run: pnpm nx-cloud record -- nx run-many --targets=build --nxBail --configuration=production --exclude=@reaper/monorepo,docs-*
+        shell: bash
+
+  build-docs:
+    name: Build documentation
+    if: always() && !cancelled() && !contains(needs.*.result, 'failure') && github.event.pull_request.draft == false
+    needs:
+      - start
+      - setup
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+        name: Checkout [Pull Request]
+        if: ${{ github.event_name == 'pull_request' }}
+        with:
+          # By default, PRs will be checked-out based on the Merge Commit, but we want the actual branch HEAD.
+          ref: ${{ github.event.pull_request.head.sha }}
+          # We need to fetch all branches and commits so that Nx affected has a base to compare against.
+          fetch-depth: 0
+          token: ${{ secrets.STORM_BOT_GITHUB_TOKEN }}
+      - uses: actions/checkout@v4
+        name: Checkout `main` branch
+        if: ${{ github.event_name != 'pull_request' }}
+        with:
+          # We need to fetch all branches and commits so that Nx affected has a base to compare against.
+          fetch-depth: 0
+          token: ${{ secrets.STORM_BOT_GITHUB_TOKEN }}
+      - name: Setup workspace
+        uses: ./.github/actions/setup
+        with:
+          storm_bot_private_key: ${{ secrets.STORM_BOT_PRIVATE_KEY }}
+          storm_bot_passphrase: ${{ secrets.STORM_BOT_PASSPHRASE }}
+      - name: Setup global URLs - Part 1
+        run: git config --global url."https://x-access-token:${{ secrets.STORM_BOT_GITHUB_TOKEN }}@github.com/".insteadOf "https://github.com/"
+        shell: bash
+      - name: Setup global URLs - Part 2
+        run: git config --global url."https://${{ secrets.STORM_BOT_GITHUB_TOKEN }}@github.com/".insteadOf "git@github.com:"
+        shell: bash
+      - name: Install mdbook with asdf
+        run: asdf install mdbook
+        shell: bash
+      - name: Install mdbook-template
+        run: |
+          mkdir mdbook-template
+          curl -sSL https://github.com/sgoudham/mdbook-template/releases/latest/download/mdbook-template-x86_64-unknown-linux-gnu.tar.gz | tar -xz --directory=./mdbook-template
+          echo $(pwd)/mdbook-template >> $GITHUB_PATH
+      - name: Setup Nx SHAs
+        uses: nrwl/nx-set-shas@v4
+        with:
+          main-branch-name: main
+          error-on-no-successful-workflow: false
+          set-environment-variables-for-job: true
+      - name: Build book
+        run: pnpm nx run docs-book:build
+      - name: Build docs
+        run: pnpm nx-cloud record -- nx affected --targets=docs --nxBail --configuration=production --exclude=@reaper/monorepo,docs-* --base=${{ env.NX_BASE }} --head=${{ env.NX_HEAD }}
+        env:
+          RUSTDOCFLAGS:
+            --cfg docsrs --show-type-layout --generate-link-to-definition --enable-index-page
+            -Zunstable-options
+      - name: Move docs to book folder
+        run: mv dist/docs/crates dist/docs/book
+      - name: Archive artifact
+        shell: sh
+        run: |
+          chmod -c -R +rX "dist/docs/book" |
+          while read line; do
+             echo "::warning title=Invalid file permissions automatically fixed::$line"
+          done
+          tar \
+            --dereference --hard-dereference \
+            --directory "dist/docs/book" \
+            -cvf "$RUNNER_TEMP/artifact.tar" \
+            --exclude=.git \
+            --exclude=.github \
+            .
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: book-artifact
+          path: ${{ runner.temp }}/artifact.tar
+          retention-days: 1
+          if-no-files-found: error
+
+  analyze:
+    name: Analyze
+      - start
+      - setup
+      - lint
+      - build
+    if: always() && !cancelled() && !contains(needs.*.result, 'failure') && github.event.pull_request.draft == false
+    # Runner size impacts CodeQL analysis time. To learn more, please see:
+    #   - https://gh.io/recommended-hardware-resources-for-running-codeql
+    #   - https://gh.io/supported-runners-and-hardware-resources
+    #   - https://gh.io/using-larger-runners
+    # Consider using larger runners for possible analysis time improvements.
+    runs-on: ${{ (matrix.language == 'swift' && 'macos-latest') || 'ubuntu-latest' }}
+    timeout-minutes: ${{ (matrix.language == 'swift' && 120) || 360 }}
+    permissions:
+      actions: read
+      contents: read
+      security-events: write
+    strategy:
+      fail-fast: true
+      matrix:
+        language: ["javascript"]
+        # CodeQL supports [ 'cpp', 'csharp', 'go', 'java', 'javascript', 'python', 'ruby', 'swift' ]
+        # Use only 'java' to analyze code written in Java, Kotlin or both
+        # Use only 'javascript' to analyze code written in JavaScript, TypeScript or both
+        # Learn more about CodeQL language support at https://aka.ms/codeql-docs/language-support
+    steps:
+      - uses: actions/checkout@v4
+        name: Checkout [Pull Request]
+        if: ${{ github.event_name == 'pull_request' }}
+        with:
+          # By default, PRs will be checked-out based on the Merge Commit, but we want the actual branch HEAD.
+          ref: ${{ github.event.pull_request.head.sha }}
+          # We need to fetch all branches and commits so that Nx affected has a base to compare against.
+          fetch-depth: 0
+          token: ${{ secrets.STORM_BOT_GITHUB_TOKEN }}
+      - uses: actions/checkout@v4
+        name: Checkout [Default Branch]
+        if: ${{ github.event_name != 'pull_request' }}
+        with:
+          # We need to fetch all branches and commits so that Nx affected has a base to compare against.
+          fetch-depth: 0
+          token: ${{ secrets.STORM_BOT_GITHUB_TOKEN }}
       - name: Setup workspace
         uses: ./.github/actions/setup
         with:
@@ -223,28 +388,89 @@ jobs:
           error-on-no-successful-workflow: false
           set-environment-variables-for-job: true
 
-      - name: Run lint-ls
-        run: pnpm exec ls-lint --config="./node_modules/@storm-software/linting-tools/ls-lint/.ls-lint.yml"
-        shell: bash
-
-      - name: Run storm-lint
-        run: pnpm exec storm-lint all --skip-cspell --skip-alex
-        shell: bash
-
-      # - name: Run lint task for affected projects
-      #   run: pnpm nx affected --targets=lint --configuration=production --exclude=@reaper/monorepo,docs-* --base=${{ env.NX_BASE }} --head=${{ env.NX_HEAD }}
-      #   shell: bash
-
-      # - name: Run taplo
-      #   run: pnpm exec taplo format --check --config="./node_modules/@storm-software/linting-tools/taplo/.taplo.toml"
-      #   shell: bash
-
-      # - name: Run Format task for affected projects
-      #   run: pnpm nx affected --targets=format --configuration=production --exclude=@reaper/monorepo,docs-* --base=${{ env.NX_BASE }} --head=${{ env.NX_HEAD }}
-      #   shell: bash
+      # Initializes the CodeQL tools for scanning.
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@v3
+        with:
+          languages: ${{ matrix.language }}
 
       - name: Run build
-        run: pnpm nx run-many --targets=build --nxBail --configuration=production --exclude=@reaper/monorepo,docs-*
+        run: pnpm nx-cloud record -- nx run-many --targets=build --nxBail --configuration=production --exclude=@reaper/monorepo,docs-*
+        shell: bash
+
+      - name: Perform CodeQL Analysis
+        uses: github/codeql-action/analyze@v3
+        with:
+          category: "/language:${{matrix.language}}"
+
+  deploy-docs:
+    name: Deploy documentation
+    if: always() && !cancelled() && !contains(needs.*.result, 'failure') && github.event.pull_request.draft == false
+    needs:
+      - start
+      - setup
+      - lint-docs
+      - build-docs
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+        with:
+          artifact_name: book-artifact
+
+  release:
+    name: Lint, format, build and release
+    if: always() && !cancelled() && !contains(needs.*.result, 'failure') && github.event.pull_request.draft == false
+    needs:
+      - start
+      - setup
+      - lint
+      - build
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    permissions:
+      actions: read
+      contents: write
+      id-token: write
+    steps:
+      - uses: actions/checkout@v4
+        name: Checkout [Pull Request]
+        if: ${{ github.event_name == 'pull_request' }}
+        with:
+          # By default, PRs will be checked-out based on the Merge Commit, but we want the actual branch HEAD.
+          ref: ${{ github.event.pull_request.head.sha }}
+          # We need to fetch all branches and commits so that Nx affected has a base to compare against.
+          fetch-depth: 0
+          token: ${{ secrets.STORM_BOT_GITHUB_TOKEN }}
+      - uses: actions/checkout@v4
+        name: Checkout `main` branch
+        if: ${{ github.event_name != 'pull_request' }}
+        with:
+          # We need to fetch all branches and commits so that Nx affected has a base to compare against.
+          fetch-depth: 0
+          token: ${{ secrets.STORM_BOT_GITHUB_TOKEN }}
+      - name: Setup workspace
+        uses: ./.github/actions/setup
+        with:
+          storm_bot_private_key: ${{ secrets.STORM_BOT_PRIVATE_KEY }}
+          storm_bot_passphrase: ${{ secrets.STORM_BOT_PASSPHRASE }}
+      - name: Setup Nx SHAs
+        uses: nrwl/nx-set-shas@v4
+        with:
+          main-branch-name: main
+          error-on-no-successful-workflow: false
+          set-environment-variables-for-job: true
+
+      - name: Run build
+        run: pnpm nx-cloud record -- nx run-many --targets=build --nxBail --configuration=production --exclude=@reaper/monorepo,docs-*
         shell: bash
 
       # - name: Configure AWS credentials
@@ -321,7 +547,13 @@ jobs:
   success:
     needs:
       - start
+      - setup
+      - lint
+      - lint-docs
+      - build
+      - build-docs
       - release
+      - deploy-docs
     if: ${{ success() }}
     name: Send success notification
     runs-on: ubuntu-latest
@@ -393,7 +625,13 @@ jobs:
   failure:
     needs:
       - start
+      - setup
+      - lint
+      - lint-docs
+      - build
+      - build-docs
       - release
+      - deploy-docs
     if: ${{ failure() }}
     name: Send failure notification
     runs-on: ubuntu-latest
@@ -422,7 +660,6 @@ jobs:
             }
         env:
           SLACK_BOT_TOKEN: ${{ secrets.STORM_BOT_SLACK_TOKEN }}
-
       - name: Send Discord notification - Deployment failed
         uses: Ilshidur/action-discord@master
         with:
@@ -458,7 +695,6 @@ jobs:
             github.event.head_commit.url }}", "icon_url":
             "https://pub-761b436209f44a4d886487c917806c08.r2.dev/icon-fill.png"
             } }]'
-
       - name: Send Telegram notification - Deployment failed
         uses: storm-software/action-telegram-notify@main
         with:
@@ -470,7 +706,13 @@ jobs:
   cancelled:
     needs:
       - start
+      - setup
+      - lint
+      - lint-docs
+      - build
+      - build-docs
       - release
+      - deploy-docs
     if: ${{ cancelled() }}
     name: Send cancelled notification
     runs-on: ubuntu-latest
@@ -499,7 +741,6 @@ jobs:
             }
         env:
           SLACK_BOT_TOKEN: ${{ secrets.STORM_BOT_SLACK_TOKEN }}
-
       - name: Send Discord notification - Deployment cancelled
         uses: Ilshidur/action-discord@master
         with:
@@ -536,7 +777,6 @@ jobs:
             github.event.head_commit.url }}", "icon_url":
             "https://pub-761b436209f44a4d886487c917806c08.r2.dev/icon-fill.png"
             } }]'
-
       - name: Send Telegram notification - Deployment cancelled
         uses: storm-software/action-telegram-notify@main
         with:
