@@ -35,8 +35,8 @@ directories = "5.0.1"
 tokio = { workspace = true }
 async-scoped = { version = "0.7.1", features = ["use-tokio"] }
 futures.workspace = true
-
 reqwest.workspace = true
+
 # Reth
 reth-tasks.workspace = true
 reth-rpc.workspace = true
