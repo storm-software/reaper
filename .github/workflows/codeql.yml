@@ -78,9 +78,9 @@ jobs:
         with:
           languages: ${{ matrix.language }}
 
-      - name: Run build script
-        run: pnpm build-all
-        shell: bash
+      # - name: Run build script
+      #   run: pnpm build-all
+      #   shell: bash
 
       - name: Perform CodeQL Analysis
         uses: github/codeql-action/analyze@v3
