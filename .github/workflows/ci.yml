@@ -305,15 +305,15 @@ jobs:
           error-on-no-successful-workflow: false
           set-environment-variables-for-job: true
       - name: Build book
-        run: pnpm nx run docs-book:build
-      - name: Build docs
-        run: pnpm nx-cloud record -- nx affected --targets=docs --nxBail --configuration=production --exclude=@reaper/monorepo,reaper-eth-engine,reaper-eth-order-fill-service,reaper-eth-order-telegram-bot,docs-* --base=${{ env.NX_BASE }} --head=${{ env.NX_HEAD }}
-        env:
-          RUSTDOCFLAGS:
-            --cfg docsrs --show-type-layout --generate-link-to-definition --enable-index-page
-            -Zunstable-options
-      - name: Move docs to book folder
-        run: mv dist/docs/crates dist/docs/book
+        run: pnpm nx-cloud record -- nx run docs-book:build
+      # - name: Build docs
+      #   run: pnpm nx-cloud record -- nx affected --targets=docs --nxBail --configuration=production --exclude=@reaper/monorepo,reaper-eth-engine,reaper-eth-order-fill-service,reaper-eth-order-telegram-bot,docs-* --base=${{ env.NX_BASE }} --head=${{ env.NX_HEAD }}
+      #   env:
+      #     RUSTDOCFLAGS:
+      #       --cfg docsrs --show-type-layout --generate-link-to-definition --enable-index-page
+      #       -Zunstable-options
+      # - name: Move docs to book folder
+      #   run: mv dist/docs/crates dist/docs/book
       - name: Archive artifact
         shell: sh
         run: |
