@@ -313,17 +313,17 @@ jobs:
       #       --cfg docsrs --show-type-layout --generate-link-to-definition --enable-index-page
       #       -Zunstable-options
       # - name: Move docs to book folder
-      #   run: mv dist/docs/crates dist/docs/book
+      #   run: mv dist/docs/crates dist/book
       - name: Archive artifact
         shell: sh
         run: |
-          chmod -c -R +rX "dist/docs/book" |
+          chmod -c -R +rX "dist/book" |
           while read line; do
              echo "::warning title=Invalid file permissions automatically fixed::$line"
           done
           tar \
             --dereference --hard-dereference \
-            --directory "dist/docs/book" \
+            --directory "dist/book" \
             -cvf "$RUNNER_TEMP/artifact.tar" \
             --exclude=.git \
             --exclude=.github \
