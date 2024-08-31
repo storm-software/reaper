@@ -9,7 +9,7 @@ description = "An internal Storm Software book that outlines the Reaper project.
 [output.html]
 theme = "src/theme"
 git-repository-url = "https://github.com/storm-software/reaper"
-default-theme = "ayu"
+default-theme = "coal"
 no-section-label = true
 mathjax-support = true
 
