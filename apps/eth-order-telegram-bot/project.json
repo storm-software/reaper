@@ -28,10 +28,22 @@
       "dependsOn": ["^build"],
       "options": {
         "commands": [
-          "cargo lambda build --profile prod --output-format zip --out-dir ../../dist/target/apps/eth-order-telegram-bot --x86_64 --verbose"
+          "cargo lambda build --output-format zip --out-dir ../../dist/target/apps/eth-order-telegram-bot"
         ],
         "color": true,
         "cwd": "apps/eth-order-telegram-bot"
+      },
+      "configurations": {
+        "development": {
+          "commands": [
+            "cargo lambda build --profile dev --output-format zip --out-dir ../../dist/target/apps/eth-order-telegram-bot"
+          ]
+        },
+        "production": {
+          "commands": [
+            "cargo lambda build --profile prod --output-format zip --out-dir ../../dist/target/apps/eth-order-telegram-bot"
+          ]
+        }
       }
     }
   },
