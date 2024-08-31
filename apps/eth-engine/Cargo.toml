@@ -105,7 +105,6 @@ db-interfaces = { git = "https://github.com/SorellaLabs/db-interfaces", features
 ] }
 clickhouse.workspace = true
 
-
 prettytable-rs = "0.10"
 
 # banner
