@@ -23,7 +23,7 @@ reaper-eth-engine-libmdbx = { path = "../eth-engine-libmdbx", features = [
 reaper-eth-engine-reth-tracing = { path = "../eth-engine-reth-tracing" }
 
 moka = { version = "0.12.7", features = ["sync"] }
-regex = "1"
+regex.workspace = true
 
 # alloy
 alloy-primitives = { workspace = true, features = [

@@ -70,6 +70,7 @@ keywords = [
 readme = "./README.md"
 
 [workspace.dependencies]
+regex = "1.10.4"
 
 # Reth
 reth-node-ethereum = { git = "https://github.com/paradigmxyz/reth", package = "reth-node-ethereum", rev = "ac29b4b" }
