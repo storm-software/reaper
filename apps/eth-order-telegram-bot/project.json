@@ -28,19 +28,19 @@
       "dependsOn": ["^build"],
       "options": {
         "commands": [
-          "cargo lambda build -p reaper-eth-order-telegram-bot --output-format zip --out-dir dist/target/apps/eth-order-telegram-bot"
+          "cargo lambda build -p reaper-eth-order-telegram-bot --output-format zip --lambda-dir dist/target/apps/eth-order-telegram-bot"
         ],
         "color": true
       },
       "configurations": {
         "development": {
           "commands": [
-            "cargo lambda build -p reaper-eth-order-telegram-bot --profile dev --output-format zip --out-dir dist/target/apps/eth-order-telegram-bot"
+            "cargo lambda build -p reaper-eth-order-telegram-bot --profile dev --output-format zip --lambda-dir dist/target/apps/eth-order-telegram-bot"
           ]
         },
         "production": {
           "commands": [
-            "cargo lambda build -p reaper-eth-order-telegram-bot --profile prod --output-format zip --out-dir dist/target/apps/eth-order-telegram-bot"
+            "cargo lambda build -p reaper-eth-order-telegram-bot --profile prod --output-format zip --lambda-dir dist/target/apps/eth-order-telegram-bot"
           ]
         }
       }
