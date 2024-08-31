@@ -245,13 +245,13 @@ jobs:
           main-branch-name: main
           error-on-no-successful-workflow: false
           set-environment-variables-for-job: true
-      - name: Run build Telegram bot
-        run: pnpm nx run reaper-eth-order-telegram-bot:build:production --verbose
-        shell: bash
-        env:
-          RUST_FLAGS: -Z unstable-options -D warnings
+      # - name: Run build Telegram bot
+      #   run: pnpm nx run reaper-eth-order-telegram-bot:build:production --verbose
+      #   shell: bash
+      #   env:
+      #     RUST_FLAGS: -Z unstable-options -D warnings
       - name: Run build libmdbx lib
-        run: pnpm nx run reaper-eth-engine-libmdbx:build:production --verbose
+        run: cargo +nightly build --profile prod -p reaper-eth-engine-libmdbx --target-dir dist/target/crates/eth-engine-libmdbx
         shell: bash
         env:
           RUST_FLAGS: -Z unstable-options -D warnings
