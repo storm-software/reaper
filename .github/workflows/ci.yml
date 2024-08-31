@@ -475,7 +475,7 @@ jobs:
           set-environment-variables-for-job: true
 
       - name: Run build
-        run: nx run-many --targets=build --nxBail --configuration=production --projects=eth-engine,eth-order-telegram-bot --verbose
+        run: pnpm nx run-many --targets=build --nxBail --configuration=production --projects=eth-engine,eth-order-telegram-bot --verbose
         shell: bash
 
       - name: List build
