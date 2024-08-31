@@ -506,7 +506,7 @@ jobs:
       #     tg_dir: deployment/prod/eth-execution-lambda
       #     tg_command: "hclfmt --terragrunt-check --terragrunt-diff"
 
-      # # Initialize a new or existing Terragrunt working directory by creating initial files, loading any remote state, downloading modules, etc.
+      # Initialize a new or existing Terragrunt working directory by creating initial files, loading any remote state, downloading modules, etc.
       - name: Terragrunt Init
         run: terragrunt init --terragrunt-non-interactive --terragrunt-working-dir deployment
         env:
@@ -515,7 +515,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.STORM_BOT_GITHUB_TOKEN }}
           TF_LOG: debug
 
-      # Generates an execution plan for Terragrunt
       - name: Terragrunt Plan
         run: terragrunt run-all plan --terragrunt-non-interactive --terragrunt-working-dir deployment
         env:
@@ -524,8 +523,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.STORM_BOT_GITHUB_TOKEN }}
           TF_LOG: debug
 
-        # On push to main, build or change infrastructure according to Terragrunt configuration files
-        # Note: It is recommended to set up a required "strict" status check in your repository for "Terragrunt Cloud". See the documentation on "strict" required status checks for more information: https://help.github.com/en/github/administering-a-repository/types-of-required-status-checks
       - name: Terragrunt Apply
         if: github.ref == 'refs/heads/main' && github.event_name == 'push'
         run: terragrunt run-all apply --terragrunt-non-interactive --terragrunt-working-dir deployment
@@ -535,19 +532,19 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.STORM_BOT_GITHUB_TOKEN }}
           TF_LOG: debug
 
-      - name: Release Library Version Updates
-        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
-        run: pnpm release --base=${{ env.NX_BASE }} --head=${{ env.NX_HEAD }}
-        env:
-          GITHUB_ACTOR: ${{ github.actor }}
-          GITHUB_TOKEN: ${{ github.token }}
-          GH_TOKEN: ${{ github.token }}
-          NPM_TOKEN: ${{ secrets.STORM_BOT_NPM_TOKEN }}
-          CARGO_REGISTRY_TOKEN: ${{ secrets.STORM_BOT_CARGO_TOKEN }}
-          STORM_BOT: Stormie-Bot
-          STORM_WORKSPACE_ROOT: ${{ github.workspace }}
-          STORM_REPOSITORY: ${{ github.repositoryUrl }}
-          TAG: ${{ inputs.tag }}
+      # - name: Release Library Version Updates
+      #   if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+      #   run: pnpm release --base=${{ env.NX_BASE }} --head=${{ env.NX_HEAD }}
+      #   env:
+      #     GITHUB_ACTOR: ${{ github.actor }}
+      #     GITHUB_TOKEN: ${{ github.token }}
+      #     GH_TOKEN: ${{ github.token }}
+      #     NPM_TOKEN: ${{ secrets.STORM_BOT_NPM_TOKEN }}
+      #     CARGO_REGISTRY_TOKEN: ${{ secrets.STORM_BOT_CARGO_TOKEN }}
+      #     STORM_BOT: Stormie-Bot
+      #     STORM_WORKSPACE_ROOT: ${{ github.workspace }}
+      #     STORM_REPOSITORY: ${{ github.repositoryUrl }}
+      #     TAG: ${{ inputs.tag }}
 
   success:
     needs:
