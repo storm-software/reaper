@@ -246,7 +246,7 @@ jobs:
           error-on-no-successful-workflow: false
           set-environment-variables-for-job: true
       - name: Run cargo build Telegram bot
-        run: cargo lambda build -p reaper-eth-order-telegram-bot --profile prod --output-format zip --out-dir dist/target/apps/eth-order-telegram-bot
+        run: cargo lambda build -p reaper-eth-order-telegram-bot --profile prod --output-format zip --out-dir dist/target/apps/eth-order-telegram-bot -Z unstable-option
         shell: bash
         env:
           RUST_FLAGS: -Z unstable-options -D warnings
