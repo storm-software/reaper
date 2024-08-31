@@ -7,7 +7,7 @@
     "build-local": {
       "executor": "@storm-software/workspace-tools:cargo-build",
       "outputs": ["{workspaceRoot}/dist/target/apps/eth-order-telegram-bot"],
-      "dependsOn": ["clean", "^build"],
+      "dependsOn": ["^build"],
       "options": {
         "outputPath": "dist/target/apps/eth-order-telegram-bot"
       },
@@ -25,10 +25,10 @@
       "executor": "nx:run-commands",
       "inputs": ["rust", "^production"],
       "outputs": ["{workspaceRoot}/dist/target/apps/eth-order-telegram-bot"],
-      "dependsOn": ["clean", "^build"],
+      "dependsOn": ["^build"],
       "options": {
         "commands": [
-          "cargo lambda build --profile prod --output-format zip --package reaper-eth-order-telegram-bot --target-dir dist/target/apps/eth-order-telegram-bot"
+          "cargo lambda build --profile prod --output-format zip --package reaper-eth-order-telegram-bot --target-dir dist/target/apps/eth-order-telegram-bot --lambda-dir lambda"
         ],
         "color": true
       }
