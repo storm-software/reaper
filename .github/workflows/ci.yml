@@ -475,7 +475,11 @@ jobs:
           set-environment-variables-for-job: true
 
       - name: Run build
-        run: pnpm nx-cloud record -- nx run-many --targets=build --nxBail --configuration=production --projects=eth-engine,eth-order-telegram-bot
+        run: pnpm nx-cloud record -- nx run-many --targets=build --nxBail --configuration=production --projects=eth-engine,eth-order-telegram-bot --verbose
+        shell: bash
+
+      - name: List build
+        run: ls dist/target -R
         shell: bash
 
       # - name: Configure AWS credentials
