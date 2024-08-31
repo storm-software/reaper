@@ -28,7 +28,7 @@
       "dependsOn": ["^build"],
       "options": {
         "commands": [
-          "cargo lambda build --profile prod --output-format zip --target-dir ../../dist/target/apps/eth-order-telegram-bot"
+          "cargo lambda build --profile prod --output-format zip --out-dir ../../dist/target/apps/eth-order-telegram-bot --x86_64"
         ],
         "color": true,
         "cwd": "apps/eth-order-telegram-bot"
