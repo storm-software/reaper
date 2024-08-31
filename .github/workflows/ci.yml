@@ -245,21 +245,16 @@ jobs:
           main-branch-name: main
           error-on-no-successful-workflow: false
           set-environment-variables-for-job: true
-      # - name: Run build Telegram bot
-      #   run: pnpm nx run reaper-eth-order-telegram-bot:build:production --verbose
+      # - name: Run build libmdbx lib
+      #   run: cargo +nightly build --profile prod -p reaper-eth-engine-libmdbx --target-dir dist/target/crates/eth-engine-libmdbx
       #   shell: bash
       #   env:
       #     RUST_FLAGS: -Z unstable-options -D warnings
-      - name: Run build libmdbx lib
-        run: cargo +nightly build --profile prod -p reaper-eth-engine-libmdbx --target-dir dist/target/crates/eth-engine-libmdbx
-        shell: bash
-        env:
-          RUST_FLAGS: -Z unstable-options -D warnings
       - name: Run build
         run: pnpm nx-cloud record -- nx run-many --targets=build --nxBail --configuration=production --projects=reaper-eth-engine,reaper-eth-order-telegram-bot
         shell: bash
         env:
-          RUST_FLAGS: -Z unstable-options -D warnings
+          RUST_FLAGS: -D warnings -Z unstable-options
 
   build-docs:
     name: Build documentation
@@ -316,6 +311,8 @@ jobs:
           set-environment-variables-for-job: true
       - name: Build book
         run: pnpm nx-cloud record -- nx run docs-book:build
+        env:
+          RUST_FLAGS: -D warnings -Z unstable-options
       # - name: Build docs
       #   run: pnpm nx-cloud record -- nx affected --targets=docs --nxBail --configuration=production --exclude=@reaper/monorepo,reaper-eth-engine,reaper-eth-order-fill-service,reaper-eth-order-telegram-bot,docs-* --base=${{ env.NX_BASE }} --head=${{ env.NX_HEAD }}
       #   env:
@@ -412,7 +409,8 @@ jobs:
       - name: Run build
         run: pnpm nx-cloud record -- nx run-many --targets=build --nxBail --configuration=production --projects=reaper-eth-engine,reaper-eth-order-telegram-bot
         shell: bash
-
+        env:
+          RUST_FLAGS: -D warnings -Z unstable-options
       - name: Perform CodeQL Analysis
         uses: github/codeql-action/analyze@v3
         with:
@@ -487,6 +485,8 @@ jobs:
       - name: Run build
         run: pnpm nx-cloud record -- nx run-many --targets=build --nxBail --configuration=production --projects=reaper-eth-engine,reaper-eth-order-telegram-bot
         shell: bash
+        env:
+          RUST_FLAGS: -D warnings -Z unstable-options
 
       - name: List build
         run: ls dist/target -R
