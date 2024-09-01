@@ -47,6 +47,12 @@
 #![forbid(clippy::undocumented_unsafe_blocks)]
 
 #[macro_use]
+pub mod types;
+
+#[macro_use]
+pub mod tracing_layers;
+
+#[macro_use]
 pub mod tracing;
 
 #[cfg(test)]

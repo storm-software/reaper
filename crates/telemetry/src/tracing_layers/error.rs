@@ -1,13 +1,12 @@
-use dashmap::DashMap;
-use metrics::Counter;
 use tracing::{Level, Subscriber};
 use tracing_subscriber::Layer;
 
 #[derive(Clone)]
-pub struct ReaperEthEngineErrorMetrics {
+pub struct ReaperTelemetryErrorLayer {
   error_count: prometheus::IntCounterVec,
 }
-impl ReaperEthEngineErrorMetrics {
+
+impl ReaperTelemetryErrorLayer {
   pub fn new() -> Self {
     let error_count = prometheus::register_int_counter_vec!(
       "eth_engine_log_count_with_target",
@@ -19,14 +18,14 @@ impl ReaperEthEngineErrorMetrics {
   }
 }
 
-impl Default for ReaperEthEngineErrorMetrics {
+impl Default for ReaperTelemetryErrorLayer {
   fn default() -> Self {
     Self::new()
   }
 }
 
-impl<S: Subscriber> Layer<S> for ReaperEthEngineErrorMetrics {
-  fn on_event(&self, event: &tracing::Event<'_>, ctx: tracing_subscriber::layer::Context<'_, S>) {
+impl<S: Subscriber> Layer<S> for ReaperTelemetryErrorLayer {
+  fn on_event(&self, event: &tracing::Event<'_>, _ctx: tracing_subscriber::layer::Context<'_, S>) {
     if event.metadata().level().eq(&Level::INFO)
       || event.metadata().level().eq(&Level::WARN)
       || event.metadata().level().eq(&Level::ERROR)

@@ -300,7 +300,7 @@ dependencies = [
  "async-stream",
  "async-trait",
  "auto_impl",
- "dashmap",
+ "dashmap 5.5.3",
  "futures",
  "futures-utils-wasm",
  "lru",
@@ -1924,7 +1924,7 @@ dependencies = [
  "boa_profiler",
  "bytemuck",
  "cfg-if",
- "dashmap",
+ "dashmap 5.5.3",
  "fast-float",
  "hashbrown 0.14.5",
  "icu_normalizer",
@@ -3139,6 +3139,20 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "978747c1d849a7d2ee5e8adc0159961c48fb7e5db2f06af6723b80123bb53856"
 dependencies = [
  "cfg-if",
+ "hashbrown 0.14.5",
+ "lock_api",
+ "once_cell",
+ "parking_lot_core 0.9.10",
+]
+
+[[package]]
+name = "dashmap"
+version = "6.0.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "804c8821570c3f8b70230c2ba75ffa5c0f9a4189b9a432b6656c536712acae28"
+dependencies = [
+ "cfg-if",
+ "crossbeam-utils",
  "hashbrown 0.14.5",
  "lock_api",
  "once_cell",
@@ -9218,7 +9232,6 @@ dependencies = [
 name = "reaper-core"
 version = "0.0.1"
 dependencies = [
- "ansi_term",
  "chrono",
  "derive_builder 0.20.0",
  "num",
@@ -9234,12 +9247,8 @@ dependencies = [
  "thiserror",
  "time",
  "tracing",
- "tracing-bunyan-formatter",
- "tracing-log 0.2.0",
- "tracing-subscriber",
  "uuid 1.10.0",
  "yahoo_finance_api",
- "yansi 1.0.1",
 ]
 
 [[package]]
@@ -9456,7 +9465,7 @@ dependencies = [
  "chrono",
  "clickhouse",
  "criterion",
- "dashmap",
+ "dashmap 6.0.1",
  "db-interfaces",
  "derive_more",
  "dotenvy",
@@ -9579,7 +9588,7 @@ dependencies = [
  "bitflags 2.6.0",
  "byteorder",
  "criterion",
- "dashmap",
+ "dashmap 6.0.1",
  "derive_more",
  "indexmap 2.4.0",
  "libc",
@@ -9609,7 +9618,7 @@ dependencies = [
  "alloy-primitives",
  "clickhouse",
  "colored",
- "dashmap",
+ "dashmap 6.0.1",
  "db-interfaces",
  "eyre",
  "futures",
@@ -9644,7 +9653,7 @@ dependencies = [
  "auto_impl",
  "bytes",
  "criterion",
- "dashmap",
+ "dashmap 6.0.1",
  "derive_more",
  "dotenvy",
  "erased-serde 0.3.31",
@@ -9699,7 +9708,7 @@ dependencies = [
  "auto_impl",
  "bytes",
  "criterion",
- "dashmap",
+ "dashmap 6.0.1",
  "derive_more",
  "dotenvy",
  "erased-serde 0.3.31",
@@ -9909,8 +9918,18 @@ dependencies = [
 name = "reaper-telemetry"
 version = "0.0.1"
 dependencies = [
+ "ansi_term",
+ "chrono",
+ "dashmap 6.0.1",
+ "metrics",
+ "metrics-process",
+ "metrics-util",
+ "prometheus",
  "tracing",
+ "tracing-bunyan-formatter",
+ "tracing-log 0.2.0",
  "tracing-subscriber",
+ "yansi 1.0.1",
 ]
 
 [[package]]
@@ -10687,7 +10706,7 @@ source = "git+https://github.com/paradigmxyz/reth?rev=ac29b4b#ac29b4b73be382caf2
 dependencies = [
  "bitflags 2.6.0",
  "byteorder",
- "dashmap",
+ "dashmap 5.5.3",
  "derive_more",
  "indexmap 2.4.0",
  "libc",
@@ -11066,7 +11085,7 @@ source = "git+https://github.com/paradigmxyz/reth?rev=ac29b4b#ac29b4b73be382caf2
 dependencies = [
  "alloy-rlp",
  "auto_impl",
- "dashmap",
+ "dashmap 5.5.3",
  "itertools 0.12.1",
  "metrics",
  "parking_lot 0.12.3",
@@ -12349,7 +12368,7 @@ version = "2.0.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "0e56dd856803e253c8f298af3f4d7eb0ae5e23a737252cd90bb4f3b435033b2d"
 dependencies = [
- "dashmap",
+ "dashmap 5.5.3",
  "futures",
  "lazy_static",
  "log",

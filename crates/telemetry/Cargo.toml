@@ -14,7 +14,21 @@ readme = "./README.md"
 
 [dependencies]
 tracing = { workspace = true }
-tracing-subscriber = { workspace = true }
+tracing-bunyan-formatter = "0.3.4"
+tracing-log = "0.2.0"
+tracing-subscriber = { workspace = true, features = [
+    "fmt",
+    "env-filter",
+    "ansi",
+] }
+chrono.workspace = true
+prometheus.workspace = true
+metrics-util.workspace = true
+metrics-process.workspace = true
+metrics.workspace = true
+dashmap.workspace = true
+yansi = "1.0.1"
+ansi_term = "0.12.1"
 
 [lib]
 name = "reaper_telemetry"

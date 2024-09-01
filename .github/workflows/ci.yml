@@ -93,8 +93,8 @@ jobs:
       contents: write
       id-token: write
     steps:
-      - uses: actions/checkout@v4
-        name: Checkout [Pull Request]
+      - name: Checkout [Pull Request]
+        uses: actions/checkout@v4
         if: ${{ github.event_name == 'pull_request' }}
         with:
           # By default, PRs will be checked-out based on the Merge Commit, but we want the actual branch HEAD.
@@ -102,8 +102,8 @@ jobs:
           # We need to fetch all branches and commits so that Nx affected has a base to compare against.
           fetch-depth: 0
           token: ${{ secrets.STORM_BOT_GITHUB_TOKEN }}
-      - uses: actions/checkout@v4
-        name: Checkout `main` branch
+      - name: Checkout `main` branch
+        uses: actions/checkout@v4
         if: ${{ github.event_name != 'pull_request' }}
         with:
           # We need to fetch all branches and commits so that Nx affected has a base to compare against.
@@ -128,8 +128,8 @@ jobs:
       contents: write
       id-token: write
     steps:
-      - uses: actions/checkout@v4
-        name: Checkout [Pull Request]
+      - name: Checkout [Pull Request]
+        uses: actions/checkout@v4
         if: ${{ github.event_name == 'pull_request' }}
         with:
           # By default, PRs will be checked-out based on the Merge Commit, but we want the actual branch HEAD.
@@ -137,8 +137,8 @@ jobs:
           # We need to fetch all branches and commits so that Nx affected has a base to compare against.
           fetch-depth: 0
           token: ${{ secrets.STORM_BOT_GITHUB_TOKEN }}
-      - uses: actions/checkout@v4
-        name: Checkout `main` branch
+      - name: Checkout `main` branch
+        uses: actions/checkout@v4
         if: ${{ github.event_name != 'pull_request' }}
         with:
           # We need to fetch all branches and commits so that Nx affected has a base to compare against.
@@ -177,8 +177,8 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 45
     steps:
-      - uses: actions/checkout@v4
-        name: Checkout [Pull Request]
+      - name: Checkout [Pull Request]
+        uses: actions/checkout@v4
         if: ${{ github.event_name == 'pull_request' }}
         with:
           # By default, PRs will be checked-out based on the Merge Commit, but we want the actual branch HEAD.
@@ -186,8 +186,8 @@ jobs:
           # We need to fetch all branches and commits so that Nx affected has a base to compare against.
           fetch-depth: 0
           token: ${{ secrets.STORM_BOT_GITHUB_TOKEN }}
-      - uses: actions/checkout@v4
-        name: Checkout `main` branch
+      - name: Checkout `main` branch
+        uses: actions/checkout@v4
         if: ${{ github.event_name != 'pull_request' }}
         with:
           # We need to fetch all branches and commits so that Nx affected has a base to compare against.
@@ -205,21 +205,21 @@ jobs:
       - name: Run linkcheck
         run: pnpm nx run docs-book:lint
 
-  build:
-    name: Build workspace
+  build-libs:
+    name: Build libraries
     if: always() && !cancelled() && !contains(needs.*.result, 'failure') && github.event.pull_request.draft == false
     needs:
       - start
       - setup
-    runs-on: ubuntu-latest-m
+    runs-on: ubuntu-latest
     timeout-minutes: 45
     permissions:
       actions: read
       contents: write
       id-token: write
     steps:
-      - uses: actions/checkout@v4
-        name: Checkout [Pull Request]
+      - name: Checkout [Pull Request]
+        uses: actions/checkout@v4
         if: ${{ github.event_name == 'pull_request' }}
         with:
           # By default, PRs will be checked-out based on the Merge Commit, but we want the actual branch HEAD.
@@ -227,8 +227,8 @@ jobs:
           # We need to fetch all branches and commits so that Nx affected has a base to compare against.
           fetch-depth: 0
           token: ${{ secrets.STORM_BOT_GITHUB_TOKEN }}
-      - uses: actions/checkout@v4
-        name: Checkout `main` branch
+      - name: Checkout `main` branch
+        uses: actions/checkout@v4
         if: ${{ github.event_name != 'pull_request' }}
         with:
           # We need to fetch all branches and commits so that Nx affected has a base to compare against.
@@ -245,12 +245,52 @@ jobs:
           main-branch-name: main
           error-on-no-successful-workflow: false
           set-environment-variables-for-job: true
-      # - name: Run build libmdbx lib
-      #   run: cargo +nightly build --profile prod -p reaper-eth-engine-libmdbx --target-dir dist/target/crates/eth-engine-libmdbx
-      #   shell: bash
-      #   env:
-      #     RUST_FLAGS: -Z unstable-options -D warnings
-      - name: Run build
+      - name: Build crates
+        run: pnpm nx-cloud record -- nx affected --targets=build --nxBail --configuration=release --projects=tag:library --base=${{ env.NX_BASE }} --head=${{ env.NX_HEAD }}
+        env:
+          RUST_FLAGS: -D warnings -Z unstable-options
+
+  build-apps:
+    name: Build applications
+    if: always() && !cancelled() && !contains(needs.*.result, 'failure') && github.event.pull_request.draft == false
+    needs:
+      - start
+      - setup
+    runs-on: ubuntu-latest-m
+    timeout-minutes: 45
+    permissions:
+      actions: read
+      contents: write
+      id-token: write
+    steps:
+      - name: Checkout [Pull Request]
+        uses: actions/checkout@v4
+        if: ${{ github.event_name == 'pull_request' }}
+        with:
+          # By default, PRs will be checked-out based on the Merge Commit, but we want the actual branch HEAD.
+          ref: ${{ github.event.pull_request.head.sha }}
+          # We need to fetch all branches and commits so that Nx affected has a base to compare against.
+          fetch-depth: 0
+          token: ${{ secrets.STORM_BOT_GITHUB_TOKEN }}
+      - name: Checkout `main` branch
+        uses: actions/checkout@v4
+        if: ${{ github.event_name != 'pull_request' }}
+        with:
+          # We need to fetch all branches and commits so that Nx affected has a base to compare against.
+          fetch-depth: 0
+          token: ${{ secrets.STORM_BOT_GITHUB_TOKEN }}
+      - name: Setup workspace
+        uses: ./.github/actions/setup
+        with:
+          storm_bot_private_key: ${{ secrets.STORM_BOT_PRIVATE_KEY }}
+          storm_bot_passphrase: ${{ secrets.STORM_BOT_PASSPHRASE }}
+      - name: Setup Nx SHAs
+        uses: nrwl/nx-set-shas@v4
+        with:
+          main-branch-name: main
+          error-on-no-successful-workflow: false
+          set-environment-variables-for-job: true
+      - name: Build applications
         run: pnpm nx-cloud record -- nx run-many --targets=build --nxBail --configuration=production --projects=reaper-eth-engine,reaper-eth-order-telegram-bot
         shell: bash
         env:
@@ -264,12 +304,12 @@ jobs:
       - setup
       - lint
       - lint-docs
-      - build
+      - build-libs
     runs-on: ubuntu-latest
     timeout-minutes: 60
     steps:
-      - uses: actions/checkout@v4
-        name: Checkout [Pull Request]
+      - name: Checkout [Pull Request]
+        uses: actions/checkout@v4
         if: ${{ github.event_name == 'pull_request' }}
         with:
           # By default, PRs will be checked-out based on the Merge Commit, but we want the actual branch HEAD.
@@ -277,8 +317,8 @@ jobs:
           # We need to fetch all branches and commits so that Nx affected has a base to compare against.
           fetch-depth: 0
           token: ${{ secrets.STORM_BOT_GITHUB_TOKEN }}
-      - uses: actions/checkout@v4
-        name: Checkout `main` branch
+      - name: Checkout `main` branch
+        uses: actions/checkout@v4
         if: ${{ github.event_name != 'pull_request' }}
         with:
           # We need to fetch all branches and commits so that Nx affected has a base to compare against.
@@ -314,7 +354,7 @@ jobs:
         env:
           RUST_FLAGS: -D warnings -Z unstable-options
       - name: Build docs
-        run: pnpm nx-cloud record -- nx affected --targets=docs --nxBail --configuration=production --exclude=@reaper/monorepo,reaper-eth-engine,reaper-eth-order-fill-service,reaper-eth-order-telegram-bot,docs-* --base=${{ env.NX_BASE }} --head=${{ env.NX_HEAD }}
+        run: pnpm nx-cloud record -- nx affected --targets=docs --nxBail --configuration=release --exclude=@reaper/monorepo,reaper-eth-engine,reaper-eth-order-fill-service,reaper-eth-order-telegram-bot,docs-* --base=${{ env.NX_BASE }} --head=${{ env.NX_HEAD }}
         env:
           RUSTDOCFLAGS:
             --cfg docsrs --show-type-layout --generate-link-to-definition --enable-index-page
@@ -350,7 +390,8 @@ jobs:
       - start
       - setup
       - lint
-      - build
+      - build-libs
+      - build-apps
     # Runner size impacts CodeQL analysis time. To learn more, please see:
     #   - https://gh.io/recommended-hardware-resources-for-running-codeql
     #   - https://gh.io/supported-runners-and-hardware-resources
@@ -371,8 +412,8 @@ jobs:
         # Use only 'javascript' to analyze code written in JavaScript, TypeScript or both
         # Learn more about CodeQL language support at https://aka.ms/codeql-docs/language-support
     steps:
-      - uses: actions/checkout@v4
-        name: Checkout [Pull Request]
+      - name: Checkout [Pull Request]
+        uses: actions/checkout@v4
         if: ${{ github.event_name == 'pull_request' }}
         with:
           # By default, PRs will be checked-out based on the Merge Commit, but we want the actual branch HEAD.
@@ -380,8 +421,8 @@ jobs:
           # We need to fetch all branches and commits so that Nx affected has a base to compare against.
           fetch-depth: 0
           token: ${{ secrets.STORM_BOT_GITHUB_TOKEN }}
-      - uses: actions/checkout@v4
-        name: Checkout [Default Branch]
+      - name: Checkout `main` branch
+        uses: actions/checkout@v4
         if: ${{ github.event_name != 'pull_request' }}
         with:
           # We need to fetch all branches and commits so that Nx affected has a base to compare against.
@@ -424,6 +465,8 @@ jobs:
       - setup
       - lint-docs
       - build-docs
+      - build-libs
+      - build-apps
     runs-on: ubuntu-latest
     timeout-minutes: 60
     permissions:
@@ -439,14 +482,15 @@ jobs:
         with:
           artifact_name: book-artifact
 
-  release:
-    name: Release workspace
+  deploy-apps:
+    name: Deploy applications
     if: always() && !cancelled() && !contains(needs.*.result, 'failure') && github.event.pull_request.draft == false
     needs:
       - start
       - setup
       - lint
-      - build
+      - build-libs
+      - build-apps
     runs-on: ubuntu-latest
     timeout-minutes: 60
     permissions:
@@ -454,8 +498,8 @@ jobs:
       contents: write
       id-token: write
     steps:
-      - uses: actions/checkout@v4
-        name: Checkout [Pull Request]
+      - name: Checkout [Pull Request]
+        uses: actions/checkout@v4
         if: ${{ github.event_name == 'pull_request' }}
         with:
           # By default, PRs will be checked-out based on the Merge Commit, but we want the actual branch HEAD.
@@ -463,8 +507,8 @@ jobs:
           # We need to fetch all branches and commits so that Nx affected has a base to compare against.
           fetch-depth: 0
           token: ${{ secrets.STORM_BOT_GITHUB_TOKEN }}
-      - uses: actions/checkout@v4
-        name: Checkout `main` branch
+      - name: Checkout `main` branch
+        uses: actions/checkout@v4
         if: ${{ github.event_name != 'pull_request' }}
         with:
           # We need to fetch all branches and commits so that Nx affected has a base to compare against.
@@ -546,19 +590,67 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.STORM_BOT_GITHUB_TOKEN }}
           TF_LOG: debug
 
-      # - name: Release Library Version Updates
-      #   if: github.ref == 'refs/heads/main' && github.event_name == 'push'
-      #   run: pnpm release --base=${{ env.NX_BASE }} --head=${{ env.NX_HEAD }}
-      #   env:
-      #     GITHUB_ACTOR: ${{ github.actor }}
-      #     GITHUB_TOKEN: ${{ github.token }}
-      #     GH_TOKEN: ${{ github.token }}
-      #     NPM_TOKEN: ${{ secrets.STORM_BOT_NPM_TOKEN }}
-      #     CARGO_REGISTRY_TOKEN: ${{ secrets.STORM_BOT_CARGO_TOKEN }}
-      #     STORM_BOT: Stormie-Bot
-      #     STORM_WORKSPACE_ROOT: ${{ github.workspace }}
-      #     STORM_REPOSITORY: ${{ github.repositoryUrl }}
-      #     TAG: ${{ inputs.tag }}
+  release-libs:
+    name: Release libraries
+    if: always() && !cancelled() && !contains(needs.*.result, 'failure') && github.event.pull_request.draft == false
+    needs:
+      - start
+      - setup
+      - lint
+      - build-libs
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    permissions:
+      actions: read
+      contents: write
+      id-token: write
+    steps:
+      - name: Checkout [Pull Request]
+        uses: actions/checkout@v4
+        if: ${{ github.event_name == 'pull_request' }}
+        with:
+          # By default, PRs will be checked-out based on the Merge Commit, but we want the actual branch HEAD.
+          ref: ${{ github.event.pull_request.head.sha }}
+          # We need to fetch all branches and commits so that Nx affected has a base to compare against.
+          fetch-depth: 0
+          token: ${{ secrets.STORM_BOT_GITHUB_TOKEN }}
+      - name: Checkout `main` branch
+        uses: actions/checkout@v4
+        if: ${{ github.event_name != 'pull_request' }}
+        with:
+          # We need to fetch all branches and commits so that Nx affected has a base to compare against.
+          fetch-depth: 0
+          token: ${{ secrets.STORM_BOT_GITHUB_TOKEN }}
+      - name: Setup workspace
+        uses: ./.github/actions/setup
+        with:
+          storm_bot_private_key: ${{ secrets.STORM_BOT_PRIVATE_KEY }}
+          storm_bot_passphrase: ${{ secrets.STORM_BOT_PASSPHRASE }}
+      - name: Setup Nx SHAs
+        uses: nrwl/nx-set-shas@v4
+        with:
+          main-branch-name: main
+          error-on-no-successful-workflow: false
+          set-environment-variables-for-job: true
+
+      - name: Build crates
+        run: pnpm nx-cloud record -- nx affected --targets=build --nxBail --configuration=release --projects=tag:library --base=${{ env.NX_BASE }} --head=${{ env.NX_HEAD }}
+        env:
+          RUST_FLAGS: -D warnings -Z unstable-options
+
+      - name: Release Library Version Updates
+        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+        run: pnpm release --base=${{ env.NX_BASE }} --head=${{ env.NX_HEAD }}
+        env:
+          GITHUB_ACTOR: ${{ github.actor }}
+          GITHUB_TOKEN: ${{ github.token }}
+          GH_TOKEN: ${{ github.token }}
+          NPM_TOKEN: ${{ secrets.STORM_BOT_NPM_TOKEN }}
+          CARGO_REGISTRY_TOKEN: ${{ secrets.STORM_BOT_CARGO_TOKEN }}
+          STORM_BOT: Stormie-Bot
+          STORM_WORKSPACE_ROOT: ${{ github.workspace }}
+          STORM_REPOSITORY: ${{ github.repositoryUrl }}
+          TAG: ${{ inputs.tag }}
 
   success:
     needs:
@@ -566,9 +658,11 @@ jobs:
       - setup
       - lint
       - lint-docs
-      - build
+      - build-libs
+      - build-apps
       - build-docs
-      - release
+      - release-libs
+      - deploy-apps
       - deploy-docs
       - analyze
     if: ${{ success() }}
@@ -645,9 +739,11 @@ jobs:
       - setup
       - lint
       - lint-docs
-      - build
+      - build-libs
+      - build-apps
       - build-docs
-      - release
+      - release-libs
+      - deploy-apps
       - deploy-docs
       - analyze
     if: ${{ failure() }}
@@ -727,9 +823,11 @@ jobs:
       - setup
       - lint
       - lint-docs
-      - build
+      - build-libs
+      - build-apps
       - build-docs
-      - release
+      - release-libs
+      - deploy-apps
       - deploy-docs
       - analyze
     if: ${{ cancelled() }}

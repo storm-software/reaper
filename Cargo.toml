@@ -69,6 +69,10 @@ keywords = [
 ]
 readme = "./README.md"
 
+[workspace.package.metadata.docs.rs]
+all-features = true
+rustdoc-args = ["--cfg", "docsrs"]
+
 [workspace.dependencies]
 # Reaper
 reaper-core = { path = "./crates/core" }
@@ -90,6 +94,7 @@ reaper-eth-engine-libmdbx = { path = "./crates/eth-engine-libmdbx" }
 
 url = "2.5.2"
 regex = "1.10.4"
+dashmap = { version = "6.0.1", features = ["inline"] }
 
 # Reth
 reth-node-ethereum = { git = "https://github.com/paradigmxyz/reth", package = "reth-node-ethereum", rev = "ac29b4b" }
@@ -174,6 +179,7 @@ tracing-subscriber = { version = "0.3.17", default-features = false, features = 
     "fmt",
 ] }
 colored = "2.0"
+prometheus = "0.13.4"
 
 # Metrics
 metrics-exporter-prometheus = "=0.12.1"
