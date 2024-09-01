@@ -246,14 +246,10 @@ jobs:
           main-branch-name: main
           error-on-no-successful-workflow: false
           set-environment-variables-for-job: true
-      - name: Build crate
-        run: cargo +nightly build -p reaper-eth-engine-metrics --profile release
-        env:
-          RUST_FLAGS: -D warnings -Z unstable-options
       - name: Build crates
         run: pnpm nx-cloud record -- nx affected --targets=build --nxBail --configuration=release --projects=tag:library --base=${{ env.NX_BASE }} --head=${{ env.NX_HEAD }}
         env:
-          RUST_FLAGS: -D warnings -Z unstable-options
+          RUSTFLAGS: -D warnings -Z unstable-options
 
   build-apps:
     name: Build applications
@@ -299,7 +295,7 @@ jobs:
         run: pnpm nx-cloud record -- nx run-many --targets=build --nxBail --configuration=production --projects=reaper-eth-engine,reaper-eth-order-telegram-bot
         shell: bash
         env:
-          RUST_FLAGS: -D warnings -Z unstable-options
+          RUSTFLAGS: -D warnings -Z unstable-options
 
   build-docs:
     name: Build documentation
@@ -354,16 +350,19 @@ jobs:
           main-branch-name: main
           error-on-no-successful-workflow: false
           set-environment-variables-for-job: true
+
       - name: Build book
         run: pnpm nx-cloud record -- nx run docs-book:build
         env:
-          RUST_FLAGS: -D warnings -Z unstable-options
+          RUSTFLAGS: -D warnings -Z unstable-options
+
       - name: Build docs
         run: pnpm nx-cloud record -- nx affected --targets=docs --nxBail --configuration=release --exclude=@reaper/monorepo,reaper-eth-engine,reaper-eth-order-fill-service,reaper-eth-order-telegram-bot,docs-* --base=${{ env.NX_BASE }} --head=${{ env.NX_HEAD }}
         env:
           RUSTDOCFLAGS:
             --cfg docsrs --show-type-layout --generate-link-to-definition --enable-index-page
             -Zunstable-options
+
       - name: Move docs to book folder
         run: mv dist/docs/crates dist/docs/book
       - name: Archive artifact
@@ -456,7 +455,8 @@ jobs:
         run: pnpm nx-cloud record -- nx run-many --targets=build --nxBail --configuration=production --projects=reaper-eth-engine,reaper-eth-order-telegram-bot
         shell: bash
         env:
-          RUST_FLAGS: -D warnings -Z unstable-options
+          RUSTFLAGS: -D warnings -Z unstable-options
+
       - name: Perform CodeQL Analysis
         uses: github/codeql-action/analyze@v3
         with:
@@ -535,7 +535,7 @@ jobs:
         run: pnpm nx-cloud record -- nx run-many --targets=build --nxBail --configuration=production --projects=reaper-eth-engine,reaper-eth-order-telegram-bot
         shell: bash
         env:
-          RUST_FLAGS: -D warnings -Z unstable-options
+          RUSTFLAGS: -D warnings -Z unstable-options
 
       - name: List build
         run: ls dist/target -R
@@ -641,7 +641,7 @@ jobs:
       - name: Build crates
         run: pnpm nx-cloud record -- nx affected --targets=build --nxBail --configuration=release --projects=tag:library --base=${{ env.NX_BASE }} --head=${{ env.NX_HEAD }}
         env:
-          RUST_FLAGS: -D warnings -Z unstable-options
+          RUSTFLAGS: -D warnings -Z unstable-options
 
       - name: Release Library Version Updates
         if: github.ref == 'refs/heads/main' && github.event_name == 'push'

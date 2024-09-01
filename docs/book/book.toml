@@ -6,12 +6,17 @@ src = "src"
 title = "Reaper Book"
 description = "An internal Storm Software book that outlines the Reaper project."
 
+[preprocessor.admonish]
+command = "mdbook-admonish"
+assets_version = "3.0.2" # do not edit: managed by `mdbook-admonish install`
+
 [output.html]
 theme = "src/theme"
 git-repository-url = "https://github.com/storm-software/reaper"
 default-theme = "coal"
 no-section-label = true
 mathjax-support = true
+additional-css = ["./mdbook-admonish.css", "docs/book/mdbook-admonish.css"]
 
 [output.html.fold]
 enable = true
