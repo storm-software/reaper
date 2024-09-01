@@ -13,11 +13,11 @@ documentation = "https://docs.rs/reaper-eth-engine-relay-api"
 readme = "./README.md"
 
 [dependencies]
-serde = "^1.0"
-serde_derive = "^1.0"
-serde_json = "^1.0"
-url = "^2.2"
-reqwest = { version = "0.12.7", features = ["json", "multipart"] }
+serde.workspace = true
+serde_derive.workspace = true
+serde_json.workspace = true
+url.workspace = true
+reqwest = { workspace = true, features = ["json", "multipart"] }
 
 [lib]
 name = "reaper_eth_engine_relay_api"

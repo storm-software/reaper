@@ -13,14 +13,14 @@ documentation = "https://docs.rs/reaper-eth-engine-database"
 readme = "./README.md"
 
 [dependencies]
-reaper-eth-engine-types = { path = "../eth-engine-types" }
-reaper-eth-engine-pricing = { path = "../eth-engine-pricing" }
-reaper-eth-engine-metrics = { path = "../eth-engine-metrics" }
-reaper-eth-engine-macros = { path = "../eth-engine-macros" }
-reaper-eth-engine-libmdbx = { path = "../eth-engine-libmdbx", features = [
+reaper-eth-engine-types.workspace = true
+reaper-eth-engine-pricing.workspace = true
+reaper-eth-engine-metrics.workspace = true
+reaper-eth-engine-macros.workspace = true
+reaper-eth-engine-libmdbx = { workspace = true, features = [
     "read-tx-timeouts",
 ] }
-reaper-eth-engine-reth-tracing = { path = "../eth-engine-reth-tracing" }
+reaper-eth-engine-reth-tracing.workspace = true
 
 moka = { version = "0.12.7", features = ["sync"] }
 regex.workspace = true
@@ -139,9 +139,9 @@ reth-tasks = { workspace = true }
 # reaper-eth-engine-database = { path = "../eth-engine-database", features = [
 #     "tests",
 # ] }
-reaper-eth-engine-types = { path = "../eth-engine-types" }
-reaper-eth-engine-pricing = { path = "../eth-engine-pricing" }
-reaper-eth-engine-macros = { path = "../eth-engine-macros" }
+reaper-eth-engine-types.workspace = true
+reaper-eth-engine-pricing.workspace = true
+reaper-eth-engine-macros.workspace = true
 serial_test.workspace = true
 test-fuzz = "4"
 async-trait.workspace = true
@@ -149,7 +149,7 @@ reth-tasks.workspace = true
 criterion = "0.5.1"
 
 [build-dependencies]
-reaper-eth-engine-types = { path = "../eth-engine-types" }
+reaper-eth-engine-types.workspace = true
 serde.workspace = true
 toml = "0.8.9"
 alloy-primitives.workspace = true

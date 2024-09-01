@@ -5,16 +5,17 @@ version = "0.0.1"
 edition = "2021"
 
 [dependencies]
-alloy-primitives = "0.8.0"
-alloy-sol-types = "0.8.0"
+reaper-eth.workspace = true
+
+alloy-primitives.workspace = true
+alloy-sol-types.workspace = true
 anyhow.workspace = true
 bigdecimal = "0.4.5"
 ethers.workspace = true
 reqwest.workspace = true
 serde_json.workspace = true
-url = "2.5.2"
-reaper-eth = { path = "../../crates/eth" }
-eyre = { version = "0.6" }
+url.workspace = true
+eyre.workspace = true
 
 # [lib]
 # name = "eth_order_engine"

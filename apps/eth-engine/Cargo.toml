@@ -5,17 +5,17 @@ version = "0.0.1"
 edition = "2021"
 
 [dependencies]
-reaper-eth-engine-core = { path = "../../crates/eth-engine-core" }
-reaper-eth-engine-reth-tracing = { path = "../../crates/eth-engine-reth-tracing" }
-reaper-eth-engine-macros = { path = "../../crates/eth-engine-macros" }
-reaper-eth-engine-inspect = { path = "../../crates/eth-engine-inspect" }
-reaper-eth-engine-types = { path = "../../crates/eth-engine-types" }
-reaper-eth-engine-classifier = { path = "../../crates/eth-engine-classifier" }
-reaper-eth-engine-database = { path = "../../crates/eth-engine-database" }
-reaper-eth-engine-metrics = { path = "../../crates/eth-engine-metrics" }
-reaper-eth-engine-pricing = { path = "../../crates/eth-engine-pricing" }
-reaper-eth-engine-tracing = { path = "../../crates/eth-engine-tracing" }
-reaper-eth-engine-libmdbx = { path = "../../crates/eth-engine-libmdbx", features = [
+reaper-eth-engine-core.workspace = true
+reaper-eth-engine-reth-tracing.workspace = true
+reaper-eth-engine-macros.workspace = true
+reaper-eth-engine-inspect.workspace = true
+reaper-eth-engine-types.workspace = true
+reaper-eth-engine-classifier.workspace = true
+reaper-eth-engine-database.workspace = true
+reaper-eth-engine-metrics.workspace = true
+reaper-eth-engine-pricing.workspace = true
+reaper-eth-engine-tracing.workspace = true
+reaper-eth-engine-libmdbx = { workspace = true, features = [
     "read-tx-timeouts",
 ] }
 

@@ -13,8 +13,8 @@ documentation = "https://docs.rs/reaper-eth-engine-types"
 readme = "./README.md"
 
 [dependencies]
-reaper-eth-engine-relay-api = { path = "../eth-engine-relay-api" }
-reaper-eth-engine-macros = { path = "../eth-engine-macros" }
+reaper-eth-engine-relay-api.workspace = true
+reaper-eth-engine-macros.workspace = true
 
 # reth
 reth-rpc-types.workspace = true

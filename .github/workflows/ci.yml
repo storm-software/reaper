@@ -212,7 +212,7 @@ jobs:
       - start
       - setup
     runs-on: ubuntu-latest-m
-    timeout-minutes: 80
+    timeout-minutes: 45
     permissions:
       actions: read
       contents: write

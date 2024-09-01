@@ -13,13 +13,13 @@ documentation = "https://docs.rs/reaper-eth-engine-classifier"
 readme = "./README.md"
 
 [dependencies]
-reaper-eth-engine-types = { path = "../eth-engine-types" }
-reaper-eth-engine-macros = { path = "../eth-engine-macros" }
-reaper-eth-engine-metrics = { path = "../eth-engine-metrics" }
-reaper-eth-engine-database = { path = "../eth-engine-database" }
-reaper-eth-engine-pricing = { path = "../eth-engine-pricing" }
-reaper-eth-engine-core = { path = "../eth-engine-core" }
-reaper-eth-engine-reth-tracing = { path = "../eth-engine-reth-tracing", optional = true }
+reaper-eth-engine-types.workspace = true
+reaper-eth-engine-macros.workspace = true
+reaper-eth-engine-metrics.workspace = true
+reaper-eth-engine-database.workspace = true
+reaper-eth-engine-pricing.workspace = true
+reaper-eth-engine-core.workspace = true
+reaper-eth-engine-reth-tracing = { workspace = true, optional = true }
 
 # async
 tokio.workspace = true
@@ -71,9 +71,9 @@ criterion = { version = "0.5", features = [
 #     "tests",
 # ] }
 # reaper-eth-engine-core = { path = "../eth-engine-core", features = ["tests"] }
-reaper-eth-engine-database = { path = "../eth-engine-database" }
-reaper-eth-engine-reth-tracing = { path = "../eth-engine-reth-tracing" }
-reaper-eth-engine-macros = { path = "../eth-engine-macros" }
+reaper-eth-engine-database.workspace = true
+reaper-eth-engine-reth-tracing.workspace = true
+reaper-eth-engine-macros.workspace = true
 
 criterion = "0.5"
 strum = { workspace = true, features = ["derive"] }

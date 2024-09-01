@@ -6,8 +6,8 @@ edition = "2021"
 description = "A Telegram bot used by Storm Software to handle Ethereum notifications."
 
 [dependencies]
-reaper-aws = { path = "../../crates/aws" }
-reaper-eth = { path = "../../crates/eth" }
+reaper-aws.workspace = true
+reaper-eth.workspace = true
 
 aws-config = { workspace = true, features = ["behavior-version-latest"] }
 chrono.workspace = true

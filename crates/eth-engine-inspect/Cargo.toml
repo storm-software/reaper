@@ -17,13 +17,13 @@ name = "inspectors"
 harness = false
 
 [dependencies]
-reaper-eth-engine-types = { path = "../eth-engine-types" }
-reaper-eth-engine-database = { path = "../eth-engine-database" }
-reaper-eth-engine-metrics = { path = "../eth-engine-metrics" }
-reaper-eth-engine-core = { path = "../eth-engine-core", optional = true }
-reaper-eth-engine-classifier = { path = "../eth-engine-classifier", optional = true }
-reaper-eth-engine-pricing = { path = "../eth-engine-pricing", optional = true }
-reaper-eth-engine-reth-tracing = { path = "../eth-engine-reth-tracing", optional = true }
+reaper-eth-engine-types.workspace = true
+reaper-eth-engine-database.workspace = true
+reaper-eth-engine-metrics.workspace = true
+reaper-eth-engine-core = { workspace = true, optional = true }
+reaper-eth-engine-classifier = { workspace = true, optional = true }
+reaper-eth-engine-pricing = { workspace = true, optional = true }
+reaper-eth-engine-reth-tracing = { workspace = true, optional = true }
 
 # database
 clickhouse.workspace = true
@@ -80,18 +80,19 @@ criterion = { version = "0.5", features = [
 ], optional = true }
 
 [dev-dependencies]
+reaper-eth-engine-classifier.workspace = true
+reaper-eth-engine-core.workspace = true
+reaper-eth-engine-pricing.workspace = true
+reaper-eth-engine-macros.workspace = true
+reaper-eth-engine-types.workspace = true
+reaper-eth-engine-database.workspace = true
+reaper-eth-engine-reth-tracing.workspace = true
+
 dotenvy.workspace = true
 serial_test.workspace = true
-reaper-eth-engine-classifier = { path = "../eth-engine-classifier" }
-reaper-eth-engine-core = { path = "../eth-engine-core" }
-reaper-eth-engine-pricing = { path = "../eth-engine-pricing" }
-reaper-eth-engine-macros = { path = "../eth-engine-macros" }
 tracing-subscriber.workspace = true
 reth-db.workspace = true
-reaper-eth-engine-types = { path = "../eth-engine-types" }
-reaper-eth-engine-database = { path = "../eth-engine-database" }
 tokio.workspace = true
-reaper-eth-engine-reth-tracing = { path = "../eth-engine-reth-tracing" }
 criterion = { version = "0.5" }
 rand = "0.8.5"
 statrs = "0.16"

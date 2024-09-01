@@ -17,9 +17,9 @@ name = "bench"
 harness = false
 
 [dependencies]
-reaper-eth-engine-macros = { path = "../eth-engine-macros" }
-reaper-eth-engine-types = { path = "../eth-engine-types" }
-reaper-eth-engine-metrics = { path = "../eth-engine-metrics" }
+reaper-eth-engine-macros.workspace = true
+reaper-eth-engine-types.workspace = true
+reaper-eth-engine-metrics.workspace = true
 
 itertools = "0.12.0"
 redefined.workspace = true
