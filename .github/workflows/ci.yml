@@ -13,6 +13,7 @@ on:
 env:
   NX_BASE: ${{ github.event.before }}
   NX_HEAD: ${{ github.sha }}
+  NX_VERBOSE_LOGGING: true
 
 jobs:
   start:
@@ -245,6 +246,10 @@ jobs:
           main-branch-name: main
           error-on-no-successful-workflow: false
           set-environment-variables-for-job: true
+      - name: Build crate
+        run: cargo +nightly build -p reaper-eth-engine-metrics --profile release
+        env:
+          RUST_FLAGS: -D warnings -Z unstable-options
       - name: Build crates
         run: pnpm nx-cloud record -- nx affected --targets=build --nxBail --configuration=release --projects=tag:library --base=${{ env.NX_BASE }} --head=${{ env.NX_HEAD }}
         env:

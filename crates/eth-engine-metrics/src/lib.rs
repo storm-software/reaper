@@ -12,6 +12,7 @@ use reaper_eth_engine_types::UnboundedYapperReceiver;
 use tracing::trace;
 
 use crate::trace::{types::TraceMetricEvent, TraceMetrics};
+
 pub mod classifier;
 pub mod db_cache;
 pub mod db_initialization;
