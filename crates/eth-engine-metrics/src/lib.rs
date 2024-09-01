@@ -18,7 +18,6 @@ pub mod db_initialization;
 pub mod db_reads;
 pub mod db_writer;
 pub mod dyn_contracts;
-pub mod error_layer;
 pub mod inspectors;
 pub mod pricing;
 pub mod prometheus_exporter;
