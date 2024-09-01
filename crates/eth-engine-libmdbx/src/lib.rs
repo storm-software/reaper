@@ -7,6 +7,8 @@
 #![cfg_attr(not(test), warn(unused_crate_dependencies))]
 #![allow(missing_docs)]
 #![cfg_attr(docsrs, feature(doc_cfg, doc_auto_cfg))]
+#![allow(dead_code)]
+#![allow(clippy::upper_case_acronyms)]
 
 pub use crate::{
     codec::*,
