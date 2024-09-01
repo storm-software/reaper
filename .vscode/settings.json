@@ -21,10 +21,10 @@
   // ],
   "rust-analyzer.linkedProjects": [
     "crates\\core\\Cargo.toml",
+    "crates\\telemetry\\Cargo.toml",
     "crates\\eth\\Cargo.toml",
     "crates\\eth-flashbots\\Cargo.toml",
     "crates\\eth-engine-reth-tracing\\Cargo.toml",
-    "crates\\eth-engine-tracing\\Cargo.toml",
     "crates\\eth-engine-metrics\\Cargo.toml",
     "crates\\eth-engine-inspect\\Cargo.toml",
     "crates\\eth-engine-core\\Cargo.toml",

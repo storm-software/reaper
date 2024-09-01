@@ -4,13 +4,13 @@
 
 [workspace]
 resolver = "2"
-default-members = ["apps/eth-engine"]
+default-members = ["apps/eth-engine", "apps/eth-order-telegram-bot"]
 members = [
     "crates/core",
+    "crates/telemetry",
     "crates/eth",
     "crates/eth-flashbots",
     "crates/eth-engine-macros",
-    "crates/eth-engine-tracing",
     "crates/eth-engine-metrics",
     "crates/eth-engine-inspect",
     "crates/eth-engine-core",
@@ -73,6 +73,7 @@ readme = "./README.md"
 # Reaper
 reaper-core = { path = "./crates/core" }
 reaper-aws = { path = "./crates/aws" }
+reaper-telemetry = { path = "./crates/telemetry" }
 reaper-eth = { path = "./crates/eth" }
 reaper-eth-flashbots = { path = "./crates/eth-flashbots" }
 reaper-eth-engine-relay-api = { path = "./crates/eth-engine-relay-api" }
@@ -85,7 +86,6 @@ reaper-eth-engine-classifier = { path = "./crates/eth-engine-classifier" }
 reaper-eth-engine-database = { path = "./crates/eth-engine-database" }
 reaper-eth-engine-metrics = { path = "./crates/eth-engine-metrics" }
 reaper-eth-engine-pricing = { path = "./crates/eth-engine-pricing" }
-reaper-eth-engine-tracing = { path = "./crates/eth-engine-tracing" }
 reaper-eth-engine-libmdbx = { path = "./crates/eth-engine-libmdbx" }
 
 url = "2.5.2"
@@ -194,8 +194,9 @@ hyper-tls = "0.5.0"
 reqwest = { version = "0.12.2", default-features = false }
 
 # Serde
-serde = "1.0.205"
-serde_json = "1.0.1"
+serde = "1.0.209"
+serde_derive = "1.0.209"
+serde_json = "1.0.127"
 serde_with = "3.4.0"
 serde_repr = "0.1.16"
 

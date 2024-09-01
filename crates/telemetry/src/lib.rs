@@ -1,16 +1,13 @@
-//! reaper_core: A Rust library for quantitative finance tools.
+//! reaper_telemetry: A Rust library for tracing and logging.
 //!
 //! Any contributions are greatly appreciated. Make a PR or open an issue !
-//!
-//! I'm particularly interested in hearing from people with strong experience
-//! in implementing quantitative software in a professional setting.
 //!
 //! # Installation
 //!
 //! In your Rust project's root directory, simply run:
 //!
 //! ```bash
-//! cargo add reaper_core
+//! cargo add reaper_telemetry
 //! ```
 //!
 //! This will add the latest version to your project.
@@ -19,7 +16,7 @@
 //!
 //! ```toml
 //! [dependencies]
-//! reaper_core = "*"
+//! reaper_telemetry = "*"
 //! ```
 //!
 //! replacing `"*"` with the version number you require, such as `"0.0.17"`.
@@ -50,13 +47,7 @@
 #![forbid(clippy::undocumented_unsafe_blocks)]
 
 #[macro_use]
-pub mod macros;
-pub mod cashflow;
-pub mod error;
-pub mod instruments;
-pub mod iso;
-pub mod time;
-pub mod trading;
+pub mod tracing;
 
 #[cfg(test)]
 mod tests {

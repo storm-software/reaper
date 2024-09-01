@@ -19,7 +19,7 @@ harness = false
 [dependencies]
 reaper-eth-engine-types.workspace = true
 reaper-eth-engine-metrics.workspace = true
-reaper-eth-engine-tracing.workspace = true
+reaper-telemetry.workspace = true
 reaper-eth-engine-database.workspace = true
 reaper-eth-engine-reth-tracing.workspace = true
 

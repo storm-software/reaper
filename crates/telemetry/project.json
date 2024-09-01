@@ -1,8 +1,8 @@
 {
-  "name": "reaper-eth-engine-tracing",
+  "name": "reaper-telemetry",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "projectType": "library",
-  "sourceRoot": "crates/eth-engine-tracing/src",
+  "sourceRoot": "crates/telemetry/src",
   "targets": {},
   "tags": []
 }

@@ -44,7 +44,7 @@ primarily written in <a href="https://www.rust-lang.org/" target="_blank">Rust</
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 ## Table of Contents
 
-- [Reaper - Ethereum Engine Tracing Crate](#reaper---ethereum-engine-tracing-crate)
+- [Reaper - Telemetry Crate](#reaper---telemetry-crate)
   - [Installing](#installing)
   - [Development](#development)
     - [Building](#building)
@@ -68,10 +68,13 @@ primarily written in <a href="https://www.rust-lang.org/" target="_blank">Rust</
 
 <!-- END header -->
 
-# Reaper - Ethereum Engine Tracing Crate
+# Reaper - Telemetry Crate
 
-This crate is a core library for interacting with the Ethereum blockchain for
-trading purposes. It is part of the Storm Software suite of tools and libraries.
+This crate is a core library for the Reaper project. It provides a tracing
+engine, which can be used to trace the execution of the Reaper engine. This
+crate is used to provide a high-level tracing interface, which can be used to
+trace the execution of the engine, and to provide a high-level view of the
+execution of the engine.
 
 > **Note**
 >
@@ -89,13 +92,13 @@ This crate can be installed using
 
 ```toml
 [dependencies]
-reaper-eth-engine-tracing = "0.0.1"
+reaper-telemetry = "0.0.1"
 ```
 
 Or, via the command line:
 
 ```bash
-cargo add reaper-eth-engine-tracing
+cargo add reaper-telemetry
 ```
 
 ## Development
@@ -105,17 +108,17 @@ commands are available to assist in development.
 
 ### Building
 
-Run `nx build reaper-eth-engine-tracing` to build the library.
+Run `nx build reaper-telemetry` to build the library.
 
 ### Running unit tests
 
-Run `nx test reaper-eth-engine-tracing` to execute the unit tests via
+Run `nx test reaper-telemetry` to execute the unit tests via
 [Jest](https://jestjs.io).
 
 ### Linting
 
-Run `nx lint reaper-eth-engine-tracing` to run [ESLint](https://eslint.org/) on
-the package.
+Run `nx lint reaper-telemetry` to run [ESLint](https://eslint.org/) on the
+package.
 
 <!-- START footer -->
 <!-- prettier-ignore-start -->

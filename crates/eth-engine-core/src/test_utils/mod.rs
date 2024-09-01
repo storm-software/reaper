@@ -537,9 +537,9 @@ pub fn init_tracing() {
   // all, Debug includes all but Trace, ...)
   let verbosity_level = Level::INFO; // Error >= Warn >= Info >= Debug >= Trace
   let directive: Directive = format!("{verbosity_level}").parse().unwrap();
-  let layers = vec![reaper_eth_engine_tracing::stdout(directive)];
+  let layers = vec![reaper_telemetry::stdout(directive)];
 
-  reaper_eth_engine_tracing::init(layers);
+  reaper_telemetry::init_layers(layers);
 }
 
 #[cfg(feature = "local-reth")]

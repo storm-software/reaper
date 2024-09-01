@@ -14,7 +14,7 @@ reaper-eth-engine-classifier.workspace = true
 reaper-eth-engine-database.workspace = true
 reaper-eth-engine-metrics.workspace = true
 reaper-eth-engine-pricing.workspace = true
-reaper-eth-engine-tracing.workspace = true
+reaper-telemetry.workspace = true
 reaper-eth-engine-libmdbx = { workspace = true, features = [
     "read-tx-timeouts",
 ] }
