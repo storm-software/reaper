@@ -17,6 +17,7 @@
         "toolchain": "nightly",
         "profiles": {
           "development": "dev",
+          "release": "release",
           "production": "prod"
         }
       }
