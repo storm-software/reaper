@@ -1,6 +1,10 @@
-name: "Install"
-description: "Install and pre-build"
+name: "Setup Workspace"
+description: "Install and pre-build tools for the workspace"
 inputs:
+  mise_env:
+    description: The environment type to install MISE tools for
+    default: "prod"
+    required: true
   storm_bot_private_key:
     description: The private key of the Storm bot
     required: true
@@ -17,20 +21,19 @@ runs:
         gpg_private_key: ${{ inputs.storm_bot_private_key }}
         passphrase: ${{ inputs.storm_bot_passphrase }}
 
-    - name: Install asdf
-      uses: asdf-vm/actions/install@v3
-
-    - name: Install Tooling with asdf
-      run: |
-        asdf install nodejs
-        asdf install pnpm
-        asdf install rust
-      shell: bash
-
-    - name: Install Zig toolchain
-      uses: korandoru/setup-zig@v1
+    - name: Setup MISE
+      uses: jdx/mise-action@v2
       with:
-        zig-version: 0.13.0
+        version: latest
+        install: true
+        cache: true
+        experimental: true
+      env: ${{ inputs.mise_env }}
+
+    # - name: Install Zig toolchain
+    #   uses: korandoru/setup-zig@v1
+    #   with:
+    #     zig-version: 0.13.0
 
     - name: Install Cargo Lambda
       uses: jaxxstorm/action-install-gh-release@v1.9.0
@@ -48,8 +51,8 @@ runs:
         path: |
           node_modules
           ~/.cache/Cypress # needed for the Cypress binary
-          ~/.asdf
-        key: "dependencies-${{ hashFiles('pnpm-lock.yaml') }}-${{ hashFiles('.tool-versions') }}"
+          ~/.cache/mise/${{ inputs.mise_env }}
+        key: "dependencies-${{ hashFiles('pnpm-lock.yaml') }}-${{ hashFiles('./.config/mise/config.${{ inputs.mise_env }}.toml') }}"
 
     - name: Set up npm registry
       uses: actions/setup-node@v4
@@ -77,7 +80,7 @@ runs:
         path: |
           node_modules
           ~/.cache/Cypress # needed for the Cypress binary
-          ~/.asdf
+          ~/.cache/
         key: ${{ steps.cache-dependencies-restore.outputs.cache-primary-key }}
 
     - name: Configure git

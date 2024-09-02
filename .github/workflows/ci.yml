@@ -113,6 +113,7 @@ jobs:
       - name: Setup workspace
         uses: ./.github/actions/setup
         with:
+          mise_env: build
           storm_bot_private_key: ${{ secrets.STORM_BOT_PRIVATE_KEY }}
           storm_bot_passphrase: ${{ secrets.STORM_BOT_PASSPHRASE }}
 
@@ -148,6 +149,7 @@ jobs:
       - name: Setup workspace
         uses: ./.github/actions/setup
         with:
+          mise_env: build
           storm_bot_private_key: ${{ secrets.STORM_BOT_PRIVATE_KEY }}
           storm_bot_passphrase: ${{ secrets.STORM_BOT_PASSPHRASE }}
       - name: Setup Nx SHAs
@@ -197,6 +199,7 @@ jobs:
       - name: Setup workspace
         uses: ./.github/actions/setup
         with:
+          mise_env: docs
           storm_bot_private_key: ${{ secrets.STORM_BOT_PRIVATE_KEY }}
           storm_bot_passphrase: ${{ secrets.STORM_BOT_PASSPHRASE }}
       - name: Install mdbook-linkcheck with asdf
@@ -238,6 +241,7 @@ jobs:
       - name: Setup workspace
         uses: ./.github/actions/setup
         with:
+          mise_env: build
           storm_bot_private_key: ${{ secrets.STORM_BOT_PRIVATE_KEY }}
           storm_bot_passphrase: ${{ secrets.STORM_BOT_PASSPHRASE }}
       - name: Setup Nx SHAs
@@ -273,6 +277,7 @@ jobs:
           # We need to fetch all branches and commits so that Nx affected has a base to compare against.
           fetch-depth: 0
           token: ${{ secrets.STORM_BOT_GITHUB_TOKEN }}
+
       - name: Checkout `main` branch
         uses: actions/checkout@v4
         if: ${{ github.event_name != 'pull_request' }}
@@ -283,19 +288,31 @@ jobs:
       - name: Setup workspace
         uses: ./.github/actions/setup
         with:
+          mise_env: build
           storm_bot_private_key: ${{ secrets.STORM_BOT_PRIVATE_KEY }}
           storm_bot_passphrase: ${{ secrets.STORM_BOT_PASSPHRASE }}
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Login to docker registry
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.STORM_BOT_DOCKERHUB_USERNAME }}
+          password: ${{ secrets.STORM_BOT_DOCKERHUB_TOKEN }}
+
       - name: Setup Nx SHAs
         uses: nrwl/nx-set-shas@v4
         with:
           main-branch-name: main
           error-on-no-successful-workflow: false
           set-environment-variables-for-job: true
+
       - name: Build applications
-        run: pnpm nx-cloud record -- nx run-many --targets=build --nxBail --configuration=production --projects=reaper-eth-engine,reaper-eth-order-telegram-bot
+        run: pnpm nx-cloud record -- nx run-many --targets=container --nxBail --configuration=production --projects=reaper-eth-engine,reaper-eth-order-telegram-bot
         shell: bash
         env:
-          RUSTFLAGS: -D warnings -Z unstable-options
+          INPUT_GITHUB_TOKEN: ${{ secrets.STORM_BOT_GITHUB_TOKEN }}
 
   build-docs:
     name: Build documentation
@@ -325,20 +342,22 @@ jobs:
           # We need to fetch all branches and commits so that Nx affected has a base to compare against.
           fetch-depth: 0
           token: ${{ secrets.STORM_BOT_GITHUB_TOKEN }}
+
       - name: Setup workspace
         uses: ./.github/actions/setup
         with:
+          mise_env: docs
           storm_bot_private_key: ${{ secrets.STORM_BOT_PRIVATE_KEY }}
           storm_bot_passphrase: ${{ secrets.STORM_BOT_PASSPHRASE }}
+
       - name: Setup global URLs - Part 1
         run: git config --global url."https://x-access-token:${{ secrets.STORM_BOT_GITHUB_TOKEN }}@github.com/".insteadOf "https://github.com/"
         shell: bash
+
       - name: Setup global URLs - Part 2
         run: git config --global url."https://${{ secrets.STORM_BOT_GITHUB_TOKEN }}@github.com/".insteadOf "git@github.com:"
         shell: bash
-      - name: Install mdbook with asdf
-        run: asdf install mdbook
-        shell: bash
+
       - name: Install mdbook-template
         run: |
           mkdir mdbook-template
@@ -365,6 +384,7 @@ jobs:
 
       - name: Move docs to book folder
         run: mv dist/docs/crates dist/docs/book
+
       - name: Archive artifact
         shell: sh
         run: |
@@ -379,6 +399,7 @@ jobs:
             --exclude=.git \
             --exclude=.github \
             .
+
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
@@ -435,6 +456,7 @@ jobs:
       - name: Setup workspace
         uses: ./.github/actions/setup
         with:
+          mise_env: build
           storm_bot_private_key: ${{ secrets.STORM_BOT_PRIVATE_KEY }}
           storm_bot_passphrase: ${{ secrets.STORM_BOT_PASSPHRASE }}
 
@@ -522,6 +544,7 @@ jobs:
       - name: Setup workspace
         uses: ./.github/actions/setup
         with:
+          mise_env: deploy
           storm_bot_private_key: ${{ secrets.STORM_BOT_PRIVATE_KEY }}
           storm_bot_passphrase: ${{ secrets.STORM_BOT_PASSPHRASE }}
       - name: Setup Nx SHAs
@@ -532,10 +555,8 @@ jobs:
           set-environment-variables-for-job: true
 
       - name: Run build
-        run: pnpm nx-cloud record -- nx run-many --targets=build --nxBail --configuration=production --projects=reaper-eth-engine,reaper-eth-order-telegram-bot
+        run: pnpm nx-cloud record -- nx run-many --targets=build --nxBail --configuration=production --projects=reaper-eth-order-telegram-bot
         shell: bash
-        env:
-          RUSTFLAGS: -D warnings -Z unstable-options
 
       - name: List build
         run: ls dist/target -R
@@ -629,6 +650,7 @@ jobs:
       - name: Setup workspace
         uses: ./.github/actions/setup
         with:
+          mise_env: deploy
           storm_bot_private_key: ${{ secrets.STORM_BOT_PRIVATE_KEY }}
           storm_bot_passphrase: ${{ secrets.STORM_BOT_PASSPHRASE }}
       - name: Setup Nx SHAs

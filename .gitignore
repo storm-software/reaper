@@ -427,6 +427,9 @@ MigrationBackup/
 # Ionide (cross platform F# VS Code tools) working folder
 .ionide/
 
+# Local MISE config
+**/config.local.toml
+
 # Local Environment Variables
 **/.env.local
 

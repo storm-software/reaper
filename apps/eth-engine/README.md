@@ -70,8 +70,7 @@ primarily written in <a href="https://www.rust-lang.org/" target="_blank">Rust</
 
 # Storm Software - Ethereum Engine
 
-This crate is a core library for Storm Software trading applications. It
-provides various utilities and functions to facilitate trading.
+An application used by Storm Software to process and categorize real-time blockchain data.
 
 ## Installing
 

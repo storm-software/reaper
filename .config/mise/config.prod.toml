@@ -1,0 +1,40 @@
+[env]
+RUST_BACKTRACE = 1
+RUST_WITHOUT = "rust-docs"
+RUSTFLAGS = "-Z unstable-options -D warnings"
+NODE_ENV = "production"
+MISE_ENV = "prod"
+MISE_USE_TOML = 1
+MISE_CACHE_DIR = "~/.cache/mise/{{ get_env(name='MISE_ENV', default='prod') }}"
+ESLINT_USE_FLAT_CONFIG = 1
+SHOULD_UNLOCK_GIT_CRYPT = 1
+NX_CLOUD_NO_TIMEOUTS = 1
+NX_VERBOSE_LOGGING = 0
+INFISICAL_ENVIRONMENT = "prod"
+HS_SERVICE_NAME = "@storm-software/reaper"
+SENTRY_ORGANIZATION = "reaper"
+SENTRY_PROPERTIES = "apps/eth-engine"
+
+[tools]
+direnv = "2.34.0"
+nodejs = "20.14.0"
+pnpm = "9.8.0"
+rust = "nightly-x86_64-unknown-linux-gnu"
+zig = "0.13.0"
+
+[settings]
+legacy_version_file = true
+always_keep_download = false
+always_keep_install = false
+plugin_autoupdate_last_check_duration = '1 week'
+verbose = false
+asdf_compat = false
+http_timeout = 30
+jobs = 4
+raw = false
+yes = true
+not_found_auto_install = true
+task_output = "prefix"
+paranoid = false
+experimental = true
+status = { missing_tools = "if_other_versions_installed", show_env = true, show_tools = true }

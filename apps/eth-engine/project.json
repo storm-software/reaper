@@ -4,38 +4,38 @@
   "projectType": "application",
   "sourceRoot": "apps/eth-engine/src",
   "targets": {
-    "test": {
-      "executor": "@monodon/rust:test",
-      "outputs": ["{options.target-dir}"],
-      "options": {
-        "target-dir": "dist/target/apps/eth-engine"
-      },
-      "defaultConfiguration": "production",
-      "configurations": {
-        "development": {
-          "profile": "dev"
-        },
-        "production": {
-          "profile": "prod"
-        }
-      }
-    },
-    "run": {
-      "executor": "@monodon/rust:run",
-      "outputs": ["{options.target-dir}"],
-      "options": {
-        "target-dir": "dist/target/apps/eth-engine"
-      },
-      "defaultConfiguration": "production",
-      "configurations": {
-        "development": {
-          "profile": "dev"
-        },
-        "production": {
-          "profile": "prod"
-        }
-      }
-    },
+    // "test": {
+    //   "executor": "@monodon/rust:test",
+    //   "outputs": ["{options.target-dir}"],
+    //   "options": {
+    //     "target-dir": "dist/target/apps/eth-engine"
+    //   },
+    //   "defaultConfiguration": "production",
+    //   "configurations": {
+    //     "development": {
+    //       "profile": "dev"
+    //     },
+    //     "production": {
+    //       "profile": "prod"
+    //     }
+    //   }
+    // },
+    // "run": {
+    //   "executor": "@monodon/rust:run",
+    //   "outputs": ["{options.target-dir}"],
+    //   "options": {
+    //     "target-dir": "dist/target/apps/eth-engine"
+    //   },
+    //   "defaultConfiguration": "production",
+    //   "configurations": {
+    //     "development": {
+    //       "profile": "dev"
+    //     },
+    //     "production": {
+    //       "profile": "prod"
+    //     }
+    //   }
+    // },
     "helm-package": {
       "executor": "@storm-software/k8s-tools:helm-package",
       "outputs": ["{options.outputFolder}"],
@@ -48,6 +48,57 @@
           "update": true,
           "build": true,
           "repositories": []
+        }
+      }
+    },
+    "container": {
+      "executor": "@nx-tools/nx-container:build",
+      "options": {
+        "file": "apps/eth-engine/Dockerfile",
+        "engine": "docker",
+        "labels": [
+          "org.opencontainers.image.title=reaper-eth-engine",
+          "org.opencontainers.image.version=$RELEASE",
+          "org.opencontainers.image.description=An application used by Storm Software to process and categorize real-time blockchain data",
+          "org.opencontainers.image.authors=Storm Software",
+          "org.opencontainers.image.vendor=Storm Software",
+          "org.opencontainers.image.url=$REPO_URL",
+          "org.opencontainers.image.source=$REPO_URL"
+        ],
+        "push": true,
+        "platforms": ["linux/amd64"],
+        "metadata": {
+          "images": [
+            "storm-software/reaper-eth-engine",
+            "ghcr.io/storm-software/reaper-eth-engine"
+          ],
+          "tags": [
+            "type=schedule",
+            "type=ref,event=branch",
+            "type=ref,event=tag",
+            "type=ref,event=pr",
+            "type=semver,pattern={{version}}",
+            "type=semver,pattern={{major}}.{{minor}}",
+            "type=semver,pattern={{major}}",
+            "type=sha"
+          ]
+        }
+      },
+      "defaultConfiguration": "production",
+      "configurations": {
+        "development": {
+          "quiet": false,
+          "build-args": {
+            "ENVIRONMENT": "development",
+            "DEBUG_IMAGE": true
+          }
+        },
+        "production": {
+          "quiet": true,
+          "build-args": {
+            "ENVIRONMENT": "production",
+            "DEBUG_IMAGE": false
+          }
         }
       }
     }

@@ -60,6 +60,7 @@
     "clean-packages": "rimraf dist/packages",
     "commit": "pnpm exec storm-git commit",
     "dep-graph": "nx dep-graph",
+    "docker-build": "docker buildx bake -f docker/docker.hcl --load build",
     "e2e": "nx e2e",
     "format": "nx format:write",
     "format-prettier": "pnpm exec prettier --write --ignore-unknown --no-error-on-unmatched-pattern --ignore-path=\"@storm-software/prettier/.prettierignore\" --cache --cache-location=\"./node_modules/.cache/prettier\" ",
@@ -84,7 +85,6 @@
     "test": "echo Skipping all workspace testing..."
   },
   "dependencies": {
-    "@dotenvx/dotenvx": "^1.6.4",
     "@ls-lint/ls-lint": "2.2.3",
     "@ltd/j-toml": "1.38.0",
     "@monodon/rust": "1.4.0",
@@ -122,7 +122,6 @@
     "jest-environment-jsdom": "29.7.0",
     "jest-environment-node": "29.7.0",
     "knip": "5.25.2",
-    "lefthook": "1.6.18",
     "nx": "19.6.2",
     "nx-cloud": "^19.0.0",
     "prettier": "3.3.2",
