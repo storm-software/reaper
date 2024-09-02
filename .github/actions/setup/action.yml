@@ -28,7 +28,10 @@ runs:
         install: true
         cache: true
         experimental: true
-      env: ${{ inputs.mise_env }}
+      env:
+        MISE_ENV: ${{ inputs.mise_env }}
+        MISE_CACHE_DIR: "~/.cache/mise/${{ inputs.mise_env }}"
+        MISE_USE_TOML: 1
 
     # - name: Install Zig toolchain
     #   uses: korandoru/setup-zig@v1
