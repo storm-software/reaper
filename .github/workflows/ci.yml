@@ -305,8 +305,8 @@ jobs:
         uses: docker/login-action@v3
         with:
           registry: ghcr.io
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
+          username: Stormie-Bot
+          password: ${{ secrets.STORM_BOT_GITHUB_TOKEN }}
 
       - name: Setup Nx SHAs
         uses: nrwl/nx-set-shas@v4
@@ -516,14 +516,6 @@ jobs:
         with:
           artifact_name: book-artifact
 
-
-  - name: Login to GitHub Container Registry
-    uses: docker/login-action@v3
-    with:
-      registry: ghcr.io
-      username: ${{ github.actor }}
-      password: ${{ secrets.GITHUB_TOKEN }}
-
   deploy-apps:
     name: Deploy applications
     if: always() && !cancelled() && !contains(needs.*.result, 'failure') && github.event.pull_request.draft == false
@@ -549,6 +541,7 @@ jobs:
           # We need to fetch all branches and commits so that Nx affected has a base to compare against.
           fetch-depth: 0
           token: ${{ secrets.STORM_BOT_GITHUB_TOKEN }}
+
       - name: Checkout `main` branch
         uses: actions/checkout@v4
         if: ${{ github.event_name != 'pull_request' }}
@@ -556,12 +549,14 @@ jobs:
           # We need to fetch all branches and commits so that Nx affected has a base to compare against.
           fetch-depth: 0
           token: ${{ secrets.STORM_BOT_GITHUB_TOKEN }}
+
       - name: Setup workspace
         uses: ./.github/actions/setup
         with:
           mise_env: deploy
           storm_bot_private_key: ${{ secrets.STORM_BOT_PRIVATE_KEY }}
           storm_bot_passphrase: ${{ secrets.STORM_BOT_PASSPHRASE }}
+
       - name: Setup Nx SHAs
         uses: nrwl/nx-set-shas@v4
         with:

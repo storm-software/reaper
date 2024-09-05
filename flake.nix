@@ -55,7 +55,6 @@
           nodejs = super.nodejs_20;
           pnpm = super.nodePackages.pnpm;
           prettier = super.nodePackages.prettier;
-          prettier = super.nodePackages.prettier;
         })
       ];
       pkgs = import nixpkgs {inherit overlays system;};
