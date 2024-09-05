@@ -22,7 +22,7 @@ runs:
         passphrase: ${{ inputs.storm_bot_passphrase }}
 
     - name: Setup MISE
-      uses: jdx/mise-action@v2
+      uses: jdx/mise-action@v2.0.6
       with:
         version: latest
         install: true
