@@ -26,10 +26,11 @@ runs:
       with:
         install: true
         cache: true
+        cache_save: true
         experimental: true
+        cache_key_prefix: reaper
       env:
         MISE_ENV: ${{ inputs.mise_env }}
-        MISE_CACHE_DIR: "~/.cache/mise/${{ inputs.mise_env }}"
         MISE_USE_TOML: 1
 
     # - name: Install Zig toolchain
