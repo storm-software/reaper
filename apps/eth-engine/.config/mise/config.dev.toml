@@ -1,40 +1,36 @@
 [env]
-_.file = '.envrc'
+RUST_BACKTRACE = 1
+RUSTFLAGS = "-Z unstable-options -D warnings"
+RUSTDOCFLAGS = "--cfg docsrs --show-type-layout --generate-link-to-definition --enable-index-page"
+NODE_ENV = "development"
+MISE_ENV = "dev"
+MISE_USE_TOML = 1
+NX_VERBOSE_LOGGING = 1
+DEV_EDITOR_ID = "vscode"
+CLICOLOR = 1
+FORCE_COLOR = 1
+CARGO_PROFILE_DEV_BUILD_OVERRIDE_DEBUG = 1
 
 [tools]
-direnv = "2.34.0"
-gitsign = "0.10.2"
 nodejs = "20.14.0"
 pnpm = "9.8.0"
-lefthook = "1.6.18"
 rust = "nightly-x86_64-unknown-linux-gnu"
 rust-analyzer = "2024-09-02"
 cargo-binstall = "1.10.3"
 zig = "0.13.0"
-mdbook = "0.4.14"
-mdbook-linkcheck = "0.7.7"
-terragrunt = "0.63.6"
-opentofu = "1.8.0"
 helm = "3.15.4"
 
 [plugins]
-direnv = "https://github.com/asdf-community/asdf-direnv.git"
-gitsign = "https://github.com/spencergilbert/asdf-gitsign.git"
 pnpm = "https://github.com/jonathanmorley/asdf-pnpm.git"
-lefthook = "https://github.com/jtzero/asdf-lefthook.git"
 rust = "https://github.com/code-lever/asdf-rust.git"
 rust-analyzer = "https://github.com/xyven1/asdf-rust-analyzer.git"
-mdbook = "https://github.com/cipherstash-archive/asdf-mdbook.git"
-mdbook-linkcheck = "https://github.com/cipherstash-archive/asdf-mdbook-linkcheck.git"
 helm = "https://github.com/Antiarchitect/asdf-helm.git"
-opentofu = "https://github.com/virtualroot/asdf-opentofu.git"
-terragrunt = "https://github.com/ohmer/asdf-terragrunt.git"
 
 [settings]
 legacy_version_file = true
 always_keep_download = false
 always_keep_install = false
-cargo_binstall = true
+cargo_binstall = false
 plugin_autoupdate_last_check_duration = '1 week'
 verbose = true
 asdf_compat = false
@@ -47,7 +43,3 @@ task_output = "Reaper: "
 paranoid = false
 experimental = true
 status = { missing_tools = "if_other_versions_installed", show_env = true, show_tools = true }
-color = true
-
-[tasks."sign:commit"]
-run = "gitsign verify --certificate-identity=patrick.joseph.sullivan@protonmail.com --certificate-oidc-issuer=https://accounts.google.com HEAD"

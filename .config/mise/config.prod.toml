@@ -1,19 +1,5 @@
 [env]
-RUST_BACKTRACE = 1
-RUST_WITHOUT = "rust-docs"
-RUSTFLAGS = "-Z unstable-options -D warnings"
-NODE_ENV = "production"
-MISE_ENV = "prod"
-MISE_USE_TOML = 1
-MISE_CACHE_DIR = "~/.cache/mise/{{ get_env(name='MISE_ENV', default='prod') }}"
-ESLINT_USE_FLAT_CONFIG = 1
-SHOULD_UNLOCK_GIT_CRYPT = 1
-NX_CLOUD_NO_TIMEOUTS = 1
-NX_VERBOSE_LOGGING = 0
-INFISICAL_ENVIRONMENT = "prod"
-HS_SERVICE_NAME = "@storm-software/reaper"
-SENTRY_ORGANIZATION = "reaper"
-SENTRY_PROPERTIES = "apps/eth-engine"
+_.file = '.envrc'
 
 [tools]
 direnv = "2.34.0"
@@ -21,8 +7,23 @@ nodejs = "20.14.0"
 pnpm = "9.8.0"
 rust = "nightly-x86_64-unknown-linux-gnu"
 zig = "0.13.0"
+opentofu = "1.8.0"
+terragrunt = "0.63.6"
+helm = "3.15.4"
+
+[plugins]
+direnv = "https://github.com/asdf-community/asdf-direnv.git"
+pnpm = "https://github.com/jonathanmorley/asdf-pnpm.git"
+rust = "https://github.com/code-lever/asdf-rust.git"
+opentofu = "https://github.com/virtualroot/asdf-opentofu.git"
+terragrunt = "https://github.com/ohmer/asdf-terragrunt.git"
+helm = "https://github.com/Antiarchitect/asdf-helm.git"
 
 [settings]
+task_output = "Reaper: "
+paranoid = false
+experimental = true
+status = { missing_tools = "if_other_versions_installed", show_env = true, show_tools = true }
 legacy_version_file = true
 always_keep_download = false
 always_keep_install = false
@@ -34,7 +35,6 @@ jobs = 4
 raw = false
 yes = true
 not_found_auto_install = true
-task_output = "prefix"
-paranoid = false
-experimental = true
-status = { missing_tools = "if_other_versions_installed", show_env = true, show_tools = true }
+
+[tasks."sign:commit"]
+run = "gitsign verify --certificate-identity=patrick.joseph.sullivan@protonmail.com --certificate-oidc-issuer=https://accounts.google.com HEAD"

@@ -91,6 +91,7 @@ clap.workspace = true
 # logging
 rayon.workspace = true
 cfg-if = "1.0.0"
+sentry = "0.34.0"
 
 # prometheus
 metrics-process.workspace = true

@@ -1,15 +1,5 @@
 [env]
-RUST_BACKTRACE = 1
-RUSTFLAGS = "-Z unstable-options -D warnings"
-RUSTDOCFLAGS = "--cfg docsrs --show-type-layout --generate-link-to-definition --enable-index-page"
-NODE_ENV = "production"
-MISE_ENV = "docs"
-MISE_USE_TOML = 1
-MISE_CACHE_DIR = "~/.cache/mise/{{ get_env(name='MISE_ENV', default='prod') }}"
-ESLINT_USE_FLAT_CONFIG = 1
-SHOULD_UNLOCK_GIT_CRYPT = 1
-NX_CLOUD_NO_TIMEOUTS = 1
-NX_VERBOSE_LOGGING = 0
+_.file = '.envrc'
 
 [tools]
 direnv = "2.34.0"
@@ -19,7 +9,18 @@ rust = "nightly-x86_64-unknown-linux-gnu"
 mdbook = "0.4.14"
 mdbook-linkcheck = "0.7.7"
 
+[plugins]
+direnv = "https://github.com/asdf-community/asdf-direnv.git"
+pnpm = "https://github.com/jonathanmorley/asdf-pnpm.git"
+rust = "https://github.com/code-lever/asdf-rust.git"
+mdbook = "https://github.com/cipherstash-archive/asdf-mdbook.git"
+mdbook-linkcheck = "https://github.com/cipherstash-archive/asdf-mdbook-linkcheck.git"
+
 [settings]
+task_output = "Reaper: "
+paranoid = false
+experimental = true
+status = { missing_tools = "if_other_versions_installed", show_env = true, show_tools = true }
 legacy_version_file = true
 always_keep_download = false
 always_keep_install = false
@@ -31,7 +32,6 @@ jobs = 4
 raw = false
 yes = true
 not_found_auto_install = true
-task_output = "prefix"
-paranoid = false
-experimental = true
-status = { missing_tools = "if_other_versions_installed", show_env = true, show_tools = true }
+
+[tasks."sign:commit"]
+run = "gitsign verify --certificate-identity=patrick.joseph.sullivan@protonmail.com --certificate-oidc-issuer=https://accounts.google.com HEAD"

@@ -432,6 +432,7 @@ MigrationBackup/
 
 # Local Environment Variables
 **/.env.local
+**/.envrc.local
 
 # Environment Variables' private decryption keys
 **/.env.keys

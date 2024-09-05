@@ -51,6 +51,8 @@ commit-msg:
   commands:
     validate:
       run: "pnpm exec storm-git commitlint --message {1}"
+    # sign:
+    #   run: "mise task run sign-commit"
 
 pre-push:
   piped: true

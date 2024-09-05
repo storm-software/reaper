@@ -1,6 +1,10 @@
 [build]
 target-dir = "dist/target"
-rustflags = ["-Z unstable-options", "-D warnings"]
+rustflags = [
+    "--cfg=web_sys_unstable_apis",
+    "-Z unstable-options",
+    "-D warnings",
+]
 
 [doc]
 browser = "chromium"
