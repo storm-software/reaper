@@ -24,7 +24,6 @@ runs:
     - name: Setup MISE
       uses: jdx/mise-action@v2.0.6
       with:
-        version: latest
         install: true
         cache: true
         experimental: true
