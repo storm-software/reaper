@@ -22,16 +22,13 @@ runs:
         passphrase: ${{ inputs.storm_bot_passphrase }}
 
     - name: Setup MISE
-      uses: jdx/mise-action@v2.0.6
-      with:
-        install: true
-        cache: true
-        cache_save: true
-        experimental: true
-        cache_key_prefix: reaper
+      run: |
+        curl https://mise.run | sh
+        mise install
       env:
         MISE_ENV: ${{ inputs.mise_env }}
         MISE_USE_TOML: 1
+      shell: bash
 
     # - name: Install Zig toolchain
     #   uses: korandoru/setup-zig@v1
@@ -66,11 +63,11 @@ runs:
         cache-dependency-path: pnpm-lock.yaml
 
     - name: Install pnpm package manager
-      shell: bash
       run: pnpm install --no-frozen-lockfile
       env:
         # postinstall uses this
         SHOULD_UNLOCK_GIT_CRYPT: "1"
+      shell: bash
 
     - name: Setup pnpm config registry
       run: pnpm config set registry https://registry.npmjs.org
