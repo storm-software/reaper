@@ -88,17 +88,11 @@
       "configurations": {
         "development": {
           "quiet": false,
-          "build-args": {
-            "ENVIRONMENT": "development",
-            "DEBUG_IMAGE": true
-          }
+          "build-args": ["ENVIRONMENT=development", "DEBUG_IMAGE=true"]
         },
         "production": {
           "quiet": true,
-          "build-args": {
-            "ENVIRONMENT": "production",
-            "DEBUG_IMAGE": false
-          }
+          "build-args": ["ENVIRONMENT=production", "DEBUG_IMAGE=false"]
         }
       }
     }

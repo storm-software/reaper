@@ -103,6 +103,7 @@ jobs:
           # We need to fetch all branches and commits so that Nx affected has a base to compare against.
           fetch-depth: 0
           token: ${{ secrets.STORM_BOT_GITHUB_TOKEN }}
+
       - name: Checkout `main` branch
         uses: actions/checkout@v4
         if: ${{ github.event_name != 'pull_request' }}
@@ -110,10 +111,10 @@ jobs:
           # We need to fetch all branches and commits so that Nx affected has a base to compare against.
           fetch-depth: 0
           token: ${{ secrets.STORM_BOT_GITHUB_TOKEN }}
+
       - name: Setup workspace
         uses: ./.github/actions/setup
         with:
-          mise-env: build
           storm-bot-private-key: ${{ secrets.STORM_BOT_PRIVATE_KEY }}
           storm-bot-passphrase: ${{ secrets.STORM_BOT_PASSPHRASE }}
 
@@ -139,6 +140,7 @@ jobs:
           # We need to fetch all branches and commits so that Nx affected has a base to compare against.
           fetch-depth: 0
           token: ${{ secrets.STORM_BOT_GITHUB_TOKEN }}
+
       - name: Checkout `main` branch
         uses: actions/checkout@v4
         if: ${{ github.event_name != 'pull_request' }}
@@ -146,24 +148,28 @@ jobs:
           # We need to fetch all branches and commits so that Nx affected has a base to compare against.
           fetch-depth: 0
           token: ${{ secrets.STORM_BOT_GITHUB_TOKEN }}
+
       - name: Setup workspace
         uses: ./.github/actions/setup
         with:
-          mise-env: build
           storm-bot-private-key: ${{ secrets.STORM_BOT_PRIVATE_KEY }}
           storm-bot-passphrase: ${{ secrets.STORM_BOT_PASSPHRASE }}
+
       - name: Setup Nx SHAs
         uses: nrwl/nx-set-shas@v4
         with:
           main-branch-name: main
           error-on-no-successful-workflow: false
           set-environment-variables-for-job: true
+
       - name: Run lint-ls
         run: pnpm exec ls-lint --config="./node_modules/@storm-software/linting-tools/ls-lint/.ls-lint.yml"
         shell: bash
+
       - name: Run storm-lint
         run: pnpm exec storm-lint all --skip-cspell --skip-alex
         shell: bash
+
       # - name: Run taplo
       #   run: pnpm exec taplo format --check --config="./node_modules/@storm-software/linting-tools/taplo/.taplo.toml"
       #   shell: bash
@@ -189,6 +195,7 @@ jobs:
           # We need to fetch all branches and commits so that Nx affected has a base to compare against.
           fetch-depth: 0
           token: ${{ secrets.STORM_BOT_GITHUB_TOKEN }}
+
       - name: Checkout `main` branch
         uses: actions/checkout@v4
         if: ${{ github.event_name != 'pull_request' }}
@@ -196,16 +203,14 @@ jobs:
           # We need to fetch all branches and commits so that Nx affected has a base to compare against.
           fetch-depth: 0
           token: ${{ secrets.STORM_BOT_GITHUB_TOKEN }}
+
       - name: Setup workspace
         uses: ./.github/actions/setup
         with:
           mise-env: docs
           storm-bot-private-key: ${{ secrets.STORM_BOT_PRIVATE_KEY }}
           storm-bot-passphrase: ${{ secrets.STORM_BOT_PASSPHRASE }}
-      - name: Install mdbook-linkcheck with asdf
-        run: |
-          asdf install mdbook-linkcheck
-        shell: bash
+
       - name: Run linkcheck
         run: pnpm nx run docs-book:lint
 
@@ -243,7 +248,6 @@ jobs:
       - name: Setup workspace
         uses: ./.github/actions/setup
         with:
-          mise-env: build
           storm-bot-private-key: ${{ secrets.STORM_BOT_PRIVATE_KEY }}
           storm-bot-passphrase: ${{ secrets.STORM_BOT_PASSPHRASE }}
 
@@ -371,7 +375,7 @@ jobs:
       - name: Setup workspace
         uses: ./.github/actions/setup
         with:
-          mise-env: docs
+          : docs
           storm-bot-private-key: ${{ secrets.STORM_BOT_PRIVATE_KEY }}
           storm-bot-passphrase: ${{ secrets.STORM_BOT_PASSPHRASE }}
 
@@ -471,6 +475,7 @@ jobs:
           # We need to fetch all branches and commits so that Nx affected has a base to compare against.
           fetch-depth: 0
           token: ${{ secrets.STORM_BOT_GITHUB_TOKEN }}
+
       - name: Checkout `main` branch
         uses: actions/checkout@v4
         if: ${{ github.event_name != 'pull_request' }}
@@ -478,10 +483,10 @@ jobs:
           # We need to fetch all branches and commits so that Nx affected has a base to compare against.
           fetch-depth: 0
           token: ${{ secrets.STORM_BOT_GITHUB_TOKEN }}
+
       - name: Setup workspace
         uses: ./.github/actions/setup
         with:
-          mise-env: build
           storm-bot-private-key: ${{ secrets.STORM_BOT_PRIVATE_KEY }}
           storm-bot-passphrase: ${{ secrets.STORM_BOT_PASSPHRASE }}
 
@@ -571,7 +576,6 @@ jobs:
       - name: Setup workspace
         uses: ./.github/actions/setup
         with:
-          mise-env: deploy
           storm-bot-private-key: ${{ secrets.STORM_BOT_PRIVATE_KEY }}
           storm-bot-passphrase: ${{ secrets.STORM_BOT_PASSPHRASE }}
 
@@ -680,7 +684,6 @@ jobs:
       - name: Setup workspace
         uses: ./.github/actions/setup
         with:
-          mise-env: deploy
           storm-bot-private-key: ${{ secrets.STORM_BOT_PRIVATE_KEY }}
           storm-bot-passphrase: ${{ secrets.STORM_BOT_PASSPHRASE }}
 
