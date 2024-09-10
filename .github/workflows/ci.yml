@@ -375,7 +375,6 @@ jobs:
       - name: Setup workspace
         uses: ./.github/actions/setup
         with:
-          : docs
           storm-bot-private-key: ${{ secrets.STORM_BOT_PRIVATE_KEY }}
           storm-bot-passphrase: ${{ secrets.STORM_BOT_PASSPHRASE }}
 
