@@ -1,8 +1,38 @@
 [env]
-_.file = "../../.envrc"
+### General env vars ###
+JEMALLOC_SYS_WITH_MALLOC_CONF = "abort_conf:true,narenas:16"
+ESLINT_USE_FLAT_CONFIG = 1
+SHOULD_UNLOCK_GIT_CRYPT = 1
+
+### Rust env vars ###
+RUST_LOG_FORMAT = "devel"                     # QE specific
+RUST_LOG = "info"
+RUST_BACKTRACE = 1
+RUSTFLAGS = "-Z unstable-options -D warnings"
+RUST_WITHOUT = "rust-docs"
+
+### MISE env vars ###
+MISE_ENV = "prod"
+MISE_USE_TOML = 1
+
+### Node env vars ###
+NODE_OPTIONS = "--trace-warnings --heapsnapshot-near-heap-limit=3 --max-old-space-size=4096 --heapsnapshot-signal=SIGTERM"
+NODE_ENV = "production"
+
+### Nx env vars ###
+NX_CLOUD_NO_TIMEOUTS = 1
+NX_VERBOSE_LOGGING = 0
+
+### Cloud env vars ###
+INFISICAL_ENVIRONMENT = "prod"
+HS_SERVICE_NAME = "@storm-software/reaper"
+
+### Sentry env vars ###
+SENTRY_ORGANIZATION = "storm-software-org"
+SENTRY_PROPERTIES = "apps/eth-engine"
 
 [tools]
-direnv = "2.34.0"
+# direnv = "2.34.0"
 rust = "nightly-x86_64-unknown-linux-gnu"
 cargo-binstall = "1.10.3"
 nodejs = "20.14.0"
@@ -18,7 +48,7 @@ kustomize = "5.4.3"
 helm = "3.15.4"
 
 [plugins]
-direnv = "https://github.com/asdf-community/asdf-direnv.git"
+# direnv = "https://github.com/asdf-community/asdf-direnv.git"
 pnpm = "https://github.com/jonathanmorley/asdf-pnpm.git"
 rust = "https://github.com/code-lever/asdf-rust.git"
 opentofu = "https://github.com/virtualroot/asdf-opentofu.git"
@@ -26,7 +56,6 @@ terragrunt = "https://github.com/ohmer/asdf-terragrunt.git"
 helm = "https://github.com/Antiarchitect/asdf-helm.git"
 mdbook = "https://github.com/cipherstash-archive/asdf-mdbook.git"
 mdbook-linkcheck = "https://github.com/cipherstash-archive/asdf-mdbook-linkcheck.git"
-
 
 [settings]
 paranoid = false
@@ -46,6 +75,3 @@ yes = true
 not_found_auto_install = true
 color = true
 ci = true
-
-[tasks."sign:commit"]
-run = "gitsign verify --certificate-identity=patrick.joseph.sullivan@protonmail.com --certificate-oidc-issuer=https://accounts.google.com HEAD"
