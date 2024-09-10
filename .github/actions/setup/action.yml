@@ -24,7 +24,7 @@ runs:
     - name: Setup MISE
       run: |
         curl https://mise.run | sh
-        mise install
+        mise install --verbose
       env:
         MISE_ENV: ${{ inputs.mise-env }}
         MISE_USE_TOML: 1
