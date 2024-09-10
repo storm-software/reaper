@@ -2,20 +2,18 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "Run Extension",
-      "type": "extensionHost",
+      "name": "Launch Tool",
+      "type": "node",
       "request": "launch",
-      "args": [
-        "--extensionDevelopmentPath=${workspaceFolder}/node_modules/@acidic/language"
-      ]
-    },
-    {
-      "name": "Run CodeGen",
-      "type": "extensionHost",
-      "request": "launch",
-      "args": [
-        "--extensionDevelopmentPath=${workspaceFolder}/node_modules/acidic"
-      ]
+      "program": "${file}",
+      "args": [],
+      "osx": {
+        "runtimeExecutable": "mise"
+      },
+      "linux": {
+        "runtimeExecutable": "mise"
+      },
+      "runtimeArgs": ["x", "--", "node"]
     },
     {
       "name": "Attach",
@@ -23,15 +21,6 @@
       "request": "attach",
       "skipFiles": ["<node_internals>/**"],
       "type": "node"
-    },
-    {
-      "name": "Attach to Language Server",
-      "type": "node",
-      "port": 6009,
-      "request": "attach",
-      "skipFiles": ["<node_internals>/**"],
-      "sourceMaps": true,
-      "outFiles": ["${workspaceFolder}/node_modules/@acidic/language/**/*.js"]
     }
   ]
 }

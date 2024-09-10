@@ -1,108 +1,57 @@
-# renovate-automation: rustc version
-FROM debian:bookworm-slim AS build
+#
+# === Build image ===
+#
+FROM rust:1.80-alpine3.20 AS chef
 
-ARG SERVICE_DIR=eth-engine
-ARG RELEASE=latest
+# Patching musl to use mimalloc, see docker/README.md.
+# Source: https://github.com/tweag/rust-alpine-mimalloc
+COPY docker/build.sh docker/mimalloc.diff /tmp/
+RUN /tmp/build.sh
+ENV LD_PRELOAD=/usr/lib/libmimalloc.so
+ENV RUSTFLAGS="-C target-feature=+crt-static"
 
-# Set our working directory for the build
+COPY rust-toolchain.toml rust-toolchain.toml
+RUN apk add --no-cache musl-dev && cargo install --target "$(rustc -vV | sed -n "s|host: ||p")" cargo-chef
+WORKDIR /apps/eth-engine
 
-WORKDIR /usr/src/$SERVICE_DIR
-
-# Ensure any Rust binaries that crash print a backtrace.
-ENV RUST_BACKTRACE=1
-
-# RUN sed -i -e 's#http://archive\.ubuntu\.com#http://us-east-1.ec2.archive.ubuntu.com#' \
-#            -e 's#http://security\.ubuntu\.com#http://us-east-1.ec2.archive.ubuntu.com#' \
-#            -e 's#http://ports\.ubuntu\.com#http://us-east-1.ec2.ports.ubuntu.com#' /etc/apt/sources.list
-
-RUN apt-get update \
-    && apt-get -qy install \
-    gpg \
-    sudo \
-    wget \
-    curl \
-    dirmngr \
-    gawk \
-    && apt autoremove
-
-RUN sudo install -dm 755 /etc/apt/keyrings
-
-RUN wget -qO - https://mise.jdx.dev/gpg-key.pub | gpg --dearmor | sudo tee /etc/apt/keyrings/mise-archive-keyring.gpg 1> /dev/null
-RUN echo "deb [signed-by=/etc/apt/keyrings/mise-archive-keyring.gpg arch=amd64] https://mise.jdx.dev/deb stable main" | sudo tee /etc/apt/sources.list.d/mise.list
-
-RUN sudo apt update \
-    && sudo apt install -y mise
-
-# Copy the router source to our build environment
+FROM chef AS planner
+# At this stage we don't really bother selecting anything specific, it's fast enough.
 COPY . .
+RUN cargo chef prepare --recipe-path recipe.json
 
-RUN cargo build -p reaper-eth-engine --profile prod
+FROM chef AS builder
+ENV CARGO_INCREMENTAL=0
+COPY --from=planner /reaper/recipe.json recipe.json
+RUN cargo chef cook --target "$(rustc -vV | sed -n "s|host: ||p")" --profile prod --recipe-path recipe.json
 
-RUN mv /usr/local/cargo/bin/$SERVICE_DIR /dist
+COPY /Cargo.lock /Cargo.lock
+COPY /Cargo.toml /Cargo.toml
+COPY /crates /crates
+COPY /.config/engine /.config/engine
 
-FROM amazonlinux:latest as distro
+RUN cargo build --profile prod --target "$(rustc -vV | sed -n "s|host: ||p")" --bin reaper-eth-engine --target-dir ./target &&\
+    mv "/target/$(rustc -vV | sed -n "s|host: ||p")/prod/reaper-eth-engine" /target/prod/reaper-eth-engine
 
-ARG DEBUG_IMAGE=false
-ARG REPO_URL=https://github.com/storm-software/reaper
-ARG PORT=9010
+#
+# === Final image ===
+#
+FROM debian:bullseye-slim AS runtime
 
-# Add a user to run the Ether Engine as
-RUN useradd -m eth-engine
+WORKDIR /apps/eth-engine
 
-WORKDIR /dist
+# used curl to run a health check query against the server in a docker-compose file
+RUN apk add --no-cache curl
 
-# Update apt and install ca-certificates
-RUN \
-  apt-get update -y \
-  && apt-get install -y \
-    ca-certificates
+RUN adduser -g wheel -D reaper-eth-engine -h "/data" && mkdir -p /data && chown reaper-eth-engine: /data
+USER reaper-eth-engine
 
-COPY --from=build --chown=root:root /dist /dist
+COPY --from=builder /apps/eth-engine/target/prod/reaper-eth-engine /bin/reaper-eth-engine
+COPY --from=builder /.config/engine /etc
 
-ENV ENVIRONMENT production
-ENV RELEASE $RELEASE
-ENV PORT $PORT
+VOLUME /data
+WORKDIR /data
 
-# If debug image, install a bunch of useful debugging stuff and make a data directory
-RUN \
-  if [ "${DEBUG_IMAGE}" = "true" ]; then \
-    apt-get install -y \
-    dnsutils \
-    procps \
-    heaptrack \
-    gdb \
-    heaptrack-gui \
-    x11-apps \
-    iputils-ping && \
-    mkdir data && \
-    chown router data; \
-  fi
+ENTRYPOINT ["/bin/reaper-eth-engine"]
+CMD ["--config", "/etc", "--listen-address", "0.0.0.0:5000"]
 
-# Clean up apt lists
-RUN rm -rf /var/lib/apt/lists/*
-
-HEALTHCHECK --interval=5s \
-  --timeout=5s \
-  --start-period=5s \
-  --retries=6 \
-  CMD $HEALTHCHECK_CMD
-
-  # Create a wrapper script to run the router, use exec to ensure signals are handled correctly
-RUN \
-echo '#!/usr/bin/env bash \
-\nset -e \
-\n \
-\nif [ -f "/usr/bin/heaptrack" ]; then \
-\n    exec heaptrack -o /dist/data/eth-engine_heaptrack /dist/$SERVICE_DIR "$@" \
-\nelse \
-\n    exec /dist/$SERVICE_DIR "$@" \
-\nfi \
-' > /dist/entrypoint.sh
-
-# Make sure we can run our wrapper
-RUN chmod 755 /dist/entrypoint.sh
-
-USER eth-engine
-
-# Default executable is the wrapper script
-ENTRYPOINT ["/dist/entrypoint.sh"]
+EXPOSE 5000

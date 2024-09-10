@@ -1,16 +1,20 @@
 [env]
-_.file = '.envrc'
+_.file = "../../.envrc"
 
 [tools]
 direnv = "2.34.0"
+rust = "nightly-x86_64-unknown-linux-gnu"
+cargo-binstall = "1.10.3"
 nodejs = "20.14.0"
 pnpm = "9.8.0"
-rust = "nightly-x86_64-unknown-linux-gnu"
 zig = "0.13.0"
 mdbook = "0.4.14"
 mdbook-linkcheck = "0.7.7"
-opentofu = "1.8.0"
 terragrunt = "0.63.6"
+terrascan = "1.19.1"
+opentofu = "1.8.0"
+kubectl = "1.30.2"
+kustomize = "5.4.3"
 helm = "3.15.4"
 
 [plugins]
@@ -23,14 +27,15 @@ helm = "https://github.com/Antiarchitect/asdf-helm.git"
 mdbook = "https://github.com/cipherstash-archive/asdf-mdbook.git"
 mdbook-linkcheck = "https://github.com/cipherstash-archive/asdf-mdbook-linkcheck.git"
 
+
 [settings]
-task_output = "Reaper: "
 paranoid = false
 experimental = true
 status = { missing_tools = "if_other_versions_installed", show_env = true, show_tools = true }
 legacy_version_file = true
 always_keep_download = false
 always_keep_install = false
+cargo_binstall = true
 plugin_autoupdate_last_check_duration = '1 week'
 verbose = false
 asdf_compat = false
@@ -39,6 +44,8 @@ jobs = 4
 raw = false
 yes = true
 not_found_auto_install = true
+color = true
+ci = true
 
 [tasks."sign:commit"]
 run = "gitsign verify --certificate-identity=patrick.joseph.sullivan@protonmail.com --certificate-oidc-issuer=https://accounts.google.com HEAD"

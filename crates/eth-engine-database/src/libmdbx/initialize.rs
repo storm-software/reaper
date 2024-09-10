@@ -26,10 +26,10 @@ use crate::{
   clickhouse::ClickhouseHandle,
   libmdbx::{types::CompressedTable, LibmdbxData, LibmdbxReadWriter},
 };
-const CLASSIFIER_CONFIG_FILE: &str = "config/classifier_config.toml";
-const SEARCHER_CONFIG_FILE: &str = "config/searcher_config.toml";
-const BUILDER_CONFIG_FILE: &str = "config/builder_config.toml";
-const METADATA_CONFIG_FILE: &str = "config/metadata_config.toml";
+const CLASSIFIER_CONFIG_FILE: &str = ".config/engine/classifier_config.toml";
+const SEARCHER_CONFIG_FILE: &str = ".config/engine/searcher_config.toml";
+const BUILDER_CONFIG_FILE: &str = ".config/engine/builder_config.toml";
+const METADATA_CONFIG_FILE: &str = ".config/engine/metadata_config.toml";
 const DEFAULT_START_BLOCK: u64 = 0;
 use reaper_eth_engine_metrics::db_initialization::InitMetrics;
 type FnOutput<D> = Pin<Box<dyn Future<Output = eyre::Result<Vec<D>>> + Send>>;

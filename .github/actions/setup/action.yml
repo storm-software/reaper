@@ -1,14 +1,14 @@
 name: "Setup Workspace"
 description: "Install and pre-build tools for the workspace"
 inputs:
-  mise_env:
+  mise-env:
     description: The environment type to install MISE tools for
     default: "prod"
     required: true
-  storm_bot_private_key:
+  storm-bot-private-key:
     description: The private key of the Storm bot
     required: true
-  storm_bot_passphrase:
+  storm-bot-passphrase:
     description: The passphrase of the Storm bot
     required: true
 
@@ -18,15 +18,15 @@ runs:
     - name: Setup GPG
       uses: crazy-max/ghaction-import-gpg@v5
       with:
-        gpg_private_key: ${{ inputs.storm_bot_private_key }}
-        passphrase: ${{ inputs.storm_bot_passphrase }}
+        gpg_private_key: ${{ inputs.storm-bot-private-key }}
+        passphrase: ${{ inputs.storm-bot-passphrase }}
 
     - name: Setup MISE
       run: |
         curl https://mise.run | sh
         mise install
       env:
-        MISE_ENV: ${{ inputs.mise_env }}
+        MISE_ENV: ${{ inputs.mise-env }}
         MISE_USE_TOML: 1
       shell: bash
 
@@ -51,8 +51,8 @@ runs:
         path: |
           node_modules
           ~/.cache/Cypress # needed for the Cypress binary
-          ~/.cache/mise/${{ inputs.mise_env }}
-        key: "dependencies-${{ hashFiles('pnpm-lock.yaml') }}-${{ hashFiles('./.config/mise/config.${{ inputs.mise_env }}.toml') }}"
+          ~/.cache/mise/${{ inputs.mise-env }}
+        key: "dependencies-${{ hashFiles('pnpm-lock.yaml') }}-${{ hashFiles('./.config/mise/config.${{ inputs.mise-env }}.toml') }}"
 
     - name: Set up npm registry
       uses: actions/setup-node@v4

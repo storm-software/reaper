@@ -429,6 +429,7 @@ MigrationBackup/
 
 # Local MISE config
 **/config.local.toml
+**/.mise.local.toml
 
 # Local Environment Variables
 **/.env.local

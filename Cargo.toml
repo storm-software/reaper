@@ -91,6 +91,8 @@ redundant-clone = "warn"
 all-features = true
 rustdoc-args = ["--cfg", "docsrs"]
 
+# Declare dependencies used across workspace packages requires single version bump.
+# ref: https://doc.rust-lang.org/cargo/reference/specifying-dependencies.html#inheriting-a-dependency-from-a-workspace
 [workspace.dependencies]
 # Reaper
 reaper-core = { path = "./crates/core" }

@@ -58,7 +58,7 @@
         "engine": "docker",
         "labels": [
           "org.opencontainers.image.title=reaper-eth-engine",
-          "org.opencontainers.image.version=$RELEASE",
+          "org.opencontainers.image.version=$TAG",
           "org.opencontainers.image.description=An application used by Storm Software to process and categorize real-time blockchain data",
           "org.opencontainers.image.authors=Storm Software",
           "org.opencontainers.image.vendor=Storm Software",

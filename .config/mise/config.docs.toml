@@ -1,5 +1,5 @@
 [env]
-_.file = '.envrc'
+_.file = "../../.envrc"
 
 [tools]
 direnv = "2.34.0"
@@ -17,7 +17,6 @@ mdbook = "https://github.com/cipherstash-archive/asdf-mdbook.git"
 mdbook-linkcheck = "https://github.com/cipherstash-archive/asdf-mdbook-linkcheck.git"
 
 [settings]
-task_output = "Reaper: "
 paranoid = false
 experimental = true
 status = { missing_tools = "if_other_versions_installed", show_env = true, show_tools = true }

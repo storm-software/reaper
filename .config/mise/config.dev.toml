@@ -1,5 +1,5 @@
 [env]
-_.file = '.envrc'
+_.file = "../../.envrc"
 
 [tools]
 direnv = "2.34.0"
@@ -43,7 +43,6 @@ jobs = 4
 raw = false
 yes = false
 not_found_auto_install = true
-task_output = "Reaper: "
 paranoid = false
 experimental = true
 status = { missing_tools = "if_other_versions_installed", show_env = true, show_tools = true }
