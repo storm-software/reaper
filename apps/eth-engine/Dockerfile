@@ -40,13 +40,13 @@ FROM debian:bullseye-slim AS runtime
 WORKDIR /apps/eth-engine
 
 # used curl to run a health check query against the server in a docker-compose file
-RUN apt-get -y update && apt-get install -y --no-install-recommends \
-        curl \
-        ca-certificates \
-    && rm -rf /var/lib/apt/lists/*
+# RUN apt-get -y update && apt-get install -y --no-install-recommends \
+#         curl \
+#         ca-certificates \
+#     && rm -rf /var/lib/apt/lists/*
 
-RUN adduser -g wheel -D reaper-eth-engine -h "/data" && mkdir -p /data && chown reaper-eth-engine: /data
-USER reaper-eth-engine
+# RUN adduser -g wheel -D reaper-eth-engine -h "/data" && mkdir -p /data && chown reaper-eth-engine: /data
+# USER reaper-eth-engine
 
 COPY --from=builder /apps/eth-engine/target/prod/reaper-eth-engine /bin/reaper-eth-engine
 COPY --from=builder /.config/engine /etc

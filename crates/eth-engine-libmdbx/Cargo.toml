@@ -2,6 +2,7 @@
 name = "reaper-eth-engine-libmdbx"
 description = "Idiomatic and safe MDBX wrapper with good licence"
 version = "0.0.1"
+publish = false
 edition = { workspace = true }
 repository = { workspace = true }
 authors = { workspace = true }

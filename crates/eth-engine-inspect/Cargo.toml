@@ -2,6 +2,7 @@
 name = "reaper-eth-engine-inspect"
 description = "A core Etherium trading crate containing schema definitions and validation logic."
 version = "0.0.1"
+publish = false
 edition = { workspace = true }
 repository = { workspace = true }
 authors = { workspace = true }

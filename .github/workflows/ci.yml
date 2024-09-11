@@ -214,54 +214,54 @@ jobs:
       - name: Run linkcheck
         run: pnpm nx run docs-book:lint
 
-  build-libs:
-    name: Build libraries
-    if: always() && !cancelled() && !contains(needs.*.result, 'failure') && github.event.pull_request.draft == false
-    needs:
-      - start
-      - setup
-    runs-on: ubuntu-latest
-    timeout-minutes: 45
-    permissions:
-      actions: read
-      contents: write
-      id-token: write
-    steps:
-      - name: Checkout [Pull Request]
-        uses: actions/checkout@v4
-        if: ${{ github.event_name == 'pull_request' }}
-        with:
-          # By default, PRs will be checked-out based on the Merge Commit, but we want the actual branch HEAD.
-          ref: ${{ github.event.pull_request.head.sha }}
-          # We need to fetch all branches and commits so that Nx affected has a base to compare against.
-          fetch-depth: 0
-          token: ${{ secrets.STORM_BOT_GITHUB_TOKEN }}
+  # build-libs:
+  #   name: Build libraries
+  #   if: always() && !cancelled() && !contains(needs.*.result, 'failure') && github.event.pull_request.draft == false
+  #   needs:
+  #     - start
+  #     - setup
+  #   runs-on: ubuntu-latest
+  #   timeout-minutes: 45
+  #   permissions:
+  #     actions: read
+  #     contents: write
+  #     id-token: write
+  #   steps:
+  #     - name: Checkout [Pull Request]
+  #       uses: actions/checkout@v4
+  #       if: ${{ github.event_name == 'pull_request' }}
+  #       with:
+  #         # By default, PRs will be checked-out based on the Merge Commit, but we want the actual branch HEAD.
+  #         ref: ${{ github.event.pull_request.head.sha }}
+  #         # We need to fetch all branches and commits so that Nx affected has a base to compare against.
+  #         fetch-depth: 0
+  #         token: ${{ secrets.STORM_BOT_GITHUB_TOKEN }}
 
-      - name: Checkout `main` branch
-        uses: actions/checkout@v4
-        if: ${{ github.event_name != 'pull_request' }}
-        with:
-          # We need to fetch all branches and commits so that Nx affected has a base to compare against.
-          fetch-depth: 0
-          token: ${{ secrets.STORM_BOT_GITHUB_TOKEN }}
+  #     - name: Checkout `main` branch
+  #       uses: actions/checkout@v4
+  #       if: ${{ github.event_name != 'pull_request' }}
+  #       with:
+  #         # We need to fetch all branches and commits so that Nx affected has a base to compare against.
+  #         fetch-depth: 0
+  #         token: ${{ secrets.STORM_BOT_GITHUB_TOKEN }}
 
-      - name: Setup workspace
-        uses: ./.github/actions/setup
-        with:
-          storm-bot-private-key: ${{ secrets.STORM_BOT_PRIVATE_KEY }}
-          storm-bot-passphrase: ${{ secrets.STORM_BOT_PASSPHRASE }}
+  #     - name: Setup workspace
+  #       uses: ./.github/actions/setup
+  #       with:
+  #         storm-bot-private-key: ${{ secrets.STORM_BOT_PRIVATE_KEY }}
+  #         storm-bot-passphrase: ${{ secrets.STORM_BOT_PASSPHRASE }}
 
-      - name: Setup Nx SHAs
-        uses: nrwl/nx-set-shas@v4
-        with:
-          main-branch-name: main
-          error-on-no-successful-workflow: false
-          set-environment-variables-for-job: true
+  #     - name: Setup Nx SHAs
+  #       uses: nrwl/nx-set-shas@v4
+  #       with:
+  #         main-branch-name: main
+  #         error-on-no-successful-workflow: false
+  #         set-environment-variables-for-job: true
 
-      - name: Build crates
-        run: pnpm nx-cloud record -- nx affected --targets=build --nxBail --configuration=release --projects=tag:library --base=${{ env.NX_BASE }} --head=${{ env.NX_HEAD }}
-        env:
-          RUSTFLAGS: -Dwarnings -Zunstable-options
+  #     - name: Build crates
+  #       run: pnpm nx-cloud record -- nx affected --targets=build --nxBail --configuration=release --projects=tag:library --base=${{ env.NX_BASE }} --head=${{ env.NX_HEAD }}
+  #       env:
+  #         RUSTFLAGS: -Dwarnings -Zunstable-options
 
   build-containers:
     name: Build applications
@@ -351,7 +351,7 @@ jobs:
       - setup
       - lint
       - lint-docs
-      - build-libs
+      # - build-libs
     runs-on: ubuntu-latest
     timeout-minutes: 60
     steps:
@@ -443,7 +443,7 @@ jobs:
       - start
       - setup
       - lint
-      - build-libs
+      # - build-libs
       - build-containers
     # Runner size impacts CodeQL analysis time. To learn more, please see:
     #   - https://gh.io/recommended-hardware-resources-for-running-codeql
@@ -521,7 +521,7 @@ jobs:
       - setup
       - lint-docs
       - build-docs
-      - build-libs
+      # - build-libs
       - build-containers
     runs-on: ubuntu-latest
     timeout-minutes: 60
@@ -545,7 +545,7 @@ jobs:
       - start
       - setup
       - lint
-      - build-libs
+      # - build-libs
       - build-containers
     runs-on: ubuntu-latest
     timeout-minutes: 60
@@ -647,70 +647,70 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.STORM_BOT_GITHUB_TOKEN }}
           TF_LOG: debug
 
-  release-libs:
-    name: Release libraries
-    if: always() && !cancelled() && !contains(needs.*.result, 'failure') && github.event.pull_request.draft == false
-    needs:
-      - start
-      - setup
-      - lint
-      - build-libs
-    runs-on: ubuntu-latest
-    timeout-minutes: 60
-    permissions:
-      actions: read
-      contents: write
-      id-token: write
-    steps:
-      - name: Checkout [Pull Request]
-        uses: actions/checkout@v4
-        if: ${{ github.event_name == 'pull_request' }}
-        with:
-          # By default, PRs will be checked-out based on the Merge Commit, but we want the actual branch HEAD.
-          ref: ${{ github.event.pull_request.head.sha }}
-          # We need to fetch all branches and commits so that Nx affected has a base to compare against.
-          fetch-depth: 0
-          token: ${{ secrets.STORM_BOT_GITHUB_TOKEN }}
+  # release-libs:
+  #   name: Release libraries
+  #   if: always() && !cancelled() && !contains(needs.*.result, 'failure') && github.event.pull_request.draft == false
+  #   needs:
+  #     - start
+  #     - setup
+  #     - lint
+  #     - build-libs
+  #   runs-on: ubuntu-latest
+  #   timeout-minutes: 60
+  #   permissions:
+  #     actions: read
+  #     contents: write
+  #     id-token: write
+  #   steps:
+  #     - name: Checkout [Pull Request]
+  #       uses: actions/checkout@v4
+  #       if: ${{ github.event_name == 'pull_request' }}
+  #       with:
+  #         # By default, PRs will be checked-out based on the Merge Commit, but we want the actual branch HEAD.
+  #         ref: ${{ github.event.pull_request.head.sha }}
+  #         # We need to fetch all branches and commits so that Nx affected has a base to compare against.
+  #         fetch-depth: 0
+  #         token: ${{ secrets.STORM_BOT_GITHUB_TOKEN }}
 
-      - name: Checkout `main` branch
-        uses: actions/checkout@v4
-        if: ${{ github.event_name != 'pull_request' }}
-        with:
-          # We need to fetch all branches and commits so that Nx affected has a base to compare against.
-          fetch-depth: 0
-          token: ${{ secrets.STORM_BOT_GITHUB_TOKEN }}
+  #     - name: Checkout `main` branch
+  #       uses: actions/checkout@v4
+  #       if: ${{ github.event_name != 'pull_request' }}
+  #       with:
+  #         # We need to fetch all branches and commits so that Nx affected has a base to compare against.
+  #         fetch-depth: 0
+  #         token: ${{ secrets.STORM_BOT_GITHUB_TOKEN }}
 
-      - name: Setup workspace
-        uses: ./.github/actions/setup
-        with:
-          storm-bot-private-key: ${{ secrets.STORM_BOT_PRIVATE_KEY }}
-          storm-bot-passphrase: ${{ secrets.STORM_BOT_PASSPHRASE }}
+  #     - name: Setup workspace
+  #       uses: ./.github/actions/setup
+  #       with:
+  #         storm-bot-private-key: ${{ secrets.STORM_BOT_PRIVATE_KEY }}
+  #         storm-bot-passphrase: ${{ secrets.STORM_BOT_PASSPHRASE }}
 
-      - name: Setup Nx SHAs
-        uses: nrwl/nx-set-shas@v4
-        with:
-          main-branch-name: main
-          error-on-no-successful-workflow: false
-          set-environment-variables-for-job: true
+  #     - name: Setup Nx SHAs
+  #       uses: nrwl/nx-set-shas@v4
+  #       with:
+  #         main-branch-name: main
+  #         error-on-no-successful-workflow: false
+  #         set-environment-variables-for-job: true
 
-      - name: Build crates
-        run: pnpm nx-cloud record -- nx affected --targets=build --nxBail --configuration=release --projects=tag:library --base=${{ env.NX_BASE }} --head=${{ env.NX_HEAD }}
-        env:
-          RUSTFLAGS: -D warnings -Z unstable-options
+  #     - name: Build crates
+  #       run: pnpm nx-cloud record -- nx affected --targets=build --nxBail --configuration=release --projects=tag:library --base=${{ env.NX_BASE }} --head=${{ env.NX_HEAD }}
+  #       env:
+  #         RUSTFLAGS: -D warnings -Z unstable-options
 
-      - name: Release Library Version Updates
-        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
-        run: pnpm release --base=${{ env.NX_BASE }} --head=${{ env.NX_HEAD }}
-        env:
-          GITHUB_ACTOR: ${{ github.actor }}
-          GITHUB_TOKEN: ${{ github.token }}
-          GH_TOKEN: ${{ github.token }}
-          NPM_TOKEN: ${{ secrets.STORM_BOT_NPM_TOKEN }}
-          CARGO_REGISTRY_TOKEN: ${{ secrets.STORM_BOT_CARGO_TOKEN }}
-          STORM_BOT: Stormie-Bot
-          STORM_WORKSPACE_ROOT: ${{ github.workspace }}
-          STORM_REPOSITORY: ${{ github.repositoryUrl }}
-          TAG: ${{ inputs.tag }}
+  #     - name: Release Library Version Updates
+  #       if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+  #       run: pnpm release --base=${{ env.NX_BASE }} --head=${{ env.NX_HEAD }}
+  #       env:
+  #         GITHUB_ACTOR: ${{ github.actor }}
+  #         GITHUB_TOKEN: ${{ github.token }}
+  #         GH_TOKEN: ${{ github.token }}
+  #         NPM_TOKEN: ${{ secrets.STORM_BOT_NPM_TOKEN }}
+  #         CARGO_REGISTRY_TOKEN: ${{ secrets.STORM_BOT_CARGO_TOKEN }}
+  #         STORM_BOT: Stormie-Bot
+  #         STORM_WORKSPACE_ROOT: ${{ github.workspace }}
+  #         STORM_REPOSITORY: ${{ github.repositoryUrl }}
+  #         TAG: ${{ inputs.tag }}
 
   success:
     needs:
@@ -718,10 +718,10 @@ jobs:
       - setup
       - lint
       - lint-docs
-      - build-libs
+      # - build-libs
       - build-containers
       - build-docs
-      - release-libs
+      # - release-libs
       - deploy-apps
       - deploy-docs
       - analyze
@@ -799,10 +799,10 @@ jobs:
       - setup
       - lint
       - lint-docs
-      - build-libs
+      # - build-libs
       - build-containers
       - build-docs
-      - release-libs
+      # - release-libs
       - deploy-apps
       - deploy-docs
       - analyze
@@ -883,10 +883,10 @@ jobs:
       - setup
       - lint
       - lint-docs
-      - build-libs
+      # - build-libs
       - build-containers
       - build-docs
-      - release-libs
+      # - release-libs
       - deploy-apps
       - deploy-docs
       - analyze
