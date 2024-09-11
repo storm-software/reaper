@@ -40,7 +40,7 @@ FROM debian:bullseye-slim AS runtime
 WORKDIR /apps/eth-engine
 
 # used curl to run a health check query against the server in a docker-compose file
-RUN apk add --no-cache curl
+RUN sudo apt install -y --no-cache curl
 
 RUN adduser -g wheel -D reaper-eth-engine -h "/data" && mkdir -p /data && chown reaper-eth-engine: /data
 USER reaper-eth-engine
