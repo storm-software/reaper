@@ -1,60 +1,28 @@
-#
-# === Build image ===
-#
-FROM rust:1.80-alpine3.20 AS chef
-
-# Patching musl to use mimalloc, see docker/README.md.
-# Source: https://github.com/tweag/rust-alpine-mimalloc
-COPY docker/build.sh docker/mimalloc.diff /tmp/
-RUN /tmp/build.sh
-ENV LD_PRELOAD=/usr/lib/libmimalloc.so
-ENV RUSTFLAGS="-C target-feature=+crt-static"
-
-COPY rust-toolchain.toml rust-toolchain.toml
-RUN apk add --no-cache musl-dev && cargo install --target "$(rustc -vV | sed -n "s|host: ||p")" cargo-chef
-WORKDIR /apps/eth-engine
+FROM rust:1 AS chef
+# We only pay the installation cost once,
+# it will be cached from the second build onwards
+RUN cargo install cargo-chef
+WORKDIR /app
 
 FROM chef AS planner
-# At this stage we don't really bother selecting anything specific, it's fast enough.
 COPY . .
-RUN cargo chef prepare --recipe-path recipe.json
+RUN cargo chef prepare  --recipe-path recipe.json
 
 FROM chef AS builder
-ENV CARGO_INCREMENTAL=0
-COPY --from=planner /reaper/recipe.json recipe.json
-RUN cargo chef cook --target "$(rustc -vV | sed -n "s|host: ||p")" --profile prod --recipe-path recipe.json
+COPY --from=planner /app/recipe.json recipe.json
+# Build dependencies - this is the caching Docker layer!
+RUN cargo chef cook --release --recipe-path recipe.json
+# Build application
+COPY . .
+RUN cargo build --profile prod --target "$(rustc -vV | sed -n "s|host: ||p")" --bin reaper-eth-engine --target-dir /target &&\
+    mv "/target/$(rustc -vV | sed -n "s|host: ||p")/prod/reaper-eth-engine" /app/target/prod/reaper-eth-engine
 
-COPY /Cargo.lock /Cargo.lock
-COPY /Cargo.toml /Cargo.toml
-COPY /crates /crates
-COPY /.config/engine /.config/engine
+# We do not need the Rust toolchain to run the binary!
+FROM debian:bookworm-slim AS runtime
+WORKDIR /app
+COPY --from=builder /app/target/prod/reaper-eth-engine /usr/local/bin
+ENTRYPOINT ["/usr/local/bin/app"]
 
-RUN cargo build --profile prod --target "$(rustc -vV | sed -n "s|host: ||p")" --bin reaper-eth-engine --target-dir ./target &&\
-    mv "/target/$(rustc -vV | sed -n "s|host: ||p")/prod/reaper-eth-engine" /target/prod/reaper-eth-engine
 
-#
-# === Final image ===
-#
-FROM debian:bullseye-slim AS runtime
 
-WORKDIR /apps/eth-engine
 
-# used curl to run a health check query against the server in a docker-compose file
-# RUN apt-get -y update && apt-get install -y --no-install-recommends \
-#         curl \
-#         ca-certificates \
-#     && rm -rf /var/lib/apt/lists/*
-
-# RUN adduser -g wheel -D reaper-eth-engine -h "/data" && mkdir -p /data && chown reaper-eth-engine: /data
-# USER reaper-eth-engine
-
-COPY --from=builder /apps/eth-engine/target/prod/reaper-eth-engine /bin/reaper-eth-engine
-COPY --from=builder /.config/engine /etc
-
-VOLUME /data
-WORKDIR /data
-
-ENTRYPOINT ["/bin/reaper-eth-engine"]
-CMD ["--config", "/etc", "--listen-address", "0.0.0.0:5000"]
-
-EXPOSE 5000
