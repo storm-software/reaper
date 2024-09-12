@@ -391,6 +391,7 @@ jobs:
           mkdir mdbook-template
           curl -sSL https://github.com/sgoudham/mdbook-template/releases/latest/download/mdbook-template-x86_64-unknown-linux-gnu.tar.gz | tar -xz --directory=./mdbook-template
           echo $(pwd)/mdbook-template >> $GITHUB_PATH
+
       - name: Setup Nx SHAs
         uses: nrwl/nx-set-shas@v4
         with:
@@ -399,9 +400,9 @@ jobs:
           set-environment-variables-for-job: true
 
       - name: Build book
-        run: pnpm nx-cloud record -- nx run docs-book:build
+        run: pnpm nx run docs-book:build
         env:
-          RUSTFLAGS: -D warnings -Z unstable-options
+          RUSTFLAGS: -Dwarnings -Zunstable-options
 
       - name: Build docs
         run: pnpm nx-cloud record -- nx affected --targets=docs --nxBail --configuration=release --exclude=@reaper/monorepo,reaper-eth-engine,reaper-eth-order-fill-service,reaper-eth-order-telegram-bot,docs-* --base=${{ env.NX_BASE }} --head=${{ env.NX_HEAD }}
