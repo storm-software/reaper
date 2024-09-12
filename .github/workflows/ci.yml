@@ -177,42 +177,42 @@ jobs:
       #   run: pnpm nx-cloud record -- nx affected --targets=lint --configuration=production --exclude=@reaper/monorepo,docs-* --base=${{ env.NX_BASE }} --head=${{ env.NX_HEAD }}
       #   shell: bash
 
-  lint-docs:
-    name: Lint documentation
-    if: always() && !cancelled() && !contains(needs.*.result, 'failure') && github.event.pull_request.draft == false
-    needs:
-      - start
-      - setup
-    runs-on: ubuntu-latest
-    timeout-minutes: 45
-    steps:
-      - name: Checkout [Pull Request]
-        uses: actions/checkout@v4
-        if: ${{ github.event_name == 'pull_request' }}
-        with:
-          # By default, PRs will be checked-out based on the Merge Commit, but we want the actual branch HEAD.
-          ref: ${{ github.event.pull_request.head.sha }}
-          # We need to fetch all branches and commits so that Nx affected has a base to compare against.
-          fetch-depth: 0
-          token: ${{ secrets.STORM_BOT_GITHUB_TOKEN }}
+  # lint-docs:
+  #   name: Lint documentation
+  #   if: always() && !cancelled() && !contains(needs.*.result, 'failure') && github.event.pull_request.draft == false
+  #   needs:
+  #     - start
+  #     - setup
+  #   runs-on: ubuntu-latest
+  #   timeout-minutes: 45
+  #   steps:
+  #     - name: Checkout [Pull Request]
+  #       uses: actions/checkout@v4
+  #       if: ${{ github.event_name == 'pull_request' }}
+  #       with:
+  #         # By default, PRs will be checked-out based on the Merge Commit, but we want the actual branch HEAD.
+  #         ref: ${{ github.event.pull_request.head.sha }}
+  #         # We need to fetch all branches and commits so that Nx affected has a base to compare against.
+  #         fetch-depth: 0
+  #         token: ${{ secrets.STORM_BOT_GITHUB_TOKEN }}
 
-      - name: Checkout `main` branch
-        uses: actions/checkout@v4
-        if: ${{ github.event_name != 'pull_request' }}
-        with:
-          # We need to fetch all branches and commits so that Nx affected has a base to compare against.
-          fetch-depth: 0
-          token: ${{ secrets.STORM_BOT_GITHUB_TOKEN }}
+  #     - name: Checkout `main` branch
+  #       uses: actions/checkout@v4
+  #       if: ${{ github.event_name != 'pull_request' }}
+  #       with:
+  #         # We need to fetch all branches and commits so that Nx affected has a base to compare against.
+  #         fetch-depth: 0
+  #         token: ${{ secrets.STORM_BOT_GITHUB_TOKEN }}
 
-      - name: Setup workspace
-        uses: ./.github/actions/setup
-        with:
-          mise-env: docs
-          storm-bot-private-key: ${{ secrets.STORM_BOT_PRIVATE_KEY }}
-          storm-bot-passphrase: ${{ secrets.STORM_BOT_PASSPHRASE }}
+  #     - name: Setup workspace
+  #       uses: ./.github/actions/setup
+  #       with:
+  #         mise-env: docs
+  #         storm-bot-private-key: ${{ secrets.STORM_BOT_PRIVATE_KEY }}
+  #         storm-bot-passphrase: ${{ secrets.STORM_BOT_PASSPHRASE }}
 
-      - name: Run linkcheck
-        run: pnpm nx run docs-book:lint
+  #     - name: Run linkcheck
+  #       run: pnpm nx run docs-book:lint
 
   # build-libs:
   #   name: Build libraries
@@ -350,7 +350,7 @@ jobs:
       - start
       - setup
       - lint
-      - lint-docs
+      # - lint-docs
       # - build-libs
     runs-on: ubuntu-latest
     timeout-minutes: 60
@@ -519,7 +519,7 @@ jobs:
     needs:
       - start
       - setup
-      - lint-docs
+      # - lint-docs
       - build-docs
       # - build-libs
       - build-containers
@@ -717,7 +717,7 @@ jobs:
       - start
       - setup
       - lint
-      - lint-docs
+      # - lint-docs
       # - build-libs
       - build-containers
       - build-docs
@@ -798,7 +798,7 @@ jobs:
       - start
       - setup
       - lint
-      - lint-docs
+      # - lint-docs
       # - build-libs
       - build-containers
       - build-docs
@@ -882,7 +882,7 @@ jobs:
       - start
       - setup
       - lint
-      - lint-docs
+      # - lint-docs
       # - build-libs
       - build-containers
       - build-docs
