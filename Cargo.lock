@@ -9949,6 +9949,7 @@ dependencies = [
  "metrics-process",
  "metrics-util",
  "prometheus",
+ "sentry",
  "tracing",
  "tracing-bunyan-formatter",
  "tracing-log 0.2.0",

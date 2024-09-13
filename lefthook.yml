@@ -51,8 +51,6 @@ commit-msg:
   commands:
     validate:
       run: "pnpm exec storm-git commitlint --message {1}"
-    # sign:
-    #   run: "gitsign verify --certificate-identity=patrick.joseph.sullivan@protonmail.com --connectorID=https://github.com/login/oauth HEAD"
 
 pre-push:
   piped: true

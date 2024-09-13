@@ -55,6 +55,9 @@ pub mod tracing_layers;
 #[macro_use]
 pub mod tracing;
 
+#[macro_use]
+pub mod sentry;
+
 #[cfg(test)]
 mod tests {
   #[test]
