@@ -294,6 +294,7 @@ jobs:
           # We need to fetch all branches and commits so that Nx affected has a base to compare against.
           fetch-depth: 0
           token: ${{ secrets.STORM_BOT_GITHUB_TOKEN }}
+
       - name: Setup workspace
         uses: ./.github/actions/setup
         with:
