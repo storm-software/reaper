@@ -3,32 +3,26 @@ CARGO_WORKSPACE_DIR = { value = "", relative = true }
 
 [build]
 target-dir = "dist/target"
-rustflags = [
-    "--cfg",
-    "web_sys_unstable_apis",
-    "tokio_unstable",
-    "-Zunstable-options",
-    "-Dwarnings",
-]
+rustflags = ["-Zunstable-options", "-Dwarnings"]
 rustdocflags = ["-Znormalize-docs"]
 
-[target.x86_64-pc-windows-msvc]
-linker = "rust-lld"
+# [target.x86_64-pc-windows-msvc]
+# linker = "rust-lld"
 
-[target.aarch64-pc-windows-msvc]
-linker = "rust-lld"
+# [target.aarch64-pc-windows-msvc]
+# linker = "rust-lld"
 
-[target.'cfg(target_os = "macos")']
-linker = "rust-lld"
+# [target.'cfg(target_os = "macos")']
+# linker = "rust-lld"
 
-[target.'cfg(all(target_os = "linux", target_env = "gnu"))']
-rustflags = [
-    "--cfg",
-    "tokio_unstable",
-    "-Zunstable-options",
-    "-Csymbol-mangling-version=v0",
-    "-Clink-arg=-fuse-ld=lld",
-]
+# [target.'cfg(all(target_os = "linux", target_env = "gnu"))']
+# rustflags = [
+#     "--cfg",
+#     "tokio_unstable",
+#     "-Zunstable-options",
+#     "-Csymbol-mangling-version=v0",
+#     "-Clink-arg=-fuse-ld=lld",
+# ]
 
 [doc]
 browser = "chromium"

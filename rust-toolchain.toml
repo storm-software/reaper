@@ -1,5 +1,5 @@
 [toolchain]
 profile = "default"
 channel = "nightly"
-components = ["llvm-tools", "rust-analyzer"]
+components = ["llvm-tools"]
 targets = ["x86_64-unknown-linux-gnu"]

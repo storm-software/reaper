@@ -18,7 +18,7 @@ SENTRY_PROPERTIES = "apps/eth-engine"
 [tools]
 direnv = "2.34.0"
 nodejs = "20.14.0"
-pnpm = "9.8.0"
+pnpm = "9.10.0"
 rust = "nightly-x86_64-unknown-linux-gnu"
 zig = "0.13.0"
 

@@ -13,7 +13,7 @@ CARGO_PROFILE_DEV_BUILD_OVERRIDE_DEBUG = 1
 
 [tools]
 nodejs = "20.14.0"
-pnpm = "9.8.0"
+pnpm = "9.10.0"
 rust = "nightly-x86_64-unknown-linux-gnu"
 rust-analyzer = "2024-09-02"
 cargo-binstall = "1.10.3"

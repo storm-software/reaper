@@ -31,7 +31,7 @@ runs:
           PNPM_VERSION=$PKG_JSON
         fi
         if [ ! -z pnpm ]; then
-          PNPM_VERSION=9.8.0
+          PNPM_VERSION=9.10.0
         fi
         echo "Using PNPM version $PNPM_VERSION"
         echo "version=$PNPM_VERSION" >> $GITHUB_OUTPUT
