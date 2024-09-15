@@ -1,8 +1,11 @@
 FROM rust:1 AS chef
+
 # We only pay the installation cost once,
 # it will be cached from the second build onwards
 RUN apt-get update && apt-get install -y clang
+RUN rustup toolchain install nightly-x86_64-unknown-linux-gnu
 RUN cargo install cargo-chef
+
 WORKDIR /app
 
 FROM chef AS planner
