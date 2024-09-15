@@ -401,9 +401,7 @@ jobs:
           set-environment-variables-for-job: true
 
       - name: Build book
-        run: pnpm nx run docs-book:build
-        env:
-          RUSTFLAGS: -Dwarnings -Zunstable-options
+        run: pnpm nx run docs-book:build --verbose
 
       - name: Build docs
         run: pnpm nx-cloud record -- nx affected --targets=docs --nxBail --configuration=release --exclude=@reaper/monorepo,reaper-eth-engine,reaper-eth-order-fill-service,reaper-eth-order-telegram-bot,docs-* --base=${{ env.NX_BASE }} --head=${{ env.NX_HEAD }}
