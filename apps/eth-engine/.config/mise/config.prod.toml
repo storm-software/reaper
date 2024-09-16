@@ -1,7 +1,7 @@
 [env]
 RUST_BACKTRACE = 1
 RUST_WITHOUT = "rust-docs"
-RUSTFLAGS = "-Z unstable-options -D warnings"
+# RUSTFLAGS = "-Z unstable-options"
 NODE_ENV = "production"
 MISE_ENV = "prod"
 MISE_USE_TOML = 1

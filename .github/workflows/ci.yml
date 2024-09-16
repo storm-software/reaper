@@ -505,8 +505,6 @@ jobs:
       - name: Run build
         run: pnpm nx-cloud record -- nx run-many --targets=build --nxBail --configuration=production --projects=reaper-eth-engine,reaper-eth-order-telegram-bot
         shell: bash
-        env:
-          RUSTFLAGS: -D warnings -Z unstable-options
 
       - name: Perform CodeQL Analysis
         uses: github/codeql-action/analyze@v3

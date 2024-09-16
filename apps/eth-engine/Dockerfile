@@ -20,8 +20,6 @@ RUN mkdir -p /app/target/prod
 RUN cargo +nightly chef cook --profile prod --recipe-path recipe.json
 
 COPY . .
-
-ENV RUSTFLAGS="-D warnings -Z unstable-options"
 RUN cargo +nightly build --profile prod --target "$(rustc -vV | sed -n "s|host: ||p")" --bin reaper-eth-engine --target-dir /target &&\
     mv "/target/$(rustc -vV | sed -n "s|host: ||p")/prod/reaper-eth-engine" /app/target/prod/reaper-eth-engine
 

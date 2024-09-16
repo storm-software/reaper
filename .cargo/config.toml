@@ -3,8 +3,10 @@ CARGO_WORKSPACE_DIR = { value = "", relative = true }
 
 [build]
 target-dir = "dist/target"
-# rustflags = ["-Zunstable-options", "-Dwarnings"]
-# rustdocflags = ["-Znormalize-docs"]
+# rustflags = ["-Z unstable-options"]
+rustdocflags = [
+    "--cfg docsrs --show-type-layout --generate-link-to-definition --enable-index-page",
+]
 
 # [target.x86_64-pc-windows-msvc]
 # linker = "rust-lld"

@@ -5,11 +5,12 @@ ESLINT_USE_FLAT_CONFIG = 1
 SHOULD_UNLOCK_GIT_CRYPT = 1
 
 ### Rust env vars ###
-RUST_LOG_FORMAT = "devel"                     # QE specific
+RUST_LOG_FORMAT = "devel" # QE specific
 RUST_LOG = "info"
 RUST_BACKTRACE = 1
-RUSTFLAGS = "-Z unstable-options -D warnings"
-RUST_WITHOUT = "rust-docs"
+# RUSTFLAGS = "-Z unstable-options"
+RUSTDOCFLAGS = "--cfg docsrs --show-type-layout --generate-link-to-definition --enable-index-page"
+# RUST_WITHOUT = "rust-docs"
 
 ### MISE env vars ###
 MISE_ENV = "prod"

@@ -1,6 +1,6 @@
 [env]
 RUST_BACKTRACE = 1
-RUSTFLAGS = "-Z unstable-options -D warnings"
+RUSTFLAGS = "-D warnings"
 RUSTDOCFLAGS = "--cfg docsrs --show-type-layout --generate-link-to-definition --enable-index-page"
 NODE_ENV = "development"
 MISE_ENV = "dev"
