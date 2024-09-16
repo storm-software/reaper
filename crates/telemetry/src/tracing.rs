@@ -48,7 +48,7 @@ pub fn init_layers(layers: Vec<BoxedLayer<Registry>>) {
 ///
 /// ### Panics
 /// If it is called more than once.
-pub fn init(verbosity: Option<Directive>) {
+pub fn init_tracing(verbosity: Option<Directive>) {
   let layers = vec![
     get_stdout_layer(
       verbosity.unwrap_or_else(||
