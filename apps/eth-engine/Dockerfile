@@ -27,6 +27,10 @@ FROM debian:bookworm-slim AS runtime
 WORKDIR /app
 COPY --from=build /app/target/prod/reaper-eth-engine /usr/local/bin
 
+RUN groupadd -g 999 reaper-eth-engine && \
+    useradd -r -u 999 -g reaper-eth-engine reaper-eth-engine
+USER reaper-eth-engine
+
 ENTRYPOINT ["/usr/local/bin"]
 CMD ["run", "-i", "AtomicArb,CexDex,Jit,Liquidations,Sandwich,SearcherActivity,JitCexDex", "-r", "8000", "--from-db-tip"]
 

@@ -57,6 +57,8 @@
         "file": "apps/eth-engine/Dockerfile",
         "engine": "docker",
         "push": true,
+        "sbom": true,
+        "provenance": true,
         "platforms": ["linux/amd64"],
         "metadata": {
           "images": ["stormsoftwarehq/reaper-eth-engine"],
@@ -73,13 +75,14 @@
             "org.opencontainers.image.description=An application used by Storm Software to process and categorize real-time blockchain data",
             "org.opencontainers.image.authors=Storm Software",
             "org.opencontainers.image.vendor=Storm Software",
-            "org.opencontainers.image.url=$REPO_URL",
-            "org.opencontainers.image.source=$REPO_URL"
+            "org.opencontainers.image.url=https://stormsoftware.com",
+            "org.opencontainers.image.source=https://github.com/storm-software/reaper"
           ]
         },
+        "outputs": "type=registry,push=true"
+
         // "cache-from": "type=registry",
         // "cache-to": "type=registry,mode=max",
-        "outputs": "type=registry,push=true"
       },
       "defaultConfiguration": "production",
       "configurations": {
