@@ -29,7 +29,7 @@ members = [
 ]
 
 [workspace.package]
-version = "0.0.1"
+version = "0.1.0"
 description = "💀 A monorepo containing various utilities, libraries, and applications used by Storm Software in trading processes"
 repository = "https://github.com/storm-software/reaper"
 edition = "2021"

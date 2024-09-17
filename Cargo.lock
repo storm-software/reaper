@@ -9244,7 +9244,7 @@ dependencies = [
 
 [[package]]
 name = "reaper-aws"
-version = "0.0.1"
+version = "0.1.0"
 dependencies = [
  "aws-config",
  "tracing",
@@ -9253,7 +9253,7 @@ dependencies = [
 
 [[package]]
 name = "reaper-core"
-version = "0.0.1"
+version = "0.1.0"
 dependencies = [
  "chrono",
  "derive_builder 0.20.0",
@@ -9276,7 +9276,7 @@ dependencies = [
 
 [[package]]
 name = "reaper-eth"
-version = "0.0.1"
+version = "0.1.0"
 dependencies = [
  "ethers",
  "eyre",
@@ -9289,7 +9289,7 @@ dependencies = [
 
 [[package]]
 name = "reaper-eth-engine"
-version = "0.0.1"
+version = "0.1.0"
 dependencies = [
  "ahash 0.8.11",
  "alloy-json-rpc",
@@ -9378,7 +9378,7 @@ dependencies = [
 
 [[package]]
 name = "reaper-eth-engine-classifier"
-version = "0.0.1"
+version = "0.1.0"
 dependencies = [
  "alloy-primitives",
  "alloy-rlp",
@@ -9419,7 +9419,7 @@ dependencies = [
 
 [[package]]
 name = "reaper-eth-engine-core"
-version = "0.0.1"
+version = "0.1.0"
 dependencies = [
  "alloy-dyn-abi",
  "alloy-json-abi",
@@ -9473,7 +9473,7 @@ dependencies = [
 
 [[package]]
 name = "reaper-eth-engine-database"
-version = "0.0.1"
+version = "0.1.0"
 dependencies = [
  "ahash 0.8.11",
  "alloy-json-abi",
@@ -9558,7 +9558,7 @@ dependencies = [
 
 [[package]]
 name = "reaper-eth-engine-inspect"
-version = "0.0.1"
+version = "0.1.0"
 dependencies = [
  "alloy-json-abi",
  "alloy-primitives",
@@ -9607,7 +9607,7 @@ dependencies = [
 
 [[package]]
 name = "reaper-eth-engine-libmdbx"
-version = "0.0.1"
+version = "0.1.0"
 dependencies = [
  "bitflags 2.6.0",
  "byteorder",
@@ -9627,7 +9627,7 @@ dependencies = [
 
 [[package]]
 name = "reaper-eth-engine-macros"
-version = "0.0.1"
+version = "0.1.0"
 dependencies = [
  "itertools 0.11.0",
  "proc-macro2",
@@ -9637,7 +9637,7 @@ dependencies = [
 
 [[package]]
 name = "reaper-eth-engine-metrics"
-version = "0.0.1"
+version = "0.1.0"
 dependencies = [
  "alloy-primitives",
  "clickhouse",
@@ -9665,7 +9665,7 @@ dependencies = [
 
 [[package]]
 name = "reaper-eth-engine-pricing"
-version = "0.0.1"
+version = "0.1.0"
 dependencies = [
  "alloy-dyn-abi",
  "alloy-primitives",
@@ -9778,7 +9778,7 @@ dependencies = [
 
 [[package]]
 name = "reaper-eth-engine-relay-api"
-version = "0.0.1"
+version = "0.1.0"
 dependencies = [
  "reqwest 0.12.7",
  "serde",
@@ -9789,7 +9789,7 @@ dependencies = [
 
 [[package]]
 name = "reaper-eth-engine-reth-tracing"
-version = "0.0.1"
+version = "0.1.0"
 dependencies = [
  "alloy-primitives",
  "alloy-rpc-types",
@@ -9828,7 +9828,7 @@ dependencies = [
 
 [[package]]
 name = "reaper-eth-engine-types"
-version = "0.0.1"
+version = "0.1.0"
 dependencies = [
  "ahash 0.8.11",
  "alloy-dyn-abi",
@@ -9891,7 +9891,7 @@ dependencies = [
 
 [[package]]
 name = "reaper-eth-flashbots"
-version = "0.0.1"
+version = "0.1.0"
 dependencies = [
  "ethers",
  "ethers-flashbots",
@@ -9900,7 +9900,7 @@ dependencies = [
 
 [[package]]
 name = "reaper-eth-order-fill-service"
-version = "0.0.1"
+version = "0.1.0"
 dependencies = [
  "alloy-primitives",
  "alloy-sol-types",
@@ -9916,7 +9916,7 @@ dependencies = [
 
 [[package]]
 name = "reaper-eth-order-telegram-bot"
-version = "0.0.1"
+version = "0.1.0"
 dependencies = [
  "anyhow",
  "aws-config",
@@ -9940,7 +9940,7 @@ dependencies = [
 
 [[package]]
 name = "reaper-telemetry"
-version = "0.0.1"
+version = "0.1.0"
 dependencies = [
  "ansi_term",
  "chrono",

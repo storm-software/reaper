@@ -1,6 +1,6 @@
 {
   "name": "@reaper/monorepo",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "💀 Reaper is a collection of trading/quantitative finance libraries, applications, and tools that are primarily written in Rust.",
   "repository": {
     "type": "github",
