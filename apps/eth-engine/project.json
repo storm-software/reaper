@@ -68,10 +68,7 @@
         "push": true,
         "platforms": ["linux/amd64"],
         "metadata": {
-          "images": [
-            "stormsoftwarehq/reaper-eth-engine",
-            "ghcr.io/storm-software/reaper-eth-engine"
-          ],
+          "images": ["stormsoftwarehq/reaper-eth-engine"],
           "tags": [
             "type=schedule",
             "type=ref,event=branch",
