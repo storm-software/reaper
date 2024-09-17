@@ -58,7 +58,7 @@
         "engine": "docker",
         "push": true,
         "sbom": true,
-        "provenance": true,
+        // "provenance": true,
         "platforms": ["linux/amd64"],
         "metadata": {
           "images": ["stormsoftwarehq/reaper-eth-engine"],
