@@ -80,6 +80,9 @@ importers:
       '@storm-software/testing-tools':
         specifier: latest
         version: 1.68.2(@nx/jest@19.7.3(@babel/traverse@7.25.3)(@swc-node/register@1.10.9(@swc/core@1.7.26(@swc/helpers@0.5.12))(@swc/types@0.1.12)(typescript@5.5.3))(@swc/core@1.7.26(@swc/helpers@0.5.12))(@types/node@20.14.14)(nx@19.7.3(@swc-node/register@1.10.9(@swc/core@1.7.26(@swc/helpers@0.5.12))(@swc/types@0.1.12)(typescript@5.5.3))(@swc/core@1.7.26(@swc/helpers@0.5.12)))(ts-node@10.9.2(@swc/core@1.7.26(@swc/helpers@0.5.12))(@types/node@20.14.14)(typescript@5.5.3))(typescript@5.5.3)(verdaccio@5.31.1(typanion@3.14.0)))(jest@29.7.0(@types/node@20.14.14)(ts-node@10.9.2(@swc/core@1.7.26(@swc/helpers@0.5.12))(@types/node@20.14.14)(typescript@5.5.3)))
+      '@storm-software/tsconfig':
+        specifier: latest
+        version: 0.33.1
       '@storm-software/workspace-tools':
         specifier: latest
         version: 1.179.6(nm5jkrcx4kffo22ajzfwx3vfju)
@@ -2570,6 +2573,9 @@ packages:
       '@nx/jest': ^19.6.4
       jest: 29.7.0
 
+  '@storm-software/tsconfig@0.33.1':
+    resolution: {integrity: sha512-i3bm4RRSNGfnlH6kwgqrAmcFyGBDXyz/QIdv43n4IJjCeloaPg69cF3UE8FBYyMWf4SBWIDjKbBacXnJHKXm8g==}
+
   '@storm-software/workspace-tools@1.179.6':
     resolution: {integrity: sha512-OkDPwKSsVsArFwuh3S1KKkRilSnPU5ZDJj+0V+LHUTygciO7LLw2igw8KXiGxeLLc+R7k4agKW9E8r3b1GrutQ==}
     peerDependencies:
@@ -2693,6 +2699,9 @@ packages:
   '@tootallnate/once@2.0.0':
     resolution: {integrity: sha512-XCuKFP5PS55gnMVu3dty8KPatLqUoy/ZYzDzAGCQ8JNFCkLXzmI7vNHCR+XpbZaMWQK/vQubr7PkYq8g470J/A==}
     engines: {node: '>= 10'}
+
+  '@total-typescript/ts-reset@0.5.1':
+    resolution: {integrity: sha512-AqlrT8YA1o7Ff5wPfMOL0pvL+1X+sw60NN6CcOCqs658emD6RfiXhF7Gu9QcfKBH7ELY2nInLhKSCWVoNL70MQ==}
 
   '@trysound/sax@0.2.0':
     resolution: {integrity: sha512-L7z9BgrNEcYyUYtF+HaEfiS5ebkh9jXqbszz7pC0hRBPaatV0XjSD3+eHrpqFemQfgwiFF0QPIarnIihIDn7OA==}
@@ -13096,6 +13105,10 @@ snapshots:
       '@nx/jest': 19.7.3(@babel/traverse@7.25.3)(@swc-node/register@1.10.9(@swc/core@1.7.26(@swc/helpers@0.5.12))(@swc/types@0.1.12)(typescript@5.5.3))(@swc/core@1.7.26(@swc/helpers@0.5.12))(@types/node@20.14.14)(nx@19.7.3(@swc-node/register@1.10.9(@swc/core@1.7.26(@swc/helpers@0.5.12))(@swc/types@0.1.12)(typescript@5.5.3))(@swc/core@1.7.26(@swc/helpers@0.5.12)))(ts-node@10.9.2(@swc/core@1.7.26(@swc/helpers@0.5.12))(@types/node@20.14.14)(typescript@5.5.3))(typescript@5.5.3)(verdaccio@5.31.1(typanion@3.14.0))
       jest: 29.7.0(@types/node@20.14.14)(ts-node@10.9.2(@swc/core@1.7.26(@swc/helpers@0.5.12))(@types/node@20.14.14)(typescript@5.5.3))
 
+  '@storm-software/tsconfig@0.33.1':
+    dependencies:
+      '@total-typescript/ts-reset': 0.5.1
+
   '@storm-software/workspace-tools@1.179.6(nm5jkrcx4kffo22ajzfwx3vfju)':
     dependencies:
       '@anatine/esbuild-decorators': 0.2.19(esbuild@0.21.5)
@@ -13254,6 +13267,8 @@ snapshots:
       - supports-color
 
   '@tootallnate/once@2.0.0': {}
+
+  '@total-typescript/ts-reset@0.5.1': {}
 
   '@trysound/sax@0.2.0': {}
 

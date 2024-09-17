@@ -108,6 +108,7 @@
     "@storm-software/prettier": "latest",
     "@storm-software/terraform-tools": "latest",
     "@storm-software/testing-tools": "latest",
+    "@storm-software/tsconfig": "latest",
     "@storm-software/workspace-tools": "latest",
     "@swc-node/register": "^1.10.9",
     "@swc/core": "^1.7.26",
