@@ -36,7 +36,7 @@
   "private": true,
   "packageManager": "pnpm@9.10.0",
   "engines": {
-    "node": ">=20.11.0",
+    "node": ">=22.8.0",
     "pnpm": ">=9.10.0"
   },
   "keywords": [
@@ -109,6 +109,8 @@
     "@storm-software/terraform-tools": "latest",
     "@storm-software/testing-tools": "latest",
     "@storm-software/workspace-tools": "latest",
+    "@swc-node/register": "^1.10.9",
+    "@swc/core": "^1.7.26",
     "@taplo/cli": "0.7.0",
     "@types/jest": "29.5.12",
     "@types/node": "^20.14.10",
@@ -135,7 +137,7 @@
     "verdaccio": "5.31.1"
   },
   "devEngines": {
-    "node": "20.x || 21.x"
+    "node": "22.x"
   },
   "namespace": "@reaper",
   "nx": {

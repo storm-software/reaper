@@ -9,7 +9,7 @@ RUST_LOG_FORMAT = "devel" # QE specific
 RUST_LOG = "info"
 RUST_BACKTRACE = 1
 # RUSTFLAGS = "-Z unstable-options"
-RUSTDOCFLAGS = "--cfg docsrs --show-type-layout --generate-link-to-definition --enable-index-page"
+# RUSTDOCFLAGS = "--cfg docsrs --show-type-layout --generate-link-to-definition --enable-index-page"
 # RUST_WITHOUT = "rust-docs"
 
 ### MISE env vars ###
@@ -36,7 +36,7 @@ SENTRY_PROPERTIES = "apps/eth-engine"
 # direnv = "2.34.0"
 rust = "nightly-x86_64-unknown-linux-gnu"
 cargo-binstall = "1.10.3"
-nodejs = "20.14.0"
+nodejs = "22.8.0"
 pnpm = "9.10.0"
 zig = "0.13.0"
 mdbook = "0.4.14"

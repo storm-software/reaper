@@ -44,7 +44,7 @@ primarily written in <a href="https://www.rust-lang.org/" target="_blank">Rust</
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 ## Table of Contents
 
-- [Storm Software - Ethereum Engine](#storm-software---ethereum-engine)
+- [Reaper - Ethereum Engine](#reaper---ethereum-engine)
   - [Installing](#installing)
   - [Development](#development)
     - [Building](#building)
@@ -68,9 +68,10 @@ primarily written in <a href="https://www.rust-lang.org/" target="_blank">Rust</
 
 <!-- END header -->
 
-# Storm Software - Ethereum Engine
+# Reaper - Ethereum Engine
 
-An application used by Storm Software to process and categorize real-time blockchain data.
+An application used by Storm Software to process and categorize real-time
+blockchain data.
 
 ## Installing
 
@@ -80,13 +81,13 @@ This crate can be installed using
 
 ```toml
 [dependencies]
-reaper-core = "0.0.1"
+reaper-eth-engine = "0.0.1"
 ```
 
 Or, via the command line:
 
 ```bash
-cargo add reaper-core
+cargo add reaper-eth-engine
 ```
 
 <!-- START doctoc -->
@@ -99,16 +100,17 @@ commands are available to assist in development.
 
 ### Building
 
-Run `nx build reaper-core` to build the library.
+Run `nx build reaper-eth-engine` to build the library.
 
 ### Running unit tests
 
-Run `nx test reaper-core` to execute the unit tests via
+Run `nx test reaper-eth-engine` to execute the unit tests via
 [Jest](https://jestjs.io).
 
 ### Linting
 
-Run `nx lint reaper-core` to run [ESLint](https://eslint.org/) on the package.
+Run `nx lint reaper-eth-engine` to run [ESLint](https://eslint.org/) on the
+package.
 
 <!-- START footer -->
 <!-- prettier-ignore-start -->
