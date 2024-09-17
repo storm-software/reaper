@@ -56,30 +56,30 @@
       "options": {
         "file": "apps/eth-engine/Dockerfile",
         "engine": "docker",
-        "labels": [
-          "org.opencontainers.image.title=reaper-eth-engine",
-          "org.opencontainers.image.version=$TAG",
-          "org.opencontainers.image.description=An application used by Storm Software to process and categorize real-time blockchain data",
-          "org.opencontainers.image.authors=Storm Software",
-          "org.opencontainers.image.vendor=Storm Software",
-          "org.opencontainers.image.url=$REPO_URL",
-          "org.opencontainers.image.source=$REPO_URL"
-        ],
         "push": true,
         "platforms": ["linux/amd64"],
         "metadata": {
           "images": ["stormsoftwarehq/reaper-eth-engine"],
           "tags": [
-            "type=schedule",
-            "type=ref,event=branch",
-            "type=ref,event=tag",
-            "type=ref,event=pr",
-            "type=semver,pattern={{version}}",
-            "type=semver,pattern={{major}}.{{minor}}",
-            "type=semver,pattern={{major}}",
-            "type=sha"
+            "type=edge,branch=$repo.default_branch",
+            "type=semver,pattern=v{{version}}",
+            "type=semver,pattern=v{{major}}.{{minor}}",
+            "type=semver,pattern=v{{major}}",
+            "type=sha,prefix=,suffix=,format=short"
+          ],
+          "labels": [
+            "org.opencontainers.image.title=reaper-eth-engine",
+            "org.opencontainers.image.version=$TAG",
+            "org.opencontainers.image.description=An application used by Storm Software to process and categorize real-time blockchain data",
+            "org.opencontainers.image.authors=Storm Software",
+            "org.opencontainers.image.vendor=Storm Software",
+            "org.opencontainers.image.url=$REPO_URL",
+            "org.opencontainers.image.source=$REPO_URL"
           ]
-        }
+        },
+        // "cache-from": "type=registry",
+        // "cache-to": "type=registry,mode=max",
+        "outputs": "type=registry,push=true"
       },
       "defaultConfiguration": "production",
       "configurations": {
