@@ -40,7 +40,7 @@ nodejs = "22.8.0"
 pnpm = "9.10.0"
 zig = "0.13.0"
 mdbook = "0.4.14"
-mdbook-linkcheck = "0.7.7"
+# mdbook-linkcheck = "0.7.7"
 terragrunt = "0.63.6"
 # terrascan = "1.19.1"
 opentofu = "1.8.0"
@@ -56,7 +56,7 @@ opentofu = "https://github.com/virtualroot/asdf-opentofu.git"
 terragrunt = "https://github.com/ohmer/asdf-terragrunt.git"
 helm = "https://github.com/Antiarchitect/asdf-helm.git"
 mdbook = "https://github.com/cipherstash-archive/asdf-mdbook.git"
-mdbook-linkcheck = "https://github.com/cipherstash-archive/asdf-mdbook-linkcheck.git"
+# mdbook-linkcheck = "https://github.com/cipherstash-archive/asdf-mdbook-linkcheck.git"
 
 [settings]
 paranoid = false
