@@ -334,211 +334,211 @@ jobs:
           INPUT_GITHUB_TOKEN: ${{ secrets.STORM_BOT_GITHUB_TOKEN }}
           TAG: ${{ inputs.tag }}
 
-      - name: Release Library Version Updates
-        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
-        run: pnpm release --base=${{ env.NX_BASE }} --head=${{ env.NX_HEAD }}
-        env:
-          GITHUB_ACTOR: ${{ github.actor }}
-          GITHUB_TOKEN: ${{ github.token }}
-          GH_TOKEN: ${{ github.token }}
-          NPM_TOKEN: ${{ secrets.STORM_BOT_NPM_TOKEN }}
-          CARGO_REGISTRY_TOKEN: ${{ secrets.STORM_BOT_CARGO_TOKEN }}
-          STORM_BOT: Stormie-Bot
-          STORM_WORKSPACE_ROOT: ${{ github.workspace }}
-          STORM_REPOSITORY: ${{ github.repositoryUrl }}
-          TAG: ${{ inputs.tag }}
+      # - name: Release Library Version Updates
+      #   if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+      #   run: pnpm release --base=${{ env.NX_BASE }} --head=${{ env.NX_HEAD }}
+      #   env:
+      #     GITHUB_ACTOR: ${{ github.actor }}
+      #     GITHUB_TOKEN: ${{ github.token }}
+      #     GH_TOKEN: ${{ github.token }}
+      #     NPM_TOKEN: ${{ secrets.STORM_BOT_NPM_TOKEN }}
+      #     CARGO_REGISTRY_TOKEN: ${{ secrets.STORM_BOT_CARGO_TOKEN }}
+      #     STORM_BOT: Stormie-Bot
+      #     STORM_WORKSPACE_ROOT: ${{ github.workspace }}
+      #     STORM_REPOSITORY: ${{ github.repositoryUrl }}
+      #     TAG: ${{ inputs.tag }}
 
-  build-docs:
-    name: Build documentation
-    if: always() && !cancelled() && !contains(needs.*.result, 'failure') && github.event.pull_request.draft == false
-    needs:
-      - start
-      - setup
-      - lint
-      # - lint-docs
-      # - build-libs
-    runs-on: ubuntu-latest
-    timeout-minutes: 60
-    steps:
-      - name: Checkout [Pull Request]
-        uses: actions/checkout@v4
-        if: ${{ github.event_name == 'pull_request' }}
-        with:
-          # By default, PRs will be checked-out based on the Merge Commit, but we want the actual branch HEAD.
-          ref: ${{ github.event.pull_request.head.sha }}
-          # We need to fetch all branches and commits so that Nx affected has a base to compare against.
-          fetch-depth: 0
-          token: ${{ secrets.STORM_BOT_GITHUB_TOKEN }}
-      - name: Checkout `main` branch
-        uses: actions/checkout@v4
-        if: ${{ github.event_name != 'pull_request' }}
-        with:
-          # We need to fetch all branches and commits so that Nx affected has a base to compare against.
-          fetch-depth: 0
-          token: ${{ secrets.STORM_BOT_GITHUB_TOKEN }}
+  # build-docs:
+  #   name: Build documentation
+  #   if: always() && !cancelled() && !contains(needs.*.result, 'failure') && github.event.pull_request.draft == false
+  #   needs:
+  #     - start
+  #     - setup
+  #     - lint
+  #     # - lint-docs
+  #     # - build-libs
+  #   runs-on: ubuntu-latest
+  #   timeout-minutes: 60
+  #   steps:
+  #     - name: Checkout [Pull Request]
+  #       uses: actions/checkout@v4
+  #       if: ${{ github.event_name == 'pull_request' }}
+  #       with:
+  #         # By default, PRs will be checked-out based on the Merge Commit, but we want the actual branch HEAD.
+  #         ref: ${{ github.event.pull_request.head.sha }}
+  #         # We need to fetch all branches and commits so that Nx affected has a base to compare against.
+  #         fetch-depth: 0
+  #         token: ${{ secrets.STORM_BOT_GITHUB_TOKEN }}
+  #     - name: Checkout `main` branch
+  #       uses: actions/checkout@v4
+  #       if: ${{ github.event_name != 'pull_request' }}
+  #       with:
+  #         # We need to fetch all branches and commits so that Nx affected has a base to compare against.
+  #         fetch-depth: 0
+  #         token: ${{ secrets.STORM_BOT_GITHUB_TOKEN }}
 
-      - name: Setup workspace
-        uses: ./.github/actions/setup
-        with:
-          storm-bot-private-key: ${{ secrets.STORM_BOT_PRIVATE_KEY }}
-          storm-bot-passphrase: ${{ secrets.STORM_BOT_PASSPHRASE }}
+  #     - name: Setup workspace
+  #       uses: ./.github/actions/setup
+  #       with:
+  #         storm-bot-private-key: ${{ secrets.STORM_BOT_PRIVATE_KEY }}
+  #         storm-bot-passphrase: ${{ secrets.STORM_BOT_PASSPHRASE }}
 
-      - name: Setup global URLs - Part 1
-        run: git config --global url."https://x-access-token:${{ secrets.STORM_BOT_GITHUB_TOKEN }}@github.com/".insteadOf "https://github.com/"
-        shell: bash
+  #     - name: Setup global URLs - Part 1
+  #       run: git config --global url."https://x-access-token:${{ secrets.STORM_BOT_GITHUB_TOKEN }}@github.com/".insteadOf "https://github.com/"
+  #       shell: bash
 
-      - name: Setup global URLs - Part 2
-        run: git config --global url."https://${{ secrets.STORM_BOT_GITHUB_TOKEN }}@github.com/".insteadOf "git@github.com:"
-        shell: bash
+  #     - name: Setup global URLs - Part 2
+  #       run: git config --global url."https://${{ secrets.STORM_BOT_GITHUB_TOKEN }}@github.com/".insteadOf "git@github.com:"
+  #       shell: bash
 
-      - name: Install mdbook-template
-        run: |
-          mkdir mdbook-template
-          curl -sSL https://github.com/sgoudham/mdbook-template/releases/latest/download/mdbook-template-x86_64-unknown-linux-gnu.tar.gz | tar -xz --directory=./mdbook-template
-          echo $(pwd)/mdbook-template >> $GITHUB_PATH
+  #     - name: Install mdbook-template
+  #       run: |
+  #         mkdir mdbook-template
+  #         curl -sSL https://github.com/sgoudham/mdbook-template/releases/latest/download/mdbook-template-x86_64-unknown-linux-gnu.tar.gz | tar -xz --directory=./mdbook-template
+  #         echo $(pwd)/mdbook-template >> $GITHUB_PATH
 
-      - name: Setup Nx SHAs
-        uses: nrwl/nx-set-shas@v4
-        with:
-          main-branch-name: main
-          error-on-no-successful-workflow: false
-          set-environment-variables-for-job: true
+  #     - name: Setup Nx SHAs
+  #       uses: nrwl/nx-set-shas@v4
+  #       with:
+  #         main-branch-name: main
+  #         error-on-no-successful-workflow: false
+  #         set-environment-variables-for-job: true
 
-      - name: Build book
-        run: pnpm nx run docs-book:build --verbose
+  #     - name: Build book
+  #       run: pnpm nx run docs-book:build --verbose
 
-      - name: Build docs
-        run: pnpm nx-cloud record -- nx affected --targets=docs --nxBail --configuration=release --exclude=@reaper/monorepo,reaper-eth-engine,reaper-eth-order-fill-service,reaper-eth-order-telegram-bot,docs-* --base=${{ env.NX_BASE }} --head=${{ env.NX_HEAD }}
-        env:
-          RUSTDOCFLAGS:
-            --cfg docsrs --show-type-layout --generate-link-to-definition --enable-index-page
-            -Zunstable-options
+  #     - name: Build docs
+  #       run: pnpm nx-cloud record -- nx affected --targets=docs --nxBail --configuration=release --exclude=@reaper/monorepo,reaper-eth-engine,reaper-eth-order-fill-service,reaper-eth-order-telegram-bot,docs-* --base=${{ env.NX_BASE }} --head=${{ env.NX_HEAD }}
+  #       env:
+  #         RUSTDOCFLAGS:
+  #           --cfg docsrs --show-type-layout --generate-link-to-definition --enable-index-page
+  #           -Zunstable-options
 
-      - name: Move docs to book folder
-        run: mv dist/docs/crates dist/docs/book
+  #     - name: Move docs to book folder
+  #       run: mv dist/docs/crates dist/docs/book
 
-      - name: Archive artifact
-        shell: sh
-        run: |
-          chmod -c -R +rX "dist/docs/book" |
-          while read line; do
-             echo "::warning title=Invalid file permissions automatically fixed::$line"
-          done
-          tar \
-            --dereference --hard-dereference \
-            --directory "dist/docs/book" \
-            -cvf "$RUNNER_TEMP/artifact.tar" \
-            --exclude=.git \
-            --exclude=.github \
-            .
+  #     - name: Archive artifact
+  #       shell: sh
+  #       run: |
+  #         chmod -c -R +rX "dist/docs/book" |
+  #         while read line; do
+  #            echo "::warning title=Invalid file permissions automatically fixed::$line"
+  #         done
+  #         tar \
+  #           --dereference --hard-dereference \
+  #           --directory "dist/docs/book" \
+  #           -cvf "$RUNNER_TEMP/artifact.tar" \
+  #           --exclude=.git \
+  #           --exclude=.github \
+  #           .
 
-      - name: Upload artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: book-artifact
-          path: ${{ runner.temp }}/artifact.tar
-          retention-days: 1
-          if-no-files-found: error
+  #     - name: Upload artifact
+  #       uses: actions/upload-artifact@v4
+  #       with:
+  #         name: book-artifact
+  #         path: ${{ runner.temp }}/artifact.tar
+  #         retention-days: 1
+  #         if-no-files-found: error
 
-  analyze:
-    name: Analyze
-    if: always() && !cancelled() && !contains(needs.*.result, 'failure') && github.event.pull_request.draft == false
-    needs:
-      - start
-      - setup
-      - lint
-      # - build-libs
-      - build-containers
-    # Runner size impacts CodeQL analysis time. To learn more, please see:
-    #   - https://gh.io/recommended-hardware-resources-for-running-codeql
-    #   - https://gh.io/supported-runners-and-hardware-resources
-    #   - https://gh.io/using-larger-runners
-    # Consider using larger runners for possible analysis time improvements.
-    runs-on: ${{ (matrix.language == 'swift' && 'macos-latest') || 'ubuntu-latest' }}
-    timeout-minutes: ${{ (matrix.language == 'swift' && 120) || 360 }}
-    permissions:
-      actions: read
-      contents: read
-      security-events: write
-    strategy:
-      fail-fast: true
-      matrix:
-        language: ["javascript"]
-        # CodeQL supports [ 'cpp', 'csharp', 'go', 'java', 'javascript', 'python', 'ruby', 'swift' ]
-        # Use only 'java' to analyze code written in Java, Kotlin or both
-        # Use only 'javascript' to analyze code written in JavaScript, TypeScript or both
-        # Learn more about CodeQL language support at https://aka.ms/codeql-docs/language-support
-    steps:
-      - name: Checkout [Pull Request]
-        uses: actions/checkout@v4
-        if: ${{ github.event_name == 'pull_request' }}
-        with:
-          # By default, PRs will be checked-out based on the Merge Commit, but we want the actual branch HEAD.
-          ref: ${{ github.event.pull_request.head.sha }}
-          # We need to fetch all branches and commits so that Nx affected has a base to compare against.
-          fetch-depth: 0
-          token: ${{ secrets.STORM_BOT_GITHUB_TOKEN }}
+  # analyze:
+  #   name: Analyze
+  #   if: always() && !cancelled() && !contains(needs.*.result, 'failure') && github.event.pull_request.draft == false
+  #   needs:
+  #     - start
+  #     - setup
+  #     - lint
+  #     # - build-libs
+  #     - build-containers
+  #   # Runner size impacts CodeQL analysis time. To learn more, please see:
+  #   #   - https://gh.io/recommended-hardware-resources-for-running-codeql
+  #   #   - https://gh.io/supported-runners-and-hardware-resources
+  #   #   - https://gh.io/using-larger-runners
+  #   # Consider using larger runners for possible analysis time improvements.
+  #   runs-on: ${{ (matrix.language == 'swift' && 'macos-latest') || 'ubuntu-latest' }}
+  #   timeout-minutes: ${{ (matrix.language == 'swift' && 120) || 360 }}
+  #   permissions:
+  #     actions: read
+  #     contents: read
+  #     security-events: write
+  #   strategy:
+  #     fail-fast: true
+  #     matrix:
+  #       language: ["javascript"]
+  #       # CodeQL supports [ 'cpp', 'csharp', 'go', 'java', 'javascript', 'python', 'ruby', 'swift' ]
+  #       # Use only 'java' to analyze code written in Java, Kotlin or both
+  #       # Use only 'javascript' to analyze code written in JavaScript, TypeScript or both
+  #       # Learn more about CodeQL language support at https://aka.ms/codeql-docs/language-support
+  #   steps:
+  #     - name: Checkout [Pull Request]
+  #       uses: actions/checkout@v4
+  #       if: ${{ github.event_name == 'pull_request' }}
+  #       with:
+  #         # By default, PRs will be checked-out based on the Merge Commit, but we want the actual branch HEAD.
+  #         ref: ${{ github.event.pull_request.head.sha }}
+  #         # We need to fetch all branches and commits so that Nx affected has a base to compare against.
+  #         fetch-depth: 0
+  #         token: ${{ secrets.STORM_BOT_GITHUB_TOKEN }}
 
-      - name: Checkout `main` branch
-        uses: actions/checkout@v4
-        if: ${{ github.event_name != 'pull_request' }}
-        with:
-          # We need to fetch all branches and commits so that Nx affected has a base to compare against.
-          fetch-depth: 0
-          token: ${{ secrets.STORM_BOT_GITHUB_TOKEN }}
+  #     - name: Checkout `main` branch
+  #       uses: actions/checkout@v4
+  #       if: ${{ github.event_name != 'pull_request' }}
+  #       with:
+  #         # We need to fetch all branches and commits so that Nx affected has a base to compare against.
+  #         fetch-depth: 0
+  #         token: ${{ secrets.STORM_BOT_GITHUB_TOKEN }}
 
-      - name: Setup workspace
-        uses: ./.github/actions/setup
-        with:
-          storm-bot-private-key: ${{ secrets.STORM_BOT_PRIVATE_KEY }}
-          storm-bot-passphrase: ${{ secrets.STORM_BOT_PASSPHRASE }}
+  #     - name: Setup workspace
+  #       uses: ./.github/actions/setup
+  #       with:
+  #         storm-bot-private-key: ${{ secrets.STORM_BOT_PRIVATE_KEY }}
+  #         storm-bot-passphrase: ${{ secrets.STORM_BOT_PASSPHRASE }}
 
-      - name: Setup Nx SHAs
-        uses: nrwl/nx-set-shas@v4
-        with:
-          main-branch-name: main
-          error-on-no-successful-workflow: false
-          set-environment-variables-for-job: true
+  #     - name: Setup Nx SHAs
+  #       uses: nrwl/nx-set-shas@v4
+  #       with:
+  #         main-branch-name: main
+  #         error-on-no-successful-workflow: false
+  #         set-environment-variables-for-job: true
 
-      # Initializes the CodeQL tools for scanning.
-      - name: Initialize CodeQL
-        uses: github/codeql-action/init@v3
-        with:
-          languages: ${{ matrix.language }}
+  #     # Initializes the CodeQL tools for scanning.
+  #     - name: Initialize CodeQL
+  #       uses: github/codeql-action/init@v3
+  #       with:
+  #         languages: ${{ matrix.language }}
 
-      - name: Run build
-        run: pnpm nx-cloud record -- nx run-many --targets=build --nxBail --configuration=production --projects=reaper-eth-engine,reaper-eth-order-telegram-bot
-        shell: bash
+  #     - name: Run build
+  #       run: pnpm nx-cloud record -- nx run-many --targets=build --nxBail --configuration=production --projects=reaper-eth-engine,reaper-eth-order-telegram-bot
+  #       shell: bash
 
-      - name: Perform CodeQL Analysis
-        uses: github/codeql-action/analyze@v3
-        with:
-          category: "/language:${{matrix.language}}"
+  #     - name: Perform CodeQL Analysis
+  #       uses: github/codeql-action/analyze@v3
+  #       with:
+  #         category: "/language:${{matrix.language}}"
 
-  deploy-docs:
-    name: Deploy documentation
-    if: always() && !cancelled() && !contains(needs.*.result, 'failure') && github.event.pull_request.draft == false
-    needs:
-      - start
-      - setup
-      # - lint-docs
-      - build-docs
-      # - build-libs
-      - build-containers
-    runs-on: ubuntu-latest
-    timeout-minutes: 60
-    permissions:
-      pages: write
-      id-token: write
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
-        with:
-          artifact_name: book-artifact
+  # deploy-docs:
+  #   name: Deploy documentation
+  #   if: always() && !cancelled() && !contains(needs.*.result, 'failure') && github.event.pull_request.draft == false
+  #   needs:
+  #     - start
+  #     - setup
+  #     # - lint-docs
+  #     - build-docs
+  #     # - build-libs
+  #     - build-containers
+  #   runs-on: ubuntu-latest
+  #   timeout-minutes: 60
+  #   permissions:
+  #     pages: write
+  #     id-token: write
+  #   environment:
+  #     name: github-pages
+  #     url: ${{ steps.deployment.outputs.page_url }}
+  #   steps:
+  #     - name: Deploy to GitHub Pages
+  #       id: deployment
+  #       uses: actions/deploy-pages@v4
+  #       with:
+  #         artifact_name: book-artifact
 
   deploy-apps:
     name: Deploy applications
@@ -722,11 +722,11 @@ jobs:
       # - lint-docs
       # - build-libs
       - build-containers
-      - build-docs
+      # - build-docs
       # - release-libs
       - deploy-apps
-      - deploy-docs
-      - analyze
+      # - deploy-docs
+      # - analyze
     if: ${{ success() }}
     name: Send success notification
     runs-on: ubuntu-latest
@@ -803,11 +803,11 @@ jobs:
       # - lint-docs
       # - build-libs
       - build-containers
-      - build-docs
+      # - build-docs
       # - release-libs
       - deploy-apps
-      - deploy-docs
-      - analyze
+      # - deploy-docs
+      # - analyze
     if: ${{ failure() }}
     name: Send failure notification
     runs-on: ubuntu-latest
@@ -887,11 +887,11 @@ jobs:
       # - lint-docs
       # - build-libs
       - build-containers
-      - build-docs
+      # - build-docs
       # - release-libs
       - deploy-apps
-      - deploy-docs
-      - analyze
+      # - deploy-docs
+      # - analyze
     if: ${{ cancelled() }}
     name: Send cancelled notification
     runs-on: ubuntu-latest

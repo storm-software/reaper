@@ -55,6 +55,7 @@
     "adr-preview": "pnpm log4brains preview",
     "build": "nx affected --targets=build --parallel=3 --configuration=production --exclude=docs-*",
     "build-all": "nx run-many --targets=build --all --parallel=3 --configuration=production --exclude=docs-*",
+    "build-apps": "nx run-many --targets=build --parallel=3 --configuration=release --include=reaper-eth-engine",
     "build-local": "nx affected --targets=build --parallel=3 --exclude=reaper-eth-order-telegram-bot,docs-* && nx affected --target=build-local --parallel=3 --exclude=docs-*",
     "clean": "rimraf dist",
     "clean-packages": "rimraf dist/packages",
