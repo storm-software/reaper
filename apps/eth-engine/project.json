@@ -79,7 +79,7 @@
             "org.opencontainers.image.source=https://github.com/storm-software/reaper"
           ]
         },
-        "outputs": "type=registry,push=true"
+        "outputs": ["type=registry", "push=true"]
 
         // "cache-from": "type=registry",
         // "cache-to": "type=registry,mode=max",
