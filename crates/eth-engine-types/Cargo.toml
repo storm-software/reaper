@@ -46,7 +46,7 @@ malachite-q = { workspace = true, features = ["enable_serde"] }
 # serde
 serde = { workspace = true, features = ["derive"] }
 serde_json.workspace = true
-erased-serde = "0.3.31"
+erased-serde = "0.4.5"
 serde_with.workspace = true
 serde_repr.workspace = true
 
@@ -83,7 +83,7 @@ hyper.workspace = true
 prettytable-rs = "0.10"
 
 # stats
-statrs = "0.16"
+statrs = "0.17.1"
 
 # errors
 eyre.workspace = true
