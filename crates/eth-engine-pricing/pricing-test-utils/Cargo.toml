@@ -25,7 +25,7 @@ reaper-eth-engine-reth-tracing = { path = "../../eth-engine-reth-tracing", featu
 ] }
 reaper-eth-engine-macros = { path = "../../eth-engine-macros" }
 
-itertools = "0.12.0"
+itertools = "0.13.0"
 redefined.workspace = true
 
 futures.workspace = true
@@ -48,7 +48,7 @@ malachite = { workspace = true, features = ["enable_serde"] }
 # serde
 serde = { workspace = true, features = ["derive"] }
 serde_json.workspace = true
-erased-serde = "0.3.31"
+erased-serde = "0.4.5"
 serde_with.workspace = true
 serde_repr.workspace = true
 alloy-rlp = { workspace = true, features = ["arrayvec"] }
@@ -72,7 +72,7 @@ async-trait.workspace = true
 num-bigfloat = "1.7.0"
 parity-scale-codec = { version = "3.2.1", features = ["derive", "bytes"] }
 proptest = "1.4"
-proptest-derive = "0.4"
+proptest-derive = "0.5.0"
 arbitrary = "1.3"
 modular-bitfield = "0.11.2"
 bytes = "1.5"
