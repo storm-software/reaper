@@ -20,7 +20,7 @@ reaper-eth-engine-libmdbx = { workspace = true, features = [
 ] }
 
 malachite.workspace = true
-toml = "0.8.2"
+toml = "0.8.19"
 indicatif.workspace = true
 
 # filesystem
@@ -77,8 +77,8 @@ dotenvy.workspace = true
 num_cpus.workspace = true
 strum = { workspace = true, features = ["derive"] }
 thiserror.workspace = true
-human_bytes = "0.4.1"
-boyer-moore-magiclen = "0.2.16"
+human_bytes = "0.4.3"
+boyer-moore-magiclen = "0.2.20"
 comfy-table = "7.0"
 serde_json.workspace = true
 
@@ -114,13 +114,13 @@ crossterm = "0.27.0"
 regex.workspace = true
 rand = "0.8.5"
 ansi_term = "0.12.1"
-ansi-parser = "0.9.0"
+ansi-parser = "0.9.1"
 ahash = "0.8.11"
 
-tikv-jemallocator = { version = "0.5.0", features = [
+tikv-jemallocator = { version = "0.5.4", features = [
     "unprefixed_malloc_on_supported_platforms",
 ] }
-const_format = { version = "0.2.32", features = ["rust_1_64"] }
+const_format = { version = "0.2.33", features = ["rust_1_64"] }
 
 [build-dependencies]
 vergen = { version = "8.0.0", features = ["build", "cargo", "git", "gitcl"] }

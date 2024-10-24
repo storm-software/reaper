@@ -18,7 +18,7 @@ bitflags.workspace = true
 byteorder = "1"
 derive_more.workspace = true
 indexmap = "2"
-libc = "0.2"
+libc = "0.2.161"
 parking_lot.workspace = true
 thiserror.workspace = true
 dashmap = { workspace = true, features = ["inline"], optional = true }
@@ -27,7 +27,7 @@ ffi = { package = "reth-mdbx-sys", git = "https://github.com/paradigmxyz/reth", 
 
 [dev-dependencies]
 tempfile = "3.8"
-criterion = "0.5"
+criterion = "0.5.1"
 pprof = "0.13"
 
 [target.'cfg(not(windows))'.dependencies]
