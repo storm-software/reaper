@@ -166,13 +166,13 @@ revm-inspectors = { git = "https://github.com/paradigmxyz/evm-inspectors", rev =
 
 
 # Alloy
-alloy-sol-types = { version = "0.7.0", features = ["json"] }
-alloy-sol-macro = { version = "0.7.0", features = ["json"] }
-alloy-rlp = { version = "0.3.4" }
-alloy-rlp-derive = { version = "0.3.4" }
-alloy-primitives = { version = "0.7.0", features = ["rlp"] }
-alloy-json-abi = "0.7.0"
-alloy-dyn-abi = "0.7.0 "
+alloy-sol-types = { version = "0.7.7", features = ["json"] }
+alloy-sol-macro = { version = "0.7.7", features = ["json"] }
+alloy-rlp = { version = "0.3.9" }
+alloy-rlp-derive = { version = "0.3.9" }
+alloy-primitives = { version = "0.7.7", features = ["rlp"] }
+alloy-json-abi = "0.7.7"
+alloy-dyn-abi = "0.7.7"
 
 # Alloy core
 alloy-provider = { git = "https://github.com/alloy-rs/alloy.git", rev = "39b8695", features = [
@@ -189,8 +189,8 @@ alloy-rpc-client = { git = "https://github.com/alloy-rs/alloy.git", rev = "39b86
 
 # Async
 tokio = { version = "1.13.0", features = ["full", "tracing"] }
-futures = "0.3.28"
-async-trait = "0.1.73"
+futures = "0.3.31"
+async-trait = "0.1.83"
 
 #Tracing
 tracing = "0.1.37"
@@ -202,36 +202,36 @@ colored = "2.0"
 prometheus = "0.13.4"
 
 # Metrics
-metrics-exporter-prometheus = "=0.12.1"
-metrics-util = "0.15.0"
+metrics-exporter-prometheus = "=0.12.2"
+metrics-util = "0.15.1"
 metrics-process = "=1.0.14"
 
 # Logging
-env_logger = "0.10.0"
+env_logger = "0.10.2"
 
 # error handling
 thiserror = "1.0.44"
-eyre = "0.6.8"
+eyre = "0.6.12"
 anyhow = "1.0.44"
 
 # http/rpc
-hyper = "0.14.25"
+hyper = "0.14.31"
 hyper-tls = "0.5.0"
-reqwest = { version = "0.12.2", default-features = false }
+reqwest = { version = "0.12.8", default-features = false }
 
 # Serde
 serde = "1.0.209"
 serde_derive = "1.0.209"
 serde_json = "1.0.127"
 serde_with = "3.4.0"
-serde_repr = "0.1.16"
+serde_repr = "0.1.19"
 
 # cli
 clap = { version = "4.4.6", features = ["derive"] }
 
 # Numbers
-malachite = "0.4.0"
-malachite-q = "0.4.0"
+malachite = "0.4.16"
+malachite-q = "0.4.16"
 
 # phf
 phf = "0.11.2"
@@ -242,7 +242,7 @@ metrics = "0.21.1"
 
 # misc
 backon = "0.4.4"
-c-kzg = "0.4.0"
+c-kzg = "0.4.2"
 hex-literal = "0.4.1"
 rayon = "1.7.0"
 dotenvy = "0.15.7"
@@ -250,12 +250,12 @@ semver = "1.0"
 lazy_static = "1.4.0"
 once_cell = "1.18.0"
 itertools = "0.11.0"
-parking_lot = "0.12.1"
-toml = "0.8.2"
+parking_lot = "0.12.3"
+toml = "0.8.19"
 auto_impl = "1.1.0"
 strum = "0.25.0"
 serial_test = "2.0.0"
-derive_more = "0.99.17"
+derive_more = "0.99.18"
 rkyv = { git = "https://github.com/rkyv/rkyv.git", branch = "0.7-hashbrown-0.14", features = [
     "validation",
 ] }
@@ -263,7 +263,7 @@ num_cpus = "1.16.0"
 redefined = { git = "https://github.com/SorellaLabs/redefined" }
 bytes = "1.5"
 bitflags = "2.5.0"
-chrono = "0.4.19"
+chrono = "0.4.38"
 
 arrow = "51.0.0"
 polars = { version = "0.38.3", features = ["lazy"] }
@@ -274,7 +274,7 @@ indicatif = "0.17.8"
 fs2 = "0.4.3"
 fs_extra = "1.3.0"
 filesize = "0.2.0"
-tar = "0.4.41"
+tar = "0.4.42"
 flate2 = "1.0.30"
 
 # AWS
