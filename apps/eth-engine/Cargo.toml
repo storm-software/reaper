@@ -20,7 +20,7 @@ reaper-eth-engine-libmdbx = { workspace = true, features = [
 ] }
 
 malachite.workspace = true
-toml = "0.8.2"
+toml = "0.9.12"
 indicatif.workspace = true
 
 # filesystem
@@ -33,7 +33,7 @@ directories = "5.0.1"
 
 # Async
 tokio = { workspace = true }
-async-scoped = { version = "0.7.1", features = ["use-tokio"] }
+async-scoped = { version = "0.9.0", features = ["use-tokio"] }
 futures.workspace = true
 reqwest.workspace = true
 
@@ -91,11 +91,11 @@ clap.workspace = true
 # logging
 rayon.workspace = true
 cfg-if = "1.0.0"
-sentry = "0.34.0"
+sentry = "0.49.2"
 
 # prometheus
 metrics-process.workspace = true
-prometheus = "0.13.4"
+prometheus = "0.14.0"
 itertools.workspace = true
 fdlimit = "0.3.0"
 dhat = "0.3.3"
@@ -110,14 +110,14 @@ prettytable-rs = "0.10"
 
 # banner
 indoc = "2"
-crossterm = "0.27.0"
+crossterm = "0.29.0"
 regex.workspace = true
 rand = "0.8.5"
 ansi_term = "0.12.1"
 ansi-parser = "0.9.0"
 ahash = "0.8.11"
 
-tikv-jemallocator = { version = "0.5.0", features = [
+tikv-jemallocator = { version = "0.7.0", features = [
     "unprefixed_malloc_on_supported_platforms",
 ] }
 const_format = { version = "0.2.32", features = ["rust_1_64"] }
