@@ -60,12 +60,12 @@ parity-scale-codec = { version = "3.2.1", features = ["derive", "bytes"] }
 reth-codecs.workspace = true
 reth-codecs-derive.workspace = true
 proptest = "1.4"
-proptest-derive = "0.4"
+proptest-derive = "0.8.0"
 arbitrary = "1.3"
 rand = "0.8.5"
-modular-bitfield = "0.11.2"
+modular-bitfield = "0.13.1"
 bytes = "1.5"
-zstd = "0.13"
+zstd = "0.14.0"
 chrono = "0.4.35"
 dashmap.workspace = true
 polars.workspace = true
@@ -112,20 +112,20 @@ bincode = "2.0.0-rc.3"
 redefined.workspace = true
 derive_more = "0.99.17"
 paste = "1.0.14"
-petgraph = "0.6.4"
-itertools = "0.12.0"
+petgraph = "0.8.3"
+itertools = "0.15.0"
 rayon.workspace = true
-strum = "0.25"
-strum_macros = "0.25"
+strum = "0.28.0"
+strum_macros = "0.28.0"
 async-trait = "0.1.73"
 reqwest = { workspace = true, features = ["stream"] }
-toml = "0.8.9"
+toml = "0.9.12"
 indicatif.workspace = true
 page_size = "0.6.0"
 schnellru = "0.2.2"
 
 # benches
-criterion = "0.5"
+criterion = "0.8.2"
 human_bytes = "0.4.3"
 rkyv.workspace = true
 auto_impl.workspace = true
@@ -147,12 +147,12 @@ serial_test.workspace = true
 test-fuzz = "4"
 async-trait.workspace = true
 reth-tasks.workspace = true
-criterion = "0.5.1"
+criterion = "0.8.2"
 
 [build-dependencies]
 reaper-eth-engine-types.workspace = true
 serde.workspace = true
-toml = "0.8.9"
+toml = "0.9.12"
 alloy-primitives.workspace = true
 
 [[bench]]
