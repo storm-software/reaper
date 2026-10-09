@@ -158,7 +158,7 @@
   },
   "pnpm": {
     "overrides": {
-      "axios": ">=1.7.4"
+      "axios": ">=1.18.0"
     }
   },
   "prettier": "@storm-software/prettier/config.json",
