@@ -25,7 +25,7 @@ reaper-eth-engine-reth-tracing = { path = "../../eth-engine-reth-tracing", featu
 ] }
 reaper-eth-engine-macros = { path = "../../eth-engine-macros" }
 
-itertools = "0.12.0"
+itertools = "0.15.0"
 redefined.workspace = true
 
 futures.workspace = true
@@ -48,7 +48,7 @@ malachite = { workspace = true, features = ["enable_serde"] }
 # serde
 serde = { workspace = true, features = ["derive"] }
 serde_json.workspace = true
-erased-serde = "0.3.31"
+erased-serde = "0.4.10"
 serde_with.workspace = true
 serde_repr.workspace = true
 alloy-rlp = { workspace = true, features = ["arrayvec"] }
@@ -66,19 +66,19 @@ alloy-sol-types.workspace = true
 alloy-sol-macro = { workspace = true, features = ["json"] }
 alloy-dyn-abi.workspace = true
 parking_lot.workspace = true
-petgraph = "0.6.4"
+petgraph = "0.8.3"
 derive_more.workspace = true
 async-trait.workspace = true
 num-bigfloat = "1.7.0"
 parity-scale-codec = { version = "3.2.1", features = ["derive", "bytes"] }
 proptest = "1.4"
-proptest-derive = "0.4"
+proptest-derive = "0.8.0"
 arbitrary = "1.3"
-modular-bitfield = "0.11.2"
+modular-bitfield = "0.13.1"
 bytes = "1.5"
 rkyv.workspace = true
 dashmap.workspace = true
-criterion = { version = "0.5", features = ["async", "async_tokio"] }
+criterion = { version = "0.8.2", features = ["async", "async_tokio"] }
 dotenvy.workspace = true
 tokio.workspace = true
 rand = "0.8.5"
