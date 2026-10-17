@@ -89,7 +89,7 @@ reaper-eth-engine-reth-tracing.workspace = true
 serial_test.workspace = true
 dotenvy.workspace = true
 tokio.workspace = true
-criterion = { version = "0.5", features = ["async", "async_tokio"] }
+criterion = { version = "0.5.1", features = ["async", "async_tokio"] }
 
 [features]
 default = []
