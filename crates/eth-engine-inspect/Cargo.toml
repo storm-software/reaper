@@ -75,7 +75,7 @@ itertools.workspace = true
 eyre.workspace = true
 colored.workspace = true
 
-criterion = { version = "0.5", features = [
+criterion = { version = "0.5.1", features = [
     "async",
     "async_tokio",
 ], optional = true }
@@ -94,9 +94,9 @@ serial_test.workspace = true
 tracing-subscriber.workspace = true
 reth-db.workspace = true
 tokio.workspace = true
-criterion = { version = "0.5" }
+criterion = { version = "0.5.1" }
 rand = "0.8.5"
-statrs = "0.16"
+statrs = "0.16.1"
 
 [features]
 sorella-server = ["local-reth", "local-clickhouse"]
