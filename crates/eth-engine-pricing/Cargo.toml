@@ -22,7 +22,7 @@ reaper-eth-engine-macros.workspace = true
 reaper-eth-engine-types.workspace = true
 reaper-eth-engine-metrics.workspace = true
 
-itertools = "0.12.0"
+itertools = "0.12.1"
 redefined.workspace = true
 
 futures.workspace = true
@@ -65,7 +65,7 @@ alloy-sol-types.workspace = true
 alloy-sol-macro = { workspace = true, features = ["json"] }
 alloy-dyn-abi.workspace = true
 parking_lot.workspace = true
-petgraph = "0.6.4"
+petgraph = "0.6.5"
 derive_more.workspace = true
 async-trait.workspace = true
 num-bigfloat = "1.7.0"
@@ -79,7 +79,7 @@ bytes = "1.5"
 eyre.workspace = true
 rkyv.workspace = true
 dashmap.workspace = true
-criterion = { version = "0.5", features = [
+criterion = { version = "0.5.1", features = [
     "async",
     "async_tokio",
 ], optional = true }
