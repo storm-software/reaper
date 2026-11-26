@@ -59,7 +59,7 @@ eyre.workspace = true
 
 # tests feature (unique)
 thiserror = { workspace = true, optional = true }
-criterion = { version = "0.5", features = [
+criterion = { version = "0.5.1", features = [
     "async",
     "async_tokio",
 ], optional = true }
@@ -76,7 +76,7 @@ reaper-eth-engine-database.workspace = true
 reaper-eth-engine-reth-tracing.workspace = true
 reaper-eth-engine-macros.workspace = true
 
-criterion = "0.5"
+criterion = "0.5.1"
 strum = { workspace = true, features = ["derive"] }
 dotenvy.workspace = true
 tokio.workspace = true

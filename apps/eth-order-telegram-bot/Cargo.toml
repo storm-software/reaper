@@ -29,7 +29,7 @@ teloxide = { version = "0.13", features = [
     "trace-adaptor",
     "cache-me",
 ] }
-mime = "0.3.17"
+mime = "0.3.18"
 aws-sdk-sns = "1.39.0"
 regex.workspace = true
 anyhow.workspace = true
